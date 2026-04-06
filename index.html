@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プラットヨネザワ | ドキュメントポータル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --primary-light: #2c3e5a;
+  --accent: #c0392b;
+  --gold: #b8860b;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+}
+.hero h1 { font-size: 1.8rem; font-weight: 900; margin-bottom: .5rem; letter-spacing: .05em; }
+.hero p { font-size: .95rem; opacity: .85; max-width: 600px; margin: 0 auto; }
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.section-title {
+  font-size: 1.1rem; font-weight: 700; color: var(--primary);
+  margin: 2rem 0 1rem; padding-bottom: .5rem;
+  border-bottom: 2px solid var(--primary);
+  display: flex; align-items: center; gap: .5rem;
+}
+.section-title .icon { font-size: 1.3rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+.card {
+  background: var(--card); border-radius: 10px; padding: 1.5rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none; color: var(--text); display: block;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
+.card .badge {
+  display: inline-block; font-size: .65rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
+}
+.badge-report { background: #e8f4f8; color: #2980b9; }
+.badge-doc { background: #fdf2e9; color: #b8860b; }
+.badge-guide { background: #eafaf1; color: #27ae60; }
+.card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; line-height: 1.5; }
+.card p { font-size: .82rem; color: var(--text-sub); line-height: 1.6; }
+.footer {
+  text-align: center; padding: 2rem; font-size: .75rem;
+  color: var(--text-sub); border-top: 1px solid var(--border); margin-top: 2rem;
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.4rem; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>プラットヨネザワ</h1>
+  <p>社内ドキュメント・レポート・ガイドを集約したポータルサイト</p>
+</div>
+<div class="container">
+  <div class="section-title"><span class="icon">📊</span> レポート</div>
+  <div class="card-grid">
+    <a href="reports/market-analysis.html" class="card">
+      <span class="badge badge-report">レポート</span>
+      <h3>「超勝利」勝利マーケット分析レポート</h3>
+      <p>マーケット分析の詳細データ・競合調査・戦略提案をまとめたレポートです。</p>
+    </a>
+  </div>
+  <div class="section-title"><span class="icon">📝</span> 申請書・ドキュメント</div>
+  <div class="card-grid">
+    <a href="docs/cultural-heritage-grant.html" class="card">
+      <span class="badge badge-doc">申請書</span>
+      <h3>令和8年度 文化財活用推進事業 申請書ドラフト</h3>
+      <p>全国各地の魅力的な文化財活用推進事業に係る補助金申請書のドラフト版です。</p>
+    </a>
+  </div>
+  <div class="section-title"><span class="icon">📖</span> ガイド・マニュアル</div>
+  <div class="card-grid">
+    <a href="guides/slack-commands.html" class="card">
+      <span class="badge badge-guide">ガイド</span>
+      <h3>AI Company Slackコマンド 承認依頼書</h3>
+      <p>Slackの各種コマンドと承認フローについてまとめたガイドです。</p>
+    </a>
+    <a href="guides/quick-guide.html" class="card">
+      <span class="badge badge-guide">ガイド</span>
+      <h3>AI Company クイックガイド</h3>
+      <p>AI Companyの基本操作・初期設定をまとめたクイックスタートガイドです。</p>
+    </a>
+  </div>
+</div>
+<div class="footer">
+  &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
+</div>
+</body>
+</html>
