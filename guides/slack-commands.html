@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI_Company Slackコマンドシステム 導入提案・承認依頼書</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2d3436;
+    --text-light: #636e72;
+    --border: #dfe6e9;
+    --green: #00b894;
+    --yellow: #fdcb6e;
+    --blue: #0984e3;
+    --purple: #6c5ce7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ===== ヘッダー ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .hero p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  /* ===== コンテナ ===== */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* ===== セクション ===== */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-number {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 12px;
+  }
+  .section h2 {
+    display: inline;
+    font-size: 22px;
+    color: var(--primary);
+    vertical-align: middle;
+  }
+  .section-line {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    margin: 12px 0 24px 0;
+    border-radius: 2px;
+  }
+
+  /* ===== カード ===== */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-size: 17px;
+    color: var(--accent2);
+    margin-bottom: 12px;
+  }
+
+  /* ===== 課題カード ===== */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .problem-item {
+    background: #fff5f5;
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .problem-item .label {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* ===== アーキテクチャ図 ===== */
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 30px 0;
+    flex-wrap: wrap;
+  }
+  .arch-box {
+    background: white;
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 18px 24px;
+    text-align: center;
+    min-width: 160px;
+  }
+  .arch-box.slack { border-color: #4A154B; background: #4A154B; color: white; }
+  .arch-box.gas { border-color: #0F9D58; background: #0F9D58; color: white; }
+  .arch-box.claude { border-color: #D4A574; background: #D4A574; color: white; }
+  .arch-box .icon { font-size: 28px; margin-bottom: 6px; }
+  .arch-box .name { font-weight: 700; font-size: 15px; }
+  .arch-box .desc { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+  .arch-arrow {
+    font-size: 28px;
+    color: var(--text-light);
+    padding: 0 12px;
+  }
+
+  /* ===== コマンド一覧テーブル ===== */
+  .cmd-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+  }
+  .cmd-table thead th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .cmd-table thead th:first-child { border-radius: 8px 0 0 0; }
+  .cmd-table thead th:last-child { border-radius: 0 8px 0 0; }
+  .cmd-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .cmd-table tbody tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  .cmd-table tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+  .cmd-table tbody tr:hover { background: #f0f6ff; }
+  .cmd-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .dept-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .dept-pm { background: #dfe6e9; color: #2d3436; }
+  .dept-sec { background: #ffeaa7; color: #636e72; }
+  .dept-res { background: #81ecec; color: #00695c; }
+  .dept-grant { background: #fab1a0; color: #6c3428; }
+  .dept-content { background: #a29bfe; color: white; }
+  .dept-dev { background: #55efc4; color: #00695c; }
+  .dept-tourism { background: #fd79a8; color: white; }
+
+  /* ===== コスト ===== */
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .cost-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .cost-card.highlight {
+    border-color: var(--green);
+    background: #f0fff4;
+  }
+  .cost-card .amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 8px 0;
+  }
+  .cost-card .amount small {
+    font-size: 16px;
+    color: var(--text-light);
+  }
+  .cost-card .label {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+  .cost-card .sublabel {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* ===== タイムライン ===== */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--green) 100%);
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-item .phase {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .timeline-item h4 {
+    font-size: 16px;
+    margin: 4px 0 8px;
+  }
+  .timeline-item p {
+    font-size: 14px;
+    color: var(--text-light);
+  }
+  .timeline-item .time-badge {
+    display: inline-block;
+    background: #dfe6e9;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 8px;
+  }
+
+  /* ===== セキュリティ ===== */
+  .security-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .security-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .security-item .check {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .security-item .title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .security-item .detail {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  /* ===== 承認欄 ===== */
+  .approval-box {
+    background: white;
+    border: 3px solid var(--accent2);
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+  }
+  .approval-box h3 {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .approval-box p {
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+  .approval-items {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+  .approval-item {
+    text-align: center;
+  }
+  .approval-item .value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .approval-item .label {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .signature-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .signature-box {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    min-height: 100px;
+  }
+  .signature-box .role {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .signature-box .line {
+    border-bottom: 1px solid var(--border);
+    margin-top: 50px;
+  }
+
+  /* ===== デモ画面 ===== */
+  .slack-demo {
+    background: #1a1d21;
+    border-radius: 12px;
+    padding: 24px;
+    color: #d1d2d3;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .slack-demo .user { color: #1d9bd1; font-weight: 700; }
+  .slack-demo .cmd { color: #e8912d; }
+  .slack-demo .bot { color: #2eb67d; font-weight: 700; }
+  .slack-demo .dim { color: #616061; }
+  .slack-demo .result { color: #e2e2e2; padding-left: 20px; border-left: 3px solid #2eb67d; margin: 8px 0; }
+
+  /* ===== フッター ===== */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* ===== 印刷対応 ===== */
+  @media print {
+    .hero { padding: 30px; }
+    .hero h1 { font-size: 24px; }
+    .container { padding: 20px; }
+    .section { margin-bottom: 30px; page-break-inside: avoid; }
+    .card { box-shadow: none; border: 1px solid #ddd; }
+    body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<div class="hero">
+  <div class="hero-badge">承認依頼書</div>
+  <h1>AI_Company Slackコマンドシステム<br>導入提案</h1>
+  <p>Slackから直接AI仮想組織の7部署を呼び出し、<br>業務効率化を実現するSlashコマンドシステムの導入について</p>
+  <div class="hero-meta">
+    <span>提案日: 2026年4月1日</span>
+    <span>提案者: 井上 洋平</span>
+    <span>部門: 開発・自動化室</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== 1. 背景・課題 ===== -->
+  <div class="section">
+    <span class="section-number">1</span>
+    <h2>背景と現状の課題</h2>
+    <div class="section-line"></div>
+
+    <div class="card">
+      <p>AI_Company（AI仮想組織）はNotion・Asana・ローカルフォルダ上に構築済みですが、<strong>実際にAI部署を呼び出すには毎回Claudeの画面を開き、システムプロンプトを切り替える手間</strong>が発生しています。</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="label">課題 1</div>
+        <div>Slack ↔ Claude間の切り替えコストが高い</div>
+      </div>
+      <div class="problem-item">
+        <div class="label">課題 2</div>
+        <div>部署ごとのプロンプト選択が煩雑</div>
+      </div>
+      <div class="problem-item">
+        <div class="label">課題 3</div>
+        <div>AI活用が属人化しやすい</div>
+      </div>
+      <div class="problem-item">
+        <div class="label">課題 4</div>
+        <div>利用状況が可視化できていない</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. 提案概要 ===== -->
+  <div class="section">
+    <span class="section-number">2</span>
+    <h2>提案概要</h2>
+    <div class="section-line"></div>
+
+    <div class="card">
+      <h3>Slackのスラッシュコマンドで、日常業務のワークフロー内からAI部署に直接指示</h3>
+      <p>例えば <code>/email 米沢市観光課への御礼メール</code> と入力するだけで、秘書室のAIが適切なビジネスメールを即座に生成します。チャットの流れを止めずに、専門AIの力を活用できます。</p>
+    </div>
+
+    <!-- デモ画面 -->
+    <div class="slack-demo">
+      <div><span class="user">@井上洋平</span> <span class="cmd">/email</span> 米沢市観光課の佐藤様へ、先日の打合せの御礼メール</div>
+      <div class="dim" style="margin: 4px 0;">📝 秘書室 が処理中です...</div>
+      <div style="margin-top: 12px;"><span class="bot">📝 秘書室</span> の回答</div>
+      <div class="result">
+        件名: 【御礼】先日のお打合せについて<br>
+        <br>
+        米沢市観光課<br>
+        佐藤様<br>
+        <br>
+        いつもお世話になっております。<br>
+        プラットヨネザワの井上でございます。<br>
+        先日はお忙しい中、貴重なお時間をいただき...<br>
+        <span class="dim">⏱ 8.3秒 | `/email` で再度質問</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3. システム構成 ===== -->
+  <div class="section">
+    <span class="section-number">3</span>
+    <h2>システム構成</h2>
+    <div class="section-line"></div>
+
+    <div class="card">
+      <div class="arch-flow">
+        <div class="arch-box slack">
+          <div class="icon">💬</div>
+          <div class="name">Slack</div>
+          <div class="desc">/command 入力</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box gas">
+          <div class="icon">⚡</div>
+          <div class="name">GAS Web App</div>
+          <div class="desc">コマンド判定<br>部署ルーティング</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box claude">
+          <div class="icon">🧠</div>
+          <div class="name">Claude API</div>
+          <div class="desc">部署別プロンプトで<br>AI応答生成</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box slack">
+          <div class="icon">📨</div>
+          <div class="name">Slack</div>
+          <div class="desc">結果を投稿</div>
+        </div>
+      </div>
+      <p style="text-align:center; color: var(--text-light); font-size: 14px; margin-top: 12px;">
+        GAS（Google Apps Script）はGoogleの無料サーバー環境。<br>新規サーバー契約やインフラ管理は不要です。
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== 4. コマンド一覧 ===== -->
+  <div class="section">
+    <span class="section-number">4</span>
+    <h2>コマンド一覧（9コマンド → 7部署）</h2>
+    <div class="section-line"></div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <table class="cmd-table">
+        <thead>
+          <tr>
+            <th>コマンド</th>
+            <th>対応部署</th>
+            <th>主な用途</th>
+            <th>使用例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cmd-badge">/task</span></td>
+            <td><span class="dept-tag dept-pm">📊 PM室</span></td>
+            <td>タスク管理・進捗確認</td>
+            <td><code>/task 今週の優先タスク整理</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/email</span></td>
+            <td><span class="dept-tag dept-sec">📝 秘書室</span></td>
+            <td>ビジネスメール作成</td>
+            <td><code>/email 観光課への御礼メール</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/summary</span></td>
+            <td><span class="dept-tag dept-sec">📝 秘書室</span></td>
+            <td>議論要約・議事録</td>
+            <td><code>/summary 今日の会議まとめ</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/research</span></td>
+            <td><span class="dept-tag dept-res">🔍 リサーチ室</span></td>
+            <td>市場調査・トレンド調査</td>
+            <td><code>/research 台湾インバウンド動向</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/analyze</span></td>
+            <td><span class="dept-tag dept-res">🔍 リサーチ室</span></td>
+            <td>データ分析・KPI分析</td>
+            <td><code>/analyze 来訪者数の前年比較</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/grant</span></td>
+            <td><span class="dept-tag dept-grant">📋 補助金室</span></td>
+            <td>補助金申請・行政文書</td>
+            <td><code>/grant 実績報告の構成案</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/report</span></td>
+            <td><span class="dept-tag dept-content">✍️ コンテンツ室</span></td>
+            <td>記事・提案書・PR</td>
+            <td><code>/report イベントのプレスリリース</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/dev</span></td>
+            <td><span class="dept-tag dept-dev">⚙️ 開発室</span></td>
+            <td>GAS開発・API連携</td>
+            <td><code>/dev Slack通知の自動化</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/marketing</span></td>
+            <td><span class="dept-tag dept-tourism">🏯 観光戦略室</span></td>
+            <td>SNS・インバウンド戦略</td>
+            <td><code>/marketing SNS投稿案作成</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 5. コスト ===== -->
+  <div class="section">
+    <span class="section-number">5</span>
+    <h2>コスト試算</h2>
+    <div class="section-line"></div>
+
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="label">月100回利用</div>
+        <div class="amount">¥230<small>/月</small></div>
+        <div class="sublabel">試験運用レベル</div>
+      </div>
+      <div class="cost-card highlight">
+        <div class="label">月500回利用（推奨）</div>
+        <div class="amount">¥1,150<small>/月</small></div>
+        <div class="sublabel">本格運用レベル</div>
+      </div>
+      <div class="cost-card">
+        <div class="label">月1,000回利用</div>
+        <div class="amount">¥2,300<small>/月</small></div>
+        <div class="sublabel">全社活用レベル</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <h3>コスト内訳</h3>
+      <table style="width:100%; font-size: 14px; margin-top: 12px;">
+        <tr>
+          <td style="padding: 8px 0;"><strong>Anthropic API（Claude）</strong></td>
+          <td style="text-align:right;">1回あたり約2.3円（従量課金）</td>
+        </tr>
+        <tr style="border-top: 1px solid var(--border);">
+          <td style="padding: 8px 0;"><strong>GAS（Google Apps Script）</strong></td>
+          <td style="text-align:right; color: var(--green); font-weight: 600;">無料</td>
+        </tr>
+        <tr style="border-top: 1px solid var(--border);">
+          <td style="padding: 8px 0;"><strong>Slack App</strong></td>
+          <td style="text-align:right; color: var(--green); font-weight: 600;">無料</td>
+        </tr>
+        <tr style="border-top: 1px solid var(--border);">
+          <td style="padding: 8px 0;"><strong>初期費用</strong></td>
+          <td style="text-align:right; color: var(--green); font-weight: 600;">¥0（API初回チャージ $5〜のみ）</td>
+        </tr>
+      </table>
+      <p style="font-size: 13px; color: var(--text-light); margin-top: 16px;">
+        ※ Anthropicアカウントにクレジットカードを登録し、プリペイド方式で$5〜チャージ。月額上限（Spend Limit）設定可能。
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== 6. セキュリティ ===== -->
+  <div class="section">
+    <span class="section-number">6</span>
+    <h2>セキュリティ対策</h2>
+    <div class="section-line"></div>
+
+    <div class="security-grid">
+      <div class="security-item">
+        <div class="check">🔒</div>
+        <div>
+          <div class="title">APIキーの安全管理</div>
+          <div class="detail">GASのPropertiesServiceで暗号化保存。コード内にハードコードしない</div>
+        </div>
+      </div>
+      <div class="security-item">
+        <div class="check">🛡️</div>
+        <div>
+          <div class="title">リクエスト認証</div>
+          <div class="detail">SlackのVerification Tokenで正当なリクエストのみ処理</div>
+        </div>
+      </div>
+      <div class="security-item">
+        <div class="check">⚡</div>
+        <div>
+          <div class="title">レートリミット</div>
+          <div class="detail">1ユーザー10回/分の上限でAPI乱用を防止</div>
+        </div>
+      </div>
+      <div class="security-item">
+        <div class="check">📊</div>
+        <div>
+          <div class="title">利用ログ記録</div>
+          <div class="detail">全コマンド実行をSpreadsheetに記録。利用状況を可視化</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 7. 導入スケジュール ===== -->
+  <div class="section">
+    <span class="section-number">7</span>
+    <h2>導入スケジュール</h2>
+    <div class="section-line"></div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="phase">Phase 1</div>
+        <h4>承認・APIキー取得</h4>
+        <p>Anthropicアカウント作成、APIキー発行、クレジット追加</p>
+        <span class="time-badge">承認後 即日</span>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 2</div>
+        <h4>GASデプロイ・Slack App作成</h4>
+        <p>コード設置、スクリプトプロパティ設定、Slash Commands登録</p>
+        <span class="time-badge">約1時間</span>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 3</div>
+        <h4>動作テスト・試験運用</h4>
+        <p>全9コマンドの動作確認、PM室・秘書室から先行運用開始</p>
+        <span class="time-badge">1〜2日</span>
+      </div>
+      <div class="timeline-item" style="border-left: 3px solid var(--green);">
+        <div class="phase" style="color: var(--green);">Phase 4</div>
+        <h4>全社展開</h4>
+        <p>全コマンド開放、利用ガイド共有、フィードバック収集・改善</p>
+        <span class="time-badge">1週間後〜</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 8. 承認依頼 ===== -->
+  <div class="section">
+    <span class="section-number">8</span>
+    <h2>承認依頼事項</h2>
+    <div class="section-line"></div>
+
+    <div class="approval-box">
+      <h3>以下についてご承認をお願いいたします</h3>
+      <p>本システムの導入に必要な承認事項は下記の通りです</p>
+
+      <div class="approval-items">
+        <div class="approval-item">
+          <div class="value">¥770</div>
+          <div class="label">初期費用（$5チャージ）</div>
+        </div>
+        <div class="approval-item">
+          <div class="value">〜¥1,150</div>
+          <div class="label">月額ランニングコスト（目安）</div>
+        </div>
+        <div class="approval-item">
+          <div class="value">1時間</div>
+          <div class="label">セットアップ所要時間</div>
+        </div>
+      </div>
+
+      <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+        <p style="font-size: 14px; margin-bottom: 12px;"><strong>承認事項:</strong></p>
+        <p style="font-size: 14px; padding: 6px 0;">☐ &nbsp; Anthropic APIアカウント作成・クレジット登録</p>
+        <p style="font-size: 14px; padding: 6px 0;">☐ &nbsp; Slack Appの社内ワークスペースへのインストール</p>
+        <p style="font-size: 14px; padding: 6px 0;">☐ &nbsp; GAS Web App のデプロイ（社内Google Workspace）</p>
+      </div>
+
+      <div class="signature-area">
+        <div class="signature-box">
+          <div class="role">起案者</div>
+          <div class="line"></div>
+        </div>
+        <div class="signature-box">
+          <div class="role">確認者</div>
+          <div class="line"></div>
+        </div>
+        <div class="signature-box">
+          <div class="role">承認者</div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  プラットヨネザワ株式会社 AI_Company 開発・自動化室<br>
+  本提案書に関するお問い合わせ: 井上 洋平（y.inoue@plat-yonezawa.jp）
+</div>
+
+</body>
+</html>
