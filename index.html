@@ -22,9 +22,7 @@
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color: #fff;
-  padding: 3rem 2rem 2.5rem;
-  text-align: center;
+  color: #fff; padding: 3rem 2rem 2.5rem; text-align: center;
 }
 .hero h1 { font-size: 1.8rem; font-weight: 900; margin-bottom: .5rem; letter-spacing: .05em; }
 .hero p { font-size: .95rem; opacity: .85; max-width: 600px; margin: 0 auto; }
@@ -48,9 +46,9 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
 }
-.badge-report { background: #e8f4f8; color: #2980b9; }
-.badge-doc { background: #fdf2e9; color: #b8860b; }
-.badge-guide { background: #eafaf1; color: #27ae60; }
+.badge-soft { background: #e8f4f8; color: #2980b9; }
+.badge-hard { background: #fdecea; color: #c0392b; }
+.badge-done { background: #eafaf1; color: #27ae60; }
 .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; line-height: 1.5; }
 .card p { font-size: .82rem; color: var(--text-sub); line-height: 1.6; }
 .footer {
@@ -66,33 +64,38 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 <body>
 <div class="hero">
   <h1>プラットヨネザワ</h1>
-  <p>社内ドキュメント・レポート・ガイドを集約したポータルサイト</p>
+  <p>事業ごとのドキュメント・レポート・進捗を集約したポータルサイト</p>
 </div>
 <div class="container">
-  <div class="section-title"><span class="icon">📊</span> レポート</div>
+
+  <!-- レキマチ事業 -->
+  <div class="section-title"><span class="icon">🏯</span> レキマチ事業（歴史的資源を活用した観光まちづくり）</div>
   <div class="card-grid">
-    <a href="reports/market-analysis.html" class="card">
-      <span class="badge badge-report">レポート</span>
-      <h3>「超勝利」勝利マーケット分析レポート</h3>
-      <p>マーケット分析の詳細データ・競合調査・戦略提案をまとめたレポートです。</p>
+    <a href="projects/rekimachi-soft.html" class="card">
+      <span class="badge badge-soft">ソフト事業</span>
+      <span class="badge badge-done">提出済 4/10</span>
+      <h3>レキマチ ソフト事業</h3>
+      <p>R7事業化支援 → R8モデル創出。人流データ分析、観光まちづくり計画策定、ベンチマーク比較、KPI設計。</p>
+    </a>
+    <a href="projects/rekimachi-hard.html" class="card">
+      <span class="badge badge-hard">ハード事業</span>
+      <h3>レキマチ ハード事業</h3>
+      <p>上杉神社・稽照殿エリアの施設整備・周辺環境整備。11事業者参画、補助上限2億円。申請〆切 4/22。</p>
     </a>
   </div>
-  <div class="section-title"><span class="icon">📝</span> 申請書・ドキュメント</div>
+
+  <!-- 今後追加する事業はここに -->
+  <!--
+  <div class="section-title"><span class="icon">🍽</span> ガストロノミーツーリズム推進事業</div>
   <div class="card-grid">
-    <a href="docs/cultural-heritage-grant.html" class="card">
-      <span class="badge badge-doc">申請書</span>
-      <h3>令和8年度 文化財活用推進事業 申請書ドラフト</h3>
-      <p>全国各地の魅力的な文化財活用推進事業に係る補助金申請書のドラフト版です。</p>
+    <a href="#" class="card">
+      <span class="badge badge-soft">準備中</span>
+      <h3>置賜ローカルガストロノミー</h3>
+      <p>置賜ガストロノミーコンテンツ造成事業（別申請）</p>
     </a>
   </div>
-  <div class="section-title"><span class="icon">📖</span> ガイド・マニュアル</div>
-  <div class="card-grid">
-    <a href="guides/quick-guide.html" class="card">
-      <span class="badge badge-guide">ガイド</span>
-      <h3>AI Company クイックガイド</h3>
-      <p>AI Companyの基本操作・初期設定をまとめたクイックスタートガイドです。</p>
-    </a>
-  </div>
+  -->
+
 </div>
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
