@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レキマチ ソフト事業 | 歴史的資源を活用した観光まちづくり推進事業</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --primary-light: #2c3e5a;
+  --accent: #c0392b;
+  --gold: #b8860b;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+  --soft-blue: #2980b9;
+  --soft-blue-bg: #e8f4f8;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--soft-blue) 100%);
+  color: #fff; padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero .breadcrumb { font-size: .75rem; opacity: .7; margin-bottom: .8rem; }
+.hero .breadcrumb a { color: #fff; text-decoration: none; }
+.hero .breadcrumb a:hover { text-decoration: underline; }
+.hero h1 { font-size: 1.6rem; font-weight: 900; margin-bottom: .4rem; letter-spacing: .04em; }
+.hero .subtitle { font-size: .95rem; opacity: .85; margin-bottom: 1rem; }
+.hero .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .78rem; opacity: .8; }
+.hero .meta-row span { display: flex; align-items: center; gap: .3rem; }
+.badge-soft { display: inline-block; background: rgba(255,255,255,0.18); padding: .2rem .7rem;
+  border-radius: 4px; font-size: .7rem; font-weight: 700; letter-spacing: .05em; margin-bottom: .8rem; }
+
+/* ── Container ── */
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ── Section ── */
+.section { margin-bottom: 2.5rem; }
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--primary);
+  margin-bottom: 1rem; padding-bottom: .5rem;
+  border-bottom: 2px solid var(--primary);
+  display: flex; align-items: center; gap: .5rem;
+}
+.section-title .icon { font-size: 1.2rem; }
+
+/* ── Cards ── */
+.card {
+  background: var(--card); border-radius: 10px; padding: 1.5rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 1rem;
+}
+.card h4 { font-size: .9rem; font-weight: 700; color: var(--primary); margin-bottom: .5rem; }
+.card p, .card li { font-size: .85rem; color: var(--text-sub); line-height: 1.7; }
+.card ul { padding-left: 1.2rem; }
+.card ul li { margin-bottom: .3rem; }
+
+/* ── Stats Grid ── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.stat-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem 1rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+}
+.stat-card .number { font-size: 1.8rem; font-weight: 900; color: var(--accent); line-height: 1.2; }
+.stat-card .unit { font-size: .75rem; color: var(--text-sub); }
+.stat-card .label { font-size: .75rem; color: var(--text-sub); margin-top: .3rem; }
+
+/* ── Table ── */
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+table th, table td { padding: .6rem .8rem; border: 1px solid var(--border); text-align: left; }
+table th { background: var(--primary); color: #fff; font-weight: 500; font-size: .78rem; }
+table tr:nth-child(even) { background: #fafafa; }
+
+/* ── Highlight Box ── */
+.highlight-box {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+  border-left: 4px solid var(--gold); padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0; margin-bottom: 1rem;
+}
+.highlight-box p { font-size: .85rem; line-height: 1.7; }
+.highlight-box strong { color: var(--primary); }
+
+/* ── Benchmark ── */
+.benchmark-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.benchmark-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.benchmark-card .name { font-weight: 700; font-size: .9rem; color: var(--primary); margin-bottom: .5rem; }
+.benchmark-card .data-row { display: flex; justify-content: space-between; font-size: .8rem;
+  padding: .3rem 0; border-bottom: 1px dashed var(--border); }
+.benchmark-card .data-row:last-child { border-bottom: none; }
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: .6rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 1.2rem; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -1.65rem; top: .5rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--soft-blue); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--soft-blue);
+}
+.timeline-item.done::before { background: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
+.timeline-item .time { font-size: .72rem; color: var(--text-sub); font-weight: 500; }
+.timeline-item .desc { font-size: .85rem; font-weight: 500; }
+
+/* ── Document Links ── */
+.doc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: .8rem; }
+.doc-link {
+  display: flex; align-items: center; gap: .8rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: .8rem 1rem; text-decoration: none; color: var(--text);
+  transition: transform .15s, box-shadow .15s;
+}
+.doc-link:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.doc-link .doc-icon { font-size: 1.4rem; flex-shrink: 0; }
+.doc-link .doc-info .doc-title { font-size: .82rem; font-weight: 600; }
+.doc-link .doc-info .doc-desc { font-size: .7rem; color: var(--text-sub); }
+
+/* ── Footer ── */
+.footer { text-align: center; padding: 2rem; font-size: .75rem; color: var(--text-sub);
+  border-top: 1px solid var(--border); margin-top: 2rem; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.2rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .benchmark-grid { grid-template-columns: 1fr; }
+  .container { padding: 1.5rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="breadcrumb"><a href="../index.html">ポータル</a> ＞ レキマチ事業 ＞ ソフト事業</div>
+  <span class="badge-soft">SOFT ― 調査・計画策定</span>
+  <span class="badge-soft" style="background:rgba(39,174,96,0.25);margin-left:.5rem;">提出済 4/10</span>
+  <h1>レキマチ ソフト事業</h1>
+  <p class="subtitle">歴史的資源を活用した観光まちづくり推進事業（R7 事業化支援 → R8 モデル創出）</p>
+  <div class="meta-row">
+    <span>📋 所管：観光庁</span>
+    <span>💰 補助上限：2,000万円</span>
+    <span>🏢 申請者：プラットヨネザワ株式会社</span>
+    <span>✅ 申請書提出済（2026/4/10）</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── 1. 事業概要 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> 事業概要</div>
+    <div class="highlight-box">
+      <p>上杉謙信公生誕500年（2030年）を見据え、上杉神社・稽照殿エリアを核とした<strong>「上杉の城下町」観光中核エリア</strong>の造成を目指す。本ソフト事業では、Agoop人流データ等を活用した調査・分析、観光まちづくり計画の策定、高付加価値コンテンツの造成検討を行う。</p>
+    </div>
+    <div class="card">
+      <h4>事業フェーズの全体像</h4>
+      <table>
+        <tr><th>フェーズ</th><th>年度</th><th>内容</th><th>補助金</th></tr>
+        <tr><td><strong>A 事業化支援</strong></td><td>R7（2025）</td><td>歴まち計画の立案、推進体制の構築、人流分析等の調査</td><td>調査事業 10/10</td></tr>
+        <tr><td><strong>B モデル創出</strong></td><td>R8（2026）</td><td>体験コンテンツ造成、モニターツアー、建造物活用方法の検討</td><td>最大2,000万円</td></tr>
+        <tr><td>ハード整備</td><td>R8〜</td><td>施設整備・周辺環境整備（別事業：ハード事業として申請）</td><td>最大2億円（1/2）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 2. リサーチサマリー ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔍</span> リサーチサマリー：人流データ分析</div>
+    <p style="font-size:.85rem;color:var(--text-sub);margin-bottom:1rem;">Agoop モバイル空間統計データ（令和7年度）に基づく上杉神社エリアの来訪者分析結果。</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">384,987</div>
+        <div class="unit">人/年</div>
+        <div class="label">年間来訪者数</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">65.8<span style="font-size:1rem;">%</span></div>
+        <div class="unit">&nbsp;</div>
+        <div class="label">休日 30分未満滞在率</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">35.5<span style="font-size:1rem;">%</span></div>
+        <div class="unit">&nbsp;</div>
+        <div class="label">100km以遠の来訪者比率</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.4rem;">通過型</div>
+        <div class="unit">&nbsp;</div>
+        <div class="label">現状の観光パターン</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. 課題の可視化 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚠️</span> 課題の可視化</div>
+    <div class="card">
+      <h4>通過型観光の深刻さ</h4>
+      <p>休日来訪者の<strong>65.8%が30分未満で退出</strong>。鹿島神宮の23.3%と比較すると2.8倍にのぼり、滞在を促すコンテンツ・動線・売り場の整備が急務であることが判明。</p>
+    </div>
+    <div class="card">
+      <h4>消費転換の欠如</h4>
+      <p>年間約38万5千人の来訪者基盤がありながら、売り場・動線の不備により消費活動に結びついていない。熊野大社と比較してプロダクト売上に大きな差（熊野大社：推定6,000〜8,000万円）。</p>
+    </div>
+    <div class="card">
+      <h4>広域吸引力の未活用</h4>
+      <p>100km以遠の来訪者が35.5%（鹿島神宮19.8%の1.8倍）と「わざわざ来る価値がある場所」として認知されているが、受け入れ環境が整っていない。</p>
+    </div>
+    <div class="card">
+      <h4>インバウンド対応・経営企画機能の不在</h4>
+      <p>多言語案内・展示環境が不十分。また、プロモーション・商品開発・ブランディングを担う専門チームがなく、同規模施設との収益差が拡大している。</p>
+    </div>
+  </div>
+
+  <!-- ── 4. ベンチマーク比較 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> ベンチマーク比較</div>
+    <div class="benchmark-grid">
+      <div class="benchmark-card">
+        <div class="name">上杉神社（米沢）</div>
+        <div class="data-row"><span>年間来訪者</span><span><strong>384,987人</strong></span></div>
+        <div class="data-row"><span>30分未満滞在率（休日）</span><span style="color:var(--accent);font-weight:700;">65.8%</span></div>
+        <div class="data-row"><span>100km以遠比率</span><span><strong>35.5%</strong></span></div>
+        <div class="data-row"><span>経営企画機能</span><span style="color:var(--accent);">未整備</span></div>
+      </div>
+      <div class="benchmark-card">
+        <div class="name">鹿島神宮（茨城）</div>
+        <div class="data-row"><span>年間来訪者</span><span>ー</span></div>
+        <div class="data-row"><span>30分未満滞在率（休日）</span><span style="color:#27ae60;font-weight:700;">23.3%</span></div>
+        <div class="data-row"><span>100km以遠比率</span><span>19.8%</span></div>
+        <div class="data-row"><span>参考</span><span>滞在型モデル</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. 市場分析 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💹</span> 市場分析：「超勝利」ブランドと勝利マーケット</div>
+    <div class="card">
+      <h4>「超勝利」ブランド構想</h4>
+      <p>稽照殿を核とした上杉文化のリブランディング。「超勝利」をキーワードに、上杉謙信公の精神性と勝利祈願を現代的な観光体験・物販・コンテンツに昇華する構想。</p>
+    </div>
+    <div class="card">
+      <h4>勝利マーケット分析</h4>
+      <p>上杉神社販売所周辺の商業ポテンシャル分析。現状の課題（動線不備・品揃え・ブランド統一感の欠如）と、ベンチマーク施設との売上比較に基づく改善提案を実施。</p>
+      <ul>
+        <li>販売所周辺のテコ入れによる売上向上シナリオ</li>
+        <li>「超勝利」ブランド商品ラインナップ設計</li>
+        <li>熊野大社ベンチマーク（プロダクト売上推定6,000〜8,000万円）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 6. 観光まちづくり計画 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🧭</span> 観光まちづくり計画の方向性</div>
+    <div class="card">
+      <h4>基本方針</h4>
+      <p>歴史的資源を中核とし、地域が一体となって地域経営の視点を持つ。限られたリソース（ヒト・モノ・カネ）を集結・適切に配分することで、持続可能な地域づくりと成果創出を目指す。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div class="card">
+        <h4>稼ぎ続ける（観光・経済循環）</h4>
+        <p>宿泊単価や域内消費額を高め、高付加価値化と経済循環の最大化を図る。地域全体の高付加価値化に寄与し、観光地として選ばれることを目指す。</p>
+      </div>
+      <div class="card">
+        <h4>護り続ける（社会・文化・環境）</h4>
+        <p>経済循環を通じて事業者進出やUIターンを促進し、地域住民の参画と誇りを醸成。地域文化や環境の持続可能な保全のため、地域の収益を再投資する。</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem;">
+      <h4>優先エリア</h4>
+      <p>早期に事業計画を立案しやすく事業期間も短い<strong>「伝統発酵食ゾーン（東町）」</strong>を優先的に計画策定・フィジビリティに着手。山形大学工学部や稽照殿エリアについては長期的な視点で調整を進める。</p>
+    </div>
+  </div>
+
+  <!-- ── 7. KPI ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> KPI・成果指標</div>
+    <table>
+      <tr><th>指標</th><th>現状（R7）</th><th>目標</th></tr>
+      <tr><td>30分未満滞在比率（休日）</td><td>65.8%</td><td>50%に改善</td></tr>
+      <tr><td>年間来訪者数</td><td>384,987人</td><td>40万人以上</td></tr>
+      <tr><td>外国人観光客数</td><td>未計測</td><td>計測体制構築＋目標設定</td></tr>
+      <tr><td>地域経営モデルの創出</td><td>ー</td><td>事業計画書策定完了</td></tr>
+    </table>
+    <div class="highlight-box" style="margin-top:1rem;">
+      <p><strong>成果物：</strong>歴史的資源を活用した地域経営やコンテンツ造成に向けた事業計画書。他地域のモデルとなる地域を創出する。</p>
+    </div>
+  </div>
+
+  <!-- ── 8. タイムライン ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🗓</span> タイムライン</div>
+    <div class="timeline">
+      <div class="timeline-item done">
+        <div class="time">R7（2025年度）</div>
+        <div class="desc">A 事業化支援：人流分析、計画策定、推進体制構築</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">R8（2026年度）</div>
+        <div class="desc">B モデル創出：体験コンテンツ造成、モニターツアー、活用方法検討</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">R8〜（並行）</div>
+        <div class="desc">ハード事業申請・施設整備開始（→ ハード事業ページ参照）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">R9〜</div>
+        <div class="desc">補助事業（観光振興事業費補助金）へ申請、大規模改修（最大2億円）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">2030年</div>
+        <div class="desc">上杉謙信公生誕500年 ― 観光中核エリア完成目標</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 9. 提出物一式 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">✅</span> 提出物一式（4/10 提出済）</div>
+    <div class="highlight-box" style="background:linear-gradient(135deg,#eafaf1 0%,#d5f5e3 100%);border-left-color:#27ae60;">
+      <p>令和8年度「歴史的資源を活用した観光まちづくりの事業化支援及びモデル創出」に申請済み。以下から提出書類一式を確認できます。</p>
+    </div>
+    <div class="doc-list">
+      <a href="https://drive.google.com/drive/u/0/folders/1HbW9mA3toCYQ9yjMEDefQSGpphktyMi7" target="_blank" class="doc-link" style="border-left:4px solid #27ae60;">
+        <span class="doc-icon">📂</span>
+        <div class="doc-info">
+          <div class="doc-title">提出物一式（Google Drive）</div>
+          <div class="doc-desc">R8 モデル創出 申請書類フォルダ</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── 10. 関連ドキュメント ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📎</span> 関連ドキュメント</div>
+    <div class="doc-list">
+      <a href="https://drive.google.com/drive/folders/15iUIJ3LEOMWTGdnTdQxf4nuVamiOEBJD" target="_blank" class="doc-link">
+        <span class="doc-icon">📁</span>
+        <div class="doc-info">
+          <div class="doc-title">49_歴史的資源を活用した観光まちづくり事業</div>
+          <div class="doc-desc">Google Drive — R7事業資料一式</div>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1ZtW11bncMjhQ2lbDp87aErnxJR4hnCPo/view" target="_blank" class="doc-link">
+        <span class="doc-icon">📊</span>
+        <div class="doc-info">
+          <div class="doc-title">レキマチ人流分析レポート v3</div>
+          <div class="doc-desc">Agoop二次交通分析含む</div>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1AJJa12q1s1ckiIVam_knguQQEu_Jhn3O/view" target="_blank" class="doc-link">
+        <span class="doc-icon">📋</span>
+        <div class="doc-info">
+          <div class="doc-title">上杉神社稽照殿グランドデザイン提案書</div>
+          <div class="doc-desc">中長期の整備方針</div>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1aKK9Klh_-VJhJD2BbaNnpwsLobNd95iL/view" target="_blank" class="doc-link">
+        <span class="doc-icon">📈</span>
+        <div class="doc-info">
+          <div class="doc-title">勝利市場マーケット分析レポート</div>
+          <div class="doc-desc">超勝利ブランド分析</div>
+        </div>
+      </a>
+      <a href="https://www.notion.so/1de9db545efa80b687c0cb956bdb133b" target="_blank" class="doc-link">
+        <span class="doc-icon">📝</span>
+        <div class="doc-info">
+          <div class="doc-title">Notion プロジェクトポータル</div>
+          <div class="doc-desc">上杉謙信公生誕500年 観光中核エリア造成事業</div>
+        </div>
+      </a>
+      <a href="https://www.mlit.go.jp/kankocho/seisaku_seido/kihonkeikaku/inbound_kaifuku/chihoyukyaku/rekishiteki/jigyo.html" target="_blank" class="doc-link">
+        <span class="doc-icon">🏛</span>
+        <div class="doc-info">
+          <div class="doc-title">【概要資料】R7 歴史的資源を活用した観光まちづくり事業</div>
+          <div class="doc-desc">観光庁 公式</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── 関連ページ ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔗</span> 関連ページ</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <a href="rekimachi-hard.html" class="doc-link" style="border-left:4px solid var(--accent);">
+        <span class="doc-icon">🏗</span>
+        <div class="doc-info">
+          <div class="doc-title">レキマチ ハード事業</div>
+          <div class="doc-desc">施設整備・周辺環境整備（R8〜）</div>
+        </div>
+      </a>
+      <a href="../index.html" class="doc-link">
+        <span class="doc-icon">🏠</span>
+        <div class="doc-info">
+          <div class="doc-title">ドキュメントポータル</div>
+          <div class="doc-desc">トップページに戻る</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
+</div>
+
+</body>
+</html>
