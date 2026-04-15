@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「超勝利」勝利マーケット分析レポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1b2d;
+  --navy-light: #1a2d4a;
+  --accent: #e63946;
+  --gold: #d4a017;
+  --gold-light: #f5e6b8;
+  --blue: #457b9d;
+  --blue-light: #a8dadc;
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #dee2e6;
+  --success: #2d6a4f;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.9; font-size:15px; }
+
+/* ── HERO ── */
+.hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,#2a4a7f 100%); color:#fff; padding:4rem 2rem 3rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-50%; right:-20%; width:600px; height:600px; background:radial-gradient(circle,rgba(214,160,23,0.08) 0%,transparent 70%); }
+.hero-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+.hero-badge { display:inline-block; background:var(--accent); color:#fff; font-size:.7rem; font-weight:700; padding:.3rem .8rem; border-radius:20px; letter-spacing:.1em; margin-bottom:1rem; }
+.hero h1 { font-size:2.4rem; font-weight:900; line-height:1.3; margin-bottom:.6rem; }
+.hero h1 span { color:var(--gold); }
+.hero .lead { font-size:1.05rem; font-weight:300; opacity:.85; max-width:700px; }
+.hero .meta { margin-top:1.5rem; font-size:.8rem; opacity:.5; }
+
+/* ── LAYOUT ── */
+.container { max-width:1100px; margin:0 auto; padding:2rem 1.5rem; }
+
+/* ── KPI ROW ── */
+.kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:-2rem 0 2.5rem; position:relative; z-index:2; }
+.kpi-card { background:var(--card); border-radius:12px; padding:1.4rem 1.2rem; box-shadow:var(--shadow-lg); text-align:center; border-top:3px solid var(--gold); }
+.kpi-card .value { font-size:1.8rem; font-weight:900; color:var(--navy); }
+.kpi-card .label { font-size:.75rem; color:var(--text-sub); margin-top:.2rem; }
+.kpi-card .tag { display:inline-block; font-size:.6rem; padding:.15rem .4rem; border-radius:3px; margin-top:.3rem; }
+.tag-real { background:#d4edda; color:#155724; }
+.tag-est { background:#fff3cd; color:#856404; }
+.tag-sim { background:#f8d7da; color:#721c24; }
+
+@media(max-width:768px){ .kpi-row{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:480px){ .kpi-row{grid-template-columns:1fr;} }
+
+/* ── SECTION ── */
+.section { margin:3rem 0; }
+.section-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; background:var(--navy); color:#fff; font-size:.85rem; font-weight:700; border-radius:50%; margin-right:.6rem; }
+.section-title { font-size:1.5rem; font-weight:700; color:var(--navy); display:flex; align-items:center; margin-bottom:.3rem; }
+.section-sub { font-size:.85rem; color:var(--text-sub); margin-bottom:1.5rem; padding-left:2.6rem; }
+
+/* ── CARD ── */
+.card { background:var(--card); border-radius:12px; box-shadow:var(--shadow); padding:1.8rem; margin:1.2rem 0; }
+.card-title { font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
+.card-title::before { content:''; width:4px; height:18px; background:var(--gold); border-radius:2px; display:inline-block; }
+
+/* ── TABLE ── */
+table { width:100%; border-collapse:collapse; font-size:.88rem; }
+th { background:var(--navy); color:#fff; font-weight:500; padding:.7rem .6rem; text-align:center; white-space:nowrap; }
+td { padding:.65rem .6rem; text-align:center; border-bottom:1px solid var(--border); }
+tr:hover { background:#f0f4f8; }
+.td-left { text-align:left; font-weight:500; }
+.hl { color:var(--accent); font-weight:700; }
+.hl-gold { color:var(--gold); font-weight:700; }
+
+/* ── INSIGHT BOX ── */
+.insight { display:flex; gap:.8rem; background:linear-gradient(135deg,#eef4fb,#f7fbff); border-left:4px solid var(--blue); border-radius:0 10px 10px 0; padding:1rem 1.2rem; margin:1rem 0; font-size:.9rem; }
+.insight-icon { font-size:1.4rem; flex-shrink:0; }
+.insight strong { color:var(--navy); }
+
+/* ── BAR CHART (CSS) ── */
+.bar-group { margin:.8rem 0; }
+.bar-item { display:flex; align-items:center; margin:.35rem 0; }
+.bar-label { width:110px; font-size:.78rem; text-align:right; padding-right:.6rem; white-space:nowrap; color:var(--text-sub); }
+.bar-track { flex:1; height:22px; background:#edf2f7; border-radius:4px; overflow:hidden; position:relative; }
+.bar-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:8px; font-size:.68rem; color:#fff; font-weight:600; min-width:30px; transition:width .6s ease; }
+.bar-uesugi { background:linear-gradient(90deg,#e63946,#ff6b6b); }
+.bar-kashima { background:linear-gradient(90deg,#1d3557,#457b9d); }
+.bar-katori { background:linear-gradient(90deg,#6a994e,#a7c957); }
+.bar-togo { background:linear-gradient(90deg,#7b2cbf,#c77dff); }
+
+/* ── SOURCE ── */
+.source { font-size:.72rem; color:#999; margin-top:.6rem; line-height:1.5; }
+.source .tag { font-size:.6rem; vertical-align:middle; }
+
+/* ── LEGEND ── */
+.legend { background:#f0f2f5; border-radius:10px; padding:1.2rem 1.5rem; margin:1.5rem 0; display:flex; flex-wrap:wrap; gap:1rem; font-size:.78rem; }
+.legend-item { display:flex; align-items:center; gap:.3rem; }
+
+/* ── SCORE METER ── */
+.meter { display:flex; align-items:center; gap:.3rem; }
+.meter-dot { width:10px; height:10px; border-radius:50%; }
+.meter-on { background:var(--gold); }
+.meter-off { background:#ddd; }
+
+/* ── COMPARISON GRID ── */
+.comp-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+@media(max-width:640px){ .comp-grid{grid-template-columns:1fr;} }
+.comp-card { background:var(--card); border-radius:10px; padding:1.2rem; box-shadow:0 2px 12px rgba(0,0,0,0.04); border-left:4px solid var(--blue); }
+.comp-card h4 { font-size:.95rem; margin-bottom:.5rem; color:var(--navy); }
+.comp-card p { font-size:.85rem; color:var(--text-sub); }
+
+/* ── FOOTER ── */
+.footer { text-align:center; padding:2.5rem 1rem; background:var(--navy); color:rgba(255,255,255,.5); font-size:.75rem; margin-top:3rem; }
+.footer strong { color:rgba(255,255,255,.8); }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-badge">MARKET ANALYSIS REPORT</div>
+  <h1>「<span>超勝利</span>」<br>勝利マーケット分析レポート</h1>
+  <p class="lead">全国の「勝利神社」市場における上杉神社のポジショニングと、「超勝利」ブランド事業の実現可能性をデータで検証する</p>
+  <p class="meta">分析対象：上杉神社（コア） × 鹿島神宮 × 香取神宮 × 東郷神社 ｜ Agoop人流データ 2025.01–12 ｜ 作成 2026.03.31</p>
+</div>
+</div>
+
+<!-- ============ KPI ROW ============ -->
+<div class="container">
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="value">384,987<small style="font-size:.5em">人/年</small></div>
+    <div class="label">上杉神社（コア）年間来訪者</div>
+    <span class="tag tag-real">実数値：Agoop</span>
+  </div>
+  <div class="kpi-card">
+    <div class="value">70.1<small style="font-size:.5em">%</small></div>
+    <div class="label">休日 観光客比率</div>
+    <span class="tag tag-real">実数値：Agoop</span>
+  </div>
+  <div class="kpi-card">
+    <div class="value">53.8<small style="font-size:.5em">%</small></div>
+    <div class="label">休日 県外来訪者比率</div>
+    <span class="tag tag-real">実数値：Agoop</span>
+  </div>
+  <div class="kpi-card">
+    <div class="value">65.8<small style="font-size:.5em">%</small></div>
+    <div class="label">休日 30分未満滞在比率</div>
+    <span class="tag tag-real">実数値：Agoop</span>
+  </div>
+</div>
+
+<!-- ============ LEGEND ============ -->
+<div class="legend">
+  <div class="legend-item"><span class="tag tag-real" style="font-size:.65rem">実数値：Agoop</span> GPS人流統計から直接集計</div>
+  <div class="legend-item"><span class="tag tag-est" style="font-size:.65rem">推計値：独自算出</span> Agoopデータの比率掛け合わせ</div>
+  <div class="legend-item"><span class="tag tag-sim" style="font-size:.65rem">推計値：シミュレーション</span> 仮定条件付き試算</div>
+</div>
+
+<!-- ============ SECTION 1: 勝利マーケットの全体像 ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">1</span>勝利マーケットの全体像</div>
+  <div class="section-sub">「勝利神社」市場を年間来訪者数・来訪構造からマッピングする</div>
+
+  <div class="card">
+    <div class="card-title">4社の基本指標比較</div>
+    <table>
+      <tr>
+        <th></th>
+        <th style="background:var(--accent)">上杉神社（コア）</th>
+        <th>鹿島神宮</th>
+        <th>香取神宮</th>
+        <th>東郷神社</th>
+      </tr>
+      <tr>
+        <td class="td-left">所在地</td>
+        <td>山形県米沢市</td>
+        <td>茨城県鹿嶋市</td>
+        <td>千葉県香取市</td>
+        <td>東京都渋谷区</td>
+      </tr>
+      <tr>
+        <td class="td-left">年間来訪者数</td>
+        <td class="hl">384,987人</td>
+        <td>1,164,994人</td>
+        <td>805,747人</td>
+        <td>390,333人</td>
+      </tr>
+      <tr>
+        <td class="td-left">1日平均</td>
+        <td>1,055人</td>
+        <td>3,192人</td>
+        <td>2,208人</td>
+        <td>1,069人</td>
+      </tr>
+      <tr>
+        <td class="td-left">休日/平日倍率</td>
+        <td>1.95倍</td>
+        <td>1.85倍</td>
+        <td>1.94倍</td>
+        <td>1.16倍</td>
+      </tr>
+      <tr>
+        <td class="td-left">観光客比率（休日）</td>
+        <td class="hl">70.1%</td>
+        <td>82.1%</td>
+        <td>87.1%</td>
+        <td>82.0%</td>
+      </tr>
+      <tr>
+        <td class="td-left">県外客比率（休日）</td>
+        <td class="hl">53.8%</td>
+        <td>54.7%</td>
+        <td>43.7%</td>
+        <td>49.5%</td>
+      </tr>
+      <tr>
+        <td class="td-left">ピーク月</td>
+        <td>4月（57,382）</td>
+        <td>1月（309,988）</td>
+        <td>1月（220,694）</td>
+        <td>1月（62,779）</td>
+      </tr>
+      <tr>
+        <td class="td-left">季節変動（ピーク/最低）</td>
+        <td>3.8倍</td>
+        <td>5.0倍</td>
+        <td>5.8倍</td>
+        <td>2.6倍</td>
+      </tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> 全項目ともAgoop人流統計データ（2025年1月〜12月）より集計。上杉神社は「コア」エリア（本殿・稽照殿周辺）で計測。鹿島・香取・東郷は境内周辺エリアで計測。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">💡</div>
+    <div><strong>Analyst Note：</strong>上杉神社（コア）は東郷神社と<strong>ほぼ同規模（38.5万人 vs 39.0万人）</strong>であり、勝利マーケットの中で明確なポジションを持つ。特筆すべきは<strong>ピーク月が4月</strong>である点。他の3社はいずれも1月（初詣）がピークで正月偏重型だが、上杉は桜・上杉まつりシーズンが牽引しており、<strong>市場内で唯一の「春型」</strong>ポジション。これは相互送客における季節補完性を意味する。</div>
+  </div>
+
+  <!-- BAR CHART: Annual Visitors -->
+  <div class="card">
+    <div class="card-title">年間来訪者数の視覚比較</div>
+    <div class="bar-group">
+      <div class="bar-item">
+        <div class="bar-label">鹿島神宮</div>
+        <div class="bar-track"><div class="bar-fill bar-kashima" style="width:100%">1,164,994</div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">香取神宮</div>
+        <div class="bar-track"><div class="bar-fill bar-katori" style="width:69.2%">805,747</div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label">東郷神社</div>
+        <div class="bar-track"><div class="bar-fill bar-togo" style="width:33.5%">390,333</div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-label" style="font-weight:700;color:var(--accent)">上杉神社</div>
+        <div class="bar-track"><div class="bar-fill bar-uesugi" style="width:33.0%">384,987</div></div>
+      </div>
+    </div>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> 2025年1月〜12月累計。</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 2: 滞在構造分析 ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">2</span>滞在構造分析 ── 最大の伸びしろ</div>
+  <div class="section-sub">「勝利神社」来訪者はどれだけ滞在しているか？ 上杉の特異な構造を読み解く</div>
+
+  <div class="card">
+    <div class="card-title">滞在時間分布の比較（休日）</div>
+    <table>
+      <tr>
+        <th>滞在時間</th>
+        <th style="background:var(--accent)">上杉神社</th>
+        <th>鹿島神宮</th>
+        <th>香取神宮</th>
+        <th>東郷神社</th>
+      </tr>
+      <tr><td class="td-left">5〜10分</td><td class="hl">18.3%</td><td>3.7%</td><td>3.0%</td><td>26.9%</td></tr>
+      <tr><td class="td-left">10〜15分</td><td class="hl">16.9%</td><td>4.2%</td><td>4.4%</td><td>14.5%</td></tr>
+      <tr><td class="td-left">15〜30分</td><td class="hl">30.6%</td><td>15.4%</td><td>28.4%</td><td>17.5%</td></tr>
+      <tr style="background:#fff3cd"><td class="td-left" style="font-weight:700">⬆ 30分未満 合計</td><td class="hl" style="font-size:1.05rem">65.8%</td><td>23.3%</td><td>35.8%</td><td>58.9%</td></tr>
+      <tr><td class="td-left">30分〜1時間</td><td>21.8%</td><td class="hl-gold">34.8%</td><td class="hl-gold">42.4%</td><td>10.2%</td></tr>
+      <tr><td class="td-left">1〜2時間</td><td>7.3%</td><td>31.8%</td><td>15.3%</td><td>6.5%</td></tr>
+      <tr><td class="td-left">2時間以上</td><td>5.0%</td><td>10.1%</td><td>6.5%</td><td>24.5%</td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> Agoop滞在時間別来訪者比率データ（2025年1月〜12月、休日）。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">🎯</div>
+    <div><strong>最重要発見：</strong>上杉神社（コア）は<strong>30分未満の来訪者が65.8%</strong>と4社中最も高い。鹿島神宮（23.3%）と比較すると<strong>2.8倍の短時間滞在比率</strong>。これは「参拝→写真→帰る」パターンが支配的であることを意味し、稽照殿リニューアルによる<strong>「あと30分」戦略のインパクトが最も大きい施設</strong>である。鹿島・香取では30分〜1時間帯がボリュームゾーン（34.8%/42.4%）であり、上杉がこの水準に近づけば来訪者の滞在体験が劇的に変わる。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">滞在時間延長の経済効果シミュレーション</div>
+    <table>
+      <tr><th style="width:30%">項目</th><th>現状</th><th>目標</th><th>根拠</th></tr>
+      <tr>
+        <td class="td-left">30分未満比率（休日）</td>
+        <td>65.8%</td>
+        <td>50%に圧縮</td>
+        <td><span class="tag tag-est">推計値：独自算出</span></td>
+      </tr>
+      <tr>
+        <td class="td-left">転換対象（年間）</td>
+        <td>—</td>
+        <td>約3.7万人</td>
+        <td><span class="tag tag-est">推計値：独自算出</span> 38.5万人×休日比44%×16%pt</td>
+      </tr>
+      <tr>
+        <td class="td-left">追加消費単価</td>
+        <td>—</td>
+        <td>500〜1,000円</td>
+        <td><span class="tag tag-sim">シミュレーション</span> 入館料+物販</td>
+      </tr>
+      <tr>
+        <td class="td-left" style="font-weight:700">年間追加消費額</td>
+        <td>—</td>
+        <td class="hl" style="font-size:1.05rem">1,850万〜3,700万円</td>
+        <td><span class="tag tag-sim">シミュレーション</span></td>
+      </tr>
+    </table>
+    <div class="source"><span class="tag tag-sim">推計値：シミュレーション</span> 仮定条件：滞在時間転換率16%pt、追加消費500〜1,000円/人。実際の効果は施設設計・価格設定に依存。</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 3: 来訪者構造分析 ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">3</span>来訪者構造分析 ── 誰がこの市場にいるのか</div>
+  <div class="section-sub">居住地・距離・ペルソナから「勝利神社」顧客像をプロファイリングする</div>
+
+  <div class="card">
+    <div class="card-title">来訪者の居住地構成（休日）</div>
+    <table>
+      <tr>
+        <th>居住地区分</th>
+        <th style="background:var(--accent)">上杉神社</th>
+        <th>鹿島神宮</th>
+        <th>香取神宮</th>
+        <th>東郷神社</th>
+      </tr>
+      <tr><td class="td-left">同市区町村</td><td>28.4%</td><td>17.1%</td><td>12.2%</td><td>10.9%</td></tr>
+      <tr><td class="td-left">同都道府県</td><td>17.8%</td><td>28.2%</td><td>44.1%</td><td>39.6%</td></tr>
+      <tr><td class="td-left" style="font-weight:700">県外</td><td class="hl">53.8%</td><td class="hl">54.7%</td><td>43.7%</td><td>49.5%</td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> Agoop居住地別来訪者数比率データ（2025年1月〜12月、休日）。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">📊</div>
+    <div><strong>Analyst Note：</strong>上杉神社の県外客比率<strong>53.8%</strong>は鹿島神宮（54.7%）と並び、<strong>勝利マーケットの中でトップクラスの広域吸引力</strong>を持つ。山形県米沢市という地理的条件を考慮すると、この数値は極めて高い。一方、「同市区町村」が28.4%と他社より高いのは、上杉神社が米沢市民の生活圏としても機能している二層構造を示す。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">居住距離別の来訪者構成（休日）</div>
+    <table>
+      <tr>
+        <th>距離帯</th>
+        <th style="background:var(--accent)">上杉神社</th>
+        <th>鹿島神宮</th>
+        <th>香取神宮</th>
+        <th>東郷神社</th>
+      </tr>
+      <tr><td class="td-left">〜5km圏</td><td>27.4%</td><td>16.2%</td><td>8.0%</td><td>16.6%</td></tr>
+      <tr><td class="td-left">5〜30km圏</td><td>9.0%</td><td>14.0%</td><td>21.9%</td><td>52.7%</td></tr>
+      <tr><td class="td-left">30〜100km圏</td><td>28.1%</td><td>50.0%</td><td>58.6%</td><td>16.3%</td></tr>
+      <tr><td class="td-left" style="font-weight:700">100km圏〜</td><td class="hl">35.5%</td><td>19.8%</td><td>11.5%</td><td>14.2%</td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> Agoop居住距離別来訪者数比率データ（2025年1月〜12月、休日）。距離はGPS推定自宅からエリア中心点までの直線距離。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">🚀</div>
+    <div><strong>最重要発見：</strong>上杉神社は<strong>100km圏以遠が35.5%</strong>と4社中ダントツ。鹿島（19.8%）の<strong>1.8倍</strong>。これは米沢の地理的立地を考えると「わざわざ遠くから来ている」ことの証拠であり、上杉神社には他の勝利神社にない<strong>独自の広域吸引力</strong>がある。「超勝利」ブランドはこの強みを更に増幅させる戦略として合理的。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">都道府県別来訪者ランキング ── 上杉神社（コア・休日・日平均）</div>
+    <table>
+      <tr><th>順位</th><th>都道府県</th><th>人数/日</th><th>構成比</th><th>備考</th></tr>
+      <tr><td>1</td><td class="td-left">山形県</td><td>801人</td><td>45.6%</td><td>地元基盤</td></tr>
+      <tr><td>2</td><td class="td-left">福島県</td><td>192人</td><td>10.9%</td><td>隣県</td></tr>
+      <tr><td>3</td><td class="td-left">宮城県</td><td>116人</td><td>6.6%</td><td>隣県（仙台圏）</td></tr>
+      <tr><td>4</td><td class="td-left" style="color:var(--accent)">東京都</td><td>106人</td><td>6.0%</td><td rowspan="4" style="background:#fff3cd;font-weight:600;color:var(--accent)">首都圏4都県<br>計297人/日<br><strong>16.9%</strong></td></tr>
+      <tr><td>5</td><td class="td-left" style="color:var(--accent)">新潟県</td><td>77人</td><td>4.4%</td></tr>
+      <tr><td>6</td><td class="td-left" style="color:var(--accent)">埼玉県</td><td>67人</td><td>3.8%</td></tr>
+      <tr><td>7</td><td class="td-left" style="color:var(--accent)">神奈川県</td><td>65人</td><td>3.7%</td></tr>
+      <tr><td>8</td><td class="td-left">千葉県</td><td>59人</td><td>3.4%</td><td></td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> Agoop都道府県別居住地別来訪者ランキングデータ（2025年1月〜12月、休日、日平均サンプル数）。構成比は全都道府県合計1,755人に対する割合。</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 4: デモグラフィック ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">4</span>デモグラフィック分析 ── ターゲットの解像度を上げる</div>
+  <div class="section-sub">年代・性別・ペルソナから「勝利」を求める顧客像を描く</div>
+
+  <div class="comp-grid">
+    <div class="card">
+      <div class="card-title">年代構成（休日）</div>
+      <table>
+        <tr><th>年代</th><th style="background:var(--accent)">上杉</th><th>鹿島</th><th>香取</th><th>東郷</th></tr>
+        <tr><td class="td-left">10代以下</td><td>15.2%</td><td>13.4%</td><td>10.5%</td><td>14.6%</td></tr>
+        <tr><td class="td-left">20代</td><td>14.3%</td><td>14.9%</td><td>12.4%</td><td class="hl">24.4%</td></tr>
+        <tr><td class="td-left">30代</td><td>13.8%</td><td>14.2%</td><td>14.2%</td><td>19.4%</td></tr>
+        <tr><td class="td-left">40代</td><td>19.6%</td><td>21.5%</td><td>21.2%</td><td>17.5%</td></tr>
+        <tr><td class="td-left">50代</td><td class="hl">21.2%</td><td class="hl">23.3%</td><td class="hl">27.4%</td><td>17.8%</td></tr>
+        <tr><td class="td-left">60代</td><td>15.9%</td><td>12.6%</td><td>14.3%</td><td>6.2%</td></tr>
+      </table>
+      <div class="source"><span class="tag tag-real">実数値：Agoop</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">性別構成（休日）</div>
+      <table>
+        <tr><th></th><th style="background:var(--accent)">上杉</th><th>鹿島</th><th>香取</th><th>東郷</th></tr>
+        <tr><td class="td-left">男性</td><td>49.4%</td><td>49.4%</td><td>45.1%</td><td>44.6%</td></tr>
+        <tr><td class="td-left">女性</td><td>50.6%</td><td>50.6%</td><td class="hl">54.9%</td><td class="hl">55.4%</td></tr>
+      </table>
+      <div class="source"><span class="tag tag-real">実数値：Agoop</span></div>
+      <div style="margin-top:1rem">
+        <p style="font-size:.85rem;color:var(--text-sub)"><strong>読み解き：</strong>上杉・鹿島は男女均等型、香取・東郷は女性優位型。「勝利」のテーマが男性限定でないことの証左であり、「超勝利」ブランドは性別を問わず訴求可能。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">👥</div>
+    <div><strong>Analyst Note：</strong>勝利マーケット全体の年代ボリュームゾーンは<strong>40〜50代</strong>（上杉40.8%、鹿島44.8%、香取48.6%）。これは「受験・就職・ビジネス」で勝利を求める現役世代。上杉の特徴は<strong>10代以下15.2%</strong>（4社中最高タイ）で、ファミリー層の来訪が多い。東郷は20代24.4%と若年層に強く、渋谷という立地を反映。上杉が20〜30代（計28.1%）を取り込めれば成長余地は大きい。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">ペルソナ中分類 ── 勝利マーケットの顧客クラスター（休日）</div>
+    <table>
+      <tr>
+        <th>ペルソナ</th>
+        <th style="background:var(--accent)">上杉</th>
+        <th>鹿島</th>
+        <th>香取</th>
+        <th>東郷</th>
+      </tr>
+      <tr><td class="td-left">J:地方の大家族・シニア</td><td class="hl">34.7%</td><td>24.3%</td><td>24.9%</td><td>4.8%</td></tr>
+      <tr><td class="td-left">I:地方の単身層</td><td>13.6%</td><td>6.4%</td><td>6.3%</td><td>2.4%</td></tr>
+      <tr><td class="td-left">A:都市部の単身層</td><td>11.3%</td><td>11.8%</td><td>12.9%</td><td class="hl">46.7%</td></tr>
+      <tr><td class="td-left">C:近郊の成熟した住宅街</td><td>11.3%</td><td>15.8%</td><td>15.6%</td><td>8.1%</td></tr>
+      <tr><td class="td-left">G:ニューファミリー</td><td>10.3%</td><td class="hl-gold">16.0%</td><td>9.0%</td><td>4.5%</td></tr>
+      <tr><td class="td-left">B:都市部のファミリー</td><td>6.3%</td><td>10.4%</td><td>13.5%</td><td>22.7%</td></tr>
+      <tr><td class="td-left">E:公団住まい</td><td>5.2%</td><td>4.0%</td><td>4.3%</td><td>3.8%</td></tr>
+      <tr><td class="td-left">D:豊かなセカンドライフ</td><td>2.9%</td><td>5.2%</td><td>7.6%</td><td>5.1%</td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> Agoopペルソナ中分類別比率データ（2025年1月〜12月、休日）。ペルソナはAgoop独自の居住地メッシュ特性に基づく分類。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">🔍</div>
+    <div><strong>ペルソナ構造の読み解き：</strong>上杉神社は「地方の大家族・シニア」34.7%が最大だが、<strong>「地方の単身層」13.6%＋「都市部の単身層」11.3%＝24.9%が単身層</strong>、<strong>「ニューファミリー」10.3%＋「都市部ファミリー」6.3%＝16.6%がファミリー層</strong>と多様。鹿島は「ニューファミリー」16.0%が強く、東郷は「都市部単身層」46.7%と完全な都市型。<strong>上杉は地方型と都市型の中間に位置しており、「超勝利」ブランドで都市層を取り込む余地が大きい。</strong></div>
+  </div>
+</div>
+
+<!-- ============ SECTION 5: 勝利マーケットにおける上杉のポジション ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">5</span>上杉神社の競争優位性</div>
+  <div class="section-sub">4社比較から見える上杉神社の「強み」と「伸びしろ」</div>
+
+  <div class="card" style="border-top:3px solid var(--gold)">
+    <div class="card-title">ポジショニング・マトリクス</div>
+    <table>
+      <tr>
+        <th style="width:28%">指標</th>
+        <th style="background:var(--accent)">上杉神社</th>
+        <th>鹿島神宮</th>
+        <th>香取神宮</th>
+        <th>東郷神社</th>
+        <th style="width:14%">上杉の評価</th>
+      </tr>
+      <tr>
+        <td class="td-left">年間来訪者数</td>
+        <td>38.5万</td><td>116.5万</td><td>80.6万</td><td>39.0万</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-off"></span><span class="meter-dot meter-off"></span><span class="meter-dot meter-off"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">観光客純度</td>
+        <td>70.1%</td><td>82.1%</td><td>87.1%</td><td>82.0%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-off"></span><span class="meter-dot meter-off"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">広域吸引力（県外率）</td>
+        <td class="hl">53.8%</td><td>54.7%</td><td>43.7%</td><td>49.5%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">遠方吸引力（100km超）</td>
+        <td class="hl">35.5%</td><td>19.8%</td><td>11.5%</td><td>14.2%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">滞在延長ポテンシャル</td>
+        <td class="hl">65.8%</td><td>23.3%</td><td>35.8%</td><td>58.9%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">通年安定性（季節倍率↓が良）</td>
+        <td>3.8倍</td><td>5.0倍</td><td>5.8倍</td><td class="hl-gold">2.6倍</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-off"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">ファミリー比率</td>
+        <td>16.6%</td><td class="hl-gold">26.4%</td><td>22.5%</td><td>27.2%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-off"></span><span class="meter-dot meter-off"></span></span></td>
+      </tr>
+      <tr>
+        <td class="td-left">首都圏比率</td>
+        <td>16.9%</td><td>23.8%</td><td>21.9%</td><td class="hl-gold">81.7%</td>
+        <td><span class="meter"><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-on"></span><span class="meter-dot meter-off"></span><span class="meter-dot meter-off"></span></span></td>
+      </tr>
+    </table>
+    <div class="source">全指標 <span class="tag tag-real">実数値：Agoop</span>。ファミリー比率=ペルソナ「G:ニューファミリー」+「B:都市部ファミリー」の合計。首都圏=東京・神奈川・埼玉・千葉の合計構成比。評価は5段階の相対評価。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">⚡</div>
+    <div><strong>総合アセスメント：</strong>上杉神社の最大の強みは<strong>「広域吸引力」と「滞在延長ポテンシャル」</strong>の2点。県外率53.8%・100km超35.5%は「地方の神社」としては異例の水準であり、既に「わざわざ来る価値がある場所」として認知されている。一方、来訪者の65.8%が30分未満で帰っているという<strong>「来ているのに体験していない」構造</strong>は、稽照殿リニューアルで直接的に改善できる。これは他の3社にはない上杉独自の成長機会である。</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 6: 熊野大社ベンチマーク ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">6</span>参考：県内ベンチマーク（熊野大社・南陽市）</div>
+  <div class="section-sub">隣接する南陽市の熊野大社を地域連携の観点から参照する</div>
+
+  <div class="card">
+    <div class="card-title">上杉神社 vs 熊野大社 ── 連携可能性の検証</div>
+    <table>
+      <tr><th style="width:30%">指標</th><th style="background:var(--accent)">上杉神社（コア）</th><th>熊野大社（全体）</th><th>連携の示唆</th></tr>
+      <tr><td class="td-left">年間来訪者数</td><td>384,987人</td><td>440,626人</td><td style="font-size:.8rem;text-align:left">同水準。エリア定義差あり</td></tr>
+      <tr><td class="td-left">ピーク月</td><td class="hl">4月</td><td class="hl">1月</td><td style="font-size:.8rem;text-align:left">季節補完性が高い</td></tr>
+      <tr><td class="td-left">県外客（休日）</td><td class="hl">53.8%</td><td>30.7%</td><td style="font-size:.8rem;text-align:left">上杉→熊野への送客余地</td></tr>
+      <tr><td class="td-left">30分未満（休日）</td><td>65.8%</td><td>30.1%</td><td style="font-size:.8rem;text-align:left">滞在構造が大きく異なる</td></tr>
+      <tr><td class="td-left">60代比率（休日）</td><td>15.9%</td><td class="hl">20.6%</td><td style="font-size:.8rem;text-align:left">熊野はシニア型</td></tr>
+      <tr><td class="td-left">女性比率（休日）</td><td>50.6%</td><td class="hl">54.1%</td><td style="font-size:.8rem;text-align:left">熊野は女性吸引に強み</td></tr>
+    </table>
+    <div class="source"><span class="tag tag-real">実数値：Agoop</span> 全項目。上杉は「コア」、熊野は「全体（広域）」エリア定義。米沢〜南陽は車で約30分。</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-icon">🤝</div>
+    <div><strong>連携可能性：</strong>熊野大社は「勝利神社」ではないが、季節（4月vs1月）・年代（現役世代vsシニア）・地域（県外vs県内）で<strong>上杉と相互補完的</strong>な関係にある。米沢〜南陽の近接性を活かした日帰り周遊ルートの構築で、山形県南部の観光滞在時間の総量拡大が期待できる。</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 7: 結論 ============ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">7</span>結論 ── 「超勝利」事業の実現可能性評価</div>
+  <div class="section-sub">勝利マーケット分析から導かれる事業戦略と実現可能性</div>
+
+  <div class="card" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border:none;">
+    <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:1.2rem;">3つの戦略的優位性</h3>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;">
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1.2rem;border-top:3px solid var(--gold);">
+        <div style="font-size:2rem;font-weight:900;color:var(--gold);">65.8%</div>
+        <div style="font-size:.75rem;opacity:.7;margin-bottom:.5rem;">30分未満滞在比率</div>
+        <div style="font-size:.85rem;">勝利マーケット4社中<strong>最大の滞在延長ポテンシャル</strong>。稽照殿リニューアルで「あと30分」の体験を加えることで、年間<strong style="color:var(--gold)">1,850万〜3,700万円</strong>の追加消費を創出。</div>
+        <div style="margin-top:.5rem;"><span class="tag tag-real" style="font-size:.6rem">Agoop実数値</span> <span class="tag tag-sim" style="font-size:.6rem">経済効果はシミュレーション</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1.2rem;border-top:3px solid var(--gold);">
+        <div style="font-size:2rem;font-weight:900;color:var(--gold);">35.5%</div>
+        <div style="font-size:.75rem;opacity:.7;margin-bottom:.5rem;">100km圏以遠比率</div>
+        <div style="font-size:.85rem;">鹿島の<strong>1.8倍</strong>。「わざわざ来る」来訪者が3分の1超。<strong>「超勝利」ブランドはこの広域吸引力を更に増幅</strong>させる仕掛けとして合理的。</div>
+        <div style="margin-top:.5rem;"><span class="tag tag-real" style="font-size:.6rem">Agoop実数値</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1.2rem;border-top:3px solid var(--gold);">
+        <div style="font-size:2rem;font-weight:900;color:var(--gold);">唯一</div>
+        <div style="font-size:.75rem;opacity:.7;margin-bottom:.5rem;">春型ピーク</div>
+        <div style="font-size:.85rem;">他の勝利神社は全て1月（初詣）ピーク。上杉だけが<strong>4月ピーク</strong>であり、勝利マーケット内での<strong>季節補完性</strong>を持つ。相互送客ネットワークの核となれる。</div>
+        <div style="margin-top:.5rem;"><span class="tag tag-real" style="font-size:.6rem">Agoop実数値</span></div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:1.2rem;margin-top:1rem;">
+      <h4 style="color:var(--gold);margin-bottom:.8rem;">総合判定</h4>
+      <p style="font-size:.95rem;opacity:.9;">Agoop人流データに基づく勝利マーケット分析の結果、上杉神社（コア）は年間38.5万人の来訪者基盤を持ち、その<strong>7割が観光客、5割超が県外客、3分の1超が100km以遠</strong>から来訪している。「勝利」を求めて遠方から訪れる来訪者が既に存在する中、その<strong>65.8%が30分未満で帰っている</strong>という構造は、稽照殿リニューアルという明確な解決策がある「伸びしろ」そのもの。</p>
+      <p style="font-size:.95rem;opacity:.9;margin-top:.8rem;">さらに、勝利マーケット唯一の「春型」ピーク構造は、鹿島・香取・東郷との<strong>季節補完による相互送客ネットワーク</strong>の可能性を示す。「超勝利」事業は、既に存在する市場ポジションをブランドとして言語化・可視化する施策であり、<strong>ゼロからの市場創造ではなく、既存の強みの増幅</strong>である。</p>
+      <p style="text-align:center;font-size:1.4rem;font-weight:900;color:var(--gold);margin-top:1.5rem;">実現可能性：高い</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p><strong>「超勝利」勝利マーケット分析レポート</strong></p>
+  <p>データ出典：Agoop人流統計データ（2025年1月〜12月）</p>
+  <p>エリア定義：上杉神社（コア）＝本殿・稽照殿周辺 ｜ 鹿島・香取・東郷＝境内周辺</p>
+  <p style="margin-top:.5rem">
+    <span class="tag tag-real" style="font-size:.6rem">実数値：Agoop</span>=GPS人流統計から直接集計 ｜
+    <span class="tag tag-est" style="font-size:.6rem">推計値：独自算出</span>=Agoopデータの比率計算 ｜
+    <span class="tag tag-sim" style="font-size:.6rem">推計値：シミュレーション</span>=仮定条件付き試算
+  </p>
+  <p style="margin-top:.8rem">作成：株式会社Platunner ｜ 令和8年3月31日</p>
+</div>
+
+</body>
+</html>
