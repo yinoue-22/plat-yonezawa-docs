@@ -301,7 +301,7 @@ table tr:nth-child(even) { background: #fafafa; }
     <table>
       <tr><th>項目</th><th>金額</th><th>備考</th></tr>
       <tr><td>総事業費</td><td>※見積取得後に確定</td><td>事業規模：最大2億円</td></tr>
-      <tr><td>補助対象経費</td><td>※上記のうち補助対象分</td><td>税込</td></tr>
+      <tr><td>補助対象経費</td><td>※上記のうち補助対象分</td><td>課税事業者は税抜</td></tr>
       <tr><td>補助金交付申請額</td><td>※自動計算（1/2以内）</td><td>補助上限：2億円</td></tr>
       <tr><td>自己負担分</td><td>※総事業費 − 補助金額</td><td>精算払い</td></tr>
     </table>
@@ -338,21 +338,21 @@ table tr:nth-child(even) { background: #fafafa; }
     <!-- サマリー -->
     <div class="stats-grid" style="margin-bottom:1.5rem;">
       <div class="stat-card">
-        <div class="number">11</div>
+        <div class="number">10</div>
         <div class="label">案件数</div>
       </div>
       <div class="stat-card">
-        <div class="number">12,750</div>
+        <div class="number">8,540</div>
         <div class="unit">万円</div>
         <div class="label">補助額合計（確定分）</div>
       </div>
       <div class="stat-card">
-        <div class="number">25,500</div>
+        <div class="number">17,080</div>
         <div class="unit">万円</div>
         <div class="label">総事業費合計（確定分）</div>
       </div>
       <div class="stat-card">
-        <div class="number">2,550</div>
+        <div class="number">1,708</div>
         <div class="unit">万円</div>
         <div class="label">管理手数料（10%）</div>
       </div>
@@ -362,17 +362,16 @@ table tr:nth-child(even) { background: #fafafa; }
     <div style="overflow-x:auto;">
     <table>
       <tr><th>No.</th><th>事業者</th><th>案件名</th><th>状況</th><th>補助額（万円）</th><th>総事業費（万円）</th><th>進捗率</th></tr>
-      <tr><td>1</td><td>小嶋総本店</td><td>東光の酒蔵</td><td><span style="color:var(--gold);font-weight:600;">確認中</span></td><td>4,400</td><td>8,800</td><td>96%</td></tr>
+      <tr><td>1</td><td>小嶋総本店</td><td>東光の酒蔵</td><td><span style="color:var(--gold);font-weight:600;">確認中</span></td><td>440</td><td>880</td><td>96%</td></tr>
       <tr><td>2</td><td>小嶋総本店</td><td>東町ポケットパーク</td><td><span style="color:#e67e22;font-weight:600;">修正依頼</span></td><td>1,100</td><td>2,200</td><td>65%</td></tr>
       <tr><td>3</td><td>本多建設</td><td>小島伝承の館</td><td><span style="color:#e67e22;font-weight:600;">修正依頼</span></td><td>1,500</td><td>3,000</td><td>96%</td></tr>
       <tr><td>4</td><td>上杉コーポレーション</td><td>上杉城史苑</td><td><span style="color:#27ae60;font-weight:700;">完了</span></td><td>550</td><td>1,100</td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
       <tr><td>5</td><td>網代建設</td><td>旧白根澤邸（粡町PJ）</td><td><span style="color:var(--accent);font-weight:600;">未提出</span></td><td>ー</td><td>ー</td><td>0%</td></tr>
       <tr><td>6</td><td>網代建設</td><td>マチスタヂオ</td><td><span style="color:#27ae60;font-weight:700;">完了</span></td><td>750</td><td>1,500</td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
       <tr><td>7</td><td>上杉神社</td><td>プラット</td><td><span style="color:var(--accent);font-weight:600;">未提出</span></td><td>ー</td><td>ー</td><td>0%</td></tr>
-      <tr><td>8</td><td>竹林さん</td><td>一心太助ゲストハウス</td><td><span style="color:var(--accent);font-weight:600;">未提出</span></td><td>ー</td><td>ー</td><td>0%</td></tr>
-      <tr><td>9</td><td>竹林さん</td><td>東町ポスト</td><td><span style="color:#27ae60;font-weight:700;">完了</span></td><td>700</td><td>1,400</td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>10</td><td>笹木さん（福島屋）</td><td>福島屋</td><td><span style="color:#27ae60;font-weight:700;">完了</span></td><td>3,750</td><td>7,500</td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>11</td><td>パシフィックダイナー</td><td>山大 重要文化財</td><td><span style="color:#e67e22;font-weight:600;">修正依頼</span></td><td>ー</td><td>ー</td><td>91%</td></tr>
+      <tr><td>8</td><td>笹木さん（福島屋）</td><td>福島屋</td><td><span style="color:#27ae60;font-weight:700;">完了</span></td><td>3,750</td><td>7,500</td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>9</td><td>パシフィックダイナー</td><td>山大 重要文化財</td><td><span style="color:#e67e22;font-weight:600;">修正依頼</span></td><td>ー</td><td>ー</td><td>91%</td></tr>
+      <tr><td>10</td><td>網代建設</td><td>肉のすがい</td><td><span style="color:#e67e22;font-weight:600;">修正依頼</span></td><td>450</td><td>900</td><td>96%</td></tr>
     </table>
     </div>
 
@@ -489,35 +488,9 @@ table tr:nth-child(even) { background: #fafafa; }
         </div>
       </div>
 
-      <div class="card" style="border-left:4px solid #ddd;padding:1rem 1.4rem;opacity:.6;">
-        <div style="display:flex;align-items:center;gap:.5rem;">
-          <span style="background:#999;color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">8</span>
-          <h4 style="margin:0;font-size:.9rem;color:#999;">竹林さん｜一心太助ゲストハウス</h4>
-          <span style="font-size:.72rem;background:#fdecea;color:var(--accent);padding:.1rem .4rem;border-radius:3px;font-weight:600;">未提出</span>
-        </div>
-      </div>
-
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
-          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">9</span>
-          <h4 style="margin:0;font-size:.9rem;">竹林さん｜東町ポスト</h4>
-        </div>
-        <div style="margin-bottom:.6rem;">
-          <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
-          <p style="font-size:.82rem;line-height:1.7;margin:0;">旧東町郵便局を改修し、地域の発酵文化と歴史資源を体験できる観光拠点「東町 一心太助」として再生。発酵食材ペアリングや創作和食を提供。</p>
-        </div>
-        <div style="background:#f8f9fa;border-radius:6px;padding:.7rem .9rem;">
-          <div style="font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:.3rem;">② 目標KPI（売上規模）</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem;font-size:.8rem;">
-            <div><span style="color:var(--text-sub);font-size:.72rem;">現在（R7）：</span><br>施設利用者数 0人／売上高 0円（R7年度）</div>
-            <div><span style="color:var(--text-sub);font-size:.72rem;">将来目標：</span><br><strong style="color:var(--primary);">施設利用者数 年間4,830人（23席）／売上高 年間3,864万円（客単価8,000円）</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
-        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
-          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">10</span>
+          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">8</span>
           <h4 style="margin:0;font-size:.9rem;">笹木さん（福島屋）｜福島屋社員寮→宿泊施設</h4>
         </div>
         <div style="margin-bottom:.6rem;">
@@ -535,7 +508,7 @@ table tr:nth-child(even) { background: #fafafa; }
 
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
-          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">11</span>
+          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">9</span>
           <h4 style="margin:0;font-size:.9rem;">パシフィックダイナー｜山大 重要文化財</h4>
         </div>
         <div style="margin-bottom:.6rem;">
@@ -550,16 +523,34 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
+
+      <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
+          <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">10</span>
+          <h4 style="margin:0;font-size:.9rem;">網代建設｜肉のすがい</h4>
+        </div>
+        <div style="margin-bottom:.6rem;">
+          <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
+          <p style="font-size:.82rem;line-height:1.7;margin:0;">東町エリアの空き地にコンテナハウス型の飲食提供施設を整備。飯豊町の精肉店「肉のすがい」が強みとする馬肉を中心に、置賜地域の食文化を気軽に味わえるメニューを提供。東町の回遊拠点として機能。</p>
+        </div>
+        <div style="background:#f8f9fa;border-radius:6px;padding:.7rem .9rem;">
+          <div style="font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:.3rem;">② 目標KPI（売上規模）</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem;font-size:.8rem;">
+            <div><span style="color:var(--text-sub);font-size:.72rem;">現在（R7）：</span><br>施設利用者数 0人／売上高 0円</div>
+            <div><span style="color:var(--text-sub);font-size:.72rem;">将来目標：</span><br><strong style="color:var(--primary);">施設利用者数 年間6,000人（1日平均20組）／売上高 年間1,800万円（客単価3,000円）</strong></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 進捗サマリー -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem;">
       <div class="card" style="text-align:center;padding:1rem;border-top:3px solid #27ae60;">
-        <div style="font-size:1.5rem;font-weight:900;color:#27ae60;">4</div>
+        <div style="font-size:1.5rem;font-weight:900;color:#27ae60;">3</div>
         <div style="font-size:.72rem;color:var(--text-sub);">完了</div>
       </div>
       <div class="card" style="text-align:center;padding:1rem;border-top:3px solid #e67e22;">
-        <div style="font-size:1.5rem;font-weight:900;color:#e67e22;">3</div>
+        <div style="font-size:1.5rem;font-weight:900;color:#e67e22;">4</div>
         <div style="font-size:.72rem;color:var(--text-sub);">修正依頼</div>
       </div>
       <div class="card" style="text-align:center;padding:1rem;border-top:3px solid var(--gold);">
@@ -567,7 +558,7 @@ table tr:nth-child(even) { background: #fafafa; }
         <div style="font-size:.72rem;color:var(--text-sub);">確認中</div>
       </div>
       <div class="card" style="text-align:center;padding:1rem;border-top:3px solid var(--accent);">
-        <div style="font-size:1.5rem;font-weight:900;color:var(--accent);">3</div>
+        <div style="font-size:1.5rem;font-weight:900;color:var(--accent);">2</div>
         <div style="font-size:.72rem;color:var(--text-sub);">未提出</div>
       </div>
     </div>
