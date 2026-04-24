@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よねざわ戦国花火大会 拡充提言 | プラットヨネザワ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a0f1f;
+  --primary-light: #3a2a3a;
+  --accent: #c0392b;
+  --accent-dark: #8b2a1f;
+  --gold: #c9a961;
+  --gold-light: #e8d9a8;
+  --bg: #f8f5ee;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #d9d3c3;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+.breadcrumb {
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: .8rem 1.5rem; font-size: .8rem; color: var(--text-sub);
+}
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff; padding: 3.5rem 2rem 3rem; text-align: center;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+}
+.hero::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(201,169,97,0.12) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(192,57,43,0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero > * { position: relative; }
+.hero .tag {
+  display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .15em;
+  color: var(--gold); border: 1px solid var(--gold); padding: .25rem .8rem; margin-bottom: 1rem;
+}
+.hero h1 { font-family: 'Noto Serif JP', serif; font-size: 2rem; font-weight: 900; margin-bottom: .6rem; letter-spacing: .05em; }
+.hero p { font-size: .95rem; opacity: .9; max-width: 700px; margin: 0 auto; }
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.meta-bar {
+  background: #fff; border-left: 4px solid var(--gold); padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem; font-size: .85rem; color: var(--text-sub);
+  box-shadow: var(--shadow);
+}
+.meta-bar strong { color: var(--text); font-weight: 700; margin-right: .3rem; }
+.meta-bar .row { margin-bottom: .3rem; }
+.meta-bar .row:last-child { margin-bottom: 0; }
+.section-title {
+  font-family: 'Noto Serif JP', serif; font-size: 1.3rem; font-weight: 700; color: var(--primary);
+  margin: 2.5rem 0 1rem; padding-bottom: .5rem;
+  border-bottom: 3px solid var(--gold);
+  display: flex; align-items: center; gap: .5rem;
+}
+.section-title .icon { font-size: 1.4rem; }
+h3 { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin: 1.5rem 0 .7rem; }
+h4 { font-size: .95rem; font-weight: 700; color: var(--primary-light); margin: 1rem 0 .5rem; }
+p { margin-bottom: 1rem; font-size: .92rem; }
+.stat-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.stat-card {
+  background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--accent);
+  padding: 1.2rem; text-align: center; border-radius: 6px;
+}
+.stat-card.gold { border-top-color: var(--gold); }
+.stat-card .value {
+  font-family: 'Noto Serif JP', serif; font-size: 1.8rem; font-weight: 900;
+  color: var(--accent); line-height: 1.2;
+}
+.stat-card.gold .value { color: var(--gold); }
+.stat-card .unit { font-size: .7rem; color: var(--text-sub); margin-top: .2rem; }
+.stat-card .label { font-size: .75rem; color: var(--text-sub); margin-top: .4rem; }
+.callout {
+  background: #fdf4e3; border-left: 4px solid var(--gold); padding: 1rem 1.2rem;
+  margin: 1.2rem 0; border-radius: 0 4px 4px 0; font-size: .9rem;
+}
+.callout.accent { background: #fdecea; border-left-color: var(--accent); }
+.callout strong { color: var(--primary); }
+table {
+  width: 100%; border-collapse: collapse; margin: 1.2rem 0;
+  font-size: .85rem; background: #fff; box-shadow: var(--shadow);
+}
+th, td { padding: .6rem .8rem; border: 1px solid var(--border); text-align: left; }
+th { background: var(--primary); color: #fff; font-weight: 700; font-size: .8rem; }
+tr:nth-child(even) td { background: #fafaf5; }
+.chapter-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.chapter-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 8px;
+  padding: 1.2rem; text-decoration: none; color: var(--text);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  display: block; position: relative; overflow: hidden;
+}
+.chapter-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--gold); transition: width .2s;
+}
+.chapter-card:hover {
+  transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border-color: var(--gold);
+}
+.chapter-card:hover::before { width: 6px; background: var(--accent); }
+.chapter-card .chnum {
+  font-family: 'Noto Serif JP', serif; font-size: .8rem; color: var(--gold);
+  font-weight: 700; letter-spacing: .1em; margin-bottom: .3rem;
+}
+.chapter-card h4 { font-size: .95rem; color: var(--primary); margin: 0 0 .4rem; }
+.chapter-card p { font-size: .78rem; color: var(--text-sub); margin: 0; line-height: 1.5; }
+.decision-box {
+  background: linear-gradient(135deg, #fff 0%, #fdf4e3 100%);
+  border: 2px solid var(--gold); border-radius: 8px;
+  padding: 1.5rem; margin: 1.5rem 0;
+}
+.decision-box h4 {
+  font-family: 'Noto Serif JP', serif; color: var(--accent);
+  font-size: 1rem; margin-bottom: .7rem; padding-bottom: .4rem;
+  border-bottom: 1px dashed var(--gold);
+}
+.decision-box ul { margin-left: 1.2rem; font-size: .88rem; }
+.decision-box ul li { margin-bottom: .4rem; }
+.pillar-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.pillar {
+  background: #fff; border-top: 4px solid var(--gold);
+  padding: 1.2rem; border-radius: 6px; box-shadow: var(--shadow);
+}
+.pillar .num {
+  font-family: 'Noto Serif JP', serif; font-size: 1.8rem; color: var(--gold); font-weight: 900;
+  line-height: 1; margin-bottom: .5rem;
+}
+.pillar h5 { font-size: .9rem; color: var(--primary); margin-bottom: .4rem; font-weight: 700; }
+.pillar p { font-size: .78rem; color: var(--text-sub); margin: 0; }
+.related-links {
+  background: #fff; border: 1px solid var(--border); border-radius: 8px;
+  padding: 1.5rem; margin-top: 2rem;
+}
+.related-links h4 { margin-bottom: .8rem; }
+.related-links a {
+  display: inline-block; padding: .4rem .8rem; margin: .2rem .3rem .2rem 0;
+  background: var(--primary); color: #fff; text-decoration: none;
+  border-radius: 4px; font-size: .8rem;
+}
+.related-links a:hover { background: var(--accent); }
+.footer {
+  text-align: center; padding: 2rem; font-size: .75rem;
+  color: var(--text-sub); border-top: 1px solid var(--border); margin-top: 2rem; background: #fff;
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.5rem; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .chapter-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="breadcrumb">
+  <a href="../index.html">ポータル</a> ＞ <a href="../index.html">よねざわ戦国花火大会</a> ＞ 拡充提言書
+</div>
+
+<div class="hero">
+  <span class="tag">POLICY PROPOSAL ― 拡充提言書</span>
+  <h1>よねざわ戦国花火大会<br>拡充提言</h1>
+  <p>米沢市長・山形県知事への意思決定要請 ― 5年¥5億投資で累積ROI 3.8〜5.3倍を実現する4本柱パッケージ</p>
+</div>
+
+<div class="container">
+
+  <div class="meta-bar">
+    <div class="row"><strong>📋 提言主体：</strong>米沢観光・商工・地域企業連合（民間事業者連名）</div>
+    <div class="row"><strong>📮 提出先：</strong>米沢市長、山形県知事</div>
+    <div class="row"><strong>👥 副次読者：</strong>米沢市議会・山形県議会、観光庁、東北観光推進機構</div>
+    <div class="row"><strong>📅 作成日：</strong>2026年4月24日</div>
+    <div class="row"><strong>📊 全構成：</strong>全12章／データ出典：Agoopモバイル空間統計・ラッコキーワード有料版・Instagram/X公式アカウントインサイト</div>
+  </div>
+
+  <!-- エグゼクティブサマリ -->
+  <div class="section-title"><span class="icon">📜</span> エグゼクティブサマリ</div>
+
+  <h3>3行結論</h3>
+  <p><strong>①</strong> よねざわ戦国花火大会は、イケブンのカンヌ花火芸術祭2冠（ヴェスタール賞＋オーディエンス賞）、山形県内最大級のドローン500機、協賛100社超、民間主導五者連合運営により、既に国際水準のエンタメIPとして成立している。</p>
+  <p><strong>②</strong> 米沢の4大歴史資産（上杉謙信60,500検索／上杉神社33,100／上杉鷹山18,100／直江兼続18,100、合計月24.8万検索）は国内屈指のブランド資産だが、戦国花火はそのうち<strong style="color:var(--accent)">0.4%しか捕捉できていない</strong>。</p>
+  <p><strong>③</strong> 拡充しない場合の年間機会損失は<strong>経済効果¥2.3億円＋ブランド価値¥760万〜¥1,265万円</strong>、5年累積¥12〜¥13億円。一方、5年間¥5億円の行政投資により累積¥18〜¥26億円の経済効果が創出可能（<strong style="color:var(--accent)">累積ROI 3.8〜5.3倍</strong>）。</p>
+
+  <h3>3つの核心KPI（2030年度目標）</h3>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="value">35,000〜40,000</div>
+      <div class="unit">人／年（好天時）</div>
+      <div class="label">年間来場者数</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="value">¥8〜10</div>
+      <div class="unit">億円／年</div>
+      <div class="label">年間経済効果（三層合計）</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">15%+</div>
+      <div class="unit">（5,000人超）</div>
+      <div class="label">インバウンド比率</div>
+    </div>
+  </div>
+
+  <!-- 首長への決裁要請 -->
+  <div class="section-title"><span class="icon">⚖️</span> 首長に求める政策判断（決裁3事項）</div>
+
+  <div class="decision-box">
+    <h4>決裁①：2026〜2030年度の5年パッケージ予算枠の設定</h4>
+    <ul>
+      <li>米沢市・山形県の共同拠出による<strong>年間¥1.0億円</strong>（5年総額¥5.0億円）の予算コミット</li>
+      <li>2026年度第1四半期中に「よねざわ戦国花火大会推進協議会」を設置</li>
+    </ul>
+  </div>
+
+  <div class="decision-box">
+    <h4>決裁②：置賜広域連携および山形DC組込方針の表明</h4>
+    <ul>
+      <li>置賜3市5町（米沢・南陽・長井・高畠・川西・小国・白鷹・飯豊）の広域連携を共通政策に位置付け</li>
+      <li>次回の山形デスティネーションキャンペーンへの公式組込を表明</li>
+    </ul>
+  </div>
+
+  <div class="decision-box">
+    <h4>決裁③：受入環境（宿泊・二次交通・インバウンド）への先行投資の指示</h4>
+    <ul>
+      <li>民泊・古民家宿の開業支援、花火当日のシャトルバス大幅増便</li>
+      <li>多言語・キャッシュレス対応、運営法人化（一般社団／DMO）の支援</li>
+    </ul>
+  </div>
+
+  <!-- 4本柱 -->
+  <div class="section-title"><span class="icon">🎯</span> 4本柱政策パッケージ</div>
+
+  <div class="pillar-grid">
+    <div class="pillar">
+      <div class="num">①</div>
+      <h5>複数年度予算コミット</h5>
+      <p>単年度補助から5年パッケージへ移行。年間¥1.0億。ROI 3.1〜5.4倍</p>
+    </div>
+    <div class="pillar">
+      <div class="num">②</div>
+      <h5>広域連携と日程戦略</h5>
+      <p>置賜3市5町・山形DC・隣県連携。年間¥3,000万。ROI 2.0〜3.5倍</p>
+    </div>
+    <div class="pillar">
+      <div class="num">③</div>
+      <h5>受入環境整備</h5>
+      <p>宿泊・二次交通・インバウンド・運営法人化。年間¥5,000万〜¥1億。ROI 2.3〜4.6倍</p>
+    </div>
+    <div class="pillar">
+      <div class="num">④</div>
+      <h5>国際発信・IP化</h5>
+      <p>カンヌ2冠活用・歴史資産SEO統合・海外プレス。年間¥2,300万。ROI 3.0〜6.0倍</p>
+    </div>
+  </div>
+
+  <!-- 全12章 -->
+  <div class="section-title"><span class="icon">📖</span> 全12章の構成</div>
+
+  <div class="chapter-grid">
+    <a href="sengoku-hanabi/chapter-01.html" class="chapter-card">
+      <div class="chnum">第 1 章</div>
+      <h4>エグゼクティブサマリ</h4>
+      <p>3行結論・3KPI・決裁3事項・4本柱</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-02.html" class="chapter-card">
+      <div class="chnum">第 2 章</div>
+      <h4>戦国花火の現在地</h4>
+      <p>スケール拡大・イケブンカンヌ2冠・三位一体モデル</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-03.html" class="chapter-card">
+      <div class="chnum">第 3 章</div>
+      <h4>来訪者行動の実証分析</h4>
+      <p>Agoop人流2年比較・置賜3市5町波及</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-04.html" class="chapter-card">
+      <div class="chnum">第 4 章</div>
+      <h4>経済効果の定量評価</h4>
+      <p>三層モデル・年¥3〜7.7億・5年累積¥26億</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-05.html" class="chapter-card">
+      <div class="chnum">第 5 章</div>
+      <h4>認知・ブランド効果の評価</h4>
+      <p>歴史資産24.8万検索・SNS広告レバレッジ1:17.8</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-06.html" class="chapter-card">
+      <div class="chnum">第 6 章</div>
+      <h4>シビックプライドと関係人口</h4>
+      <p>五者連合・協賛100社・CF・関係人口8,000人</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-07.html" class="chapter-card">
+      <div class="chnum">第 7 章</div>
+      <h4>ベンチマーク分析</h4>
+      <p>全国三大大会・県内比較・模倣困難性</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-08.html" class="chapter-card">
+      <div class="chnum">第 8 章</div>
+      <h4>課題とボトルネック</h4>
+      <p>機会損失¥2.3億円／年・宿泊キャパ・交通</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-09.html" class="chapter-card">
+      <div class="chnum">第 9 章</div>
+      <h4>政策提言（本丸）</h4>
+      <p>4本柱の予算・実施主体・KPI詳細</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-10.html" class="chapter-card">
+      <div class="chnum">第 10 章</div>
+      <h4>実施ロードマップ</h4>
+      <p>単年度・3年・5年の段階的実行計画</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-11.html" class="chapter-card">
+      <div class="chnum">第 11 章</div>
+      <h4>リスクと対策</h4>
+      <p>天候・資金・人員の三大リスク</p>
+    </a>
+    <a href="sengoku-hanabi/chapter-12.html" class="chapter-card">
+      <div class="chnum">第 12 章</div>
+      <h4>結び ― 首長への決裁要請</h4>
+      <p>民間は既に賭けた。次は首長の決裁</p>
+    </a>
+  </div>
+
+  <!-- データ分析サマリ -->
+  <div class="section-title"><span class="icon">📊</span> データ分析サマリ</div>
+  <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+    <a href="sengoku-hanabi/axis-a-summary.html" class="chapter-card">
+      <div class="chnum">A 軸</div>
+      <h4>Agoop人流データ2年比較</h4>
+      <p>居住地・距離・時間帯・属性・ペルソナの8軸分析</p>
+    </a>
+    <a href="sengoku-hanabi/axis-c-summary.html" class="chapter-card">
+      <div class="chnum">C 軸</div>
+      <h4>SNS・認知ブランド効果サマリ</h4>
+      <p>ラッコKW有料版×Instagram×X実測データ</p>
+    </a>
+  </div>
+
+  <!-- キーメッセージ -->
+  <div class="callout accent" style="margin-top:2.5rem;">
+    <strong>キーメッセージ：</strong>
+    民間は既に賭けた。100社超の協賛、五者連合の組織力、ReadyForクラウドファンディング、多数のボランティア、イケブンのカンヌ2冠、やまがた愛の武将隊の舞台、そして市民の熱量。<br>
+    <strong>次は、米沢と山形の10年を決める首長の決裁である。</strong>
+  </div>
+
+  <div class="related-links">
+    <h4>🔗 関連リンク</h4>
+    <a href="../index.html">🏠 ポータルへ戻る</a>
+    <a href="rekimachi-soft.html">🏯 レキマチ ソフト事業</a>
+    <a href="rekimachi-hard.html">🏗 レキマチ ハード事業</a>
+    <a href="https://sengokuhanabi.com/" target="_blank">🎆 戦国花火大会 公式サイト</a>
+    <a href="https://www.instagram.com/sengokuhanabi/" target="_blank">📷 Instagram</a>
+    <a href="https://x.com/sengokuhanabi" target="_blank">🐦 X（旧Twitter）</a>
+  </div>
+
+</div>
+<div class="footer">
+  &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
+</div>
+</body>
+</html>
