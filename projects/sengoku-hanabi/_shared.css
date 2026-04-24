@@ -1,0 +1,143 @@
+/* よねざわ戦国花火大会 拡充提言書 共通スタイル */
+:root {
+  --primary: #1a0f1f;
+  --primary-light: #3a2a3a;
+  --accent: #c0392b;
+  --accent-dark: #8b2a1f;
+  --gold: #c9a961;
+  --gold-light: #e8d9a8;
+  --bg: #f8f5ee;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #d9d3c3;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.85; font-size: 15px; }
+.breadcrumb {
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: .8rem 1.5rem; font-size: .8rem; color: var(--text-sub);
+}
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.chapter-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff; padding: 2.5rem 2rem 2.2rem; text-align: center;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+}
+.chapter-header::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(201,169,97,0.12) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(192,57,43,0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+.chapter-header > * { position: relative; }
+.chapter-header .chnum {
+  font-family: 'Noto Serif JP', serif; font-size: .8rem; color: var(--gold);
+  letter-spacing: .2em; margin-bottom: .5rem;
+}
+.chapter-header h1 {
+  font-family: 'Noto Serif JP', serif; font-size: 1.8rem;
+  font-weight: 900; margin-bottom: .4rem; letter-spacing: .03em;
+}
+.chapter-header .subtitle { font-size: .9rem; opacity: .85; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+.tldr {
+  background: #fff; border-left: 4px solid var(--gold); padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem; box-shadow: var(--shadow);
+}
+.tldr h3 { font-size: .85rem; color: var(--gold); letter-spacing: .1em; margin-bottom: .5rem; }
+.tldr p { font-size: .9rem; margin-bottom: .5rem; }
+.tldr p:last-child { margin-bottom: 0; }
+h2 {
+  font-family: 'Noto Serif JP', serif; font-size: 1.3rem; font-weight: 700; color: var(--primary);
+  margin: 2.5rem 0 1rem; padding-bottom: .5rem;
+  border-bottom: 3px solid var(--gold);
+}
+h3 {
+  font-size: 1.05rem; font-weight: 700; color: var(--primary);
+  margin: 1.8rem 0 .8rem; padding-left: .6rem;
+  border-left: 3px solid var(--accent);
+}
+h4 { font-size: .95rem; font-weight: 700; color: var(--primary-light); margin: 1.2rem 0 .5rem; }
+p { margin-bottom: 1rem; }
+ul, ol { margin: .5rem 0 1rem 1.5rem; }
+ul li, ol li { margin-bottom: .3rem; }
+.stat-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.stat-card {
+  background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--accent);
+  padding: 1rem; text-align: center; border-radius: 6px;
+}
+.stat-card.gold { border-top-color: var(--gold); }
+.stat-card.dark { border-top-color: var(--primary); }
+.stat-card .value {
+  font-family: 'Noto Serif JP', serif; font-size: 1.6rem; font-weight: 900;
+  color: var(--accent); line-height: 1.2;
+}
+.stat-card.gold .value { color: var(--gold); }
+.stat-card.dark .value { color: var(--primary); }
+.stat-card .unit { font-size: .7rem; color: var(--text-sub); margin-top: .2rem; }
+.stat-card .label { font-size: .75rem; color: var(--text-sub); margin-top: .4rem; line-height: 1.4; }
+.callout {
+  background: #fdf4e3; border-left: 4px solid var(--gold); padding: 1rem 1.2rem;
+  margin: 1.2rem 0; border-radius: 0 4px 4px 0; font-size: .9rem;
+}
+.callout.accent { background: #fdecea; border-left-color: var(--accent); }
+.callout.primary { background: #eef1f6; border-left-color: var(--primary); }
+.callout strong { color: var(--primary); font-weight: 700; }
+.callout .head {
+  font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--accent-dark);
+  font-size: .9rem; margin-bottom: .4rem; display: block;
+}
+.callout.primary .head { color: var(--primary); }
+table {
+  width: 100%; border-collapse: collapse; margin: 1.2rem 0;
+  font-size: .85rem; background: #fff; box-shadow: var(--shadow);
+}
+th, td { padding: .55rem .7rem; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { background: var(--primary); color: #fff; font-weight: 700; font-size: .78rem; }
+tr:nth-child(even) td { background: #fafaf5; }
+td.num, th.num { text-align: right; }
+.chapter-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 2px solid var(--gold);
+  gap: 1rem;
+}
+.chapter-nav a {
+  flex: 1; padding: 1rem 1.2rem; background: #fff; border: 1px solid var(--border);
+  border-radius: 6px; text-decoration: none; color: var(--text);
+  transition: border-color .2s, box-shadow .2s; font-size: .85rem;
+  min-width: 0;
+}
+.chapter-nav a:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+.chapter-nav a.next { text-align: right; }
+.chapter-nav a .label {
+  font-size: .7rem; color: var(--gold); font-weight: 700; letter-spacing: .1em;
+  display: block; margin-bottom: .2rem;
+}
+.chapter-nav a .title { color: var(--primary); font-weight: 700; }
+.chapter-nav a.disabled {
+  opacity: 0.3; pointer-events: none; background: var(--bg);
+}
+.toc-link {
+  display: inline-block; padding: .5rem 1rem; margin: 1.5rem 0 0;
+  background: var(--primary); color: var(--gold); text-decoration: none;
+  border-radius: 4px; font-size: .85rem;
+}
+.toc-link:hover { background: var(--accent); color: #fff; }
+.footer {
+  text-align: center; padding: 2rem; font-size: .75rem;
+  color: var(--text-sub); border-top: 1px solid var(--border); margin-top: 2rem; background: #fff;
+}
+@media (max-width: 600px) {
+  .chapter-header h1 { font-size: 1.3rem; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .chapter-nav { flex-direction: column; }
+  table { font-size: .75rem; }
+  th, td { padding: .4rem .5rem; }
+}
