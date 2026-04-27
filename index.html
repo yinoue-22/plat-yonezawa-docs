@@ -20,6 +20,9 @@
   --sengoku-dark: #1a0f1f;
   --sengoku-gold: #c9a961;
   --r7-green: #1b7a4a;
+  --uesugi-deep: #1a3a32;
+  --uesugi-gold: #c9a64a;
+  --uesugi-crimson: #a01818;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -41,6 +44,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-bottom-color: var(--sengoku-gold);
   border-bottom-width: 3px;
 }
+.section-title.uesugi {
+  color: var(--uesugi-deep);
+  border-bottom-color: var(--uesugi-gold);
+  border-bottom-width: 3px;
+}
 .section-title .icon { font-size: 1.3rem; }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
 .card {
@@ -55,6 +63,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--sengoku-gold);
 }
 .card.sengoku-card:hover { border-top-color: var(--accent); }
+.card.uesugi-card {
+  background: linear-gradient(135deg, #fafaf6 0%, #fff 100%);
+  border-top: 3px solid var(--uesugi-gold);
+}
+.card.uesugi-card:hover { border-top-color: var(--uesugi-crimson); }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -65,6 +78,8 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-sengoku { background: #1a0f1f; color: #c9a961; }
 .badge-new { background: #fff4e6; color: #d68910; }
 .badge-r7 { background: #e8f5ee; color: #1b7a4a; }
+.badge-uesugi { background: #1a3a32; color: #c9a64a; }
+.badge-multilang { background: #eef4f8; color: #1d3a6e; }
 .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; line-height: 1.5; }
 .card p { font-size: .82rem; color: var(--text-sub); line-height: 1.6; }
 .card .card-meta {
@@ -87,6 +102,7 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   <p>事業ごとのドキュメント・レポート・進捗を集約したポータルサイト</p>
 </div>
 <div class="container">
+
   <!-- レキマチ事業 -->
   <div class="section-title"><span class="icon">🏯</span> レキマチ事業（歴史的資源を活用した観光まちづくり）</div>
   <div class="card-grid">
@@ -113,6 +129,7 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
       <p>上杉神社・稽照殿エリアの施設整備・周辺環境整備。11事業者参画、補助上限2億円。申請〆切 4/22。</p>
     </a>
   </div>
+
   <!-- よねざわ戦国花火大会 拡充提言事業 -->
   <div class="section-title sengoku"><span class="icon">🎆</span> よねざわ戦国花火大会 拡充提言事業</div>
   <div class="card-grid">
@@ -133,6 +150,41 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
       <p>ラッコKW7キーワード／Instagram・X公式アカウントインサイト／広告運用実績。歴史資産月24.8万検索のうち戦国花火0.4%のみ捕捉という構造的機会損失を発見。</p>
     </a>
   </div>
+
+  <!-- 米沢上杉まつり 多言語ガイド事業 -->
+  <div class="section-title uesugi"><span class="icon">⚔️</span> 米沢上杉まつり 多言語ガイド事業</div>
+  <div class="card-grid">
+    <a href="projects/uesugi-matsuri-guide.html" class="card uesugi-card">
+      <span class="badge badge-uesugi">多言語ガイド</span>
+      <span class="badge badge-new">NEW</span>
+      <h3>米沢上杉まつり 多言語ガイド<br>（通訳者・観光客向け）</h3>
+      <p>2026年4/29〜5/3開催の上杉まつり向け、日本語・英語・繁體中文 × 通訳者／観光客の3言語×2モード対応シングルHTML。川中島合戦解説、武将・武具・戦術の用語集78語、想定Q&A 10問、IPA発音記号付き。</p>
+      <div class="card-meta">
+        <span>🌐 3言語対応</span>
+        <span>📚 通訳実務向け</span>
+        <span>📅 2026.4.29-5.3</span>
+      </div>
+    </a>
+    <a href="projects/uesugi-matsuri-guide.html#ch3" class="card uesugi-card">
+      <span class="badge badge-multilang">学習素材</span>
+      <h3>川中島合戦の解説章<br>（通訳者向け学習モード）</h3>
+      <p>戦国史上最大級の死闘・第四次川中島合戦（1561）を史実・戦術・伝説・米沢との関係の4軸で解説。啄木鳥戦法・車懸りの陣の図解、三太刀七太刀伝説、「義」「軍神」など訳しづらい語の対訳指針9つ。</p>
+      <div class="card-meta">
+        <span>⚔️ 第四次川中島</span>
+        <span>🗣️ 訳しづらいコラム</span>
+      </div>
+    </a>
+    <a href="projects/uesugi-matsuri-guide.html#ch5" class="card uesugi-card">
+      <span class="badge badge-multilang">対訳テーブル</span>
+      <h3>用語集 78語<br>（武将・儀式・戦術・武具・地名）</h3>
+      <p>8カテゴリ：武将名12／儀式・行事8／戦術・軍事12／武具・装束12／地名8／称号・役職8／文化用語8／実用フレーズ8。日本語・読み仮名・英訳・IPA・繁體中文・一行解説を完全並列。</p>
+      <div class="card-meta">
+        <span>📖 78語×3言語</span>
+        <span>🔊 IPA発音記号</span>
+      </div>
+    </a>
+  </div>
+
   <!-- 今後追加する事業はここに -->
   <!--
   <div class="section-title"><span class="icon">🍽</span> ガストロノミーツーリズム推進事業</div>
@@ -144,6 +196,7 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
     </a>
   </div>
   -->
+
 </div>
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
