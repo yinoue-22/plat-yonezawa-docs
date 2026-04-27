@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レキマチ ソフト事業 | 歴史的資源を活用した観光まちづくり推進事業</title>
+<title>レキマチ ソフト事業 | 全国各地の魅力的な文化財活用推進事業</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -113,6 +113,8 @@ table tr:nth-child(even) { background: #fafafa; }
   box-shadow: 0 0 0 2px var(--soft-blue);
 }
 .timeline-item.done::before { background: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
+.timeline-item.urgent::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{ box-shadow:0 0 0 2px var(--accent); } 50%{ box-shadow:0 0 0 6px rgba(192,57,43,.25); } }
 .timeline-item .time { font-size: .72rem; color: var(--text-sub); font-weight: 500; }
 .timeline-item .desc { font-size: .85rem; font-weight: 500; }
 
@@ -139,21 +141,33 @@ table tr:nth-child(even) { background: #fafafa; }
   .benchmark-grid { grid-template-columns: 1fr; }
   .container { padding: 1.5rem 1rem 3rem; }
 }
+/* ── Alert Banner ── */
+.alert-banner {
+  padding: .7rem 1.5rem; font-size: .82rem; font-weight: 500;
+  display: flex; align-items: center; gap: .5rem; justify-content: center;
+}
+.alert-banner.green { background: #d4edda; color: #155724; border-bottom: 2px solid #27ae60; }
+.alert-banner.amber { background: #fff3cd; color: #856404; border-bottom: 2px solid var(--gold); }
 </style>
 </head>
 <body>
 
+<!-- ── ALERT ── -->
+<div class="alert-banner green">
+  📢 応募書類 提出完了（4/10）・修正再提出済（4/14）— 審査結果は6月上旬頃通知予定
+</div>
+
 <!-- ── HERO ── -->
 <div class="hero">
   <div class="breadcrumb"><a href="../index.html">ポータル</a> ＞ レキマチ事業 ＞ ソフト事業</div>
-  <span class="badge-soft">SOFT ― 調査・計画策定</span>
+  <span class="badge-soft">SOFT ― コンテンツ造成</span>
   <span class="badge-soft" style="background:rgba(39,174,96,0.25);margin-left:.5rem;">提出済 4/10</span>
   <h1>レキマチ ソフト事業</h1>
-  <p class="subtitle">歴史的資源を活用した観光まちづくり推進事業（R7 事業化支援 → R8 モデル創出）</p>
+  <p class="subtitle">文化資源活用事業費補助金「全国各地の魅力的な文化財活用推進事業」</p>
   <div class="meta-row">
-    <span>📋 所管：観光庁</span>
-    <span>💰 補助上限：2,000万円</span>
-    <span>🏢 申請者：プラットヨネザワ株式会社</span>
+    <span>📋 所管：文化庁</span>
+    <span>💰 総事業費：1,100万円（補助金 785万円 / 補助率 55%）</span>
+    <span>🏢 申請者：宗教法人 上杉神社（実施：プラットヨネザワ）</span>
     <span>✅ 申請書提出済（2026/4/10）</span>
   </div>
 </div>
@@ -163,16 +177,44 @@ table tr:nth-child(even) { background: #fafafa; }
   <!-- ── 1. 事業概要 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">📌</span> 事業概要</div>
-    <div class="highlight-box">
-      <p>上杉謙信公生誕500年（2030年）を見据え、上杉神社・稽照殿エリアを核とした<strong>「上杉の城下町」観光中核エリア</strong>の造成を目指す。本ソフト事業では、Agoop人流データ等を活用した調査・分析、観光まちづくり計画の策定、高付加価値コンテンツの造成検討を行う。</p>
+
+    <!-- 応募様式D：事業概要書 -->
+    <div class="card" style="padding:1rem;margin-bottom:1.2rem;">
+      <h4 style="margin-bottom:.8rem;">応募様式D：事業概要書</h4>
+      <img src="images/yoshikiD_overview.png" alt="応募様式D 事業概要書" style="width:100%;border-radius:6px;border:1px solid var(--border);">
     </div>
+
+    <div class="highlight-box">
+      <p>国指定重要文化財「上杉神社稽照殿」を核とし、上杉謙信公生誕500年（2030年）を見据えた<strong>高付加価値体験コンテンツの造成・販売</strong>を目指す。文化庁「全国各地の魅力的な文化財活用推進事業」に採択を目指し、専任コーチの伴走支援のもと、文化財の保存と活用の好循環を創出する。</p>
+    </div>
+
+    <!-- 補助金概要 -->
+    <div class="stats-grid" style="margin-bottom:1rem;">
+      <div class="stat-card">
+        <div class="number" style="font-size:1.5rem;">1,100<span style="font-size:.9rem;">万円</span></div>
+        <div class="label">総事業費</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.5rem;color:var(--soft-blue);">785<span style="font-size:.9rem;">万円</span></div>
+        <div class="label">補助金交付要望額</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.5rem;">55<span style="font-size:.9rem;">%</span></div>
+        <div class="label">補助率（DMO連携加算）</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.5rem;">315<span style="font-size:.9rem;">万円</span></div>
+        <div class="label">自己負担額</div>
+      </div>
+    </div>
+
     <div class="card">
       <h4>事業フェーズの全体像</h4>
       <table>
         <tr><th>フェーズ</th><th>年度</th><th>内容</th><th>補助金</th></tr>
-        <tr><td><strong>A 事業化支援</strong></td><td>R7（2025）</td><td>歴まち計画の立案、推進体制の構築、人流分析等の調査</td><td>調査事業 10/10</td></tr>
-        <tr><td><strong>B モデル創出</strong></td><td>R8（2026）</td><td>体験コンテンツ造成、モニターツアー、建造物活用方法の検討</td><td>最大2,000万円</td></tr>
-        <tr><td>ハード整備</td><td>R8〜</td><td>施設整備・周辺環境整備（別事業：ハード事業として申請）</td><td>最大2億円（1/2）</td></tr>
+        <tr><td><strong>R7 エリア造成</strong></td><td>R7（2025）</td><td>歴まち計画の立案、推進体制の構築、人流分析等の調査</td><td>観光庁 10/10</td></tr>
+        <tr><td><strong>R8 ソフト事業</strong></td><td>R8（2026）</td><td>体験コンテンツ造成、モニターツアー、高付加価値化</td><td>文化庁 785万円</td></tr>
+        <tr><td><strong>R8 ハード事業</strong></td><td>R8（2026）</td><td>施設整備・周辺環境整備（観光庁 別事業）</td><td>観光庁 1.36億円</td></tr>
       </table>
     </div>
   </div>
@@ -306,28 +348,51 @@ table tr:nth-child(even) { background: #fafafa; }
 
   <!-- ── 8. タイムライン ── -->
   <div class="section">
-    <div class="section-title"><span class="icon">🗓</span> タイムライン</div>
+    <div class="section-title"><span class="icon">🗓</span> タイムライン（R8 ソフト事業スケジュール）</div>
     <div class="timeline">
       <div class="timeline-item done">
-        <div class="time">R7（2025年度）</div>
-        <div class="desc">A 事業化支援：人流分析、計画策定、推進体制構築</div>
+        <div class="time">R8年3月2日</div>
+        <div class="desc">公募受付開始</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">R8年4月10日</div>
+        <div class="desc">応募書類提出 締切（17:00 必着）← 提出済</div>
+      </div>
+      <div class="timeline-item urgent">
+        <div class="time">R8年4月〜5月 ← いまここ</div>
+        <div class="desc">審査・選定期間</div>
       </div>
       <div class="timeline-item">
-        <div class="time">R8（2026年度）</div>
-        <div class="desc">B モデル創出：体験コンテンツ造成、モニターツアー、活用方法検討</div>
+        <div class="time">R8年6月上旬頃</div>
+        <div class="desc">採択決定通知 → コーチング開始</div>
       </div>
       <div class="timeline-item">
-        <div class="time">R8〜（並行）</div>
-        <div class="desc">ハード事業申請・施設整備開始（→ ハード事業ページ参照）</div>
+        <div class="time">R8年6月〜7月</div>
+        <div class="desc">交付申請書提出（年間業務スケジュール・事業概要書）</div>
       </div>
       <div class="timeline-item">
-        <div class="time">R9〜</div>
-        <div class="desc">補助事業（観光振興事業費補助金）へ申請、大規模改修（最大2億円）</div>
+        <div class="time">R8年8月上旬頃</div>
+        <div class="desc">交付決定 → 補助事業実施開始</div>
       </div>
       <div class="timeline-item">
-        <div class="time">2030年</div>
-        <div class="desc">上杉謙信公生誕500年 ― 観光中核エリア完成目標</div>
+        <div class="time">R8年10月頃</div>
+        <div class="desc">中間報告書の提出</div>
       </div>
+      <div class="timeline-item">
+        <div class="time">R9年2月26日</div>
+        <div class="desc">事業完了期限</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">R9年3月12日</div>
+        <div class="desc">実績報告書 提出期限（必着）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">R9年4月末</div>
+        <div class="desc">成果報告書・次年度計画書提出 → 補助金支払い</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:1rem;">
+      <p><strong>補助事業期間：</strong>採択通知日 〜 令和9年2月26日。期間内にコンテンツ造成等を実施。2年間でのコンテンツ造成・販売実施も可能（ただし次年度の採択は保証されない）。事業終了後4年間は成果報告義務あり。</p>
     </div>
   </div>
 
@@ -335,14 +400,21 @@ table tr:nth-child(even) { background: #fafafa; }
   <div class="section">
     <div class="section-title"><span class="icon">✅</span> 提出物一式（4/10 提出済）</div>
     <div class="highlight-box" style="background:linear-gradient(135deg,#eafaf1 0%,#d5f5e3 100%);border-left-color:#27ae60;">
-      <p>令和8年度「歴史的資源を活用した観光まちづくりの事業化支援及びモデル創出」に申請済み。以下から提出書類一式を確認できます。</p>
+      <p>令和8年度 文化庁「全国各地の魅力的な文化財活用推進事業」に申請済み（4/14 修正再提出済）。以下から提出書類一式を確認できます。</p>
     </div>
     <div class="doc-list">
       <a href="https://drive.google.com/drive/u/0/folders/1HbW9mA3toCYQ9yjMEDefQSGpphktyMi7" target="_blank" class="doc-link" style="border-left:4px solid #27ae60;">
         <span class="doc-icon">📂</span>
         <div class="doc-info">
           <div class="doc-title">提出物一式（Google Drive）</div>
-          <div class="doc-desc">R8 モデル創出 申請書類フォルダ</div>
+          <div class="doc-desc">応募様式A〜D・チェックシート等</div>
+        </div>
+      </a>
+      <a href="https://drive.google.com/drive/u/0/folders/1NLEE5qidTND5pd74JnyEAvruxvlS_h_x" target="_blank" class="doc-link" style="border-left:4px solid #27ae60;">
+        <span class="doc-icon">📂</span>
+        <div class="doc-info">
+          <div class="doc-title">公募要項・補助要綱（Google Drive）</div>
+          <div class="doc-desc">応募要領・補助要綱①②</div>
         </div>
       </a>
     </div>
@@ -394,11 +466,11 @@ table tr:nth-child(even) { background: #fafafa; }
           <div class="doc-desc">上杉謙信公生誕500年 観光中核エリア造成事業</div>
         </div>
       </a>
-      <a href="https://www.mlit.go.jp/kankocho/seisaku_seido/kihonkeikaku/inbound_kaifuku/chihoyukyaku/rekishiteki/jigyo.html" target="_blank" class="doc-link">
+      <a href="https://www.bunka.go.jp/seisaku/bunkazai/joseishien/zenkoku_katsuyo/94331001.html" target="_blank" class="doc-link">
         <span class="doc-icon">🏛</span>
         <div class="doc-info">
-          <div class="doc-title">【概要資料】R7 歴史的資源を活用した観光まちづくり事業</div>
-          <div class="doc-desc">観光庁 公式</div>
+          <div class="doc-title">全国各地の魅力的な文化財活用推進事業</div>
+          <div class="doc-desc">文化庁 公式ページ</div>
         </div>
       </a>
     </div>
