@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宗教法人上杉神社 ｜ レキマチハード事業 進捗管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --green: #28a745;
+  --orange: #fd7e14;
+  --blue: #007bff;
+  --red: #dc3545;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+
+.hero {
+  background: linear-gradient(135deg, #1a2744 0%, #3d1a1a 50%, #8b1a1a 100%);
+  color:#fff; padding:1.5rem 2rem 1.2rem; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; top:-40%; right:-10%; width:300px; height:300px;
+  background:radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius:50%;
+}
+.hero .project-label { font-size:.7rem; letter-spacing:.1em; opacity:.7; margin-bottom:.3rem; text-transform:uppercase; }
+.hero h1 { font-size:1.35rem; font-weight:900; margin-bottom:.2rem; }
+.hero .subtitle { font-size:.8rem; opacity:.75; margin-bottom:.6rem; }
+.hero .meta { display:flex; flex-wrap:wrap; gap:.6rem; font-size:.75rem; opacity:.75; }
+.phase-badge {
+  display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  border-radius:20px; padding:.25rem .9rem; font-size:.76rem; font-weight:700; margin-bottom:.6rem;
+}
+.breadcrumb { font-size:.7rem; opacity:.65; margin-bottom:.3rem; color:#fff; }
+.breadcrumb span { color:#fff; opacity:.8; }
+
+.tab-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  display:flex; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.tab {
+  flex:1; padding:.85rem .5rem; border:none; background:none; cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif; font-size:.8rem; font-weight:500;
+  color:var(--text-sub); border-bottom:3px solid transparent; transition:all .15s;
+  display:flex; align-items:center; justify-content:center; gap:.3rem;
+}
+.tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:700; }
+.tab:hover:not(.active) { background:#f8f9fa; color:var(--text); }
+
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+
+.container { max-width:960px; margin:0 auto; padding:1.5rem 1.5rem 3rem; }
+.card {
+  background:var(--card); border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:.9rem;
+}
+.section-title {
+  font-size:.95rem; font-weight:700; color:var(--primary);
+  margin-bottom:1rem; padding-bottom:.4rem; border-bottom:2px solid var(--primary);
+}
+.sub-title { font-size:.85rem; font-weight:700; color:var(--primary); margin: .8rem 0 .5rem; }
+
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-bottom:1rem; }
+@media(max-width:640px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+.stat-box {
+  background:var(--card); border-radius:10px; padding:.9rem;
+  box-shadow:var(--shadow); border:1px solid var(--border);
+  text-align:center; border-top:4px solid var(--border);
+}
+.stat-box.green  { border-top-color:var(--green); }
+.stat-box.blue   { border-top-color:var(--blue); }
+.stat-box.orange { border-top-color:var(--orange); }
+.stat-box.navy   { border-top-color:var(--primary); }
+.stat-val { font-size:1.5rem; font-weight:900; color:var(--primary); line-height:1.2; }
+.stat-label { font-size:.7rem; color:var(--text-sub); margin-top:.25rem; }
+.stat-sub { font-size:.65rem; color:var(--text-sub); }
+
+.progress-wrap { margin:.5rem 0; }
+.progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--text-sub); margin-bottom:.25rem; }
+.progress-bar { background:#e9ecef; border-radius:6px; height:9px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:6px; }
+.fill-green  { background:linear-gradient(90deg,#28a745,#34ce57); }
+.fill-blue   { background:linear-gradient(90deg,#007bff,#6610f2); }
+.fill-orange { background:linear-gradient(90deg,#fd7e14,#ffc107); }
+.fill-gray   { background:#ced4da; }
+
+.timeline { position:relative; padding-left:1.6rem; }
+.timeline::before { content:''; position:absolute; left:.5rem; top:0; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:.9rem; }
+.tl-dot {
+  position:absolute; left:-1.25rem; top:.35rem;
+  width:16px; height:16px; border-radius:50%; border:2.5px solid;
+}
+.tl-dot.done   { background:var(--green);  border-color:var(--green); }
+.tl-dot.active { background:#fff;          border-color:var(--blue); }
+.tl-dot.next   { background:#fff;          border-color:var(--orange); }
+.tl-dot.future { background:#fff;          border-color:var(--border); }
+.tl-date  { font-size:.72rem; color:var(--text-sub); }
+.tl-title { font-size:.88rem; font-weight:700; }
+.tl-desc  { font-size:.78rem; color:var(--text-sub); }
+.tl-who   { font-size:.72rem; color:var(--blue); margin-top:.1rem; }
+
+.task-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.task-table thead th {
+  background:#f8f9fa; text-align:left; padding:.5rem .65rem;
+  font-size:.73rem; font-weight:700; color:var(--text-sub); border-bottom:2px solid var(--border);
+}
+.task-table tbody tr { border-bottom:1px solid #f0f0f0; }
+.task-table tbody tr:hover { background:#fafafa; }
+.task-table td { padding:.5rem .65rem; vertical-align:middle; }
+.task-name { font-weight:600; }
+.task-done .task-name { color:var(--text-sub); text-decoration:line-through; }
+.check-circle {
+  width:20px; height:20px; border-radius:50%; border:2px solid var(--border);
+  display:inline-flex; align-items:center; justify-content:center; font-size:.63rem; font-weight:700;
+}
+.check-circle.done   { background:var(--green);  border-color:var(--green);  color:#fff; }
+.check-circle.active { border-color:var(--blue);  color:var(--blue); }
+.check-circle.next   { border-color:var(--orange); color:var(--orange); }
+.check-circle.none   { border-color:#ccc; }
+
+.tag {
+  display:inline-block; padding:.12rem .55rem; border-radius:10px;
+  font-size:.68rem; font-weight:700; white-space:nowrap;
+}
+.tag-plat   { background:#dbeafe; color:#1d4ed8; }
+.tag-client { background:#fce7f3; color:#9d174d; }
+.tag-both   { background:#fef3c7; color:#92400e; }
+.tag-ext    { background:#f0fdf4; color:#166534; }
+.tag-kanko  { background:#fee2e2; color:#991b1b; }
+
+.deadline { font-size:.76rem; }
+.deadline.urgent { color:var(--red); font-weight:700; }
+.deadline.soon   { color:var(--orange); font-weight:600; }
+.deadline.ok     { color:var(--text-sub); }
+
+.badge { display:inline-block; padding:.18rem .65rem; border-radius:20px; font-size:.71rem; font-weight:700; }
+.badge-done   { background:#d4edda; color:#155724; }
+.badge-active { background:#cce5ff; color:#004085; }
+.badge-next   { background:#fff3cd; color:#856404; }
+.badge-future { background:#f1f3f4; color:#5f6368; }
+
+.alert { padding:.65rem .9rem; border-radius:0 8px 8px 0; font-size:.81rem; margin-bottom:.8rem; border-left:4px solid; }
+.alert-ok     { background:#e8f5e9; border-color:var(--green); color:#1b5e20; }
+.alert-warn   { background:#fff8e1; border-color:var(--orange); color:#5d4037; }
+.alert-danger { background:#fdecea; border-color:var(--red); color:#7b1a12; }
+.alert-info   { background:#e8f4fd; border-color:var(--blue); color:#0c5460; }
+
+.dep-section { margin-bottom:1.2rem; }
+.dep-label { font-size:.72rem; font-weight:700; color:var(--text-sub); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.5rem; }
+.dep-chain { display:flex; align-items:center; flex-wrap:wrap; gap:.25rem; margin-bottom:.4rem; }
+.dep-node {
+  padding:.35rem .8rem; border-radius:8px; font-size:.78rem; font-weight:600;
+  border:2px solid; line-height:1.3; text-align:center;
+}
+.dep-node.done   { background:#d4edda; border-color:var(--green);  color:#155724; }
+.dep-node.active { background:#cce5ff; border-color:var(--blue);   color:#004085; }
+.dep-node.next   { background:#fff3cd; border-color:var(--orange); color:#856404; }
+.dep-node.future { background:#f8f9fa; border-color:#ced4da;       color:#6c757d; }
+.dep-arrow { color:#adb5bd; font-size:1rem; }
+.dep-warning {
+  background:#fff8e1; border:1px solid #ffd54f; border-radius:8px;
+  padding:.6rem .9rem; font-size:.8rem; color:#5d4037; margin-top:.4rem;
+}
+.dep-warning strong { display:block; margin-bottom:.15rem; color:#bf360c; }
+
+.team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.7rem; }
+.team-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.9rem; box-shadow:var(--shadow); display:flex; gap:.7rem; align-items:flex-start; }
+.avatar { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:.82rem; color:#fff; flex-shrink:0; }
+.team-name { font-size:.85rem; font-weight:700; }
+.team-role { font-size:.73rem; color:var(--text-sub); line-height:1.4; }
+
+.contact-box { background:#f0f4ff; border:1px solid #c5d5ff; border-radius:10px; padding:1rem; font-size:.83rem; }
+.contact-box h4 { font-weight:700; color:var(--primary); margin-bottom:.3rem; }
+
+.kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; }
+.kpi-item { text-align:center; padding:.7rem; background:#f8f9fa; border-radius:8px; }
+.kpi-val  { font-size:1rem; font-weight:900; color:var(--primary); }
+.kpi-label{ font-size:.7rem; color:var(--text-sub); margin-top:.2rem; }
+.kpi-arrow{ color:var(--green); font-weight:700; margin:0 .2rem; }
+
+.case-block { padding-bottom:.8rem; border-bottom:1px dashed var(--border); margin-bottom:.8rem; }
+.case-block:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.case-head { display:flex; align-items:center; gap:.6rem; margin-bottom:.4rem; }
+.case-num { background:var(--primary); color:#fff; width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:900; }
+.case-title { font-size:.88rem; font-weight:700; color:var(--primary); }
+
+footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <span>ポータル</span> ＞ <span>レキマチ ハード事業</span> ＞ <span>宗教法人上杉神社</span>
+  </div>
+  <div class="project-label">プラットヨネザワ × 宗教法人上杉神社 ｜ 進捗管理</div>
+  <div class="phase-badge">🔍 審査・選定中（5月下旬通知予定）</div>
+  <h1>上杉神社 授与所 改修整備</h1>
+  <div class="subtitle">授与所の建物改修＋設備整備 — 参拝者利便性／歴史的景観／多言語対応</div>
+  <div class="meta">
+    <span>📋 観光振興事業費補助金（レキマチハード）</span>
+    <span>💰 補助額 2,500万円</span>
+    <span>🏢 総事業費 5,000万円</span>
+    <span>📅 完了 R9.2.26</span>
+    <span>🔄 更新 2026-04-27</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="showTab('summary', this)">📊 進捗サマリー</button>
+  <button class="tab" onclick="showTab('milestones', this)">🎯 マイルストーン</button>
+  <button class="tab" onclick="showTab('tasks', this)">📋 タスク・担当</button>
+  <button class="tab" onclick="showTab('deps', this)">🔗 影響・依存関係</button>
+</div>
+
+<div class="container">
+
+<!-- ============== TAB 1: SUMMARY ============== -->
+<div id="tab-summary" class="tab-pane active">
+
+  <div class="stats-row">
+    <div class="stat-box green"><div class="stat-val">提出済</div><div class="stat-label">申請書ステータス</div><div class="stat-sub">2026/4/22 完了</div></div>
+    <div class="stat-box blue"><div class="stat-val">審査中</div><div class="stat-label">現在のフェーズ</div><div class="stat-sub">5月下旬 結果通知</div></div>
+    <div class="stat-box orange"><div class="stat-val">2,500<span style="font-size:.8rem;">万円</span></div><div class="stat-label">補助金交付申請額</div><div class="stat-sub">補助率1/2</div></div>
+    <div class="stat-box navy"><div class="stat-val">R9.2</div><div class="stat-label">事業完了目標</div><div class="stat-sub">2027年2月26日</div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📈 全体フェーズ進捗</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 1：申請準備・提出（〜4/22）</span><span>100%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%;"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 2：審査・採択待ち（4月下旬〜5月下旬）</span><span>50%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-blue" style="width:50%;"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 3：交付申請・交付決定（6月〜7月）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%;"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 4：設計・施工（7月〜R9.2）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%;"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 5：完了報告・精算（R9.3）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%;"></div></div>
+    </div>
+  </div>
+
+  
+    <div class="alert alert-warn">
+      <strong>📌 重点ポイント：</strong>宗教法人案件のため、<strong>歴史的景観の保全と工事の進め方</strong>に最大限の配慮が必要。
+      参拝者対応を継続しながらの工事となるため、仮設対応・工期分割を含めた施工計画が肝。
+      稽照殿グランドデザイン（中長期方針）との整合も、設計段階で確認する。
+    </div>
+    
+
+  <div class="card">
+    <div class="section-title">📋 案件概要</div>
+    
+    <div class="case-block">
+      <div class="case-head"><span class="case-num">10</span><span class="case-title">上杉神社 授与所 改修整備</span></div>
+      <p style="font-size:.85rem;">上杉神社の<strong>授与所（お守り授与・参拝者対応施設）</strong>を改修整備。
+      建物改修（区分ア）3,200万円＋設備整備（区分イ）1,800万円の<strong>計5,000万円</strong>。</p>
+      <ul style="font-size:.83rem; padding-left:1.4rem; line-height:1.9;">
+        <li>建物改修：参拝者の利便性向上と歴史的景観の保全</li>
+        <li>設備整備：多言語案内・サイン整備、外構庭園整備</li>
+        <li>本ハード事業の<strong>象徴的整備</strong>。稽照殿グランドデザインと連動</li>
+      </ul>
+    </div>
+    
+  </div>
+
+  <div class="card">
+    <div class="section-title">🎯 KPI（売上規模）</div>
+    
+    <div class="kpi-row">
+      <div class="kpi-item"><div class="kpi-val">6,800万円</div><div class="kpi-label">売上高（R7）</div></div>
+      <div class="kpi-item"><div class="kpi-val">6,800万円+</div><div class="kpi-label">売上目標（初年度）</div></div>
+      <div class="kpi-item"><div class="kpi-val">維持・向上</div><div class="kpi-label">参拝者満足度</div></div>
+    </div>
+    
+  </div>
+
+  <div class="card">
+    <div class="section-title">👥 プロジェクト体制</div>
+    
+<div class="team-grid">
+  <div class="team-card"><div class="avatar" style="background:#1a2744;">PY</div><div><div class="team-name">プラットヨネザワ</div><div class="team-role">統括PM・補助金事務局・申請者</div></div></div>
+  <div class="team-card"><div class="avatar" style="background:#dc3545;">観</div><div><div class="team-name">観光庁</div><div class="team-role">補助金所管・審査・交付決定</div></div></div>
+  <div class="team-card"><div class="avatar" style="background:#28a745;">設</div><div><div class="team-name">設計者（採択後）</div><div class="team-role">建築・施工計画</div></div></div>
+  <div class="team-card"><div class="avatar" style="background:#fd7e14;">施</div><div><div class="team-name">施工業者（採択後）</div><div class="team-role">建設業法許可事業者</div></div></div>
+</div>
+
+  </div>
+
+  <div class="card">
+    <div class="contact-box">
+      <h4>📩 お問合せ・連絡先</h4>
+      <div>プラットヨネザワ株式会社（PM）</div>
+      <div style="font-size:.78rem; color:var(--text-sub); margin-top:.2rem;">補助金事務局：観光庁 観光地域振興部 観光資源課<br>hqt-kankyoseibi-hard@ki.mlit.go.jp</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== TAB 2: MILESTONES ============== -->
+<div id="tab-milestones" class="tab-pane">
+  <div class="card">
+    <div class="section-title">🎯 マイルストーン（時系列）</div>
+    <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-date">2026/4/22</div>
+          <div class="tl-title">✅ 観光庁へ申請書一式 提出完了</div>
+          <div class="tl-desc">様式1〜5・経費積算表・収支計画を提出。間接補助事業者として10案件を統括申請。</div>
+          <div class="tl-who">担当：プラットヨネザワ</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot active"></div>
+          <div class="tl-date">4月下旬〜5月下旬</div>
+          <div class="tl-title">🔵 観光庁による審査・選定（進行中）</div>
+          <div class="tl-desc">公募要領に基づく審査の観点（事業全体／観光体験／施設整備／事業継続性）に沿った評価。</div>
+          <div class="tl-who">担当：観光庁</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot active"></div>
+          <div class="tl-date">5月〜6月</div>
+          <div class="tl-title">🔵 採択前提の設計・準備（並行）</div>
+          <div class="tl-desc">業者選定の下準備、設計打合せ、整備内容の最終調整。交付決定前の発注は補助対象外につき着手は7月以降。</div>
+          <div class="tl-who">担当：事業者・プラット</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot next"></div>
+          <div class="tl-date">6月上旬</div>
+          <div class="tl-title">⏳ 内定通知の受領</div>
+          <div class="tl-desc">観光庁からの内定通知を受領。間接補助事業者へ速やかに共有。</div>
+          <div class="tl-who">担当：観光庁→プラット</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot next"></div>
+          <div class="tl-date">6月</div>
+          <div class="tl-title">⏳ 交付申請（正式）</div>
+          <div class="tl-desc">内定後に交付申請書類を提出。事業内容・経費区分の確定。</div>
+          <div class="tl-who">担当：プラットヨネザワ</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot next"></div>
+          <div class="tl-date">7月頃</div>
+          <div class="tl-title">⏳ 交付決定・事業開始</div>
+          <div class="tl-desc">交付決定通知後に発注・契約手続きへ。これ以前の発注は補助対象外。</div>
+          <div class="tl-who">担当：観光庁→プラット</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot future"></div>
+          <div class="tl-date">7月〜R9.2</div>
+          <div class="tl-title">⏳ 設計確定・施工・検査</div>
+          <div class="tl-desc">工事の実施。中間検査・進捗報告。多言語サイン・案内板の設計・設置を含む。</div>
+          <div class="tl-who">担当：事業者・施工業者</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot future"></div>
+          <div class="tl-date">R9.2.26</div>
+          <div class="tl-title">⏳ 事業完了</div>
+          <div class="tl-desc">全工事の完了。設備・什器の引渡し完了。</div>
+          <div class="tl-who">担当：事業者</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot future"></div>
+          <div class="tl-date">R9.3.10</div>
+          <div class="tl-title">⏳ 完了報告書 提出期限</div>
+          <div class="tl-desc">実績報告書・経費精算書類の提出。精算払い請求。</div>
+          <div class="tl-who">担当：プラットヨネザワ</div>
+        </div></div>
+  </div>
+</div>
+
+<!-- ============== TAB 3: TASKS ============== -->
+<div id="tab-tasks" class="tab-pane">
+  <div class="alert alert-info">
+    <strong>現在のフォーカス：</strong>5月下旬の採択結果通知に備え、設計・業者選定の準備を並行して進める。<br>
+    交付決定前の発注は補助対象外のため、契約・発注は7月以降に行う。
+  </div>
+  
+<div class="card">
+  <div class="section-title">📋 申請（完了タスク）</div>
+  <table class="task-table">
+    <thead><tr><th width="40"></th><th>タスク</th><th width="80">担当</th><th width="120">期限</th><th width="80">状態</th></tr></thead>
+    <tbody>
+      <tr><td><span class="check-circle done">✓</span></td><td><span class="task-name">整備内容・経費区分の確定</span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline ok">〜4/17</span></td><td><span class="badge badge-done">完了</span></td></tr>
+      <tr><td><span class="check-circle done">✓</span></td><td><span class="task-name">見積書の取得</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">〜4/18</span></td><td><span class="badge badge-done">完了</span></td></tr>
+      <tr><td><span class="check-circle done">✓</span></td><td><span class="task-name">様式1〜5 作成</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">〜4/20</span></td><td><span class="badge badge-done">完了</span></td></tr>
+      <tr><td><span class="check-circle done">✓</span></td><td><span class="task-name">連携事業者の確認・署名</span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline ok">〜4/21</span></td><td><span class="badge badge-done">完了</span></td></tr>
+      <tr><td><span class="check-circle done">✓</span></td><td><span class="task-name">最終レビュー・観光庁提出</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">4/22 12:00</span></td><td><span class="badge badge-done">完了</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="section-title">🔵 審査期間中タスク（5月下旬まで）</div>
+  <table class="task-table">
+    <thead><tr><th width="40"></th><th>タスク</th><th width="80">担当</th><th width="120">期限</th><th width="80">状態</th></tr></thead>
+    <tbody>
+      <tr><td><span class="check-circle active">●</span></td><td><span class="task-name"><strong>業者リスト作成・概算見積の精査</strong></span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline soon">〜5月中旬</span></td><td><span class="badge badge-active">対応中</span></td></tr>
+      <tr><td><span class="check-circle active">●</span></td><td><span class="task-name"><strong>整備内容の詳細設計検討（採択前提）</strong></span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline soon">〜5月中</span></td><td><span class="badge badge-active">対応中</span></td></tr>
+      <tr><td><span class="check-circle active">●</span></td><td><span class="task-name">追加質問・差替対応の構え</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline soon">随時</span></td><td><span class="badge badge-active">対応中</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">建設業法許可事業者の確認</span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline soon">〜6月</span></td><td><span class="badge badge-next">予定</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="section-title">⏳ 採択後タスク（6月〜）</div>
+  <table class="task-table">
+    <thead><tr><th width="40"></th><th>タスク</th><th width="80">担当</th><th width="120">期限</th><th width="80">状態</th></tr></thead>
+    <tbody>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">採択通知の確認・周知</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">6月上旬</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">交付申請書類の提出</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">6月</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">交付決定後 → 設計・施工業者の選定発注</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">7月</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">事業者間 定期ミーティング設定</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">7月〜</span></td><td><span class="badge badge-next">予定</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="section-title">🏗 工事・運営フェーズ（7月〜R9.2）</div>
+  <table class="task-table">
+    <thead><tr><th width="40"></th><th>タスク</th><th width="80">担当</th><th width="120">期限</th><th width="80">状態</th></tr></thead>
+    <tbody>
+      <tr><td><span class="check-circle none">　</span></td><td><span class="task-name">設計確定・着工</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">7月以降</span></td><td><span class="badge badge-future">将来</span></td></tr>
+      <tr><td><span class="check-circle none">　</span></td><td><span class="task-name">中間進捗報告（プラット→観光庁）</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">適宜</span></td><td><span class="badge badge-future">将来</span></td></tr>
+      <tr><td><span class="check-circle none">　</span></td><td><span class="task-name">事業完了・引渡し</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">R9.2.26</span></td><td><span class="badge badge-future">将来</span></td></tr>
+      <tr><td><span class="check-circle none">　</span></td><td><span class="task-name">完了報告書・実績報告書の提出</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">R9.3.10</span></td><td><span class="badge badge-future">将来</span></td></tr>
+      <tr><td><span class="check-circle none">　</span></td><td><span class="task-name">精算払い 受領・KPI計測の運用開始</span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline ok">R9春〜</span></td><td><span class="badge badge-future">将来</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="section-title">⛩ 上杉神社固有タスク（景観・継続営業・グランドデザイン整合）</div>
+  <table class="task-table">
+    <thead><tr><th width="40"></th><th>タスク</th><th width="80">担当</th><th width="120">期限</th><th width="80">状態</th></tr></thead>
+    <tbody>
+      <tr><td><span class="check-circle active">●</span></td><td><span class="task-name"><strong>稽照殿グランドデザインとの整合確認</strong></span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline soon">〜6月</span></td><td><span class="badge badge-active">対応中</span></td></tr>
+      <tr><td><span class="check-circle active">●</span></td><td><span class="task-name">歴史的景観への影響評価・設計反映</span></td><td><span class="tag tag-both">両者</span></td><td><span class="deadline soon">〜6月</span></td><td><span class="badge badge-active">対応中</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">参拝者対応継続のための仮設・工期分割計画</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">7月</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">多言語サイン・授与品案内の翻訳監修</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">7月以降</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">外構・庭園整備（区分イ）の詳細設計</span></td><td><span class="tag tag-client">上杉神社</span></td><td><span class="deadline ok">7月以降</span></td><td><span class="badge badge-next">予定</span></td></tr>
+      <tr><td><span class="check-circle next">○</span></td><td><span class="task-name">超勝利ブランドの体験拠点としての位置づけ整理</span></td><td><span class="tag tag-plat">プラット</span></td><td><span class="deadline ok">8月以降</span></td><td><span class="badge badge-next">予定</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+</div>
+
+<!-- ============== TAB 4: DEPENDENCIES ============== -->
+<div id="tab-deps" class="tab-pane">
+  
+<div class="card">
+  <div class="section-title">🔗 補助金スキーム上の依存関係</div>
+
+  <div class="dep-section">
+    <div class="dep-label">クリティカルチェーン① 補助金審査〜交付決定</div>
+    <div class="dep-chain">
+      <span class="dep-node done">4/22 申請提出</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node active">5月下旬<br>審査結果</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node next">6月<br>内定→交付申請</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node next">7月<br>交付決定</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">工事着工</span>
+    </div>
+    <div class="dep-warning">
+      <strong>⚠️ 不採択／交付決定遅延の場合の影響</strong>
+      事業期間がR9.2.26で固定されているため、交付決定が8月以降になると工期が圧迫される。最悪の場合、工事範囲の縮小・工期短縮設計の再検討が必要。
+    </div>
+  </div>
+
+  <div class="dep-section">
+    <div class="dep-label">クリティカルチェーン② 設計〜施工〜完了報告</div>
+    <div class="dep-chain">
+      <span class="dep-node next">設計確定</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node next">業者発注</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">施工</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">中間検査</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">完成検査</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">完了報告</span>
+    </div>
+    <div class="dep-warning">
+      <strong>⚠️ 設計・発注遅延の影響</strong>
+      建設業法許可事業者への発注が必須。設計・許認可の遅れは工期全体を圧迫し、R9.2.26までに完了できない場合は補助金が支払われない（精算払い）。
+    </div>
+  </div>
+
+  <div class="dep-section">
+    <div class="dep-label">クリティカルチェーン③ KPI達成〜事業継続</div>
+    <div class="dep-chain">
+      <span class="dep-node future">施設整備完了</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">運営開始</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">KPI計測</span>
+      <span class="dep-arrow">→</span>
+      <span class="dep-node future">事業継続性報告</span>
+    </div>
+    <div class="dep-warning">
+      <strong>⚠️ KPI未達／事業継続不全の影響</strong>
+      申請書で設定したKPI（施設利用者数・売上高）の未達は、観光庁への事業継続報告で課題視される。R12目標達成に向け、運営計画の精度向上が必要。
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">🛤 クリティカルパス（完成までのルート）</div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">2026/4/22</div><div class="tl-title">✅ 申請書 提出</div></div>
+    <div class="tl-item"><div class="tl-dot active"></div><div class="tl-date">5月下旬</div><div class="tl-title">🔵 審査結果通知</div></div>
+    <div class="tl-item"><div class="tl-dot next"></div><div class="tl-date">6月上旬</div><div class="tl-title">⏳ 内定→交付申請</div></div>
+    <div class="tl-item"><div class="tl-dot next"></div><div class="tl-date">7月頃</div><div class="tl-title">⏳ 交付決定・発注</div></div>
+    <div class="tl-item"><div class="tl-dot future"></div><div class="tl-date">7月〜R9.2</div><div class="tl-title">⏳ 工事の実施</div></div>
+    <div class="tl-item"><div class="tl-dot future"></div><div class="tl-date">R9.2.26</div><div class="tl-title">⏳ 事業完了</div></div>
+    <div class="tl-item"><div class="tl-dot future"></div><div class="tl-date">R9.3.10</div><div class="tl-title">⏳ 完了報告→精算払い</div></div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<footer>© 2026 プラットヨネザワ株式会社（PM）｜宗教法人上杉神社（レキマチハード事業）｜ 最終更新：2026-04-27</footer>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
