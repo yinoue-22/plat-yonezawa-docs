@@ -112,6 +112,15 @@ table tr:nth-child(even) { background: #fafafa; }
   background: var(--soft-blue); border: 2px solid #fff;
   box-shadow: 0 0 0 2px var(--soft-blue);
 }
+/* ── Scoring ── */
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.score-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.score-card .score-title { font-weight: 700; font-size: .85rem; color: var(--primary); margin-bottom: .4rem; }
+.score-card p { font-size: .8rem; color: var(--text-sub); line-height: 1.6; }
+
 .timeline-item.done::before { background: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
 .timeline-item.urgent::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0%,100%{ box-shadow:0 0 0 2px var(--accent); } 50%{ box-shadow:0 0 0 6px rgba(192,57,43,.25); } }
@@ -139,6 +148,7 @@ table tr:nth-child(even) { background: #fafafa; }
   .hero h1 { font-size: 1.2rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .benchmark-grid { grid-template-columns: 1fr; }
+  .score-grid { grid-template-columns: 1fr; }
   .container { padding: 1.5rem 1rem 3rem; }
 }
 /* ── Alert Banner ── */
@@ -216,6 +226,30 @@ table tr:nth-child(even) { background: #fafafa; }
         <tr><td><strong>R8 ソフト事業</strong></td><td>R8（2026）</td><td>体験コンテンツ造成、モニターツアー、高付加価値化</td><td>文化庁 785万円</td></tr>
         <tr><td><strong>R8 ハード事業</strong></td><td>R8（2026）</td><td>施設整備・周辺環境整備（観光庁 別事業）</td><td>観光庁 1.36億円</td></tr>
       </table>
+    </div>
+  </div>
+
+  <!-- ── 1.5 補助金の基本情報 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💰</span> 補助金の基本情報</div>
+    <div class="card">
+      <table>
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>補助金名称</td><td>文化資源活用事業費補助金（全国各地の魅力的な文化財活用推進事業）</td></tr>
+        <tr><td>所管省庁</td><td>文化庁 文化資源活用課 事業係・活用推進係</td></tr>
+        <tr><td>補助額</td><td><strong>400万円まで定額</strong>、400万超は補助率50%～65%</td></tr>
+        <tr><td>補助率加算</td><td>+5%（文化財保存活用地域計画）/ +10%（財政規模）/ <strong>+5%（登録DMO連携）</strong>/ +5%（文化観光推進法）</td></tr>
+        <tr><td>今回の補助率</td><td><strong>55%</strong>（基本50% + 登録DMO連携 +5%）</td></tr>
+        <tr><td>最低事業費</td><td><strong>600万円</strong>（税込）</td></tr>
+        <tr><td>補助上限</td><td>なし（～5,000万円程度を想定目安）</td></tr>
+        <tr><td>事業実施期間</td><td>採択通知日 ～ 令和9年2月26日</td></tr>
+        <tr><td>精算方式</td><td>事業完了後の精算払い（概算払いも可）</td></tr>
+        <tr><td>成果報告義務</td><td>事業終了後<strong>4年間</strong>は成果報告書・次年度計画書の提出が必要</td></tr>
+        <tr><td>問合せ先</td><td>zenkoku-katsuyo@mext.go.jp / TEL 075-451-4111（内線9663・9662）</td></tr>
+      </table>
+    </div>
+    <div class="highlight-box">
+      <p><strong>補助額の計算例（今回の申請）：</strong>事業費 1,100万円 × 補助率55% の場合 → 400万円＋（1,100万円−400万円）× 55% = <strong>785万円</strong>（補助額）</p>
     </div>
   </div>
 
@@ -346,7 +380,61 @@ table tr:nth-child(even) { background: #fafafa; }
     </div>
   </div>
 
-  <!-- ── 8. タイムライン ── -->
+  <!-- ── 8. 審査の観点 ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 審査の観点（応募要領より）</div>
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="score-title">Ⅰ コンテンツ造成</div>
+        <p>来訪者層の多様化を踏まえ、継続的実施・販売が可能な体験型コンテンツの造成が計画されているか。文化財の成り立ちを理解しながらより深く楽しめる体験等か。地域課題の解決に資するか。</p>
+      </div>
+      <div class="score-card">
+        <div class="score-title">Ⅱ 事業効果</div>
+        <p>収益を文化財の修理に充てるなど活用→保存の好循環を創出しているか。訪日外国人観光客の誘客に資するか（ターゲット設定・多言語対応・便益設備・販路開拓等）。</p>
+      </div>
+      <div class="score-card">
+        <div class="score-title">Ⅲ 事業の実施体制</div>
+        <p>将来の自走化に向けた実施体制が計画されているか。文化財所有者・地方公共団体・DMO・交通飲食宿泊事業者等の関係者との連携を目指しているか。</p>
+      </div>
+      <div class="score-card">
+        <div class="score-title">伴走支援（コーチング）</div>
+        <p>採択後、専任コーチが事業推進をサポート。中長期計画策定、実施体制補強、プライシング、コンテンツ磨き上げ、販売チャネル選定、資金調達等を伴走支援。</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem;">
+      <h4>補助率の加算要素（今回の適用）</h4>
+      <table>
+        <tr><th>項目</th><th>要件</th><th>加算</th><th>適用</th></tr>
+        <tr><td>自治体による地域計画の策定</td><td>文化財保存活用地域計画・歴まち計画等を策定済</td><td>+5%</td><td>ー</td></tr>
+        <tr><td>財政規模</td><td>事業規模指数が0.1以上</td><td>+10%</td><td>ー</td></tr>
+        <tr><td><strong>登録DMOとの連携</strong></td><td>協議会等に登録DMOが参加</td><td><strong>+5%</strong></td><td style="color:#27ae60;font-weight:700;">✓ 適用</td></tr>
+        <tr><td>文化観光推進法との連携</td><td>認定拠点計画・地域計画に基づく事業</td><td>+5%</td><td>ー</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 9. 関連事業の連携マップ ── -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔗</span> 関連事業との連携マップ</div>
+    <div class="linkage-flow" style="display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;padding:1.5rem;background:var(--card);border-radius:10px;box-shadow:var(--shadow);border:1px solid var(--border);">
+      <div style="background:var(--primary);color:#fff;padding:.6rem 1rem;border-radius:6px;font-size:.78rem;font-weight:600;text-align:center;min-width:140px;">R7 レキマチ<br>（エリア造成事業）</div>
+      <span style="font-size:1.2rem;color:var(--text-sub);">→</span>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div style="background:var(--accent);color:#fff;padding:.6rem 1rem;border-radius:6px;font-size:.78rem;font-weight:600;text-align:center;min-width:140px;">R8 レキマチ ハード<br>（施設整備）</div>
+        <div style="text-align:center;font-size:1rem;font-weight:700;color:var(--text-sub);">＋</div>
+        <div style="background:var(--gold);color:#fff;padding:.6rem 1rem;border-radius:6px;font-size:.78rem;font-weight:600;text-align:center;min-width:140px;">R8 レキマチ ソフト<br>（コンテンツ造成）</div>
+      </div>
+    </div>
+    <table style="margin-top:1rem;">
+      <tr><th>事業名</th><th>関連性</th></tr>
+      <tr><td>R7 レキマチ事業（エリア造成事業）</td><td>前年度事業。人流分析・計画策定・推進体制構築を実施済み</td></tr>
+      <tr><td>R8 ハード事業（観光振興事業費補助金）</td><td>施設整備・周辺環境整備。観光庁へ別途申請済（4/22提出）</td></tr>
+      <tr><td>R8 ガストロノミーツーリズム推進事業</td><td>置賜ガストロノミーコンテンツ造成（別申請）</td></tr>
+      <tr><td>上杉神社稽照殿グランドデザイン</td><td>中長期の整備方針。稽照殿を核とした文化財活用の全体構想</td></tr>
+    </table>
+  </div>
+
+  <!-- ── 10. タイムライン ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🗓</span> タイムライン（R8 ソフト事業スケジュール）</div>
     <div class="timeline">
