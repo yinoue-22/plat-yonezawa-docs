@@ -22,7 +22,6 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
-
 /* ── Hero ── */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, #3d1a1a 60%, var(--accent) 100%);
@@ -42,7 +41,6 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .hero .meta-row span { display: flex; align-items: center; gap: .3rem; }
 .badge-hard { display: inline-block; background: rgba(255,255,255,0.18); padding: .2rem .7rem;
   border-radius: 4px; font-size: .7rem; font-weight: 700; letter-spacing: .05em; margin-bottom: .8rem; }
-
 /* ── Alert Banner ── */
 .alert-banner {
   background: var(--hard-red-bg); border-left: 4px solid var(--accent);
@@ -50,10 +48,8 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 }
 .alert-banner strong { color: var(--accent); }
 .alert-banner p { font-size: .85rem; margin: 0; }
-
 /* ── Container ── */
 .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-
 /* ── Section ── */
 .section { margin-bottom: 2.5rem; }
 .section-title {
@@ -63,7 +59,6 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   display: flex; align-items: center; gap: .5rem;
 }
 .section-title .icon { font-size: 1.2rem; }
-
 /* ── Cards ── */
 .card {
   background: var(--card); border-radius: 10px; padding: 1.5rem;
@@ -73,7 +68,6 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .card p, .card li { font-size: .85rem; color: var(--text-sub); line-height: 1.7; }
 .card ul { padding-left: 1.2rem; }
 .card ul li { margin-bottom: .3rem; }
-
 /* ── Stats Grid ── */
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
 .stat-card {
@@ -83,13 +77,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .stat-card .number { font-size: 1.8rem; font-weight: 900; color: var(--accent); line-height: 1.2; }
 .stat-card .unit { font-size: .75rem; color: var(--text-sub); }
 .stat-card .label { font-size: .75rem; color: var(--text-sub); margin-top: .3rem; }
-
 /* ── Table ── */
 table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: 1rem; }
 table th, table td { padding: .6rem .8rem; border: 1px solid var(--border); text-align: left; }
 table th { background: var(--primary); color: #fff; font-weight: 500; font-size: .78rem; }
 table tr:nth-child(even) { background: #fafafa; }
-
 /* ── Highlight Box ── */
 .highlight-box {
   background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
@@ -98,7 +90,6 @@ table tr:nth-child(even) { background: #fafafa; }
 }
 .highlight-box p { font-size: .85rem; line-height: 1.7; }
 .highlight-box strong { color: var(--primary); }
-
 /* ── Area Map ── */
 .area-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
 .area-card {
@@ -107,7 +98,6 @@ table tr:nth-child(even) { background: #fafafa; }
 }
 .area-card .area-name { font-weight: 700; font-size: .9rem; color: var(--primary); margin-bottom: .5rem; }
 .area-card p { font-size: .8rem; color: var(--text-sub); line-height: 1.6; }
-
 /* ── Timeline ── */
 .timeline { position: relative; padding-left: 2rem; }
 .timeline::before { content: ''; position: absolute; left: .6rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
@@ -124,7 +114,6 @@ table tr:nth-child(even) { background: #fafafa; }
 .timeline-item .time { font-size: .72rem; color: var(--text-sub); font-weight: 500; }
 .timeline-item .desc { font-size: .85rem; font-weight: 500; }
 .timeline-item .sub { font-size: .75rem; color: var(--text-sub); }
-
 /* ── Scoring ── */
 .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .score-card {
@@ -133,7 +122,6 @@ table tr:nth-child(even) { background: #fafafa; }
 }
 .score-card .score-title { font-weight: 700; font-size: .85rem; color: var(--primary); margin-bottom: .4rem; }
 .score-card p { font-size: .8rem; color: var(--text-sub); line-height: 1.6; }
-
 /* ── Linkage Map ── */
 .linkage-flow {
   display: flex; align-items: center; justify-content: center; gap: .5rem;
@@ -148,7 +136,6 @@ table tr:nth-child(even) { background: #fafafa; }
 .linkage-node.active { background: var(--accent); }
 .linkage-node.future { background: var(--gold); }
 .linkage-arrow { font-size: 1.2rem; color: var(--text-sub); }
-
 /* ── Document Links ── */
 .doc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: .8rem; }
 .doc-link {
@@ -161,11 +148,26 @@ table tr:nth-child(even) { background: #fafafa; }
 .doc-link .doc-icon { font-size: 1.4rem; flex-shrink: 0; }
 .doc-link .doc-info .doc-title { font-size: .82rem; font-weight: 600; }
 .doc-link .doc-info .doc-desc { font-size: .7rem; color: var(--text-sub); }
-
+/* ── 個社進捗ページへのリンク（NEW） ── */
+.tracker-link {
+  display: inline-block; margin-left: .4rem; padding: .12rem .5rem;
+  background: var(--primary); color: #fff !important; text-decoration: none;
+  border-radius: 12px; font-size: .68rem; font-weight: 700;
+  vertical-align: middle; transition: background .15s, transform .15s;
+  white-space: nowrap;
+}
+.tracker-link:hover { background: var(--accent); transform: translateY(-1px); }
+.case-card-link {
+  text-decoration: none; color: inherit; display: block;
+  transition: transform .15s, box-shadow .15s;
+}
+.case-card-link:hover { transform: translateY(-2px); }
+.case-card-link:hover .card { box-shadow: 0 6px 24px rgba(0,0,0,0.12); border-color: var(--primary); }
+.case-card-link .open-icon { float: right; color: var(--primary); font-size: .78rem; font-weight: 700; opacity: .7; }
+.case-card-link:hover .open-icon { opacity: 1; }
 /* ── Footer ── */
 .footer { text-align: center; padding: 2rem; font-size: .75rem; color: var(--text-sub);
   border-top: 1px solid var(--border); margin-top: 2rem; }
-
 @media (max-width: 600px) {
   .hero h1 { font-size: 1.2rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -178,12 +180,10 @@ table tr:nth-child(even) { background: #fafafa; }
 </style>
 </head>
 <body>
-
 <!-- ── ALERT ── -->
 <div class="alert-banner green">
   📢 応募書類 提出完了（4/22）・— 審査結果は6月上旬頃通知予定
 </div>
-
 <!-- ── HERO ── -->
 <div class="hero">
   <div class="breadcrumb"><a href="../index.html">ポータル</a> ＞ レキマチ事業 ＞ ハード事業</div>
@@ -197,14 +197,11 @@ table tr:nth-child(even) { background: #fafafa; }
     <span>🏢 申請者：プラットヨネザワ株式会社</span>
   </div>
 </div>
-
 <div class="container">
-
   <!-- ── Alert ── -->
   <div class="alert-banner" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-left:4px solid #27ae60;">
     <p><strong>✅ 観光庁へ提出完了（2026年4月22日）</strong> — 様式1〜5・見積書・収支計画の一式を観光庁に提出済み。補助金交付申請額 135,567,262円（総事業費 271,134,527円）。</p>
   </div>
-
   <!-- ── 1. 事業概要 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">📌</span> 事業概要</div>
@@ -225,11 +222,10 @@ table tr:nth-child(even) { background: #fafafa; }
         <tr><td>補助上限</td><td><strong>2億円</strong></td></tr>
         <tr><td>事業実施期間</td><td>交付決定後 ～ 令和9年2月26日（金）</td></tr>
         <tr><td>精算方式</td><td>事業終了後の精算払い（概算払いではない）</td></tr>
-        <tr><td>問合せ先</td><td>hqt-kankyoseibi-hard@ki.mlit.go.jp</td></tr>
+        <tr><td>問合せ先</td><td>[hqt-kankyoseibi-hard@ki.mlit.go.jp](mailto:hqt-kankyoseibi-hard@ki.mlit.go.jp)</td></tr>
       </table>
     </div>
   </div>
-
   <!-- ── 2. 背景・課題 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">⚠️</span> 背景・課題（人流データに基づく根拠）</div>
@@ -266,7 +262,6 @@ table tr:nth-child(even) { background: #fafafa; }
       </ul>
     </div>
   </div>
-
   <!-- ── 3. 整備計画 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🏗</span> 整備計画：エリア別整備内容</div>
@@ -303,7 +298,6 @@ table tr:nth-child(even) { background: #fafafa; }
       </ul>
     </div>
   </div>
-
   <!-- ── 4. 予算 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">💰</span> 予算・資金計画</div>
@@ -315,7 +309,6 @@ table tr:nth-child(even) { background: #fafafa; }
       <tr><td>事業者負担分</td><td><strong>135,567,265円</strong></td><td>精算払い</td></tr>
     </table>
   </div>
-
   <!-- ── 5. KGI/KPI ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🎯</span> KGI / KPI 目標</div>
@@ -336,14 +329,12 @@ table tr:nth-child(even) { background: #fafafa; }
       <tr><td>外国人観光客数</td><td>未計測</td><td>計測体制構築＋目標設定</td></tr>
     </table>
   </div>
-
   <!-- ── 6. 事業者案件一覧 ── -->
   <div class="section">
     <div class="section-title"><span class="icon">👥</span> 事業者案件一覧・進捗</div>
     <p style="font-size:.85rem;color:var(--text-sub);margin-bottom:1rem;">
       出典：観光庁提出書類一式（2026年4月22日提出）— 様式1〜5・経費積算表・収支計画
     </p>
-
     <!-- サマリー -->
     <div class="stats-grid" style="margin-bottom:1.5rem;">
       <div class="stat-card">
@@ -365,36 +356,37 @@ table tr:nth-child(even) { background: #fafafa; }
         <div class="label">観光庁提出 4/22</div>
       </div>
     </div>
-
     <!-- 案件一覧テーブル -->
+    <p style="font-size:.78rem;color:var(--text-sub);margin-bottom:.5rem;">
+      💡 案件名右の <span class="tracker-link" style="margin:0;">📊 進捗</span> ボタンから、各事業者の進捗管理ページへ遷移できます。
+    </p>
     <div style="overflow-x:auto;">
     <table>
       <tr><th>No.</th><th>事業者</th><th>案件名</th><th>状況</th><th>補助額（万円）</th><th>総事業費（万円）</th><th>申請書</th><th>見積書</th><th>収支計画</th><th>進捗率</th></tr>
-      <tr><td>1</td><td>（株）東光の酒蔵</td><td>酒造資料館 東光の酒蔵</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>198.5</td><td>397.0</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>2</td><td>（合）光悦</td><td>小島伝承の館</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>2,504.2</td><td>5,008.3</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>3</td><td>渡邉 幹雄</td><td>旧遠万織物</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>909.1</td><td>1,818.2</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>4</td><td>（株）上杉コーポレーション</td><td>上杉城史苑</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>550</td><td>1,100</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>5</td><td>（株）アジリノ</td><td>旧白根澤邸</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>700</td><td>1,400</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>6</td><td>（株）アジリノ</td><td>東町ポケットパーク</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>1,500</td><td>3,000</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>7</td><td>（株）アジリノ</td><td>マチスタヂオ</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>120</td><td>240</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>8</td><td>（有）肉のすがい</td><td>肉のすがい</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>450</td><td>900</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>9</td><td>合資会社福島屋</td><td>福島屋社員寮</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>4,125</td><td>8,250</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
-      <tr><td>10</td><td>宗教法人上杉神社</td><td>上杉神社（授与所）</td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>2,500</td><td>5,000</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>1</td><td>（株）東光の酒蔵</td><td>酒造資料館 東光の酒蔵<a href="companies/tokokura-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>198.5</td><td>397.0</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>2</td><td>（合）光悦</td><td>小島伝承の館<a href="companies/koetsu-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>2,504.2</td><td>5,008.3</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>3</td><td>渡邉 幹雄</td><td>旧遠万織物<a href="companies/watanabe-mikio-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>909.1</td><td>1,818.2</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>4</td><td>（株）上杉コーポレーション</td><td>上杉城史苑<a href="companies/uesugi-corp-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>550</td><td>1,100</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>5</td><td>（株）アジリノ</td><td>旧白根澤邸<a href="companies/ajiro-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>700</td><td>1,400</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>6</td><td>（株）アジリノ</td><td>東町ポケットパーク<a href="companies/ajiro-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>1,500</td><td>3,000</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>7</td><td>（株）アジリノ</td><td>マチスタヂオ<a href="companies/ajiro-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>120</td><td>240</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>8</td><td>（有）肉のすがい</td><td>肉のすがい<a href="companies/niku-no-sugai-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>450</td><td>900</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>9</td><td>合資会社福島屋</td><td>福島屋社員寮<a href="companies/fukushimaya-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>4,125</td><td>8,250</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
+      <tr><td>10</td><td>宗教法人上杉神社</td><td>上杉神社（授与所）<a href="companies/uesugi-jinja-tracker.html" class="tracker-link">📊 進捗</a></td><td><span style="color:#27ae60;font-weight:700;">提出済</span></td><td>2,500</td><td>5,000</td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td><span style="color:#27ae60;">✓</span></td><td style="color:#27ae60;font-weight:700;">100%</td></tr>
     </table>
     </div>
-
-
     <!-- 案件詳細：案件概要・KPI -->
     <div style="margin-top:1.5rem;">
       <div style="font-size:.92rem;font-weight:700;color:var(--primary);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem;">
-        <span style="font-size:1rem;">📋</span> 各案件の概要・目標KPI（売上規模）
+        <span style="font-size:1rem;">📋</span> 各案件の概要・目標KPI（売上規模） — カードクリックで個社進捗ページへ
       </div>
-
+      <a href="companies/tokokura-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">1</span>
           <h4 style="margin:0;font-size:.9rem;">（株）東光の酒蔵｜酒造資料館 東光の酒蔵</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -408,12 +400,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/koetsu-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">2</span>
           <h4 style="margin:0;font-size:.9rem;">（合）光悦｜小島伝承の館</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -427,12 +421,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/watanabe-mikio-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">3</span>
           <h4 style="margin:0;font-size:.9rem;">渡邉 幹雄｜旧遠万織物</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -446,12 +442,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/uesugi-corp-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">4</span>
           <h4 style="margin:0;font-size:.9rem;">（株）上杉コーポレーション｜上杉城史苑</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -465,12 +463,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/ajiro-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">5</span>
           <h4 style="margin:0;font-size:.9rem;">（株）アジリノ｜旧白根澤邸</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -484,12 +484,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/ajiro-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">6</span>
           <h4 style="margin:0;font-size:.9rem;">（株）アジリノ｜東町ポケットパーク</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -503,12 +505,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/ajiro-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">7</span>
           <h4 style="margin:0;font-size:.9rem;">（株）アジリノ｜マチスタヂオ</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -522,12 +526,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/niku-no-sugai-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">8</span>
           <h4 style="margin:0;font-size:.9rem;">（有）肉のすがい｜肉のすがい</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -541,12 +547,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/fukushimaya-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">9</span>
           <h4 style="margin:0;font-size:.9rem;">合資会社福島屋｜福島屋社員寮</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -560,12 +568,14 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
-
+      </a>
+      <a href="companies/uesugi-jinja-tracker.html" class="case-card-link">
       <div class="card" style="border-left:4px solid var(--primary);padding:1.2rem 1.4rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
           <span style="background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;">10</span>
           <h4 style="margin:0;font-size:.9rem;">宗教法人上杉神社｜上杉神社（授与所）</h4>
           <span style="font-size:.72rem;background:#e8f5e9;color:#27ae60;padding:.1rem .4rem;border-radius:3px;font-weight:600;">提出済</span>
+          <span class="open-icon">📊 進捗ページへ →</span>
         </div>
         <div style="margin-bottom:.6rem;">
           <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">① 案件概要</div>
@@ -579,8 +589,8 @@ table tr:nth-child(even) { background: #fafafa; }
           </div>
         </div>
       </div>
+      </a>
     </div>
-
     <!-- 進捗サマリー -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem;">
       <div class="card" style="text-align:center;padding:1rem;border-top:3px solid #27ae60;">
@@ -600,17 +610,14 @@ table tr:nth-child(even) { background: #fafafa; }
         <div style="font-size:.72rem;color:var(--text-sub);">未提出</div>
       </div>
     </div>
-
     <div class="card" style="margin-top:1rem;">
       <h4>補助事業スキーム</h4>
       <p>観光庁 →（補助）→ 補助対象事業者（事務局） →（間接補助）→ <strong>プラットヨネザワ株式会社</strong> →（間接補助）→ 間接補助事業者8者（10施設）</p>
     </div>
   </div>
-
   <!-- ── 7. タイムライン ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🗓</span> タイムライン</div>
-
     <div class="card">
       <h4>申請〜交付決定スケジュール</h4>
       <table>
@@ -622,7 +629,6 @@ table tr:nth-child(even) { background: #fafafa; }
         <tr><td>最終レビュー・提出</td><td><strong>4/22 12:00</strong></td><td>ー</td></tr>
       </table>
     </div>
-
     <div class="timeline" style="margin-top:1.5rem;">
       <div class="timeline-item done">
         <div class="time">～4/22（水）12:00</div>
@@ -658,10 +664,9 @@ table tr:nth-child(even) { background: #fafafa; }
       </div>
     </div>
   </div>
-
   <!-- ── 8. 審査の観点 ── -->
   <div class="section">
-    <div class="section-title"><span class="icon">📋</span> 審査の観点（公募要領より）</div>
+    <div class="section-title"><span class="icon">📋</span> 審査の観点(公募要領より)</div>
     <div class="score-grid">
       <div class="score-card">
         <div class="score-title">事業全体</div>
@@ -688,7 +693,6 @@ table tr:nth-child(even) { background: #fafafa; }
       </ul>
     </div>
   </div>
-
   <!-- ── 9. 関連事業の連携マップ ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🔗</span> 関連事業との連携マップ</div>
@@ -710,7 +714,6 @@ table tr:nth-child(even) { background: #fafafa; }
       <tr><td>上杉神社稽照殿グランドデザイン</td><td>中長期の整備方針</td></tr>
     </table>
   </div>
-
   <!-- ── 10. 関連ドキュメント ── -->
   <div class="section">
     <div class="section-title"><span class="icon">📎</span> 関連ドキュメント</div>
@@ -780,7 +783,6 @@ table tr:nth-child(even) { background: #fafafa; }
       </a>
     </div>
   </div>
-
   <!-- ── 関連ページ ── -->
   <div class="section">
     <div class="section-title"><span class="icon">🔗</span> 関連ページ</div>
@@ -801,12 +803,9 @@ table tr:nth-child(even) { background: #fafafa; }
       </a>
     </div>
   </div>
-
 </div>
-
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
 </div>
-
 </body>
 </html>
