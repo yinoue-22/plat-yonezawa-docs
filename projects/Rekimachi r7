@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レキマチ R7 エリア造成事業 | 上杉の城下町 観光中核エリア造成</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --primary-light: #2c3e5a;
+  --accent: #1b7a4a;
+  --accent-light: #e8f5ee;
+  --gold: #b8860b;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+  --r7-green: #1b7a4a;
+  --r7-green-bg: #e8f5ee;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #1a3a2e 60%, var(--r7-green) 100%);
+  color: #fff; padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -40%; right: -10%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero .breadcrumb { font-size: .75rem; opacity: .7; margin-bottom: .8rem; }
+.hero .breadcrumb a { color: #fff; text-decoration: none; }
+.hero .breadcrumb a:hover { text-decoration: underline; }
+.hero h1 { font-size: 1.6rem; font-weight: 900; margin-bottom: .4rem; letter-spacing: .04em; }
+.hero .subtitle { font-size: .95rem; opacity: .85; margin-bottom: 1rem; }
+.hero .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .78rem; opacity: .8; }
+.hero .meta-row span { display: flex; align-items: center; gap: .3rem; }
+.badge-r7 { display: inline-block; background: rgba(255,255,255,0.18); padding: .2rem .7rem;
+  border-radius: 4px; font-size: .7rem; font-weight: 700; letter-spacing: .05em; margin-bottom: .8rem; }
+.badge-complete {
+  display: inline-block; background: rgba(39,174,96,0.25); border: 1px solid rgba(39,174,96,0.5);
+  padding: .2rem .7rem; border-radius: 4px; font-size: .7rem; font-weight: 700;
+  letter-spacing: .05em; margin-bottom: .8rem; margin-left: .5rem;
+}
+
+/* ── Alert Banner ── */
+.alert-banner {
+  padding: 1rem 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0;
+}
+.alert-banner strong { color: var(--r7-green); }
+.alert-banner p { font-size: .85rem; margin: 0; }
+
+/* ── Container ── */
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ── Section ── */
+.section { margin-bottom: 2.5rem; }
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--primary);
+  margin-bottom: 1rem; padding-bottom: .5rem;
+  border-bottom: 2px solid var(--primary);
+  display: flex; align-items: center; gap: .5rem;
+}
+.section-title .icon { font-size: 1.2rem; }
+
+/* ── Cards ── */
+.card {
+  background: var(--card); border-radius: 10px; padding: 1.5rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 1rem;
+}
+.card h4 { font-size: .9rem; font-weight: 700; color: var(--primary); margin-bottom: .5rem; }
+.card p, .card li { font-size: .85rem; color: var(--text-sub); line-height: 1.7; }
+.card ul { padding-left: 1.2rem; }
+.card ul li { margin-bottom: .3rem; }
+
+/* ── Stats Grid ── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.stat-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem 1rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+}
+.stat-card .number { font-size: 1.8rem; font-weight: 900; color: var(--r7-green); line-height: 1.2; }
+.stat-card .unit { font-size: .75rem; color: var(--text-sub); }
+.stat-card .label { font-size: .75rem; color: var(--text-sub); margin-top: .3rem; }
+
+/* ── Table ── */
+table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: 1rem; }
+table th, table td { padding: .6rem .8rem; border: 1px solid var(--border); text-align: left; }
+table th { background: var(--primary); color: #fff; font-weight: 500; font-size: .78rem; }
+table tr:nth-child(even) { background: #fafafa; }
+
+/* ── Highlight Box ── */
+.highlight-box {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+  border-left: 4px solid var(--gold); padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0; margin-bottom: 1rem;
+}
+.highlight-box p { font-size: .85rem; line-height: 1.7; }
+.highlight-box strong { color: var(--primary); }
+
+/* ── Area Map (三角エリア) ── */
+.area-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+.area-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); border-top: 3px solid var(--r7-green);
+}
+.area-card .area-name { font-weight: 700; font-size: .9rem; color: var(--primary); margin-bottom: .5rem; }
+.area-card .area-tag { display: inline-block; background: var(--r7-green); color: #fff;
+  font-size: .65rem; padding: .15rem .5rem; border-radius: 3px; margin-bottom: .4rem; font-weight: 600; }
+.area-card p { font-size: .8rem; color: var(--text-sub); line-height: 1.6; }
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: .6rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 1.2rem; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -1.65rem; top: .5rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--r7-green); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--r7-green);
+}
+.timeline-item.done::before { background: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
+.timeline-item .time { font-size: .72rem; color: var(--text-sub); font-weight: 500; }
+.timeline-item .desc { font-size: .85rem; font-weight: 500; }
+.timeline-item .sub { font-size: .75rem; color: var(--text-sub); }
+
+/* ── WS Cards ── */
+.ws-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ws-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  border-left: 4px solid var(--r7-green);
+}
+.ws-card .ws-num { font-size: .7rem; font-weight: 700; color: var(--r7-green);
+  text-transform: uppercase; letter-spacing: .05em; margin-bottom: .2rem; }
+.ws-card .ws-title { font-weight: 700; font-size: .88rem; color: var(--primary); margin-bottom: .3rem; }
+.ws-card .ws-meta { font-size: .72rem; color: var(--text-sub); margin-bottom: .4rem; }
+.ws-card p { font-size: .8rem; color: var(--text-sub); line-height: 1.6; }
+.ws-card .ws-result { font-size: .78rem; color: var(--primary); font-weight: 600; margin-top: .5rem;
+  padding-top: .5rem; border-top: 1px dashed var(--border); }
+
+/* ── Budget Bar ── */
+.budget-bar-wrap { margin-bottom: 1rem; }
+.budget-bar-label { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: .3rem; }
+.budget-bar { height: 10px; background: #eee; border-radius: 5px; overflow: hidden; }
+.budget-bar .fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--r7-green), #27ae60); }
+
+/* ── Stakeholder Grid ── */
+.stakeholder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .8rem; }
+.stakeholder-card {
+  background: var(--card); border-radius: 8px; padding: 1rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.stakeholder-card .sh-role { font-size: .7rem; font-weight: 600; color: var(--r7-green);
+  text-transform: uppercase; letter-spacing: .04em; margin-bottom: .2rem; }
+.stakeholder-card .sh-name { font-weight: 700; font-size: .85rem; color: var(--primary); }
+.stakeholder-card p { font-size: .78rem; color: var(--text-sub); }
+
+/* ── KPI Grid ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.kpi-card {
+  background: var(--card); border-radius: 10px; padding: 1.2rem 1rem;
+  box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
+  position: relative; overflow: hidden;
+}
+.kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--r7-green);
+}
+.kpi-card .kpi-label { font-size: .75rem; color: var(--text-sub); margin-bottom: .3rem; }
+.kpi-card .kpi-value { font-size: 1.6rem; font-weight: 900; color: var(--r7-green); }
+.kpi-card .kpi-target { font-size: .7rem; color: var(--text-sub); }
+.kpi-card .kpi-badge {
+  display: inline-block; background: #e8f5ee; color: var(--r7-green);
+  font-size: .65rem; font-weight: 700; padding: .15rem .5rem; border-radius: 3px; margin-top: .3rem;
+}
+
+/* ── Linkage Map ── */
+.linkage-flow {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center; justify-items: center; gap: .5rem;
+  padding: 1.5rem; background: var(--card);
+  border-radius: 10px; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.linkage-node {
+  background: var(--primary); color: #fff; padding: .6rem 1rem;
+  border-radius: 6px; font-size: .78rem; font-weight: 600; text-align: center;
+  min-width: 120px; width: 100%;
+}
+.linkage-node.active { background: var(--r7-green); }
+.linkage-node.future { background: var(--gold); }
+.linkage-arrow { font-size: 1.2rem; color: var(--text-sub); }
+
+/* ── Document Links ── */
+.doc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: .8rem; }
+.doc-link {
+  display: flex; align-items: center; gap: .8rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: .8rem 1rem; text-decoration: none; color: var(--text);
+  transition: transform .15s, box-shadow .15s;
+}
+.doc-link:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.doc-link .doc-icon { font-size: 1.4rem; flex-shrink: 0; }
+.doc-link .doc-info .doc-title { font-size: .82rem; font-weight: 600; }
+.doc-link .doc-info .doc-desc { font-size: .7rem; color: var(--text-sub); }
+
+/* ── Media Gallery ── */
+.media-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.media-gallery img {
+  width: 100%; border-radius: 8px; border: 1px solid var(--border);
+  transition: transform .15s, box-shadow .15s; cursor: pointer;
+}
+.media-gallery img:hover { transform: scale(1.02); box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+.media-gallery .caption { font-size: .72rem; color: var(--text-sub); margin-top: .3rem; text-align: center; }
+.media-card {
+  background: var(--card); border-radius: 10px; overflow: hidden;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  transition: transform .15s, box-shadow .15s;
+}
+.media-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+.media-card img { width: 100%; display: block; }
+.media-card .media-caption { padding: .6rem .8rem; font-size: .75rem; color: var(--text-sub); }
+
+/* ── Collapsible Sections ── */
+.collapsible { cursor: pointer; user-select: none; }
+.collapsible .toggle-icon { transition: transform .2s; display: inline-block; font-size: .8rem; }
+.collapsible.open .toggle-icon { transform: rotate(90deg); }
+.collapsible-content { display: none; }
+.collapsible-content.show { display: block; }
+
+/* ── Footer ── */
+.footer { text-align: center; padding: 2rem; font-size: .75rem; color: var(--text-sub);
+  border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--primary); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.2rem; }
+  .stats-grid, .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .area-grid { grid-template-columns: 1fr; }
+  .ws-grid { grid-template-columns: 1fr; }
+  .linkage-flow { grid-template-columns: 1fr; gap: .4rem; }
+  .linkage-arrow { transform: rotate(90deg); }
+  .container { padding: 1.5rem 1rem 3rem; }
+  .stakeholder-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="breadcrumb"><a href="../index.html">ポータル</a> ＞ レキマチ事業 ＞ R7 エリア造成事業</div>
+  <span class="badge-r7">R7 ― 事業化支援（調査事業）</span>
+  <span class="badge-complete">COMPLETED</span>
+  <h1>レキマチ R7 エリア造成事業</h1>
+  <p class="subtitle">上杉謙信公生誕500年をめがけた「上杉の城下町」観光中核エリア造成事業</p>
+  <div class="meta-row">
+    <span>📋 所管：観光庁（歴史的資源を活用した観光まちづくり推進事業）</span>
+    <span>💰 総事業費：9,767,800円（10/10国費）</span>
+    <span>📅 事業期間：令和7年度</span>
+    <span>🏢 申請者：プラットヨネザワ株式会社</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── Alert ── -->
+  <div class="alert-banner" style="background:linear-gradient(135deg,#e8f5ee,#c8e6c9);border-left:4px solid #27ae60;">
+    <p><strong>完了報告済（令和8年1月31日提出）</strong> — 全KPI達成率100%。完了実績報告書・積算報告書・経費内訳報告書・証拠書類一式を観光庁へ提出済み。報告書は複数回修正・再提出を経て確定（最終提出：2026年3月9日）。</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 1. 事業概要                               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> 事業概要</div>
+
+    <div class="card" style="padding:1rem;margin-bottom:1.2rem;text-align:center;">
+      <div style="font-size:.78rem;font-weight:600;color:var(--primary);margin-bottom:.6rem;">【実施計画書】観光庁提出 事業概要（令和7年度 事業化支援）</div>
+      <img src="images/r7_plan_overview.png" alt="R7事業計画書 事業概要" style="width:100%;max-width:960px;border:1px solid #e0e0e0;border-radius:6px;">
+    </div>
+
+    <div class="highlight-box">
+      <p>2030年の<strong>上杉謙信公生誕500年</strong>を見据え、米沢市の歴史的資源を活用した観光まちづくりを推進。上杉神社稽照殿・旧米沢高等工業学校本館・伝統発酵食文化の3拠点を結ぶ<strong>「三角エリア」</strong>を文化観光中核エリアとして構想し、「通過型観光」から<strong>「滞在型観光」</strong>への転換を図る。「護り続ける（文化財保存）」と「稼ぎ続ける（持続的収益）」を両立する<strong>「創造的循環モデル」</strong>を構築。</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number" style="font-size:1.3rem;">9,767,800</div>
+        <div class="unit">円（税込）</div>
+        <div class="label">総事業費</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">10/10</div>
+        <div class="unit">国費</div>
+        <div class="label">支援率（全額国費）</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">5</div>
+        <div class="unit">回</div>
+        <div class="label">ワークショップ開催</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">100<span style="font-size:1rem;">%</span></div>
+        <div class="unit">全KPI達成</div>
+        <div class="label">KPI達成率</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem;">
+      <h4>事業基本情報</h4>
+      <table>
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>事業名</td><td>上杉謙信公生誕500年をめがけた「上杉の城下町」観光中核エリアの造成</td></tr>
+        <tr><td>事業種別</td><td><strong>A. 事業化支援（調査事業）</strong></td></tr>
+        <tr><td>地域No.</td><td>事業化_06</td></tr>
+        <tr><td>所管省庁</td><td>国土交通省 観光庁 観光地域振興部 観光資源課</td></tr>
+        <tr><td>事業スキーム</td><td>歴史的資源を活用した観光まちづくり推進事業</td></tr>
+        <tr><td>申請団体</td><td>プラットヨネザワ株式会社（代表：宮嶌浩聡）</td></tr>
+        <tr><td>支援率</td><td>10/10（全額国費負担）</td></tr>
+        <tr><td>対象経費精査額</td><td>9,877,600円</td></tr>
+        <tr><td>総事業費（実績）</td><td>9,767,800円</td></tr>
+        <tr><td>事業期間</td><td>令和7年度（契約後 ～ 令和8年1月30日）</td></tr>
+        <tr><td>精算方式</td><td>事業終了後の精算払い</td></tr>
+        <tr><td>事務局</td><td>TOPPAN（rekimachi@toppan.co.jp）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 2. ミッション・KGI                        -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> ミッション・KGI</div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f8f9fa,#e8f5ee);border-left:4px solid var(--r7-green);">
+      <h4 style="font-size:1rem;color:var(--r7-green);margin-bottom:.8rem;">プロジェクトミッション</h4>
+      <p style="font-size:1.1rem;font-weight:700;color:var(--primary);text-align:center;padding:.5rem 0;">
+        "青春"であふれる、新・城下町時代をつくる
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>KGI（重要目標達成指標）</h4>
+      <table>
+        <tr><th>KGI</th><th>達成状況</th></tr>
+        <tr>
+          <td>「上杉の城下町」観光まちづくり計画案を策定し、関係者の合意形成を図るとともに、中核エリアにおける「滞在型観光」の方向性を明確にする</td>
+          <td style="color:var(--r7-green);font-weight:700;">達成</td>
+        </tr>
+        <tr>
+          <td>中核エリアにおいて行う民間事業の実施計画を定め、その運営を行うSPCの創設に向けた合意形成を完了する</td>
+          <td style="color:var(--r7-green);font-weight:700;">達成</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 3. 三角エリア構想                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🗺️</span> 三角エリア構想</div>
+
+    <div class="area-grid">
+      <div class="area-card">
+        <span class="area-tag">Zone A</span>
+        <div class="area-name">上杉神社・稽照殿エリア</div>
+        <p><strong>精神性の拠点</strong><br>プレミアム観光体験。上杉家伝来の国宝・重要文化財を収蔵する稽照殿を核に、保存環境の改善と情報発信強化を推進。保存協力金制度の導入を検討。</p>
+      </div>
+      <div class="area-card">
+        <span class="area-tag">Zone B</span>
+        <div class="area-name">旧米沢高等工業学校本館エリア</div>
+        <p><strong>知の交流拠点</strong><br>次世代教育活用。山形大学工学部内の歴史的建造物を博物館・リカレント教育・交流施設として再生。学生ガイドチーム構築も視野。</p>
+      </div>
+      <div class="area-card">
+        <span class="area-tag">Zone C</span>
+        <div class="area-name">伝統発酵食エリア</div>
+        <p><strong>回遊の拠点</strong><br>プレミアム観光体験。東町の発酵食文化を活用した食コンテンツ戦略。<strong>優先事業化エリア</strong>として2026年度事業化開始決定。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 4. 実施成果                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> 実施成果</div>
+
+    <div class="card">
+      <h4>施策体系</h4>
+      <table>
+        <tr><th>施策</th><th>概要</th><th>KPI</th><th>結果</th></tr>
+        <tr>
+          <td><strong>施策① 観光まちづくり計画の策定</strong></td>
+          <td>関係者WS・合意形成、米沢市観光振興計画改訂への反映</td>
+          <td>WS 5回開催 / 計画策定</td>
+          <td style="color:var(--r7-green);font-weight:700;">達成</td>
+        </tr>
+        <tr>
+          <td><strong>施策② 事業実施体制の合意形成</strong></td>
+          <td>SPC創設を視野に入れた実施体制の合意形成</td>
+          <td>合意形成 / 観光振興計画への盛込み</td>
+          <td style="color:var(--r7-green);font-weight:700;">達成</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- WS一覧 -->
+    <div class="card">
+      <h4>ワークショップ全5回 実施サマリー</h4>
+      <table>
+        <tr><th>回</th><th>テーマ</th><th>参加者</th><th>主な成果</th></tr>
+        <tr><td>第1回</td><td>事業全体の方向性・課題共有</td><td>30名</td><td>ミッション原案「"青春"であふれる、新・城下町時代をつくる」創出</td></tr>
+        <tr><td>第2回</td><td>具体的施策の検討</td><td>30名</td><td>地域資源リスト作成、活用アイデア創出（三角地帯の"宝"整理）</td></tr>
+        <tr><td>第3回</td><td>ビジネスモデルの議論</td><td>22名</td><td>実現可能性の高いアイデア抽出、実行主体の課題明確化</td></tr>
+        <tr><td>第4回</td><td>実施体制・SPC構想の検討</td><td>25名</td><td>SPC設立への基本合意、旧米沢高等工業学校本館収益モデル試算完了</td></tr>
+        <tr><td>第5回</td><td>総合計画の最終確認・合意</td><td>23名</td><td>「上杉の新・城下町づくり総合計画（案）」承認、ロードマップ確定</td></tr>
+      </table>
+    </div>
+
+    <!-- WS詳細（折りたたみ） -->
+    <div class="card">
+      <h4 class="collapsible" onclick="toggleSection(this)"><span class="toggle-icon">▶</span> ワークショップ詳細（クリックで展開）</h4>
+      <div class="collapsible-content">
+        <div class="ws-grid" style="margin-top:1rem;">
+
+          <div class="ws-card">
+            <div class="ws-num">第1回 WS</div>
+            <div class="ws-title">事業全体の方向性・課題共有</div>
+            <div class="ws-meta">R7年9月24日（水）13:30-16:00 ｜ 参加30名</div>
+            <p>プロジェクト概要説明、先進事例紹介。「通過型観光からの脱却」「上杉神社への観光集中」等の課題と、国宝・重文・発酵食文化等の強みをグループ議論。グラフィックレコーダーによる可視化。</p>
+            <div class="ws-result">成果：ミッション原案「"青春"であふれる、新・城下町時代をつくる」創出</div>
+          </div>
+
+          <div class="ws-card">
+            <div class="ws-num">第2回 WS</div>
+            <div class="ws-title">具体的施策の検討</div>
+            <div class="ws-meta">R7年9月25日（木）13:30-16:00 ｜ 参加30名</div>
+            <p>稽照殿・角屋氏、山形大学・黒田学部長、増田信吾氏のトークセッション。三角地帯の「宝」洗い出し（林泉寺、東光酒蔵、織物等）と活用アイデア創出。</p>
+            <div class="ws-result">成果：地域資源リスト作成、イベント型・体験型・デジタル型の多様なアイデア創出</div>
+          </div>
+
+          <div class="ws-card">
+            <div class="ws-num">第3回 WS</div>
+            <div class="ws-title">ビジネスモデルの議論</div>
+            <div class="ws-meta">R7年9月26日（金）13:30-16:00 ｜ 参加22名</div>
+            <p>観光立国推進基本計画、地域交通（伊藤氏）、重文活用事例（田原氏）のセッション。旧米高本館チームと稽照殿チームに分かれて実現可能性を議論。</p>
+            <div class="ws-result">成果：実現性の高いアイデア抽出、実行主体の課題（「誰が担うのか」）明確化</div>
+          </div>
+
+          <div class="ws-card">
+            <div class="ws-num">第4回 WS</div>
+            <div class="ws-title">実施体制・SPC構想の検討</div>
+            <div class="ws-meta">参加25名</div>
+            <p>WS1-3振り返り。SPC設立の方向性と短期〜長期プラン提案。稽照殿の文化財管理課題、増田氏による旧米高本館の空間計画・収益モデル暫定案提示。</p>
+            <div class="ws-result">成果：SPC設立への基本合意、旧米高本館の収益モデル試算完了</div>
+          </div>
+
+          <div class="ws-card" style="grid-column: span 2;">
+            <div class="ws-num">第5回 WS</div>
+            <div class="ws-title">総合計画の最終確認・合意</div>
+            <div class="ws-meta">参加23名</div>
+            <p>田原氏による旧米高本館ソフト面活用案（企業イベント・地域食堂・リカレント教育）、宮嶌による「上杉の新・城下町づくり総合計画」提示。3チーム（上杉神社・旧米高・発酵食）に分かれ「欲しい視点」「取るべきアクション」を議論。受け入れ整備、保存協力金、運営一元化、二次交通、案内機能等の提案。</p>
+            <div class="ws-result">成果：総合計画（案）承認、ロードマップ確定、SPC設立への最終合意</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 学生分科会 -->
+    <div class="card">
+      <h4>学生分科会調査</h4>
+      <p>山形大学工学部の学生と全3回のWSを実施し、旧米沢高等工業学校本館の利活用を学生視点で検討。館内調査・街中フィールドワーク・企画書提案を実施。</p>
+      <p style="margin-top:.5rem;"><strong>学生からの提案：</strong>博物館機能拡充、地域食堂設置、VR/ARガイド、フィルムコミッション、階段教室を活用した有料教育講座、学生ガイドチーム構築など。</p>
+    </div>
+
+    <!-- シンポジウム -->
+    <div class="card">
+      <h4>市民向けシンポジウム</h4>
+      <p>WS全5回の成果を市民に共有し、今後の方向性を確認するシンポジウムを開催。増田信吾氏・山形大学森氏による基調講演、三角エリア構想・小野川温泉エリアのトークセッション、総括セッションを実施。</p>
+      <p style="margin-top:.5rem;"><strong>合意事項：</strong>三拠点連携の持続可能な観光まちづくり、伝統発酵食ゾーン最優先事業化（2026年度開始）、SPC設立準備推進、2030年に向けた段階的整備計画。</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 5. KPI達成状況                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">✅</span> KPI達成状況</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">関係者WS開催</div>
+        <div class="kpi-value">5 / 5</div>
+        <div class="kpi-target">目標 5回</div>
+        <span class="kpi-badge">100% 達成</span>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">学生分科会</div>
+        <div class="kpi-value">1 / 1</div>
+        <div class="kpi-target">目標 1回</div>
+        <span class="kpi-badge">100% 達成</span>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">シンポジウム</div>
+        <div class="kpi-value">1 / 1</div>
+        <div class="kpi-target">目標 1回</div>
+        <span class="kpi-badge">100% 達成</span>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">総合計画策定</div>
+        <div class="kpi-value">1 / 1</div>
+        <div class="kpi-target">目標 1件</div>
+        <span class="kpi-badge">100% 達成</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 6. 経費執行                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💰</span> 経費執行状況</div>
+
+    <div class="stats-grid" style="margin-bottom:1rem;">
+      <div class="stat-card">
+        <div class="number" style="font-size:1.2rem;">9,877,600</div>
+        <div class="unit">円</div>
+        <div class="label">対象経費精査額</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.2rem;">9,767,800</div>
+        <div class="unit">円</div>
+        <div class="label">総事業費（実績）</div>
+      </div>
+      <div class="stat-card">
+        <div class="number" style="font-size:1.2rem;">98.9<span style="font-size:.9rem;">%</span></div>
+        <div class="unit">執行率</div>
+        <div class="label">精査額に対する実績</div>
+      </div>
+    </div>
+
+    <div class="budget-bar-wrap">
+      <div class="budget-bar-label">
+        <span>執行額 9,767,800円</span><span>精査額 9,877,600円</span>
+      </div>
+      <div class="budget-bar"><div class="fill" style="width:98.9%"></div></div>
+    </div>
+
+    <div class="card">
+      <h4>施策別経費内訳</h4>
+      <table>
+        <tr><th>施策</th><th>合計額（税込）</th><th>構成比</th></tr>
+        <tr><td><strong>施策① 観光まちづくり計画の策定</strong></td><td style="text-align:right;">9,479,800円</td><td style="text-align:right;">97.1%</td></tr>
+        <tr><td><strong>施策② 事業実施体制の合意形成</strong></td><td style="text-align:right;">288,000円</td><td style="text-align:right;">2.9%</td></tr>
+        <tr style="font-weight:700;background:#e8f5ee;"><td>合計</td><td style="text-align:right;">9,767,800円</td><td style="text-align:right;">100%</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 class="collapsible" onclick="toggleSection(this)"><span class="toggle-icon">▶</span> 費目別内訳（クリックで展開）</h4>
+      <div class="collapsible-content">
+        <table style="margin-top:.8rem;">
+          <tr><th>費目</th><th>内容</th><th>金額（税込）</th></tr>
+          <tr><td rowspan="3">人件費・賃金</td><td>PM・報告書作成・計画策定・ブランディング（3,000円/h × 628h）</td><td style="text-align:right;">1,884,000円</td></tr>
+          <tr><td>事務局・WSロジ・シンポ運営（1,500円/h × 380h）</td><td style="text-align:right;">570,000円</td></tr>
+          <tr><td>事務局・WSロジ・シンポ運営（1,300円/h × 300h）</td><td style="text-align:right;">390,000円</td></tr>
+          <tr><td>謝金</td><td>ブランディング/PR戦略策定WS参加謝礼</td><td style="text-align:right;">264,000円</td></tr>
+          <tr><td>広告宣伝費</td><td>観光まちづくり計画リーフレット/チラシ（190.6円 × 3,000枚）</td><td style="text-align:right;">571,800円</td></tr>
+          <tr><td rowspan="4">再委託費</td><td>（株）アジリノ：旧米高・稽照殿コンセプト提案・レイアウト</td><td style="text-align:right;">2,500,000円</td></tr>
+          <tr><td>（株）パシフィックダイナーサービス：食コンテンツ戦略・歴史的建造物活用調査</td><td style="text-align:right;">2,000,000円</td></tr>
+          <tr><td>（株）ニューメディア：人流調査・二次交通フィジビリティ調査</td><td style="text-align:right;">800,000円</td></tr>
+          <tr><td>（一社）米沢みさわ小学校：学生視点での施設活用ニーズ調査</td><td style="text-align:right;">500,000円</td></tr>
+          <tr><td>人件費（施策②）</td><td>SPC組成合意形成（3,000円/h × 96h）</td><td style="text-align:right;">288,000円</td></tr>
+          <tr style="font-weight:700;background:#e8f5ee;"><td colspan="2">合計</td><td style="text-align:right;">9,767,800円</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 7. タイムライン                            -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📅</span> 事業タイムライン</div>
+
+    <div class="timeline">
+      <div class="timeline-item done">
+        <div class="time">2025年6月</div>
+        <div class="desc">採択通知・経費精査額通知</div>
+        <div class="sub">対象経費精査額 9,877,600円。採択団体への案内受領。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年7月</div>
+        <div class="desc">契約締結・事業計画提出</div>
+        <div class="sub">事業計画書（事業化支援）一式を提出。仕様書・見積書整備。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年8月</div>
+        <div class="desc">施策実施前概要報告・専門家視察</div>
+        <div class="sub">事務局へ施策実施前の概要報告を提出。専門家による現地視察実施。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年9月（上旬）</div>
+        <div class="desc">実施概要報告提出</div>
+        <div class="sub">WS実施計画・参加者リスト・効果検証方法を事務局へ報告（9/9提出）。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年9月24-26日</div>
+        <div class="desc">ワークショップ Day1-3（第1〜3回）</div>
+        <div class="sub">3日間連続開催。方向性共有→具体施策検討→実現可能性議論。参加延べ82名。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年10-11月</div>
+        <div class="desc">ワークショップ 第4-5回 / 学生分科会</div>
+        <div class="sub">SPC構想検討、総合計画最終確認・合意。山形大学学生分科会（全3回）実施。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2025年12月</div>
+        <div class="desc">市民向けシンポジウム開催</div>
+        <div class="sub">WS成果を市民に共有。基調講演、三角エリア構想・小野川温泉のトークセッション。PR TIMES掲載。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2026年1月30日</div>
+        <div class="desc">事業完了・完了報告書提出</div>
+        <div class="sub">A完了報告書、B/C積算・経費内訳報告書、D事業実施報告書①②、全証拠書類を提出。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2026年2-3月</div>
+        <div class="desc">報告書修正・再提出</div>
+        <div class="sub">2/18、3/6、3/9に修正版を再提出。事務局確認を経て報告書確定。</div>
+      </div>
+      <div class="timeline-item done">
+        <div class="time">2026年4月〜</div>
+        <div class="desc">R8事業への展開</div>
+        <div class="sub">R7成果を踏まえ、ハード事業（施設整備）＋ソフト事業（文化財活用）の申請へ。伝統発酵食ゾーン事業化開始。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 8. 推進体制                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🏛️</span> 推進体制（ステークホルダー）</div>
+
+    <div class="stakeholder-grid">
+      <div class="stakeholder-card">
+        <div class="sh-role">統括・PM</div>
+        <div class="sh-name">プラットヨネザワ株式会社</div>
+        <p>プロジェクトマネジメント、報告書作成、計画策定、WS運営</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">自治体連携</div>
+        <div class="sh-name">米沢市</div>
+        <p>観光振興計画への反映、行政支援</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">上杉文化エリア</div>
+        <div class="sh-name">上杉神社稽照殿 / 伝国の杜 / 上杉コーポレーション</div>
+        <p>文化財管理・保存、Zone A運営</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">建築計画</div>
+        <div class="sh-name">（株）アジリノ / 増田信吾＋大坪克亘</div>
+        <p>稽照殿グランドデザイン、旧米高本館コンセプト提案・レイアウト</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">教育連携</div>
+        <div class="sh-name">国立大学法人 山形大学</div>
+        <p>旧米高本館活用、学生分科会、次世代人材育成</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">食文化</div>
+        <div class="sh-name">（株）パシフィックダイナーサービス</div>
+        <p>発酵食エリア調査、食コンテンツ戦略、歴史的建造物活用調査</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">通信・人流調査</div>
+        <div class="sh-name">（株）ニューメディア</div>
+        <p>中核エリア人流調査、二次交通フィジビリティ調査</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">金融機関</div>
+        <div class="sh-name">（株）山形銀行 / 米沢信用金庫</div>
+        <p>SPC設立支援、ファイナンス面でのアドバイス</p>
+      </div>
+      <div class="stakeholder-card">
+        <div class="sh-role">WS運営・ブランディング</div>
+        <div class="sh-name">（株）パラドックス</div>
+        <p>WS設計・ファシリテーション、ブランディング/PR戦略策定</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 9. 成果物・関連ドキュメント               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📁</span> 成果物・関連ドキュメント</div>
+
+    <div class="card">
+      <h4>完了報告書類</h4>
+      <div class="doc-list">
+        <a class="doc-link" href="https://docs.google.com/spreadsheets/d/1iQkqN8U1ToeIkNotEBZ2qXg6tagUwZM7/edit" target="_blank">
+          <span class="doc-icon">📊</span>
+          <div class="doc-info">
+            <div class="doc-title">B/C 積算報告書・経費内訳報告書</div>
+            <div class="doc-desc">様式7・様式8</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1JO0UALU32KWeWg7q4MvlelzZ8hUCePyN/edit" target="_blank">
+          <span class="doc-icon">📑</span>
+          <div class="doc-info">
+            <div class="doc-title">D-1 事業実施報告書①</div>
+            <div class="doc-desc">事業概要・実施内容</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1fhSxTXA7wJaMKvEcywyEvsc9KLvqYMFv/edit" target="_blank">
+          <span class="doc-icon">📑</span>
+          <div class="doc-info">
+            <div class="doc-title">D-2 事業実施報告書②</div>
+            <div class="doc-desc">詳細実績</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>ワークショップ報告書</h4>
+      <div class="doc-list">
+        <a class="doc-link" href="https://docs.google.com/document/d/1KE5ln4Zz1aMtCkFwOW8SBtDJq3XREtOz0wdSufsrInY/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">第1回WS報告書</div>
+            <div class="doc-desc">方向性・課題共有</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/1GFfMUmzHQkil2evHnuMMTjMKSmnB1L3HdJH5cdXaB9Y/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">第2回WS報告書</div>
+            <div class="doc-desc">具体的施策の検討</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/1Fg5j5o0LqVyEggP2LJvBwzCG4F-DOi8iJo09_W3XOwM/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">第3回WS報告書</div>
+            <div class="doc-desc">ビジネスモデル議論</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/1KWmWys8vSbdYpYBg2Co55VY4I9mjOA8BykJWeeI207I/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">第4回WS報告書</div>
+            <div class="doc-desc">SPC構想・実施体制</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/10ZCAscwnWpOOwsokZ2fqh-DN8Rjx7AFJ85SBRkg_UD4/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">第5回WS報告書</div>
+            <div class="doc-desc">総合計画最終確認</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/16KHv44PCEEuLcd6WSIVyarOAPcJtgccb/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">第1回WS 別紙</div>
+            <div class="doc-desc">写真・グラレコ等</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1D23kO6BDzpdlCfGtBHkkweHifJuog9d2/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">第2回WS 別紙</div>
+            <div class="doc-desc">写真・ワークシート</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/14n1LALMdZ-iiBLgbw8BIvLdHzrk__xEu/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">第3回WS 別紙</div>
+            <div class="doc-desc">写真・グループワーク</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1yJk8LQU7JTk0jlpw2FhtKkNM7laoCTIp/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">第4回WS 別紙</div>
+            <div class="doc-desc">空間計画・収益モデル</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1hpBtHI1D1uNZrI0tdXujsrkYga4BbVEq/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">第5回WS 別紙</div>
+            <div class="doc-desc">総合計画・ロードマップ</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>シンポジウム報告書</h4>
+      <div class="doc-list">
+        <a class="doc-link" href="https://docs.google.com/document/d/1yh2AThFtqrlUrfe6a3ugdFBMexUQ3Ry-Sjjn-FKUCbE/edit" target="_blank">
+          <span class="doc-icon">📝</span>
+          <div class="doc-info">
+            <div class="doc-title">シンポジウム報告書</div>
+            <div class="doc-desc">市民向けシンポジウム実施記録</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/presentation/d/1w1ejf2a6qqSKpaxxHZpEFqD9CtWEglxW/edit" target="_blank">
+          <span class="doc-icon">📎</span>
+          <div class="doc-info">
+            <div class="doc-title">シンポジウム 別紙</div>
+            <div class="doc-desc">写真・発表資料</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://prtimes.jp/main/html/rd/p/000000104.000117892.html" target="_blank">
+          <span class="doc-icon">📰</span>
+          <div class="doc-info">
+            <div class="doc-title">PR TIMES 掲載</div>
+            <div class="doc-desc">プレスリリース</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>調査レポート一式</h4>
+      <div class="doc-list">
+        <a class="doc-link" href="https://docs.google.com/document/d/1fNFfETb_pj4s8PZelB3FTquqWzEWwCqy/edit" target="_blank">
+          <span class="doc-icon">📘</span>
+          <div class="doc-info">
+            <div class="doc-title">文化観光中核エリア総合計画</div>
+            <div class="doc-desc">上杉の新・城下町づくり総合計画</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/1OkcOm8ct0WPOUb4yid7HVMbxkgAmq6HxSnwM2yrOrhk/edit" target="_blank">
+          <span class="doc-icon">🏫</span>
+          <div class="doc-info">
+            <div class="doc-title">旧米沢高等工業学校本館 利活用調査レポート</div>
+            <div class="doc-desc">再委託：（一社）米沢みさわ小学校</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/1unyfwkPzwYqJ5AmaymInR90noav7kxaW77yNIKqokg0/edit" target="_blank">
+          <span class="doc-icon">🍶</span>
+          <div class="doc-info">
+            <div class="doc-title">米沢市 発酵食エリア 調査レポート</div>
+            <div class="doc-desc">再委託：（株）パシフィックダイナーサービス</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://drive.google.com/file/d/1ZtW11bncMjhQ2lbDp87aErnxJR4hnCPo/view" target="_blank">
+          <span class="doc-icon">📊</span>
+          <div class="doc-info">
+            <div class="doc-title">人流分析・二次交通分析レポート</div>
+            <div class="doc-desc">再委託：（株）ニューメディア</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://docs.google.com/document/d/14CQzHunotu4CsYfLykpUF3Larwci5x4K/edit" target="_blank">
+          <span class="doc-icon">🏢</span>
+          <div class="doc-info">
+            <div class="doc-title">SPC設立に向けた組織体制レポート</div>
+            <div class="doc-desc">特定目的会社（SPC）組成計画</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://drive.google.com/file/d/1AJJa12q1s1ckiIVam_knguQQEu_Jhn3O/view" target="_blank">
+          <span class="doc-icon">⛩️</span>
+          <div class="doc-info">
+            <div class="doc-title">上杉神社稽照殿グランドデザイン提案書</div>
+            <div class="doc-desc">再委託：（株）アジリノ</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>管理用ドキュメント</h4>
+      <div class="doc-list">
+        <a class="doc-link" href="https://drive.google.com/drive/folders/15iUIJ3LEOMWTGdnTdQxf4nuVamiOEBJD" target="_blank">
+          <span class="doc-icon">📂</span>
+          <div class="doc-info">
+            <div class="doc-title">R7事業 Google Drive フォルダ</div>
+            <div class="doc-desc">全ファイル一式</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://drive.google.com/file/d/1qJze6kvCXw94uZhEPPTBChrgWTN2C7pz/view" target="_blank">
+          <span class="doc-icon">📖</span>
+          <div class="doc-info">
+            <div class="doc-title">事業実施の手引き</div>
+            <div class="doc-desc">観光庁提供マニュアル</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://drive.google.com/file/d/1glapWpQ9Ze-B8t5RBbD7DkBzOgpdHu_i/view" target="_blank">
+          <span class="doc-icon">📄</span>
+          <div class="doc-info">
+            <div class="doc-title">採択団体へのご案内</div>
+            <div class="doc-desc">採択時通知</div>
+          </div>
+        </a>
+        <a class="doc-link" href="https://drive.google.com/file/d/1XPfr4z4E8oUKGD1HVgura_SSdEKryaMX/view" target="_blank">
+          <span class="doc-icon">📄</span>
+          <div class="doc-info">
+            <div class="doc-title">対象経費精査額通知書</div>
+            <div class="doc-desc">精査額 9,877,600円</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 10. メディア掲載                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📰</span> メディア掲載</div>
+
+    <div class="card" style="border-left:4px solid var(--r7-green);">
+      <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:.68rem;color:var(--r7-green);font-weight:700;margin-bottom:.3rem;">PR TIMES ｜ 2025年12月26日</div>
+          <h4 style="font-size:.95rem;margin-bottom:.5rem;">
+            <a href="https://prtimes.jp/main/html/rd/p/000000104.000117892.html" target="_blank" style="color:var(--primary);text-decoration:none;">
+              【レキマチプロジェクト】歴史的資源を地域の日常と未来につなぐシンポジウムを開催｜山形県米沢市
+            </a>
+          </h4>
+          <p style="font-size:.82rem;color:var(--text-sub);line-height:1.7;">2025年12月22日（月）アクティー米沢にて、「歴史と文化のまち米沢」について行政・大学・民間事業者・市民など多様な関係者が集い、歴史的資源を活かした持続可能なまちづくりの方向性を共有・議論。増田信吾氏、山形大学 森佑季氏の基調講演、パネルディスカッション、小野川温泉エリアセッションを実施。</p>
+        </div>
+        <a href="https://prtimes.jp/main/html/rd/p/000000104.000117892.html" target="_blank" style="flex-shrink:0;">
+          <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-2fb3374135e198bf276ef74a3e86761d-2364x1774.jpg?width=400&height=300&quality=85&format=jpeg&auto=webp&fit=bounds" alt="シンポジウムの様子" style="width:220px;border-radius:6px;border:1px solid var(--border);">
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 class="collapsible" onclick="toggleSection(this)"><span class="toggle-icon">▶</span> シンポジウム写真ギャラリー（クリックで展開）</h4>
+      <div class="collapsible-content">
+        <div class="media-gallery" style="margin-top:1rem;">
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-2fb3374135e198bf276ef74a3e86761d-2364x1774.jpg?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="シンポジウム全体の様子">
+            <div class="media-caption">まちの魅力を地域の活性につなげるには何が必要か — シンポジウム全体の様子</div>
+          </div>
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-b0f219be629363d5a3f2cf5217610ba6-2364x1774.jpg?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="パネルディスカッション">
+            <div class="media-caption">米沢レキマチプロジェクトをテーマにしたパネルディスカッション</div>
+          </div>
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-ae0a74ce7e2ccae152cb8c0ce26cdd19-2048x1536.jpg?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="温泉セッション">
+            <div class="media-caption">温泉資源を活用した取り組みをテーマにしたパネルディスカッション</div>
+          </div>
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-3e15a3e2ac166165973aa54e8748e286-2364x1774.jpg?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="事業者意見交換">
+            <div class="media-caption">米沢レキマチプロジェクト事業者による意見交換の様子</div>
+          </div>
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-07fe7368a293e241639f4451aef185dc-2048x1536.jpg?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="小野川温泉セッション">
+            <div class="media-caption">小野川温泉エリア事業者が参加し、意見交換が行われた様子</div>
+          </div>
+          <div class="media-card">
+            <img src="https://prcdn.freetls.fastly.net/release_image/117892/104/117892-104-5d48597c6061fe9f7b441741828d4439-2058x1452.png?width=720&height=480&quality=85&format=jpeg&auto=webp&fit=bounds" alt="リーフレット中面">
+            <div class="media-caption">当日参加者に提供したリーフレット中面</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 11. 関連事業の連携マップ                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔗</span> 関連事業の連携マップ</div>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:.8rem;flex-wrap:wrap;padding:1.5rem;background:var(--card);border-radius:10px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:1rem;">
+      <div class="linkage-node active" style="min-width:140px;">R7 エリア造成<br><small>（本事業・完了）</small></div>
+      <span class="linkage-arrow">→</span>
+      <div style="display:flex;flex-direction:column;gap:.5rem;">
+        <div class="linkage-node future" style="min-width:160px;">R8 ハード事業<br><small>施設整備・環境整備</small></div>
+        <div style="text-align:center;font-size:.65rem;font-weight:700;color:var(--text-sub);margin:-.2rem 0;">＋</div>
+        <div class="linkage-node future" style="min-width:160px;">R8 ソフト事業<br><small>文化財活用推進</small></div>
+      </div>
+      <span class="linkage-arrow">→</span>
+      <div class="linkage-node" style="min-width:140px;">2030年<br><small>謙信公生誕500年</small></div>
+    </div>
+
+    <div class="card">
+      <h4>レキマチ事業体系</h4>
+      <table>
+        <tr><th>事業</th><th>年度</th><th>所管</th><th>ステータス</th><th>概要</th></tr>
+        <tr style="background:var(--r7-green-bg);">
+          <td><strong>R7 エリア造成（本事業）</strong></td>
+          <td>R7</td>
+          <td>観光庁</td>
+          <td style="color:var(--r7-green);font-weight:700;">完了</td>
+          <td>計画策定・合意形成・調査（事業化支援）</td>
+        </tr>
+        <tr>
+          <td><a href="rekimachi-hard.html" style="color:var(--primary);font-weight:600;">R8 ハード事業</a></td>
+          <td>R8</td>
+          <td>観光庁</td>
+          <td>申請済</td>
+          <td>上杉神社・稽照殿の施設整備・周辺環境整備</td>
+        </tr>
+        <tr>
+          <td><a href="rekimachi-soft.html" style="color:var(--primary);font-weight:600;">R8 ソフト事業</a></td>
+          <td>R8</td>
+          <td>文化庁</td>
+          <td>申請済</td>
+          <td>文化財活用推進・コンテンツ造成</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>R7→R8の接続：</strong>本事業（R7）で策定した「上杉の新・城下町づくり総合計画」に基づき、R8ではハード面（施設整備：観光庁補助金）とソフト面（文化財活用：文化庁補助金）の両輪で事業を推進。R7で決定した優先事業化エリア「伝統発酵食ゾーン（東町）」は2026年度より事業化開始。2026年SPC設立準備、2027年本格運営開始を目指す。</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 11. 今後の展開                            -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚀</span> 今後の展開</div>
+
+    <div class="card">
+      <h4>2026年（令和8年）：新・城下町の骨格を作る</h4>
+      <table>
+        <tr><th>時期</th><th>施策</th></tr>
+        <tr><td>1-3月</td><td>米沢市観光振興計画への反映、各事業の実施体制構築・運営準備</td></tr>
+        <tr><td>4月〜</td><td>伝統発酵食ゾーン事業化開始、R8ハード事業・ソフト事業の申請・実施</td></tr>
+        <tr><td>年度内</td><td>SPC設立準備</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4>中長期ロードマップ</h4>
+      <table>
+        <tr><th>年度</th><th>マイルストーン</th></tr>
+        <tr><td>2026年（R8）</td><td>伝統発酵食ゾーン事業化、施設整備着手、SPC設立準備</td></tr>
+        <tr><td>2027年（R9）</td><td>SPC本格運営開始</td></tr>
+        <tr><td>2030年</td><td><strong>上杉謙信公生誕500年</strong> — 文化観光中核エリア完成目標</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /.container -->
+
+<div class="footer">
+  プラットヨネザワ株式会社 — レキマチ R7 エリア造成事業ダッシュボード<br>
+  最終更新：2026年4月27日 ｜ <a href="rekimachi-hard.html">ハード事業</a> ｜ <a href="rekimachi-soft.html">ソフト事業</a>
+</div>
+
+<script>
+function toggleSection(el) {
+  el.classList.toggle('open');
+  const content = el.nextElementSibling;
+  content.classList.toggle('show');
+}
+</script>
+
+</body>
+</html>
