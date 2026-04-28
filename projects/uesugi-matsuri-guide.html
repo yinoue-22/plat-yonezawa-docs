@@ -336,6 +336,30 @@ table.glossary tbody td{padding:10px 12px;vertical-align:top}
   margin-top:-16px;margin-bottom:20px;font-style:italic;
 }
 
+/* 動画プレイヤー */
+.video-wrap{
+  margin:24px 0 28px;
+  background:#000;
+  border:2px solid var(--c-gold);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 4px 14px rgba(26,58,50,0.18);
+}
+.video-wrap video{
+  display:block;width:100%;height:auto;
+}
+.video-caption{
+  background:linear-gradient(135deg, var(--c-bg-deep) 0%, var(--c-bg-deeper) 100%);
+  color:var(--c-cream);padding:10px 14px;
+  font-size:0.82rem;text-align:center;letter-spacing:0.03em;
+  border-top:1px solid var(--c-gold);
+}
+.video-caption .lang-label{
+  display:inline-block;background:var(--c-gold);color:var(--c-bg-deep);
+  font-weight:700;font-size:0.7rem;padding:2px 8px;border-radius:3px;
+  margin-right:8px;letter-spacing:0.1em;
+}
+
 /* 注意事項リスト */
 .notice-list{list-style:none !important;margin-left:0 !important}
 .notice-list li{padding:8px 0 8px 32px;position:relative;border-bottom:1px dotted var(--c-line)}
@@ -350,16 +374,6 @@ footer{
 footer .footer-inner{max-width:var(--max-w);margin:0 auto}
 footer a{color:var(--c-gold);text-decoration:none}
 footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
-
-/* 印刷ボタン */
-.print-btn{
-  position:fixed;bottom:20px;right:20px;
-  background:var(--c-crimson);color:var(--c-white);
-  border:none;padding:12px 18px;border-radius:50px;
-  cursor:pointer;font-size:0.9rem;font-family:inherit;
-  box-shadow:0 4px 14px rgba(160,24,24,0.35);z-index:50;
-}
-.print-btn:hover{background:#c83030}
 
 /* ====== レスポンシブ ====== */
 @media (max-width:768px){
@@ -377,13 +391,12 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
   .lineage .arrow{transform:rotate(90deg)}
   table.glossary{font-size:0.82rem}
   table.glossary thead th, table.glossary tbody td{padding:7px 8px}
-  .print-btn{bottom:14px;right:14px;padding:10px 14px;font-size:0.8rem}
 }
 
 /* ====== 印刷用 ====== */
 @media print{
   body{background:var(--c-white);font-size:10pt}
-  .switchers,.print-btn,footer .footer-inner > *:not(.copyright){display:none !important}
+  .switchers,footer .footer-inner > *:not(.copyright){display:none !important}
   .hero{background:var(--c-white) !important;color:var(--c-ink) !important;border-bottom:2px solid var(--c-ink)}
   .hero-inner{padding:14px 0}
   .title-block h1{color:var(--c-ink) !important;text-shadow:none}
@@ -557,7 +570,7 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p><strong>訳語の一貫性</strong>：本ページ内で同じ概念には同じ訳語を使用。第5章「用語集」を Single Source of Truth として参照。</p>
         <p><strong>「義」「軍神」など抽象概念</strong>：第3章末の「ここが訳しづらいコラム」で扱い分けを解説。</p>
       </div>
-      <p>当日はスマートフォンで開きながら案内に使うことも、印刷して紙で携帯することも想定しています（右下の <strong>🖨 印刷</strong> ボタン、または<kbd>Ctrl/⌘ + P</kbd>）。</p>
+      <p>当日はスマートフォンで開きながら案内に使うことも、紙で携帯することも想定しています（ブラウザの<kbd>Ctrl/⌘ + P</kbd>で印刷ダイアログを開き、紙印刷またはPDF保存が可能）。</p>
     </div>
     <div class="en">
       <p class="lead">This page serves as both <strong>pre-event study material</strong> and <strong>on-site reference</strong> for interpreters and volunteer guides supporting the Yonezawa Uesugi Festival.</p>
@@ -576,7 +589,7 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p><strong>Consistency</strong>: Use the same target term for the same concept throughout. Treat Chapter 5 (Glossary) as the single source of truth.</p>
         <p><strong>Abstract concepts</strong> like <em>gi</em> (義, righteousness) and <em>gunshin</em> (軍神, war god) are addressed in the "Hard-to-Translate" column at the end of Chapter 3.</p>
       </div>
-      <p>You can use this page on a phone during the event, or print it for paper reference (🖨 button, lower right, or <kbd>Ctrl/⌘ + P</kbd>).</p>
+      <p>You can use this page on a phone during the event, or print it for paper reference (press <kbd>Ctrl/⌘ + P</kbd> in your browser to open the print dialog — print or save as PDF from there).</p>
     </div>
     <div class="tw">
       <p class="lead">本頁是為協助米澤上杉祭典的口譯員與導覽志工所準備的<strong>事前學習資料兼現場參考</strong>。</p>
@@ -596,7 +609,7 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p><strong>譯語一致性</strong>：相同概念在本頁中使用相同譯語。第5章「用語集」為單一資料來源。</p>
         <p><strong>「義」「軍神」</strong>等抽象概念，於第3章末「翻譯難點專欄」說明處理方式。</p>
       </div>
-      <p>本頁可於現場以手機瀏覽，亦可列印攜帶（右下 🖨 按鈕，或 <kbd>Ctrl/⌘ + P</kbd>）。</p>
+      <p>本頁可於現場以手機瀏覽，亦可列印攜帶（瀏覽器按 <kbd>Ctrl/⌘ + P</kbd> 開啟列印對話框，可直接列印或另存為 PDF）。</p>
     </div>
   </div>
 </section>
@@ -1542,6 +1555,22 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
     <span class="ja">▲ 上杉軍の象徴「毘」（毘沙門天）と「龍」（不動明王）の旗印</span>
     <span class="en">▲ The iconic "Bi" (Bishamonten) and "Ryū" (Fudō Myō-ō) banners of the Uesugi army</span>
     <span class="tw">▲ 上杉軍象徵「毘」（毘沙門天）與「龍」（不動明王）的旗印</span>
+  </div>
+
+  <!-- バイリンガル動画（繁体字+英字幕） -->
+  <div class="video-wrap">
+    <video controls preload="metadata" poster="images/DSC00518.jpg">
+      <source src="videos/Kawanakajima_bilingual.mp4" type="video/mp4">
+      <span class="ja">お使いのブラウザは動画再生に対応していません。</span>
+      <span class="en">Your browser does not support video playback.</span>
+      <span class="tw">您的瀏覽器不支援影片播放。</span>
+    </video>
+    <div class="video-caption">
+      <span class="lang-label">中 / EN</span>
+      <span class="ja">米沢上杉まつり 川中島合戦・公式紹介映像（繁體中文＋英語字幕付き／約2分）</span>
+      <span class="en">Yonezawa Uesugi Festival · Battle of Kawanakajima – Official Introduction (with Trad. Chinese &amp; English subtitles / ~2 min)</span>
+      <span class="tw">米澤上杉祭典 川中島合戰・官方介紹影片（繁體中文＋英語字幕／約2分鐘）</span>
+    </div>
   </div>
 
   <!-- 観光客モード -->
@@ -4253,12 +4282,6 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
     </div>
   </div>
 </footer>
-
-<button class="print-btn" onclick="window.print()" aria-label="印刷">
-  <span class="ja">🖨 印刷</span>
-  <span class="en">🖨 Print</span>
-  <span class="tw">🖨 列印</span>
-</button>
 
 <script>
 (function(){
