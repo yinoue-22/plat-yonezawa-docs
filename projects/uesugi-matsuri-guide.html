@@ -307,14 +307,34 @@ table.glossary tbody td{padding:10px 12px;vertical-align:top}
 .qa-a::before{content:"A. ";position:absolute;left:0;color:var(--c-gold-dark);font-weight:700}
 
 /* マップ・スポット */
-.spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0}
+.spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:14px 0}
 .spot{
   background:linear-gradient(135deg,#fff8e0 0%,#ffeec0 100%);
-  border:1px solid var(--c-gold);padding:14px;border-radius:6px;
+  border:1px solid var(--c-gold);border-radius:6px;
+  overflow:hidden;
+  transition:transform 0.2s, box-shadow 0.2s;
 }
+.spot:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(160,24,24,0.18)}
+.spot .photo{
+  display:block;width:100%;height:160px;object-fit:cover;
+  border-bottom:2px solid var(--c-gold);
+}
+.spot .body{padding:14px}
 .spot .emoji{font-size:1.6rem;display:block;margin-bottom:4px}
 .spot .name{font-weight:700;color:var(--c-bg-deep);font-size:1rem;margin-bottom:4px}
 .spot .desc{font-size:0.85rem;color:var(--c-ink-soft)}
+
+/* ヒーロー画像（章扉用） */
+.hero-photo{
+  display:block;width:100%;max-height:380px;object-fit:cover;
+  border-radius:6px;margin:8px 0 22px;
+  border:2px solid var(--c-gold);
+  box-shadow:0 4px 14px rgba(26,58,50,0.18);
+}
+.hero-photo-caption{
+  font-size:0.82rem;color:var(--c-gray);text-align:center;
+  margin-top:-16px;margin-bottom:20px;font-style:italic;
+}
 
 /* 注意事項リスト */
 .notice-list{list-style:none !important;margin-left:0 !important}
@@ -1517,6 +1537,13 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
     <span class="tw">⚔️ 川中島合戰 ─ 戰國史上最大死鬥</span>
   </h2>
 
+  <img class="hero-photo" src="images/DSC00164.jpg" alt="毘・龍の旗印を掲げる上杉軍" loading="lazy">
+  <div class="hero-photo-caption">
+    <span class="ja">▲ 上杉軍の象徴「毘」（毘沙門天）と「龍」（不動明王）の旗印</span>
+    <span class="en">▲ The iconic "Bi" (Bishamonten) and "Ryū" (Fudō Myō-ō) banners of the Uesugi army</span>
+    <span class="tw">▲ 上杉軍象徵「毘」（毘沙門天）與「龍」（不動明王）的旗印</span>
+  </div>
+
   <!-- 観光客モード -->
   <div class="tourist-only">
     <div class="ja">
@@ -2426,24 +2453,36 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
       <h3>📷 写真映えスポット</h3>
       <div class="spots">
         <div class="spot">
-          <span class="emoji">🌸</span>
-          <div class="name">上杉神社（松が岬公園）</div>
-          <div class="desc">満開の桜と神社が同時に楽しめる時期。武者と桜の組み合わせは絶景。</div>
+          <img class="photo" src="images/%E4%B8%8A%E6%9D%89%E3%81%BE%E3%81%A4%E3%82%8A1%20(1).jpg" alt="上杉神社・松が岬公園の様子" loading="lazy">
+          <div class="body">
+            <span class="emoji">🌸</span>
+            <div class="name">上杉神社（松が岬公園）</div>
+            <div class="desc">満開の桜と神社が同時に楽しめる時期。武者と桜の組み合わせは絶景。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🔥</span>
-          <div class="name">武禘式（伝国の杜前）</div>
-          <div class="desc">夜のかがり火に照らされる甲冑武者。シネマティック度MAX。</div>
+          <img class="photo" src="images/DSC00180.jpg" alt="武禘式で祈りを捧げる謙信" loading="lazy">
+          <div class="body">
+            <span class="emoji">🔥</span>
+            <div class="name">武禘式（伝国の杜前）</div>
+            <div class="desc">夜のかがり火に照らされる甲冑武者。シネマティック度MAX。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🐎</span>
-          <div class="name">上杉行列（市内目抜き通り）</div>
-          <div class="desc">騎馬武者がいちばん近くで撮れる。沿道に立てばOK。</div>
+          <img class="photo" src="images/DSC00007.jpg" alt="上杉行列の騎馬武者" loading="lazy">
+          <div class="body">
+            <span class="emoji">🐎</span>
+            <div class="name">上杉行列（市内目抜き通り）</div>
+            <div class="desc">騎馬武者がいちばん近くで撮れる。沿道に立てばOK。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">⚔️</span>
-          <div class="name">川中島合戦（松川河川敷）</div>
-          <div class="desc">迫力の戦闘シーン。望遠レンズ推奨。<strong>有料桟敷席</strong>なら正面ベスト位置。</div>
+          <img class="photo" src="images/DSC00518.jpg" alt="川中島合戦・火縄銃の硝煙" loading="lazy">
+          <div class="body">
+            <span class="emoji">⚔️</span>
+            <div class="name">川中島合戦（松川河川敷）</div>
+            <div class="desc">迫力の戦闘シーン。望遠レンズ推奨。<strong>有料桟敷席</strong>なら正面ベスト位置。</div>
+          </div>
         </div>
       </div>
 
@@ -2531,24 +2570,36 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
       <h3>📷 Best Photo Spots</h3>
       <div class="spots">
         <div class="spot">
-          <span class="emoji">🌸</span>
-          <div class="name">Uesugi Shrine (Matsugasaki Park)</div>
-          <div class="desc">Cherry blossoms in full bloom. The combination of warriors and sakura is iconic.</div>
+          <img class="photo" src="images/%E4%B8%8A%E6%9D%89%E3%81%BE%E3%81%A4%E3%82%8A1%20(1).jpg" alt="Uesugi Shrine at Matsugasaki Park" loading="lazy">
+          <div class="body">
+            <span class="emoji">🌸</span>
+            <div class="name">Uesugi Shrine (Matsugasaki Park)</div>
+            <div class="desc">Cherry blossoms in full bloom. The combination of warriors and sakura is iconic.</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🔥</span>
-          <div class="name">Buteishiki (Denkoku Plaza)</div>
-          <div class="desc">Warriors lit by torchlight after dark. Maximum cinematic drama.</div>
+          <img class="photo" src="images/DSC00180.jpg" alt="Lord Kenshin in prayer at Buteishiki ritual" loading="lazy">
+          <div class="body">
+            <span class="emoji">🔥</span>
+            <div class="name">Buteishiki (Denkoku Plaza)</div>
+            <div class="desc">Warriors lit by torchlight after dark. Maximum cinematic drama.</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🐎</span>
-          <div class="name">Procession (Main Street)</div>
-          <div class="desc">Closest you'll get to mounted samurai. Stand along the route.</div>
+          <img class="photo" src="images/DSC00007.jpg" alt="Mounted samurai in the Uesugi Procession" loading="lazy">
+          <div class="body">
+            <span class="emoji">🐎</span>
+            <div class="name">Procession (Main Street)</div>
+            <div class="desc">Closest you'll get to mounted samurai. Stand along the route.</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">⚔️</span>
-          <div class="name">Kawanakajima Battle (Riverbank)</div>
-          <div class="desc">Epic combat scenes. Telephoto lens recommended. <strong>Reserved seating</strong> gives the best front-row view.</div>
+          <img class="photo" src="images/DSC00518.jpg" alt="Matchlock smoke at the Kawanakajima Battle reenactment" loading="lazy">
+          <div class="body">
+            <span class="emoji">⚔️</span>
+            <div class="name">Kawanakajima Battle (Riverbank)</div>
+            <div class="desc">Epic combat scenes. Telephoto lens recommended. <strong>Reserved seating</strong> gives the best front-row view.</div>
+          </div>
         </div>
       </div>
 
@@ -2636,24 +2687,36 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
       <h3>📷 拍照熱點</h3>
       <div class="spots">
         <div class="spot">
-          <span class="emoji">🌸</span>
-          <div class="name">上杉神社（松岬公園）</div>
-          <div class="desc">櫻花滿開時節，與武者同框堪稱絕景。</div>
+          <img class="photo" src="images/%E4%B8%8A%E6%9D%89%E3%81%BE%E3%81%A4%E3%82%8A1%20(1).jpg" alt="上杉神社・松岬公園" loading="lazy">
+          <div class="body">
+            <span class="emoji">🌸</span>
+            <div class="name">上杉神社（松岬公園）</div>
+            <div class="desc">櫻花滿開時節，與武者同框堪稱絕景。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🔥</span>
-          <div class="name">武禘式（傳國之杜前）</div>
-          <div class="desc">夜晚篝火下的甲冑武者，氣氛電影感MAX。</div>
+          <img class="photo" src="images/DSC00180.jpg" alt="武禘式中祈禱的謙信" loading="lazy">
+          <div class="body">
+            <span class="emoji">🔥</span>
+            <div class="name">武禘式（傳國之杜前）</div>
+            <div class="desc">夜晚篝火下的甲冑武者，氣氛電影感MAX。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">🐎</span>
-          <div class="name">上杉行列（市區主幹道）</div>
-          <div class="desc">最近距離拍攝騎馬武者，路邊即可。</div>
+          <img class="photo" src="images/DSC00007.jpg" alt="上杉行列的騎馬武者" loading="lazy">
+          <div class="body">
+            <span class="emoji">🐎</span>
+            <div class="name">上杉行列（市區主幹道）</div>
+            <div class="desc">最近距離拍攝騎馬武者，路邊即可。</div>
+          </div>
         </div>
         <div class="spot">
-          <span class="emoji">⚔️</span>
-          <div class="name">川中島合戰（松川河岸）</div>
-          <div class="desc">魄力滿點的戰鬥場景。建議使用望遠鏡頭。<strong>付費觀覽席</strong>可獲得最佳正面位置。</div>
+          <img class="photo" src="images/DSC00518.jpg" alt="川中島合戰・火繩槍硝煙" loading="lazy">
+          <div class="body">
+            <span class="emoji">⚔️</span>
+            <div class="name">川中島合戰（松川河岸）</div>
+            <div class="desc">魄力滿點的戰鬥場景。建議使用望遠鏡頭。<strong>付費觀覽席</strong>可獲得最佳正面位置。</div>
+          </div>
         </div>
       </div>
 
