@@ -141,6 +141,54 @@ h3.sub{font-size:.95rem;color:var(--text);margin:1.2rem 0 .6rem;letter-spacing:.
 .cost-table .right{text-align:right}
 .cost-table .total{background:#fafbfc;font-weight:700}
 
+/* Subsidy stack - 補助金重複ルール */
+.subsidy-matrix{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.6rem;font-size:.78rem}
+.subsidy-matrix table{width:100%;border-collapse:collapse}
+.subsidy-matrix th,.subsidy-matrix td{padding:.55rem .65rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:.78rem}
+.subsidy-matrix thead th{background:var(--bunka-deep);color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-align:center;border-bottom:none}
+.subsidy-matrix thead th:first-child{text-align:left}
+.subsidy-matrix tbody td{text-align:center}
+.subsidy-matrix tbody td:first-child{text-align:left;font-weight:600;color:var(--text)}
+.subsidy-matrix tbody td:last-child{text-align:left;color:var(--text-sub);font-size:.74rem}
+.subsidy-matrix tbody tr:hover{background:#fafbfc}
+.mark-ok{color:var(--green);font-weight:700;font-size:1rem}
+.mark-ng{color:var(--accent);font-weight:700;font-size:1rem}
+.mark-cond{color:var(--mid);font-weight:700;font-size:1rem}
+.legend-row{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.78rem;color:var(--text-sub);margin:.5rem 0 .8rem;padding:.5rem .8rem;background:#fafafa;border-radius:6px}
+.legend-row strong{color:var(--text)}
+
+/* Facility-by-facility allocation */
+.facility-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem;
+  box-shadow:var(--shadow);margin-bottom:.6rem;font-size:.83rem}
+.facility-card h4{font-size:.92rem;margin:0 0 .4rem;color:var(--bunka-deep);font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.facility-card h4 .amount{font-size:.75rem;color:var(--text-sub);font-weight:600}
+.facility-card .alloc{display:grid;grid-template-columns:90px 1fr;gap:.3rem .6rem;font-size:.78rem;margin-top:.3rem;padding:.4rem 0;border-top:1px dashed var(--border)}
+.facility-card .alloc dt{color:var(--hard-red);font-weight:700;font-size:.7rem}
+.facility-card .alloc dt.bunka{color:var(--bunka-gold)}
+.facility-card .alloc dt.soft{color:var(--soft-blue)}
+.facility-card .alloc dd{margin:0;color:var(--text-sub)}
+.facility-card .alloc dd strong{color:var(--text)}
+
+/* Checklist - 申請前相談確認事項 */
+.checklist-confirm{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow);margin-top:.5rem}
+.checklist-confirm h4{font-size:.92rem;color:var(--bunka-deep);margin:0 0 .6rem;font-weight:700}
+.checklist-confirm .item{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;border-bottom:1px dashed var(--border);font-size:.83rem}
+.checklist-confirm .item:last-child{border-bottom:none}
+.checklist-confirm .item input[type="checkbox"]{margin-top:.4rem;accent-color:var(--bunka-deep)}
+.checklist-confirm .item .text{flex:1}
+.checklist-confirm .item small{color:var(--text-sub);display:block;margin-top:.15rem;font-size:.72rem}
+
+/* Timeline visual */
+.timeline-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-top:.8rem;font-size:.72rem}
+@media(max-width:780px){.timeline-flow{grid-template-columns:1fr}}
+.timeline-flow .step{background:#fff;border:1px solid var(--border);border-top:3px solid var(--bunka-gold);
+  border-radius:8px;padding:.6rem .7rem;text-align:left}
+.timeline-flow .step .y{font-weight:700;color:var(--bunka-deep);font-size:.78rem;display:block;margin-bottom:.2rem}
+.timeline-flow .step .h{color:var(--hard-red);font-weight:600;font-size:.7rem}
+.timeline-flow .step .s{color:var(--soft-blue);font-weight:600;font-size:.7rem}
+.timeline-flow .step .b{color:var(--bunka-gold);font-weight:600;font-size:.7rem}
+.timeline-flow .step .desc{color:var(--text-sub);font-size:.7rem;margin-top:.3rem;line-height:1.5}
+
 /* Footer */
 footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);
   border-top:1px solid var(--border);margin-top:2rem}
@@ -453,8 +501,140 @@ footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);
     </table>
   </div>
 
+  <h3 class="sub">⚠ 補助金重複ルール：原則と運用</h3>
   <div class="risk">
-    <strong>⚠ 補助金の重複リスクに留意：</strong>同一経費に対する複数補助金からの重複交付は不可。ハード補助金で整備した施設の「整備費」は文化観光補助金の対象外。文化観光側は「整備された施設を活用したソフトコンテンツ・解説情報・多言語対応・人材育成・運営費」に充当する設計が現実的。各補助金の対象経費区分の整理を申請前相談時に明確化することが重要。
+    <strong>大原則：</strong>同一経費（同一の物品・役務・期間）に対する複数補助金からの重複交付は<strong style="color:#c0392b">不可</strong>（補助金等適正化法第7条）。違反すると交付取消・返還命令の対象。<br>
+    ただし、<strong>「事業主体の役割分担」「経費の対象期間・対象範囲の分離」「目的の差別化」</strong>を明確に設計すれば、複数の補助金を組み合わせて活用することは可能。実務上は申請前相談時に各省庁に「経費区分書（充当計画書）」を提示し、口頭・文書で確認を取るのが安全。
+  </div>
+
+  <h3 class="sub">📋 経費種別×補助金 充当可否マトリクス</h3>
+  <div class="legend-row">
+    <span><strong class="mark-ok">○</strong> 対象（充当可）</span>
+    <span><strong class="mark-ng">×</strong> 対象外（充当不可）</span>
+    <span><strong class="mark-cond">△</strong> 条件付き（経費分離・期間分離が必要）</span>
+  </div>
+  <div class="subsidy-matrix">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">経費種別</th>
+          <th style="width:13%">ハード<br>(観光庁)</th>
+          <th style="width:13%">ソフト<br>(観光庁)</th>
+          <th style="width:13%">文化観光<br>(文化庁)</th>
+          <th style="width:31%">運用上の留意点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>建造物の新築・改修・大規模修繕（建築工事費）</td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ng">×</span></td><td>ハード専用。文化観光側は「整備済施設を前提とした活用」設計</td></tr>
+        <tr><td>外構・庭園整備、案内標識、解説案内板（屋外）</td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td>解説案内板は文化観光でも対象になり得るが、ハードと重複しない<strong>新規追加分</strong>のみ</td></tr>
+        <tr><td>展示什器・什器類（売り場改修込み）</td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td>ハードで整備した什器は文化観光対象外。ハード未対象の<strong>展示解説什器</strong>は文化観光対象可</td></tr>
+        <tr><td>多言語化（サイン・パンフレット・音声ガイド）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">○</span></td><td>ハードでサインを整備済の場合、文化観光は<strong>音声ガイド・アプリ・QRコンテンツ</strong>等の別カテゴリに充当</td></tr>
+        <tr><td>解説情報整備（学術監修・コンテンツ制作）</td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td>文化観光の<strong>主要対象経費</strong>。学芸員・専門家監修費含む</td></tr>
+        <tr><td>体験コンテンツ造成・モニターツアー</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">○</span></td><td>ソフトと文化観光で対象期間・対象テーマを明確に分離（例：ソフト=R8試験、文化観光=R9以降本格展開）</td></tr>
+        <tr><td>人流調査・市場調査・ベンチマーク調査</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>ソフトで実施済の調査は文化観光対象外。<strong>新たな視点の追加調査</strong>は対象可</td></tr>
+        <tr><td>計画策定費・コンサルティング費</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>ソフトで策定済の計画は文化観光対象外。<strong>計画の文化観光化リライト・年次更新費</strong>は対象可</td></tr>
+        <tr><td>人材育成（ガイド研修・運営人材育成）</td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td>文化観光の<strong>主要対象経費</strong>。学芸員・通訳ガイド・解説員の育成</td></tr>
+        <tr><td>運営費（人件費・委託費・賃借料）</td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td>文化観光は5年計画の運営費に充当可。ただしハード整備施設の<strong>修繕・維持費</strong>は対象外</td></tr>
+        <tr><td>広報・プロモーション（国内）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">○</span></td><td>媒体・対象期間で分離。ソフトは事業期間内の集客、文化観光は<strong>5年継続の認知形成</strong></td></tr>
+        <tr><td>海外プロモーション（インバウンド向け）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光は<strong>JNTOとの連携協力</strong>が制度上組み込み済。海外発信は文化観光が主</td></tr>
+        <tr><td>ICT・デジタル活用（VR/AR/アプリ）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">○</span></td><td>機器購入はハード、コンテンツ制作はソフト/文化観光と切り分け</td></tr>
+        <tr><td>イベント開催費（一過性）</td><td><span class="mark-ng">×</span></td><td><span class="mark-cond">△</span></td><td><span class="mark-cond">△</span></td><td>5年計画の継続的取組みの一環として位置づけ可。単発イベントは原則対象外</td></tr>
+        <tr><td>用地取得・既存設備の単純更新</td><td><span class="mark-ng">×</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ng">×</span></td><td>3制度とも対象外。自己資金または別補助金で対応</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">🏛 ハード10案件 × 文化観光 充当設計案</h3>
+  <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .6rem">既存ハード事業10案件について、整備後の文化観光側で何に補助金を充当するかの具体案。<strong>整備費はハード／活用費は文化観光</strong>の原則で設計。</p>
+
+  <div class="facility-card">
+    <h4>10. 上杉神社（授与所）<span class="amount">ハード補助 2,500万円（総額5,000万円）</span></h4>
+    <dl class="alloc"><dt>ハード</dt><dd>授与所の建物改修3,200万円＋設備整備1,800万円（建造物・什器）</dd></dl>
+    <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>多言語授与品解説（音声ガイド・QR）／神道・上杉文化の英語解説コンテンツ／参拝者向け文化体験プログラム造成／学芸員相当の解説員育成</strong></dd></dl>
+  </div>
+
+  <div class="facility-card">
+    <h4>1. （株）東光の酒蔵｜酒造資料館<span class="amount">ハード補助 198.5万円（総額397万円）</span></h4>
+    <dl class="alloc"><dt>ハード</dt><dd>上段の間改修（インバウンド富裕層体験拠点化）・喫茶室テイスティングルーム新設・別棟トイレ改修</dd></dl>
+    <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>創業1597年からの酒造文化解説（多言語）／発酵文化×武家文化の連携ストーリーテリング／英語ソムリエ育成／JNTO連携の海外PR</strong></dd></dl>
+  </div>
+
+  <div class="facility-card">
+    <h4>4. （株）上杉コーポレーション｜上杉城史苑<span class="amount">ハード補助 550万円（総額1,100万円）</span></h4>
+    <dl class="alloc"><dt>ハード</dt><dd>売り場改修・什器・商品陳列改善・多言語化（物理サイン）</dd></dl>
+    <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>「超勝利」ブランド商品の学術背景解説（上杉謙信公・武家文化）／繁体中文・韓国語・タイ語等の追加多言語対応／海外向けデジタルカタログ制作／インバウンドコンシェルジュ育成</strong></dd></dl>
+  </div>
+
+  <div class="facility-card">
+    <h4>2. （合）光悦｜小島伝承の館<span class="amount">ハード補助 2,504.2万円（総額5,008.3万円）</span></h4>
+    <dl class="alloc"><dt>ハード</dt><dd>大正11年築古民家改修・酒粕発酵カフェ整備・物販施設整備</dd></dl>
+    <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>「歴史×体験×文脈」コンセプトの体験プログラム造成（利き酒・発酵食ワークショップ）／古民家建築解説／米沢駅〜上杉神社の文化観光導線設計</strong></dd></dl>
+  </div>
+
+  <div class="facility-card">
+    <h4>その他施設（旧遠万織物・旧白根澤邸・東町ポケットパーク・マチスタヂオ・肉のすがい・福島屋社員寮）<span class="amount">ハード補助 計 7,804.1万円</span></h4>
+    <dl class="alloc"><dt>ハード</dt><dd>各施設の建物改修・外構整備・新規施設整備</dd></dl>
+    <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>東町エリア全体の文化資源回遊ガイド／伝統発酵食ゾーンの解説情報整備／滞在型観光の運営人材育成／インバウンド向け体験コンテンツ造成</strong></dd></dl>
+  </div>
+
+  <h3 class="sub">📅 補助金スタッキング タイムライン（5年フロー）</h3>
+  <div class="timeline-flow">
+    <div class="step">
+      <span class="y">R8（2026）</span>
+      <span class="h">ハード整備</span>
+      <div class="desc">10施設の整備工事〜R9.2.26</div>
+      <span class="s">ソフト推進</span>
+      <div class="desc">体験コンテンツ造成・モニターツアー</div>
+      <span class="b">文化観光 1年目</span>
+      <div class="desc">解説情報整備・人材育成・基盤づくり</div>
+    </div>
+    <div class="step">
+      <span class="y">R9（2027）</span>
+      <span class="b">文化観光 2年目</span>
+      <div class="desc">整備済施設での文化観光本格展開／JNTO連携海外PR開始／多言語デジタルコンテンツ拡充</div>
+    </div>
+    <div class="step">
+      <span class="y">R10（2028）</span>
+      <span class="b">文化観光 3年目</span>
+      <div class="desc">運営の自立化推進／ガイド人材定着／中間評価準備</div>
+    </div>
+    <div class="step">
+      <span class="y">R11（2029）</span>
+      <span class="b">文化観光 4年目</span>
+      <div class="desc">中間評価実施／補助額調整／成果指標達成度確認</div>
+    </div>
+    <div class="step">
+      <span class="y">R12（2030）</span>
+      <span class="b">文化観光 5年目</span>
+      <div class="desc"><strong>謙信公生誕500年</strong>に合わせた集大成展開／持続化モデル完成</div>
+    </div>
+  </div>
+
+  <h3 class="sub">✅ 申請前相談（5/12）で文化庁に確認すべき事項</h3>
+  <div class="checklist-confirm">
+    <h4>文化観光推進法 申請前相談 必須確認チェックリスト</h4>
+    <div class="item"><input type="checkbox"><div class="text"><strong>① ハード補助金で整備した施設の「整備費」を文化観光対象から除外する経費区分書の様式</strong><small>文化庁が求める経費区分の粒度・記載例を確認（事業者別／経費種別別／年度別）</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>② 解説案内板・サイン整備のハード/文化観光の境界線</strong><small>ハードで設置済のサイン更新は対象外か／音声ガイドQRコードの扱い</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>③ ソフト事業（観光庁）と文化観光（文化庁）のコンテンツ造成の重複可否</strong><small>R8ソフトで実施するモニターツアーと、文化観光のR8解説整備の併走可否</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>④ 人流調査・市場調査の流用と追加調査の判定基準</strong><small>レキマチソフト事業のAgoop人流分析・ベンチマーク調査が文化観光対象になり得るか</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑤ 計画策定費の二重計上回避</strong><small>R7総合計画・ソフト事業計画書から文化観光計画書を作成する作業の費用扱い</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑥ 既存事業者（10間接補助事業者）が文化観光の対象主体になれるか</strong><small>個別事業者単位での文化観光補助受給の可否、または地域計画として一括申請の場合の主体構成</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑦ JNTOとの連携協力の具体的範囲</strong><small>海外PR媒体・通訳・国際イベント参加等で文化観光に充当できる経費</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑧ 国・地方公共団体・国立博物館等による助言</strong><small>制度上の助言メニューの具体内容（人的支援・施設貸与等）</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑨ 国所有文化資源の文化観光拠点での公開協力</strong><small>米沢藩関連の国所有資料・国宝の借用展示の可否と手続き</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑩ 中間評価（4・5年目）の評価軸と補助額変動の幅</strong><small>達成基準と未達時の補助額減額・打ち切りリスク</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑪ 地方負担分の特別交付税措置の対象</strong><small>米沢市・南陽市の負担分への措置範囲・申請方法</small></div></div>
+    <div class="item"><input type="checkbox"><div class="text"><strong>⑫ 上杉神社等の宗教法人が事業主体になる場合の留意事項</strong><small>宗教法人としての受給制限・公益目的の証明方法</small></div></div>
+  </div>
+
+  <div class="risk" style="margin-top:1rem">
+    <strong>💡 重複回避のための実務ルール（社内運用）：</strong>
+    <ol style="margin:.5rem 0 0 1.2rem;padding:0">
+      <li>すべての経費を <strong>「経費種別 × 補助金充当 × 年度」</strong> の三次元で管理する原簿（Excel/Googleシート）を整備</li>
+      <li>同一物品・同一役務に対する仕様書・見積書・契約書は<strong>補助金別に分離発注</strong>。1件の契約に複数補助金を混在させない</li>
+      <li>文化観光側の発注はすべて <strong>「ハード未充当の経費か」</strong> をチェック → 経費区分書に記載 → 文化庁担当者と事前協議</li>
+      <li>会計監査・実地検査時の説明資料として、<strong>「経費充当根拠書」</strong> を案件別に常備</li>
+    </ol>
   </div>
 
   <!-- ========== レキマチvs赤湯・熊野での適用差 ========== -->
