@@ -4,63 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>赤湯&南陽市 | プラットヨネザワ</title>
-<meta name="description" content="文化観光推進法に基づく令和8年度地域計画 認定申請（赤湯&南陽市・熊野大社×赤湯温泉）の統合ダッシュボード（進捗管理＋流用可能性分析）。">
+<meta name="description" content="赤湯&南陽市案件の統合管理ページ（ダッシュボード＋流用可能性分析＋ロジックモデル）。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f5f3ee;--paper:#ffffff;--ink:#1f2937;--sub:#4b5563;--muted:#6b7280;
-    --line:#e5e7eb;--accent-2:#1f4068;--accent:#0f243d;--gold:#b58a2e;
-    --green:#2e7d4f;--warn:#c0392b;
-    --soft-red:#fdecec;--soft-blue:#eaf0f7;--soft-gold:#f7f1e1;--soft-green:#e8f5ec;
-    --shadow:0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
-    --soft-blue-2:#2980b9;
-    --high:#1b7a4a;--mid:#d68910;
+    --primary:#1a2744;--primary-light:#2c3e5a;--accent:#c0392b;--gold:#b8860b;
+    --bg:#f5f5f0;--card:#fff;--paper:#fff;--text:#1d1d1d;--ink:#1d1d1d;
+    --text-sub:#6c757d;--sub:#6c757d;--muted:#6c757d;--border:#e0e0e0;--line:#e0e0e0;
+    --shadow:0 2px 16px rgba(0,0,0,.08);
+    --bunka-deep:#1f4068;--bunka-gold:#b58a2e;--bunka-vermilion:#8b1e1e;
+    --hard-red:#c0392b;--soft-blue:#2980b9;
+    --green:#1b7a4a;--soft-red:#fdecec;--soft-green:#eafaf1;--soft-blue-bg:#e8f4f8;--soft-gold:#fdf6e3;
+    --high:#1b7a4a;--mid:#d68910;--low:#c0392b;--warn:#c0392b;
   }
-  *{box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
-    line-height:1.7;-webkit-font-smoothing:antialiased;}
-  a{color:var(--accent-2);text-decoration:none;border-bottom:1px solid rgba(31,64,104,.25)}
-  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-  .wrap{max-width:1200px;margin:0 auto;padding:24px 24px 64px}
-  .crumbs{font-size:12px;color:var(--muted);margin-bottom:14px;letter-spacing:.04em}
-  .crumbs a{color:var(--muted);border:none}
-  .crumbs a:hover{color:var(--accent-2)}
-  .status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-  .top-tag{font-size:12px;color:var(--accent-2);background:var(--soft-blue);border:1px solid #c5d3e6;
-    border-radius:999px;padding:4px 12px;font-weight:600;letter-spacing:.04em}
+  body{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+  a{color:var(--bunka-deep);text-decoration:none}
+  a:hover{color:var(--bunka-vermilion)}
+  .wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+
+  .crumbs{font-size:.78rem;color:var(--text-sub);margin-bottom:.8rem;letter-spacing:.04em}
+  .crumbs a{color:var(--text-sub)}
+  .status-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
+  .top-tag{font-size:.7rem;background:#eaf0f7;color:var(--bunka-deep);border:1px solid #c5d3e6;
+    border-radius:999px;padding:.2rem .7rem;font-weight:600}
   .top-tag.case{background:#eaf0f7;color:#1f4068;border-color:#c5d3e6}
-  .top-status{font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:4px 10px;
+  .top-status{font-size:.65rem;font-weight:700;letter-spacing:.08em;border-radius:3px;padding:.2rem .6rem;
     background:#fff4e6;color:#d68910;border:1px solid #f0c674}
-  h1.title{font-size:30px;margin:6px 0 6px;letter-spacing:.02em}
-  .lead{color:var(--sub);font-size:15px;margin:0 0 16px}
-  .info-bar{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--sub);margin:0 0 22px}
+  h1.title{font-size:1.7rem;font-weight:900;margin:.3rem 0 .4rem;letter-spacing:.02em}
+  .lead{color:var(--text-sub);font-size:.95rem;margin:0 0 1rem}
+  .info-bar{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.8rem;color:var(--text-sub);margin:0 0 1rem}
   .alert{background:var(--soft-red);border:1px solid #f3c2c2;border-left:6px solid var(--warn);
     border-radius:10px;padding:14px 18px;margin:0 0 24px;display:flex;gap:14px;align-items:center}
-  .alert .badge{background:var(--warn);color:#fff;border-radius:6px;padding:4px 10px;font-weight:700;
-    font-size:12px;letter-spacing:.06em;white-space:nowrap}
+  .alert .badge{background:var(--warn);color:#fff;border-radius:6px;padding:4px 10px;font-weight:700;font-size:12px;letter-spacing:.06em;white-space:nowrap}
   .alert .body{font-size:14px;color:#5a1212}
   .alert strong{color:var(--warn)}
 
-  /* Tabs */
-  .tabs{display:flex;gap:4px;margin:8px 0 24px;border-bottom:2px solid var(--line);position:sticky;top:0;
-    background:var(--bg);padding-top:8px;z-index:50}
-  .tab-btn{background:none;border:none;font-family:inherit;font-size:15px;font-weight:700;
-    color:var(--muted);padding:12px 22px;cursor:pointer;border-bottom:3px solid transparent;
-    margin-bottom:-2px;letter-spacing:.04em;transition:color .15s,border-color .15s,background .15s;
-    border-radius:8px 8px 0 0}
-  .tab-btn:hover{color:var(--accent-2);background:rgba(31,64,104,.04)}
-  .tab-btn.active{color:var(--accent-2);border-bottom-color:var(--accent-2);background:rgba(31,64,104,.06)}
-  .tab-btn .count{display:inline-block;font-size:11px;background:var(--line);color:var(--muted);
-    border-radius:999px;padding:2px 8px;margin-left:6px;font-weight:600}
-  .tab-btn.active .count{background:var(--accent-2);color:#fff}
+  .tabs{display:flex;gap:4px;margin:8px 0 24px;border-bottom:2px solid var(--line);position:sticky;top:0;background:var(--bg);padding-top:8px;z-index:50}
+  .tab-btn{background:none;border:none;font-family:inherit;font-size:15px;font-weight:700;color:var(--muted);padding:12px 22px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;letter-spacing:.04em;transition:.15s;border-radius:8px 8px 0 0}
+  .tab-btn:hover{color:var(--bunka-deep);background:rgba(31,64,104,.04)}
+  .tab-btn.active{color:var(--bunka-deep);border-bottom-color:var(--bunka-deep);background:rgba(31,64,104,.06)}
+  .tab-btn .count{display:inline-block;font-size:11px;background:var(--line);color:var(--muted);border-radius:999px;padding:2px 8px;margin-left:6px;font-weight:600}
+  .tab-btn.active .count{background:var(--bunka-deep);color:#fff}
   .tab-panel{display:none;animation:fadeIn .25s ease}
   .tab-panel.active{display:block}
   @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
+  /* ===== Dashboard Tab Styles ===== */
   section.s{margin:24px 0 36px}
-  h2.sec{font-size:20px;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--accent-2);letter-spacing:.04em}
-  h3.sub{font-size:14px;color:var(--sub);margin:18px 0 8px;letter-spacing:.04em}
   .grid{display:grid;gap:14px}
   .grid-2{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -101,7 +93,7 @@
   .case .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
   .pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--sub);margin-right:4px}
   .pill.gold{background:var(--soft-gold);border-color:#e3d29a;color:#7a5a14}
-  .pill.blue{background:var(--soft-blue);border-color:#c5d3e6;color:#1f4068}
+  .pill.blue{background:var(--soft-blue-bg);border-color:#c5d3e6;color:#1f4068}
   .pill.red{background:var(--soft-red);border-color:#f3c2c2;color:#7a1c1c}
   .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px}
   .kv dt{color:var(--muted)}
@@ -109,13 +101,13 @@
   .kv input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
   .checklist{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow)}
   .checklist h4{margin:6px 0 10px;font-size:14px;letter-spacing:.04em}
-  .step-tag{display:inline-block;background:var(--accent-2);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:6px}
+  .step-tag{display:inline-block;background:var(--bunka-deep);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:6px}
   .check-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
   .check-item:last-child{border-bottom:none}
-  .check-item input[type="checkbox"]{margin-top:5px;accent-color:var(--accent-2)}
+  .check-item input[type="checkbox"]{margin-top:5px;accent-color:var(--bunka-deep)}
   .check-item .desc{flex:1}
   .check-item small{color:var(--muted)}
-  .fmt-links a{font-size:11px;margin-right:6px;color:var(--accent-2)}
+  .fmt-links a{font-size:11px;margin-right:6px}
   table.tasks{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
   table.tasks th, table.tasks td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
   table.tasks thead th{background:#fafafa;font-weight:600;color:var(--sub);font-size:12px;letter-spacing:.04em}
@@ -123,105 +115,227 @@
   table.tasks select{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;background:#fff}
   .resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
   @media(max-width:880px){.resource-grid{grid-template-columns:1fr}}
-  .resource{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);
-    border-radius:8px;padding:12px 14px;font-size:12px}
+  .resource{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:12px}
   .resource .cat-tag{font-size:10px;color:var(--gold);letter-spacing:.06em;font-weight:700}
   .resource .nm{font-weight:700;font-size:13px;margin:3px 0;color:var(--ink)}
   .resource .desc{color:var(--sub);font-size:11px;line-height:1.6}
-  .partners{background:var(--paper);border:1px solid var(--line);border-radius:10px;
-    overflow:hidden;box-shadow:var(--shadow);font-size:12px}
+  .partners{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:12px}
   .partners table{width:100%;border-collapse:collapse}
   .partners th,.partners td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-  .partners thead th{background:#fafafa;font-weight:700;color:var(--accent-2);font-size:11px;letter-spacing:.04em}
+  .partners thead th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:11px;letter-spacing:.04em}
   .partners small{color:var(--muted);font-size:10px}
-  .partners .role-tag{display:inline-block;font-size:9px;background:var(--soft-blue);color:var(--accent-2);
-    border-radius:3px;padding:1px 6px;font-weight:700;margin-left:4px;letter-spacing:.04em}
+  .partners .role-tag{display:inline-block;font-size:9px;background:var(--soft-blue-bg);color:var(--bunka-deep);border-radius:3px;padding:1px 6px;font-weight:700;margin-left:4px;letter-spacing:.04em}
   .partners .role-tag.lead{background:#fdecec;color:#8b1e1e}
-  .kgi-box{background:linear-gradient(135deg,#1f4068 0%, #0f243d 100%);color:#fff;
-    border-radius:12px;padding:18px 22px;margin:10px 0;box-shadow:var(--shadow)}
+  .kgi-box{background:linear-gradient(135deg,#1f4068 0%, #0f243d 100%);color:#fff;border-radius:12px;padding:18px 22px;margin:10px 0;box-shadow:var(--shadow)}
   .kgi-box h4{font-size:15px;margin:0 0 8px;color:#fff}
-  .kgi-box .num{font-size:18px;color:#d4b05a;font-weight:700;display:inline-block;margin-right:10px}
   .kgi-box ul{margin:6px 0 0 16px;font-size:13px;color:#dbe3ee;line-height:1.8}
   .kgi-box ul li{margin-bottom:4px}
   .kgi-box ul li strong{color:#fff}
   .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
   @media(max-width:880px){.links-grid{grid-template-columns:1fr}}
-  .link-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}
-  .link-card:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .link-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit}
+  .link-card:hover{border-color:var(--bunka-deep);color:var(--bunka-deep)}
   .link-card .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
   .link-card .ttl{font-weight:600}
   .link-card .desc{font-size:12px;color:var(--sub)}
+  h2.sec{font-size:1.05rem;font-weight:700;color:var(--bunka-deep);margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid var(--bunka-gold);display:flex;align-items:center;gap:.4rem}
+  h3.sub{font-size:.95rem;color:var(--text);margin:1.2rem 0 .6rem;font-weight:700;padding-left:.6rem;border-left:3px solid var(--bunka-deep)}
 
-  /* Analysis tab styles */
-  .exec-summary{background:linear-gradient(135deg,#1f4068 0%,#0f243d 100%);color:#fff;
-    border-radius:12px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
-  .exec-summary h2{font-size:18px;margin:0 0 8px;color:#fff}
-  .exec-summary p{font-size:14px;line-height:1.8;color:#dbe3ee;margin:0 0 6px}
-  .exec-summary .big{font-size:24px;font-weight:700;color:var(--gold)}
-  .exec-summary .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .exec-summary .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
-    border-radius:999px;padding:4px 12px;font-size:11px;color:#fff}
-  .systems{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0 20px}
-  @media(max-width:880px){.systems{grid-template-columns:1fr}}
-  .sys{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:13px}
-  .sys.kanko{border-top:4px solid var(--soft-blue-2)}
-  .sys.bunka{border-top:4px solid var(--gold)}
-  .sys h4{font-size:15px;margin:0 0 6px;font-weight:700}
-  .sys .ttl{font-size:11px;color:var(--muted);letter-spacing:.06em}
-  .sys dl{display:grid;grid-template-columns:90px 1fr;gap:4px 10px;margin-top:8px;font-size:12px}
-  .sys dt{color:var(--muted)}
-  .sys dd{margin:0;color:var(--ink)}
-  .sys .status{display:inline-block;font-size:10px;border-radius:3px;padding:2px 8px;font-weight:700;
-    background:var(--soft-blue);color:var(--accent-2);margin-top:4px}
+  /* ===== Analysis Tab Styles ===== */
+  .exec-summary{background:linear-gradient(135deg,#1f4068 0%,#0f243d 100%);color:#fff;border-radius:12px;padding:1.4rem 1.6rem;margin:0 0 1.6rem;box-shadow:var(--shadow)}
+  .exec-summary h2{font-size:1.1rem;margin:0 0 .6rem;color:#fff}
+  .exec-summary p{font-size:.88rem;line-height:1.8;color:#dbe3ee;margin:0 0 .5rem}
+  .exec-summary .big{font-size:1.6rem;font-weight:700;color:var(--bunka-gold)}
+  .exec-summary .meta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+  .exec-summary .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.25rem .8rem;font-size:.72rem;color:#fff}
+
+  .systems{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:.8rem 0 1.4rem}
+  @media(max-width:780px){.systems{grid-template-columns:1fr}}
+  .sys{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;box-shadow:var(--shadow);font-size:.82rem}
+  .sys.kanko{border-top:4px solid var(--soft-blue)}
+  .sys.bunka{border-top:4px solid var(--bunka-gold)}
+  .sys.strategy{border-top:4px solid var(--bunka-deep)}
+  .sys h4{font-size:1rem;margin:0 0 .5rem;font-weight:700}
+  .sys .ttl{font-size:.7rem;color:var(--text-sub);letter-spacing:.06em}
+  .sys dl{display:grid;grid-template-columns:90px 1fr;gap:.3rem .6rem;margin-top:.5rem;font-size:.78rem}
+  .sys dt{color:var(--text-sub)}
+  .sys dd{margin:0;color:var(--text)}
+  .sys .status{display:inline-block;font-size:.65rem;border-radius:3px;padding:.15rem .5rem;font-weight:700;background:var(--soft-blue-bg);color:var(--bunka-deep);margin-top:.3rem}
   .sys .status.review{background:var(--soft-gold);color:#8b6914;border:1px solid #e3d29a}
-  .matrix{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-top:8px}
-  .matrix table{width:100%;border-collapse:collapse;font-size:12.5px}
-  .matrix th,.matrix td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-  .matrix thead th{background:#fafafa;font-size:11px;color:var(--muted);font-weight:700;
-    border-bottom:2px solid var(--accent-2)}
+
+  .matrix{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem}
+  .matrix table{width:100%;border-collapse:collapse;font-size:.8rem}
+  .matrix th,.matrix td{padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:.8rem}
+  .matrix thead th{background:#fafafa;font-size:.72rem;color:var(--text-sub);font-weight:700;border-bottom:2px solid var(--bunka-deep)}
   .matrix th:first-child{width:24%}
-  .score{display:inline-block;font-size:11px;font-weight:700;border-radius:3px;padding:2px 8px;white-space:nowrap}
+  .score{display:inline-block;font-size:.7rem;font-weight:700;border-radius:3px;padding:.2rem .5rem;white-space:nowrap}
   .score.s90{background:#d4edda;color:#155724}
   .score.s80{background:#dff0d8;color:#3c763d}
   .score.s70{background:#fcf8e3;color:#8a6d3b}
   .score.s50{background:#fff4e6;color:#d68910}
   .score.s30{background:#f8d7da;color:#721c24}
   .score.s00{background:#e0e0e0;color:#333}
-  .lm-note{background:#fff8e1;border:1px solid #ffd54f;border-left:4px solid var(--gold);
-    border-radius:8px;padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.7}
-  .lm-note strong{color:#8b6914}
-  .partner-box{background:var(--paper);border:1px solid var(--line);border-radius:10px;
-    padding:14px 18px;box-shadow:var(--shadow);margin:8px 0;font-size:13px}
-  .partner-box h4{font-size:14px;color:var(--accent-2);margin:0 0 6px}
-  .partner-box ul{margin:6px 0 0 18px;font-size:12.5px;color:var(--sub);line-height:1.7}
-  .partner-box ul strong{color:var(--ink)}
 
-  /* Footer */
-  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
-  @media(max-width:880px){.related-grid{grid-template-columns:1fr}}
-  .related{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
-  .related:hover{border-color:var(--accent-2);color:var(--accent-2)}
-  .related .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
-  .related .ttl{font-weight:700;margin:4px 0;font-size:14px}
-  .related .desc{font-size:12px;color:var(--sub);line-height:1.6}
-  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+  .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  @media(max-width:780px){.diff-grid{grid-template-columns:1fr}}
+  .diff-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+  .diff-box.add{border-left:5px solid var(--high)}
+  .diff-box.modify{border-left:5px solid var(--mid)}
+  .diff-box.new{border-left:5px solid var(--low)}
+  .diff-box.reframe{border-left:5px solid var(--bunka-deep)}
+  .diff-box h4{font-size:.95rem;margin:0 0 .4rem}
+  .diff-box ul{margin:.3rem 0 0 1rem;font-size:.82rem;color:var(--text-sub);line-height:1.7}
+  .diff-box ul li{margin-bottom:.2rem}
+  .diff-box ul li strong{color:var(--text)}
+
+  .action-list{counter-reset:step;list-style:none;padding:0;margin:.6rem 0 0}
+  .action-list li{counter-increment:step;background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem .9rem 3.2rem;margin-bottom:.6rem;position:relative;font-size:.86rem;box-shadow:var(--shadow)}
+  .action-list li::before{content:counter(step);position:absolute;left:.9rem;top:.9rem;width:1.8rem;height:1.8rem;background:var(--bunka-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+  .action-list li strong{color:var(--bunka-deep)}
+  .action-list li small{display:block;color:var(--text-sub);font-size:.75rem;margin-top:.3rem}
+
+  .logic{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow);margin-top:.5rem}
+  .logic-row{display:grid;grid-template-columns:120px 1fr;gap:.8rem;align-items:center;padding:.6rem 0;border-bottom:1px dashed var(--border);font-size:.84rem}
+  .logic-row:last-child{border-bottom:none}
+  .logic-row .stage{background:var(--bunka-deep);color:#fff;border-radius:6px;padding:.4rem .6rem;font-size:.72rem;font-weight:700;text-align:center;letter-spacing:.04em}
+  .logic-row .stage.input{background:#6c757d}
+  .logic-row .stage.activity{background:var(--soft-blue)}
+  .logic-row .stage.output{background:var(--green)}
+  .logic-row .stage.outcome{background:var(--bunka-gold)}
+  .logic-row .stage.impact{background:var(--bunka-vermilion)}
+
+  .risk{background:#fdfaf3;border:1px solid #e3d29a;border-radius:10px;padding:1rem 1.2rem;margin:.5rem 0;font-size:.85rem}
+  .risk strong{color:#8b6914}
+
+  .cost-table{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+  .cost-table table{width:100%;border-collapse:collapse;font-size:.82rem}
+  .cost-table th,.cost-table td{padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:left}
+  .cost-table thead th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.78rem;letter-spacing:.04em}
+  .cost-table .right{text-align:right}
+  .cost-table .total{background:#fafbfc;font-weight:700}
+
+  .subsidy-matrix{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.6rem;font-size:.78rem}
+  .subsidy-matrix table{width:100%;border-collapse:collapse}
+  .subsidy-matrix th,.subsidy-matrix td{padding:.55rem .65rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:.78rem}
+  .subsidy-matrix thead th{background:var(--bunka-deep);color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-align:center;border-bottom:none}
+  .subsidy-matrix thead th:first-child{text-align:left}
+  .subsidy-matrix tbody td{text-align:center}
+  .subsidy-matrix tbody td:first-child{text-align:left;font-weight:600;color:var(--text)}
+  .subsidy-matrix tbody td:last-child{text-align:left;color:var(--text-sub);font-size:.74rem}
+  .subsidy-matrix tbody tr:hover{background:#fafbfc}
+  .mark-ok{color:var(--green);font-weight:700;font-size:1rem}
+  .mark-ng{color:var(--accent);font-weight:700;font-size:1rem}
+  .mark-cond{color:var(--mid);font-weight:700;font-size:1rem}
+  .legend-row{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.78rem;color:var(--text-sub);margin:.5rem 0 .8rem;padding:.5rem .8rem;background:#fafafa;border-radius:6px}
+
+  .facility-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem;box-shadow:var(--shadow);margin-bottom:.6rem;font-size:.83rem}
+  .facility-card h4{font-size:.92rem;margin:0 0 .4rem;color:var(--bunka-deep);font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .facility-card h4 .amount{font-size:.75rem;color:var(--text-sub);font-weight:600}
+  .facility-card .alloc{display:grid;grid-template-columns:90px 1fr;gap:.3rem .6rem;font-size:.78rem;margin-top:.3rem;padding:.4rem 0;border-top:1px dashed var(--border)}
+  .facility-card .alloc dt{color:var(--soft-blue);font-weight:700;font-size:.7rem}
+  .facility-card .alloc dt.bunka{color:var(--bunka-gold)}
+  .facility-card .alloc dd{margin:0;color:var(--text-sub)}
+  .facility-card .alloc dd strong{color:var(--text)}
+
+  .checklist-confirm{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow);margin-top:.5rem}
+  .checklist-confirm h4{font-size:.92rem;color:var(--bunka-deep);margin:0 0 .6rem;font-weight:700}
+  .checklist-confirm .item{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;border-bottom:1px dashed var(--border);font-size:.83rem}
+  .checklist-confirm .item:last-child{border-bottom:none}
+  .checklist-confirm .item input[type="checkbox"]{margin-top:.4rem;accent-color:var(--bunka-deep)}
+  .checklist-confirm .item .text{flex:1}
+  .checklist-confirm .item small{color:var(--text-sub);display:block;margin-top:.15rem;font-size:.72rem}
+
+  .lm-intro{font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .8rem;line-height:1.7}
+  .lm-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin:.6rem 0 1rem;position:relative}
+  @media(max-width:880px){.lm-flow{grid-template-columns:1fr}}
+  .lm-stage{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column;font-size:.78rem}
+  .lm-stage::after{content:"▶";position:absolute;right:-.7rem;top:50%;transform:translateY(-50%);color:var(--bunka-deep);font-size:1rem;font-weight:700;background:var(--bg);padding:0 .1rem;z-index:2}
+  .lm-stage:last-child::after{display:none}
+  @media(max-width:880px){.lm-stage::after{right:50%;top:auto;bottom:-1.2rem;transform:translateX(50%) rotate(90deg)}}
+  .lm-stage .stage-num{display:inline-block;background:var(--bunka-deep);color:#fff;border-radius:999px;width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;font-size:.72rem;font-weight:700;margin-bottom:.3rem}
+  .lm-stage h5{font-size:.92rem;color:var(--bunka-deep);margin:0 0 .4rem;font-weight:700;letter-spacing:.04em}
+  .lm-stage h5 small{font-size:.7rem;color:var(--text-sub);font-weight:400;display:block;margin-top:.1rem}
+  .lm-stage ul{list-style:none;padding:0;margin:0;font-size:.74rem;color:var(--text-sub);line-height:1.7;flex:1}
+  .lm-stage ul li{padding:.15rem 0;border-bottom:1px dashed #f0f0f0}
+  .lm-stage ul li:last-child{border-bottom:none}
+  .lm-stage ul li strong{color:var(--text);font-weight:600}
+  .lm-stage.s1{border-top:4px solid #6c757d}
+  .lm-stage.s2{border-top:4px solid var(--soft-blue)}
+  .lm-stage.s3{border-top:4px solid var(--green)}
+  .lm-stage.s4{border-top:4px solid var(--bunka-gold)}
+  .lm-stage.s5{border-top:4px solid var(--bunka-vermilion)}
+
+  .lm-matrix{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem;font-size:.74rem;overflow-x:auto}
+  .lm-matrix table{width:100%;border-collapse:collapse;min-width:900px}
+  .lm-matrix th,.lm-matrix td{padding:.5rem .55rem;border:1px solid var(--border);text-align:left;vertical-align:top;font-size:.74rem;line-height:1.5}
+  .lm-matrix thead th{background:var(--bunka-deep);color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-align:center}
+  .lm-matrix thead th:first-child{text-align:left;background:#1a3354}
+  .lm-matrix tbody th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.74rem;width:18%;text-align:left}
+  .lm-matrix tbody tr:nth-child(odd) td{background:#fcfcfc}
+
+  .kpi-map{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem;font-size:.78rem}
+  .kpi-map table{width:100%;border-collapse:collapse}
+  .kpi-map th,.kpi-map td{padding:.6rem .7rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:.78rem}
+  .kpi-map thead th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.74rem;letter-spacing:.04em;border-bottom:2px solid var(--bunka-gold)}
+  .kpi-map .stage-tag{display:inline-block;font-size:.65rem;padding:.15rem .5rem;border-radius:3px;font-weight:700;letter-spacing:.04em}
+  .kpi-map .tag-output{background:var(--soft-green);color:var(--green)}
+  .kpi-map .tag-outcome{background:#fdf6e3;color:#8b6914}
+  .kpi-map .tag-impact{background:var(--soft-red);color:var(--bunka-vermilion)}
+  .kpi-map .right{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  .kpi-map .baseline{color:var(--text-sub)}
+  .kpi-map .target{color:var(--green)}
+
+  .lm-preview{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.2rem 1rem;box-shadow:var(--shadow);margin:.8rem 0 1rem;text-align:center}
+  .lm-preview .preview-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;text-align:left;flex-wrap:wrap;gap:.5rem}
+  .lm-preview .preview-tag{font-size:.72rem;color:var(--bunka-deep);background:var(--soft-blue-bg);border:1px solid #c5d3e6;border-radius:999px;padding:.25rem .8rem;font-weight:700;letter-spacing:.04em}
+  .lm-preview h4{font-size:1rem;color:var(--bunka-deep);font-weight:700;margin:0;display:inline-block}
+  .lm-preview .download-row{display:flex;gap:.5rem;flex-wrap:wrap}
+  .lm-preview .dl-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;background:var(--bunka-deep);color:#fff;text-decoration:none;border:none;border-radius:6px;padding:.45rem .9rem;font-weight:700;letter-spacing:.04em}
+  .lm-preview .dl-btn:hover{background:#0f243d;color:#fff}
+  .lm-preview .dl-btn.alt{background:#fff;color:var(--bunka-deep);border:1.5px solid var(--bunka-deep)}
+  .lm-preview .dl-btn.alt:hover{background:var(--bunka-deep);color:#fff}
+  .lm-preview img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto}
+  .lm-preview .caption{font-size:.78rem;color:var(--text-sub);margin-top:.6rem;line-height:1.7;text-align:left}
+  .lm-preview .caption strong{color:var(--bunka-deep)}
+
+  .lm-note{background:#fff8e1;border:1px solid #ffd54f;border-left:4px solid var(--gold);border-radius:8px;padding:.8rem 1.1rem;margin:.8rem 0;font-size:.83rem;line-height:1.7}
+  .lm-note strong{color:#8b6914}
+  .lm-note ul{margin:.3rem 0 0 1.2rem;padding:0}
+  .lm-note li{margin:.15rem 0}
+
+  .timeline-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-top:.8rem;font-size:.72rem}
+  @media(max-width:780px){.timeline-flow{grid-template-columns:1fr}}
+  .timeline-flow .step{background:#fff;border:1px solid var(--border);border-top:3px solid var(--bunka-gold);border-radius:8px;padding:.6rem .7rem;text-align:left}
+  .timeline-flow .step .y{font-weight:700;color:var(--bunka-deep);font-size:.78rem;display:block;margin-bottom:.2rem}
+  .timeline-flow .step .h{color:var(--soft-blue);font-weight:600;font-size:.7rem}
+  .timeline-flow .step .b{color:var(--bunka-gold);font-weight:600;font-size:.7rem}
+  .timeline-flow .step .desc{color:var(--text-sub);font-size:.7rem;margin-top:.3rem;line-height:1.5}
+
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.5rem 0 1rem}
+  @media(max-width:780px){.related-grid{grid-template-columns:1fr}}
+  .related{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;text-decoration:none;color:inherit;box-shadow:var(--shadow);font-size:.82rem;display:block}
+  .related:hover{border-color:var(--bunka-deep);transform:translateY(-2px)}
+  .related .cat{font-size:.7rem;color:var(--text-sub);letter-spacing:.06em}
+  .related .ttl{font-weight:700;margin:.2rem 0;font-size:.92rem}
+  .related .desc{font-size:.75rem;color:var(--text-sub);line-height:1.6}
+  footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);border-top:1px solid var(--border);margin-top:2rem}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="crumbs">
-    <a href="../index.html">ポータル</a> ＞ 文化観光推進事業 ＞ 赤湯&南陽市
+    <a href="../index.html">ポータル</a> ＞ 文化観光推進事業 ＞ <strong>赤湯&南陽市</strong>
   </div>
 
   <div class="status-row">
-    <span class="top-tag">文化庁・文化観光推進法</span>
+    <span class="top-tag">📜 文化庁・文化観光推進法</span>
     <span class="top-tag case">♨ 赤湯&南陽市案件</span>
     <span class="top-status">申請準備中</span>
   </div>
 
   <h1 class="title">赤湯&南陽市</h1>
-  <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（赤湯&南陽市・熊野大社×赤湯温泉）の統合管理ページ。ダッシュボードと流用可能性分析をタブで切り替えられます。</p>
+  <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（赤湯&南陽市・熊野大社×赤湯温泉×赤湯駅）の統合管理ページ。ダッシュボードと流用可能性分析（差分・補助金重複ルール・施設別充当・ロジックモデル含む全構成）をタブで切り替えられます。</p>
 
   <div class="info-bar">
     <span>📋 所管：文化庁参事官（文化拠点担当）</span>
@@ -240,15 +354,12 @@
     </div>
   </div>
 
-  <!-- Tab Navigation -->
   <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="dashboard" role="tab">📊 ダッシュボード</button>
-    <button class="tab-btn" data-tab="analysis" role="tab">🔁 流用可能性分析 <span class="count">17</span></button>
+    <button class="tab-btn" data-tab="analysis" role="tab">🔁 流用可能性分析</button>
   </div>
 
-  <!-- ============================== -->
-  <!-- Tab 1: Dashboard               -->
-  <!-- ============================== -->
+  <!-- ============================== Tab 1: Dashboard ============================== -->
   <div class="tab-panel active" data-tab="dashboard">
 
     <section class="s">
@@ -256,7 +367,7 @@
       <div class="kgi-box">
         <h4>地域成長戦略コンセプト</h4>
         <p style="font-size:14px;margin:6px 0;color:#fff;font-weight:700">「人と地域が整うサステナブルエリア／『食』と『農』と『整い』を軸とした観光まちづくり」</p>
-        <p style="font-size:13px;color:#dbe3ee;margin:6px 0">東北のミシュランキー3つのうち2つを有するガストロノミーのエリア・<strong style="color:#fff">赤湯温泉</strong>、日本三大熊野の一つで縁結びの聖地として知られる<strong style="color:#fff">熊野大社</strong>、東京から2時間半で到着する<strong style="color:#fff">赤湯駅</strong> ― この3拠点を中核エリアとし、欧米豪の富裕層・長期滞在型インバウンドを主要ターゲットとした、ウォーカブル観光地としての回遊性創出を目指す。</p>
+        <p style="font-size:13px;color:#dbe3ee;margin:6px 0">東北のミシュランキー3つのうち2つを有するガストロノミーのエリア・<strong style="color:#fff">赤湯温泉</strong>、日本三大熊野の一つで縁結びの聖地・<strong style="color:#fff">熊野大社</strong>、東京から2時間半の<strong style="color:#fff">赤湯駅</strong> ― この3拠点を中核エリアとし、欧米豪富裕層・長期滞在型インバウンドを主要ターゲットとした、ウォーカブル観光地としての回遊性創出を目指す。</p>
       </div>
     </section>
 
@@ -333,147 +444,66 @@
     </section>
 
     <section class="s">
-      <h2 class="sec">🌟 主要観光資源（地域計画 中核要素）</h2>
+      <h2 class="sec">🌟 主要観光資源</h2>
       <h3 class="sub">歴史・文化</h3>
       <div class="resource-grid">
-        <div class="resource"><div class="cat-tag">📿 歴史</div><div class="nm">熊野大社</div><div class="desc">大同元年（806年）創建・1,200年以上の古社。和歌山熊野三山・長野熊野皇大神社と並ぶ「日本三熊野」、「東北の伊勢」とも称される。命の源「むすひ」の神様、縁結びの聖地として年間約40万人参拝。「三羽のうさぎ」隠し彫り伝説／満月夜「月結び」祈願祭／上杉・伊達・後白河天皇ゆかり</div></div>
-        <div class="resource"><div class="cat-tag">♨ 文化</div><div class="nm">赤湯温泉</div><div class="desc">寛治7年（1093年）開湯／930余年。米沢藩主・上杉家の御殿湯。半径2kmに6ワイナリー集積、ぶどう収穫量国内3位。2025年「山形座 瀧波」「OSTERIA SINCERITÀ」がミシュランキー2施設を獲得。東北のミシュランキー3つのうち2つが赤湯温泉に集中</div></div>
-        <div class="resource"><div class="cat-tag">🏘 文化</div><div class="nm">つるのこ（漆山地区）</div><div class="desc">置賜地方の民話「鶴の恩返し」伝承地。古民家再生拠点。地域住民・移住者・来訪者が交わる「生きた文化の継承の場」として機能</div></div>
+        <div class="resource"><div class="cat-tag">📿 歴史</div><div class="nm">熊野大社</div><div class="desc">大同元年（806年）創建・1,200年以上の古社。日本三熊野の一つ。縁結びの聖地として年間約40万人参拝。「三羽のうさぎ」隠し彫り伝説／満月夜「月結び」祈願祭</div></div>
+        <div class="resource"><div class="cat-tag">♨ 文化</div><div class="nm">赤湯温泉</div><div class="desc">寛治7年（1093年）開湯／930余年。米沢藩主・上杉家の御殿湯。半径2kmに6ワイナリー集積。2025年「山形座 瀧波」「OSTERIA SINCERITÀ」がミシュランキー2施設を獲得</div></div>
+        <div class="resource"><div class="cat-tag">🏘 文化</div><div class="nm">つるのこ（漆山地区）</div><div class="desc">置賜地方の民話「鶴の恩返し」伝承地。古民家再生拠点。地域住民・移住者・来訪者が交わる「生きた文化の継承の場」</div></div>
       </div>
       <h3 class="sub">食・農業</h3>
       <div class="resource-grid">
-        <div class="resource"><div class="cat-tag">🌾 食</div><div class="nm">日本一の米（黒澤ファーム）</div><div class="desc">2026年1月「お米番付」（全国190点出品・ミシュラン星付料理人審査）で南陽市黒澤拓真氏「つや姫」が最優秀賞受賞。世界屈指のガストロノミー体験の核となりうる素材</div></div>
-        <div class="resource"><div class="cat-tag">🍇 食</div><div class="nm">ワイナリー集積地</div><div class="desc">置賜盆地特有の寒暖差と独自テロワール。山形県内のぶどう発祥の地、半径2km圏内に6ワイナリー集積。東北最古「酒井ワイナリー」〜14ヶ国輸出「グレープリパブリック」まで多様性</div></div>
-        <div class="resource"><div class="cat-tag">🐟 食</div><div class="nm">鯉料理</div><div class="desc">米沢藩9代藩主上杉鷹山公が飢饉対策・栄養源確保のため養殖を奨励。地域の食文化として継承</div></div>
-      </div>
-      <h3 class="sub">自然・絶景</h3>
-      <div class="resource-grid">
-        <div class="resource"><div class="cat-tag">⛰ 自然</div><div class="nm">十分一山の雲海・南陽スカイパーク</div><div class="desc">標高約500m・赤湯市街地から車で10分。放射冷却により置賜盆地を乳白色に覆う雲海絶景スポット。蔵王・吾妻・飯豊・朝日連峰が島のように頭を出す360度展望。秋（10〜12月中旬）の早朝限定。山形座 瀧波等の宿で「雲海ツアー」提供</div></div>
+        <div class="resource"><div class="cat-tag">🌾 食</div><div class="nm">日本一の米（黒澤ファーム）</div><div class="desc">2026年1月「お米番付」最優秀賞受賞。世界屈指のガストロノミー体験の核となりうる素材</div></div>
+        <div class="resource"><div class="cat-tag">🍇 食</div><div class="nm">ワイナリー集積地</div><div class="desc">半径2km圏内に6ワイナリー集積。東北最古「酒井ワイナリー」〜14ヶ国輸出「グレープリパブリック」まで多様性</div></div>
+        <div class="resource"><div class="cat-tag">🐟 食</div><div class="nm">鯉料理</div><div class="desc">米沢藩9代藩主上杉鷹山公が飢饉対策・栄養源確保のため養殖を奨励</div></div>
       </div>
     </section>
 
     <section class="s">
       <h2 class="sec">👥 推進体制（連携10事業者・同意書取得済）</h2>
-      <p style="font-size:13px;color:var(--sub);margin-bottom:8px">R8観光庁ソフト事業申請時に「申請事業者との連携に関する同意書」を内部決裁を経て発行済み。文化観光推進法地域計画申請にあたっては、各事業者と再度連携合意を取得（既存合意の延長）。</p>
       <div class="partners">
         <table>
           <thead><tr><th style="width:18%">事業者</th><th style="width:14%">代表者</th><th style="width:14%">担当者</th><th>担当業務（地域計画における役割）</th></tr></thead>
           <tbody>
-            <tr><td><strong>南陽市観光協会</strong><span class="role-tag lead">申請主体</span></td><td>結城 秀人（会長）</td><td>櫻井 義大（事務局長）</td><td>プロジェクトリーダー／本事業全体の統括・進捗管理／観光まちづくりビジョン案策定推進／推進事業体組成検討／関係者間合意形成／事務局</td></tr>
+            <tr><td><strong>南陽市観光協会</strong><span class="role-tag lead">申請主体</span></td><td>結城 秀人（会長）</td><td>櫻井 義大（事務局長）</td><td>プロジェクトリーダー／本事業全体の統括・進捗管理／観光まちづくりビジョン案策定推進／推進事業体組成検討</td></tr>
             <tr><td><strong>南陽市</strong></td><td>白岩 孝夫（市長）</td><td>渡邊 正規（商工観光課長）</td><td>域内合意形成支援／民間事業者を巻き込んだ中期観光振興計画に関する協議・調整</td></tr>
-            <tr><td><strong>南陽市商工会</strong></td><td>菅野 直彦（会長）</td><td>岸 恭平</td><td>市内民間事業者との連携支援／本事業全般に関する各種連携</td></tr>
-            <tr><td><strong>宗教法人 熊野大社</strong><span class="role-tag">中核施設</span></td><td>北野 達（宮司）</td><td>北野 淑人（権禰宜）</td><td>歴史・文化の主要連携先／回遊性をもつ動線構築に係る調査・提案／ワークショップ会場提供</td></tr>
-            <tr><td><strong>赤湯温泉旅館協同組合</strong><span class="role-tag">観光主軸</span></td><td>丸森 周平（組合長）</td><td>須藤 宏介（副組合長）</td><td>先進地視察の企画・実施／観光の主要連携先／滞在拠点整備等に係る調査・検討・事業性調査</td></tr>
-            <tr><td><strong>赤湯温泉料理飲食店組合</strong></td><td>渡部 英孝（組合長）</td><td>渡部 英孝</td><td>食分野の主要連携先／ガストロノミー・ローカル体験事業／拠点に係る事業性検証</td></tr>
-            <tr><td><strong>赤湯駅（JR東日本）</strong><span class="role-tag">回遊網</span></td><td>入間川 悟（米沢駅長）</td><td>入間川 悟</td><td>観光主要スポット拠点／回遊・周遊を目指した移動網構築に向けた連携</td></tr>
+            <tr><td><strong>南陽市商工会</strong></td><td>菅野 直彦（会長）</td><td>岸 恭平</td><td>市内民間事業者との連携支援</td></tr>
+            <tr><td><strong>宗教法人 熊野大社</strong><span class="role-tag">中核施設</span></td><td>北野 達（宮司）</td><td>北野 淑人（権禰宜）</td><td>歴史・文化の主要連携先／回遊性をもつ動線構築に係る調査・提案</td></tr>
+            <tr><td><strong>赤湯温泉旅館協同組合</strong><span class="role-tag">観光主軸</span></td><td>丸森 周平（組合長）</td><td>須藤 宏介（副組合長）</td><td>観光の主要連携先／滞在拠点整備等に係る調査・検討・事業性調査</td></tr>
+            <tr><td><strong>赤湯温泉料理飲食店組合</strong></td><td>渡部 英孝（組合長）</td><td>渡部 英孝</td><td>食分野の主要連携先／ガストロノミー・ローカル体験事業</td></tr>
+            <tr><td><strong>赤湯駅（JR東日本）</strong><span class="role-tag">回遊網</span></td><td>入間川 悟（米沢駅長）</td><td>入間川 悟</td><td>観光主要スポット拠点／回遊・周遊を目指した移動網構築</td></tr>
             <tr><td><strong>銀行団／株式会社山形銀行</strong></td><td>三坂 英彦（南陽支店長）</td><td>三坂 英彦</td><td>ファンドの組成支援／ファイナンス計画作成アドバイザー</td></tr>
-            <tr><td><strong>やまがたアルカディア観光局</strong><span class="role-tag">DMO登録</span></td><td>内谷 重治（理事長）</td><td>佐藤 和之／鷲見 孝（専務理事）</td><td>住民・事業者アンケート実施／中核エリア全体のブランディング・PR戦略策定／域内合意形成支援</td></tr>
-            <tr><td><strong>Bina合同会社</strong></td><td>小坂 典子（代表社員）</td><td>小坂 典子</td><td>推進事業体設立F/S／面的開発コンセプトF/S・推進計画策定／スポット間移動網F/S</td></tr>
-            <tr><td><strong>プラットヨネザワ株式会社</strong><span class="role-tag lead">中核連携</span><span class="role-tag">DMO登録</span></td><td>宮嶌 浩聡（CEO）</td><td>小田 航平（COO）</td><td>事業者ワークショップ企画・運営／観光まちづくりビジョン案策定・意見集約／候補観光資源調査／市民向けシンポジウム企画・実施／プロジェクト全体マネジメント支援</td></tr>
+            <tr><td><strong>やまがたアルカディア観光局</strong><span class="role-tag">DMO登録</span></td><td>内谷 重治（理事長）</td><td>佐藤 和之／鷲見 孝</td><td>住民・事業者アンケート実施／ブランディング・PR戦略策定</td></tr>
+            <tr><td><strong>Bina合同会社</strong></td><td>小坂 典子（代表社員）</td><td>小坂 典子</td><td>推進事業体設立F/S／面的開発コンセプトF/S／移動網F/S</td></tr>
+            <tr><td><strong>プラットヨネザワ株式会社</strong><span class="role-tag lead">中核連携</span><span class="role-tag">DMO登録</span></td><td>宮嶌 浩聡（CEO）</td><td>小田 航平（COO）</td><td>事業者ワークショップ企画・運営／観光まちづくりビジョン案策定／プロジェクト全体マネジメント支援</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="s">
-      <h2 class="sec">🎯 KGI / KPI（地域計画ベース）</h2>
-      <div class="grid grid-2">
-        <div class="kgi-box">
-          <h4>📌 KGI（重要目標達成指標）</h4>
-          <ul>
-            <li><strong>① 観光まちづくりビジョン策定・合意</strong>：「人と地域が整うサステナブルエリア」を基本コンセプトとした観光まちづくりビジョン案（計画年度：2027〜2031年度）を策定し、関係者・行政・地域住民の合意を得る</li>
-            <li><strong>② 推進事業体（DMO/エリアマネジメント組織）設立F/Sと合意形成</strong>：組織形態・役割分担・資金スキームの骨格について関係者間の合意形成</li>
-            <li><strong>③ 面的開発の方向性と移動網設計</strong>：3拠点（熊野大社・赤湯温泉・赤湯駅）を結ぶウォーカブル動線・グリーンモビリティ等の方向性確定</li>
-          </ul>
-        </div>
-        <div class="kgi-box" style="background:linear-gradient(135deg,#b58a2e,#8b6914)">
-          <h4>📈 KPI（進捗指標・地域計画想定）</h4>
-          <ul>
-            <li><strong>事業者ワークショップ：</strong>令和8年度内に5回開催</li>
-            <li><strong>住民・事業者アンケート：</strong>1回・300件</li>
-            <li><strong>R9 1月目途：</strong>観光まちづくりビジョン案合意・南陽市次期観光振興計画への盛り込み</li>
-            <li><strong>市民向けシンポジウム：</strong>1回開催</li>
-            <li><strong>5年計画KPI：</strong>来訪者数+50%／インバウンド比率20%／消費単価+50%／文化財理解度80%以上</li>
-            <li><strong>商品売上：</strong>6,000-8,000万円（推定R7）→ 1.2億円規模（R12）</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="s">
-      <h2 class="sec">✅ 提出書類チェックリスト（地域計画専用）</h2>
+      <h2 class="sec">✅ 提出書類チェックリスト</h2>
       <div class="grid grid-2">
         <div class="checklist">
           <h4><span class="step-tag">Step1</span>申請前相談（〜5/12 17:00）</h4>
           <div class="check-item"><input type="checkbox"><div class="desc"><strong>① 申請前相談申込書</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank">Excel</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_01.pdf" target="_blank">PDF</a></div></div></div>
-          <div class="check-item"><input type="checkbox"><div class="desc"><strong>② 地域計画 様式（未定稿可）</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank">Word</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94093402_08.pdf" target="_blank">PDF</a></div><small>R8観光庁ソフト事業の戦略文書を流用</small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>② 地域計画 様式（未定稿可）</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank">Word</a></div><small>R8観光庁ソフト事業の戦略文書を流用</small></div></div>
           <div class="check-item"><input type="checkbox"><div class="desc"><strong>送付先</strong><br><a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a></div></div>
         </div>
         <div class="checklist">
           <h4><span class="step-tag">Step2</span>認定申請（6/1〜6/3 17:00）</h4>
           <div class="check-item"><input type="checkbox"><div class="desc"><strong>① 地域計画 申請書</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/92811001_03.docx" target="_blank">Word</a></div></div></div>
           <div class="check-item"><input type="checkbox"><div class="desc"><strong>② 地域計画 様式（最終版）</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/93862101_06.docx" target="_blank">Word</a></div></div></div>
-          <div class="check-item"><input type="checkbox"><div class="desc"><strong>③ 概要資料</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/92787101_15.pptx" target="_blank">PPTX</a></div></div></div>
-          <div class="check-item"><input type="checkbox"><div class="desc"><strong>④ ロジックモデル</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">PPTX</a></div><small>※レキマチ版を参考に南陽版を作成</small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>③ 概要資料</strong></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>④ ロジックモデル</strong><small>※<a href="#analysis" onclick="document.querySelector('[data-tab=analysis].tab-btn').click();">分析タブにドラフト完成</a></small></div></div>
           <div class="check-item"><input type="checkbox"><div class="desc"><strong>⑤ 連携合意書 ★地域計画特有</strong><small>10事業者（観光庁ソフト事業の同意書を流用可）</small></div></div>
-          <div class="check-item"><input type="checkbox"><div class="desc"><strong>⑥ 参考資料</strong><small>R8観光庁ソフト事業申請書一式／南陽市観光振興計画／熊野大社参拝者統計／赤湯温泉宿泊統計</small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>⑥ 参考資料</strong></div></div>
         </div>
-      </div>
-    </section>
-
-    <section class="s">
-      <h2 class="sec">📋 タスク・担当者管理</h2>
-      <table class="tasks">
-        <thead><tr><th style="width:30%">タスク</th><th style="width:20%">担当</th><th style="width:15%">期限</th><th style="width:15%">ステータス</th><th>メモ</th></tr></thead>
-        <tbody>
-          <tr><td>地域計画方針の最終決定</td><td><input type="text"></td><td>5/2(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>関係者キックオフ（南陽市観光協会・熊野大社・温泉組合）</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>R8観光庁ソフト事業との整合性確認</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>連携合意書ドラフト（観光庁同意書から流用）</td><td><input type="text"></td><td>5/5(火)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>地域計画書ドラフト v1作成</td><td><input type="text"></td><td>5/8(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>申請前相談申込書 提出</td><td><input type="text"></td><td>5/12(火)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>連携合意書 正式締結（10事業者）</td><td><input type="text"></td><td>5/18(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>文化庁との相談 → 計画書ブラッシュアップ</td><td><input type="text"></td><td>〜5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>概要資料・ロジックモデル作成</td><td><input type="text"></td><td>5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-          <tr><td>正式申請（電子＋郵送）</td><td><input type="text"></td><td>6/3(水)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="s">
-      <h2 class="sec">🔗 一次資料・参考資料リンク集</h2>
-      <div class="links-grid">
-        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/92263701.html" target="_blank">
-          <span class="cat">本案内ページ</span><span class="ttl">拠点計画及び地域計画の作成・申請</span>
-          <span class="desc">スケジュール・様式すべての一次情報</span>
-        </a>
-        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94207001_03.pdf" target="_blank">
-          <span class="cat">ガイド</span><span class="ttl">文化観光推進ガイドブック（全体版・9MB）</span>
-          <span class="desc">P16-17にロジックモデル説明</span>
-        </a>
-        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_02.pdf" target="_blank">
-          <span class="cat">申請ガイド</span><span class="ttl">認定申請ガイドブック（PDF・6MB）</span>
-          <span class="desc">様式の書き方・審査要点を解説</span>
-        </a>
-        <a class="link-card" href="https://drive.google.com/drive/u/0/folders/1yWnH4b4xmcwqNy0nddx-4yAc1JER6dln" target="_blank">
-          <span class="cat">並走事業</span><span class="ttl">📁 R8観光庁ソフト事業 申請書一式</span>
-          <span class="desc">南陽市観光協会申請・987.35万円・本案件のベース戦略文書</span>
-        </a>
-        <a class="link-card" href="mailto:info@nanyoshi-kanko.jp">
-          <span class="cat">申請者連絡先</span><span class="ttl">南陽市観光協会</span>
-          <span class="desc">info@nanyoshi-kanko.jp ／ 0238-33-9512（事務局長 櫻井氏）</span>
-        </a>
-        <a class="link-card" href="mailto:k.oda@plat-yonezawa.jp">
-          <span class="cat">推進担当</span><span class="ttl">プラットヨネザワ COO 小田航平氏</span>
-          <span class="desc">k.oda@plat-yonezawa.jp ／ 0238-33-0056</span>
-        </a>
       </div>
     </section>
   </div>
 
-  <!-- ============================== -->
-  <!-- Tab 2: Reuse Analysis          -->
-  <!-- ============================== -->
+  <!-- ============================== Tab 2: Reuse Analysis (FULL) ============================== -->
   <div class="tab-panel" data-tab="analysis">
 
     <div class="exec-summary">
@@ -485,7 +515,7 @@
         <span class="pill">🗺 観光資源整理 95%</span>
         <span class="pill">🏗 連携体制 90%（同意書取得済）</span>
         <span class="pill">🎯 KGI/KPI骨格 85%</span>
-        <span class="pill">📐 ロジックモデル 新規</span>
+        <span class="pill">📐 ロジックモデル ドラフト完成</span>
       </div>
     </div>
 
@@ -517,105 +547,409 @@
           <dt>強み</dt><dd>R8観光庁事業との並走で説得力倍増</dd>
         </dl>
       </div>
-    </div>
-
-    <div class="lm-note">
-      <strong>💡 構造上の優位性：</strong>本案件は、観光庁ソフト事業（R8）が<strong>「観光まちづくりビジョン策定」</strong>を担う一方、文化観光推進法地域計画（R8〜R12）が<strong>「文化観光中核エリアとしての制度認定と5年継続支援」</strong>を担うという明確な役割分担が可能。米沢レキマチ案件（ハード補助・ソフト補助との重複調整が必要）と比較して、補助金重複リスクが低く、両事業を相互補完的に走らせる設計が容易。
-    </div>
-
-    <h2 class="sec">🌟 既に完成している戦略要素（流用可能・90%以上）</h2>
-    <div class="partner-box">
-      <h4>① 中核コンセプト（そのまま流用可）</h4>
-      <ul>
-        <li><strong>「人と地域が整うサステナブルエリア／『食』と『農』と『整い』を軸とした観光まちづくり」</strong></li>
-        <li>3拠点中核エリア：<strong>熊野大社（縁結び）／赤湯温泉（ガストロノミー）／赤湯駅</strong></li>
-        <li>欧米豪富裕層・長期滞在型インバウンドを主要ターゲット</li>
-        <li>ナショナルジオグラフィック「2026年に行くべき世界の旅行先25選」山形県唯一選出を追い風として活用</li>
-      </ul>
-    </div>
-    <div class="partner-box">
-      <h4>② 観光資源整理（そのまま流用可）</h4>
-      <ul>
-        <li><strong>歴史・文化：</strong>熊野大社（東北の伊勢・三羽の兎・年間40万人）／赤湯温泉（930年・上杉の御湯・ミシュランキー2施設）／つるのこ</li>
-        <li><strong>食・農：</strong>日本一の米（黒澤ファーム）／県内最多ワイナリー集積地／鯉料理／東北最古ワイナリー</li>
-        <li><strong>自然：</strong>十分一山の雲海（南陽スカイパーク）</li>
-      </ul>
-    </div>
-    <div class="partner-box">
-      <h4>③ 連携10事業者（同意書取得済・流用可）</h4>
-      <ul>
-        <li>南陽市観光協会（申請主体）／南陽市／南陽市商工会／宗教法人熊野大社／赤湯温泉旅館協同組合／赤湯温泉料理飲食店組合／赤湯駅（JR東日本）／株式会社山形銀行／やまがたアルカディア観光局／Bina合同会社／プラットヨネザワ株式会社</li>
-      </ul>
-    </div>
-    <div class="partner-box">
-      <h4>④ 年次別ロードマップ R8〜R12（流用可）</h4>
-      <ul>
-        <li><strong>R8（2026）：</strong>観光まちづくりビジョン策定・推進事業体F/S・面的開発F/S・移動網F/S・市民シンポジウム</li>
-        <li><strong>R9（2027）：</strong>"設立・着手"年度。推進事業体正式設立／3拠点運営体制／ファンド組成完了／グリーンスローモビリティ実証実験</li>
-        <li><strong>R10（2028）：</strong>"投資・拡張"年度。民間ファンド活用整備／ガストロノミー体験磨き上げ／公共空間利活用</li>
-        <li><strong>R11（2029）：</strong>"自走・発信"年度。推進事業体の収益自立化／インバウンド宿泊客数・域内消費額の成果報告／全国モデル発信</li>
-        <li><strong>R12（2030）：</strong>5年計画完了・自立運営確立・継続フェーズへ</li>
-      </ul>
+      <div class="sys strategy">
+        <div class="ttl">並走運用の優位性</div>
+        <h4>2制度補完設計</h4>
+        <dl>
+          <dt>観光庁</dt><dd>R8単年度のビジョン策定・推進事業体F/S</dd>
+          <dt>文化庁</dt><dd>R8〜R12の5年継続支援・JNTO海外発信・専門家派遣</dd>
+          <dt>重複</dt><dd>役割分担明確のため重複リスクは低い</dd>
+          <dt>合計上限</dt><dd>5年累計 最大3.85億円</dd>
+        </dl>
+      </div>
     </div>
 
     <h2 class="sec">🔁 成果物別 流用可能性マトリクス</h2>
-    <p style="font-size:13px;color:var(--sub);margin:0 0 8px">凡例：<span class="score s90">90%+</span>ほぼそのまま流用 <span class="score s80">70-90%</span>軽微な修正で流用 <span class="score s50">40-70%</span>再構成が必要 <span class="score s30">〜40%</span>新規作成寄り</p>
+    <p style="font-size:.85rem;color:var(--text-sub);margin:0 0 .5rem">凡例：<span class="score s90">90%+</span>ほぼそのまま流用 <span class="score s80">70-90%</span>軽微な修正で流用 <span class="score s50">40-70%</span>再構成が必要 <span class="score s30">〜40%</span>新規作成寄り</p>
     <div class="matrix">
       <table>
         <thead><tr><th>成果物カテゴリ</th><th>既存資産（R8観光庁ソフト事業）</th><th>流用度</th><th>必要な作業</th></tr></thead>
         <tbody>
-          <tr><td><strong>① 戦略コンセプト</strong></td><td>「整う観光まちづくり」「人と地域が整うサステナブルエリア」「食×農×整い」</td><td><span class="score s90">95%</span></td><td>そのまま流用</td></tr>
+          <tr><td><strong>① 戦略コンセプト</strong></td><td>「整う観光まちづくり」「人と地域が整うサステナブルエリア」「食×農×整い」</td><td><span class="score s90">95%</span></td><td>そのまま流用。文化観光フレームでは「文化資源を起点とした好循環」を上位概念として接続</td></tr>
           <tr><td><strong>② 観光資源整理</strong></td><td>歴史文化（熊野大社・赤湯温泉・つるのこ）／食農（米・ワイン・鯉料理）／自然（雲海）</td><td><span class="score s90">95%</span></td><td>そのまま流用。文化資源としての価値づけ強化</td></tr>
-          <tr><td><strong>③ 中核施設・連携施設</strong></td><td>熊野大社（中核）／赤湯温泉街／赤湯駅／漆山地区つるのこ</td><td><span class="score s90">95%</span></td><td>地域計画の「中核施設」「連携施設」として再分類</td></tr>
+          <tr><td><strong>③ 中核施設・連携施設</strong></td><td>熊野大社（中核）／赤湯温泉街／赤湯駅／漆山地区つるのこ</td><td><span class="score s90">95%</span></td><td>地域計画の「中核施設」「連携施設」として再分類のみ</td></tr>
           <tr><td><strong>④ ターゲット層設定</strong></td><td>欧米豪富裕層・長期滞在インバウンド／国内ライフスタイル感度層</td><td><span class="score s90">90%</span></td><td>「文化的・歴史的背景の理解を深める来訪者」として再ラベリング</td></tr>
           <tr><td><strong>⑤ SWOT分析</strong></td><td>豊かな食文化・ガストロノミー／顔の見える関係性／ガストロノミー需要拡大／訪日外国人増加</td><td><span class="score s90">90%</span></td><td>「文化資源」「文化観光」の文脈で再構成</td></tr>
-          <tr><td><strong>⑥ 連携体制（10事業者）</strong></td><td>南陽市・商工会・熊野大社・温泉組合・料飲組合・JR東日本・山形銀行・アルカディア・Bina・プラットヨネザワ</td><td><span class="score s90">90%</span></td><td>★地域計画必須「連携合意書」を観光庁同意書から作成</td></tr>
-          <tr><td><strong>⑦ KGI/KPI骨格</strong></td><td>R8観光まちづくりビジョン策定／推進事業体F/S／ワークショップ5回</td><td><span class="score s80">85%</span></td><td>5年計画KPIに延伸</td></tr>
+          <tr><td><strong>⑥ 連携体制（10事業者）</strong></td><td>南陽市・商工会・熊野大社・温泉組合・料飲組合・JR東日本・山形銀行・アルカディア・Bina・プラットヨネザワ</td><td><span class="score s90">90%</span></td><td>★地域計画必須「連携合意書」を観光庁同意書から作成（再合意取得）</td></tr>
+          <tr><td><strong>⑦ KGI/KPI骨格</strong></td><td>R8観光まちづくりビジョン策定／推進事業体F/S／ワークショップ5回／アンケート300件</td><td><span class="score s80">85%</span></td><td>5年計画KPIに延伸（来訪者数・インバウンド比率・消費単価・文化財理解度等）</td></tr>
           <tr><td><strong>⑧ 年次別ロードマップ R8〜R12</strong></td><td>R9設立着手／R10投資拡張／R11自走発信</td><td><span class="score s80">85%</span></td><td>文化観光推進法の5年計画フォーマットに整理</td></tr>
-          <tr><td><strong>⑨ 経費構造・経費区分</strong></td><td>R8 987.35万円（人件費・旅費・謝金・広告・借料・再委託費）</td><td><span class="score s80">75%</span></td><td>5年計画ベースの経費計画に拡張</td></tr>
+          <tr><td><strong>⑨ 経費構造・経費区分</strong></td><td>R8 987.35万円（人件費・旅費・謝金・広告・借料・再委託費）</td><td><span class="score s80">75%</span></td><td>5年計画ベースの経費計画に拡張。文化観光対象経費に再構成</td></tr>
           <tr><td><strong>⑩ 申請書本文（地域計画 様式）</strong></td><td>R8申請書の「事業内容」「地域の課題」「達成目標」</td><td><span class="score s70">75%</span></td><td>文化庁様式に転記。文化観光フレームへ言語翻訳</td></tr>
-          <tr><td><strong>⑪ 概要資料（PowerPoint）</strong></td><td>R8申請書のPPT様式5（事業概要1枚）</td><td><span class="score s70">70%</span></td><td>文化庁指定様式に再構成</td></tr>
-          <tr><td><strong>⑫ ロジックモデル</strong></td><td>—（R8申請には該当書類なし）</td><td><span class="score s30">25%</span></td><td>新規作成必須。<a href="bunka-kanko-reuse-analysis.html#logic-model-sample">レキマチ版サンプル参照</a></td></tr>
+          <tr><td><strong>⑪ 概要資料（PowerPoint）</strong></td><td>R8申請書のPPT様式5（事業概要1枚）</td><td><span class="score s70">70%</span></td><td>文化庁指定様式（92787101_15）に再構成</td></tr>
+          <tr><td><strong>⑫ ロジックモデル</strong></td><td>—（R8申請には該当書類なし）</td><td><span class="score s30">25%</span></td><td>新規作成必須。<strong>下記「📐 ロジックモデル ドラフト」に1ページ完結版あり</strong></td></tr>
           <tr><td><strong>⑬ 連携合意書（地域計画特有）</strong></td><td>R8申請時の「申請事業者との連携に関する同意書」（10事業者）</td><td><span class="score s80">80%</span></td><td>★地域計画必須。文化観光推進法用に再発行（5/18までに署名取得）</td></tr>
           <tr><td><strong>⑭ 文化財保存・継承の観点</strong></td><td>—（R8は観光振興主軸のため明示薄い）</td><td><span class="score s30">30%</span></td><td>新規記述。熊野大社の信仰文化保存／赤湯温泉の湯治文化継承</td></tr>
           <tr><td><strong>⑮ JNTOとの海外発信連携</strong></td><td>—（アルカディア観光局のブランディング戦略あり）</td><td><span class="score s50">50%</span></td><td>JNTO海外宣伝活用計画を新規記述</td></tr>
           <tr><td><strong>⑯ 経済循環・再投資メカニズム</strong></td><td>R9〜R11ファンド組成・推進事業体収益化計画</td><td><span class="score s70">75%</span></td><td>「文化への再投資」の循環構造を明示する図表に再構成</td></tr>
-          <tr><td><strong>⑰ 先進地視察計画</strong></td><td>草津温泉視察・東京JR東日本視察（R8予定）</td><td><span class="score s90">95%</span></td><td>そのまま流用</td></tr>
+          <tr><td><strong>⑰ 先進地視察計画</strong></td><td>草津温泉視察・東京JR東日本視察（R8予定）</td><td><span class="score s90">95%</span></td><td>そのまま流用。文化観光認定事例も追加可能</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h2 class="sec">⚙ 推奨戦略：観光庁・文化庁2制度並走運用</h2>
-    <div class="lm-note">
-      <strong>📌 並走の強み：</strong>R8観光庁ソフト事業（987.35万円）は<strong>「ビジョン策定」「推進事業体F/S」</strong>を担い、文化観光推進法地域計画（R8〜R12・最大3.75億円）は<strong>「制度認定」「5年計画支援」「JNTO海外発信」「専門家派遣」</strong>を担う。重複なく相互補完。<br><br>
-      <strong>📌 経費区分のポイント：</strong>
-      <ul style="margin-top:.3rem">
-        <li><strong>観光庁ソフト：</strong>R8単年度のWS開催・先進地視察・調査委託</li>
-        <li><strong>文化観光：</strong>R8〜R12の5年継続・解説整備・多言語化・人材育成・JNTO連携・運営費</li>
-      </ul>
-      <strong>📌 ガバナンス：</strong>南陽市観光協会が両事業の申請主体（観光庁ソフト）／南陽市観光協会＋プラットヨネザワが連名（文化観光）。整合性確保のためプラットヨネザワが両事業の事務局支援に入る。
+    <h2 class="sec">📋 既存申請との差分（要追加・要再構成事項）</h2>
+    <div class="diff-grid">
+      <div class="diff-box add">
+        <h4>✚ 新規追加が必要な書類・要素</h4>
+        <ul>
+          <li><strong>ロジックモデル様式（PPT）</strong>：文化庁指定の6段階構造（インプット→アクティビティ→アウトプット→初期・中間・最終アウトカム）</li>
+          <li><strong>概要資料（PPT）</strong>：文化庁指定様式での事業概要</li>
+          <li><strong>連携合意書／覚書（文化観光推進法用）</strong>：観光庁同意書から再発行</li>
+          <li><strong>5年計画ロードマップ（R8〜R12 文化観光フォーマット）</strong></li>
+          <li><strong>JNTO海外発信連携計画</strong>：欧米豪富裕層向け</li>
+          <li><strong>文化財保存・継承の観点を明記する記述</strong></li>
+          <li><strong>熊野大社・赤湯温泉旅館組合との文化資源活用合意</strong></li>
+        </ul>
+      </div>
+      <div class="diff-box reframe">
+        <h4>↻ フレーム再構成が必要</h4>
+        <ul>
+          <li><strong>「観光資源」→「文化資源」</strong>：熊野大社・赤湯温泉・つるのこを「文化資源」として位置づけ直し</li>
+          <li><strong>「整う観光まちづくり」→「文化観光推進」</strong>の文脈で再記述（コンセプトは保持）</li>
+          <li><strong>「滞在時間延長・消費拡大」→「文化資源理解の深化＋経済循環」</strong>へ目的を再定義</li>
+          <li><strong>R8観光協会戦略文書</strong>を「文化観光推進」の枠組みに翻訳</li>
+          <li><strong>推進事業体構想</strong>を「文化観光推進体制」として再定義</li>
+          <li><strong>ファンド組成計画</strong>を「文化への再投資メカニズム」として再構成</li>
+        </ul>
+      </div>
+      <div class="diff-box modify">
+        <h4>✎ 既存資産から軽微な修正で流用</h4>
+        <ul>
+          <li><strong>南陽市観光協会R8戦略文書（987万円申請）</strong>：そのまま提出可能、文化観光ラベリング調整</li>
+          <li><strong>連携10事業者リスト・同意書</strong>：取得済（内部決裁済）。文化観光推進法用の再合意のみ</li>
+          <li><strong>観光資源カタログ</strong>：熊野大社・赤湯温泉・ワイナリー・米・つるのこ等そのまま</li>
+          <li><strong>SWOT分析</strong>：豊かな食文化・ミシュランキー・ナショジオ選出 等そのまま</li>
+          <li><strong>R9〜R11ロードマップ</strong>：設立着手→投資拡張→自走発信の論理は流用</li>
+          <li><strong>先進地視察計画</strong>：草津温泉・東京JR東日本視察そのまま</li>
+        </ul>
+      </div>
+      <div class="diff-box new">
+        <h4>⚠ 新たな観点で記述</h4>
+        <ul>
+          <li><strong>文化資源の「保存」を大前提とする姿勢</strong>：熊野大社の信仰文化保存・赤湯温泉の湯治文化継承</li>
+          <li><strong>来訪者の「文化的・歴史的背景の理解」促進</strong>：縁結び信仰の物語化、湯治文化の解説、ワイナリー・テロワールの教育的体験</li>
+          <li><strong>文化財の積極公開・活用</strong>：熊野大社の通常非公開エリアの計画的公開</li>
+          <li><strong>地域文化への波及</strong>：「整う観光」を核とした南陽圏域全体の文化観光化</li>
+          <li><strong>持続可能な観光（GSTC等国際標準）への対応</strong>：欧米豪富裕層向け重要要素</li>
+          <li><strong>地域住民の参画</strong>：保存協力金・推進事業体会員制度を通じた市民エンゲージメント</li>
+        </ul>
+      </div>
     </div>
+
+    <h2 class="sec">🎯 推奨戦略：観光庁・文化庁2制度並走運用フレーム</h2>
+    <p style="font-size:.88rem;color:var(--text-sub);margin:.4rem 0 1rem">R8観光庁ソフト事業（南陽市観光協会主導）と文化観光推進法地域計画（南陽市観光協会＋プラットヨネザワ）を並走運用することで、相互補完的に成果を最大化します。</p>
+    <div class="logic">
+      <div class="logic-row"><div class="stage input">投入(Input)</div><div>R8観光庁ソフト事業（987.35万円）／南陽市観光協会のDMO機能・ネットワーク／連携10事業者（同意書取得済）／<strong>文化観光推進法補助金（文化庁・2/3・上限7,500万円/年×5年）</strong></div></div>
+      <div class="logic-row"><div class="stage activity">活動(Activity)</div><div><strong>R8観光庁：</strong>観光まちづくりビジョン策定・推進事業体F/S・ワークショップ5回／<strong>文化観光：</strong>解説情報整備・多言語ガイド・文化財公開・JNTO海外発信・人材育成</div></div>
+      <div class="logic-row"><div class="stage output">産出(Output)</div><div>観光まちづくりビジョン案完成 ＋ 推進事業体組成スキーム ＋ 文化観光中核エリア整備 ＋ ガストロノミー×信仰文化×湯治文化の体験プロダクト群 ＋ 多言語解説整備</div></div>
+      <div class="logic-row"><div class="stage outcome">成果(Outcome)</div><div>来訪者数 +50% ／ インバウンド比率 5%→20% ／ 商品売上 6,000-8,000万→1.2億円規模 ／ 文化財理解度80% ／ 推進事業体補助依存率50%以下</div></div>
+      <div class="logic-row"><div class="stage impact">影響(Impact)</div><div>「人と地域が整うサステナブルエリア」モデルの確立 ／ 欧米豪富裕層インバウンドの主要目的地化 ／ 持続可能な文化観光地モデルの全国波及</div></div>
+    </div>
+
+    <h2 class="sec">💰 補助金スタック試算（仮）</h2>
+    <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .8rem">2制度を組み合わせた場合の最大調達額試算。観光庁ソフトはR8単年・文化観光は5年継続のため、重複リスクは低く相互補完しやすい。</p>
+    <div class="cost-table">
+      <table>
+        <thead><tr><th>事業</th><th>所管</th><th>補助率</th><th class="right">補助上限</th><th>主用途</th></tr></thead>
+        <tbody>
+          <tr><td>R8観光庁ソフト事業</td><td>観光庁</td><td>定額</td><td class="right">987.35万円</td><td>観光まちづくりビジョン策定・推進事業体F/S</td></tr>
+          <tr><td><strong>文化観光推進法（年）</strong></td><td><strong>文化庁</strong></td><td><strong>2/3</strong></td><td class="right"><strong>7,500万円</strong></td><td>文化資源活用・解説情報整備・多言語化・人材育成</td></tr>
+          <tr><td>文化観光推進法（5年合計上限）</td><td>文化庁</td><td>2/3</td><td class="right">37,500万円</td><td>※毎年度審査（4・5年目は中間評価）</td></tr>
+          <tr class="total"><td colspan="3">単年（R8）2制度上限合計</td><td class="right">8,487.35万円</td><td>※R8のみソフト事業並走</td></tr>
+          <tr class="total"><td colspan="3">5年累積 上限合計（理論値）</td><td class="right">38,487.35万円</td><td>※観光庁ソフト1年＋文化観光5年</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">⚠ 補助金重複ルール：原則と運用</h3>
+    <div class="risk">
+      <strong>大原則：</strong>同一経費（同一の物品・役務・期間）に対する複数補助金からの重複交付は<strong style="color:#c0392b">不可</strong>（補助金等適正化法第7条）。違反すると交付取消・返還命令の対象。<br>
+      ただし、本案件は<strong>観光庁ソフト事業（R8単年・ビジョン策定）と文化観光推進法（R8〜R12・運営支援）で対象期間・目的が明確に分離</strong>されているため、重複リスクは構造的に低い。実務上は申請前相談時に文化庁に「経費区分書」を提示し、観光庁ソフト事業との分担を文書で明確化することが望ましい。
+    </div>
+
+    <h3 class="sub">📋 経費種別×補助金 充当可否マトリクス（2制度版）</h3>
+    <div class="legend-row">
+      <span><strong class="mark-ok">○</strong> 対象（充当可）</span>
+      <span><strong class="mark-ng">×</strong> 対象外（充当不可）</span>
+      <span><strong class="mark-cond">△</strong> 条件付き（経費分離・期間分離が必要）</span>
+    </div>
+    <div class="subsidy-matrix">
+      <table>
+        <thead><tr><th style="width:32%">経費種別</th><th style="width:18%">R8観光庁ソフト</th><th style="width:18%">文化観光（文化庁）</th><th style="width:32%">運用上の留意点</th></tr></thead>
+        <tbody>
+          <tr><td>観光まちづくりビジョン策定費</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁で策定済。文化観光側は<strong>「文化観光化リライト」「年次更新」</strong>のみ対象可</td></tr>
+          <tr><td>推進事業体（DMO）設立F/S・組成検討</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁でF/S。文化観光側は<strong>R9以降の運営費・運営人材育成</strong>に充当</td></tr>
+          <tr><td>事業者ワークショップ（R8 5回開催）</td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td>R8観光庁専用。文化観光側はR9以降の継続的なステークホルダー会議が対象</td></tr>
+          <tr><td>住民・事業者アンケート（300件）</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁実施分は対象外。<strong>文化財理解度・来訪者満足度等の追加調査</strong>は文化観光対象</td></tr>
+          <tr><td>先進地視察（草津温泉・東京JR東日本）</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁で実施。文化観光側は<strong>文化観光認定事例の追加視察</strong>のみ対象</td></tr>
+          <tr><td>解説情報整備（学術監修・コンテンツ制作）</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光の<strong>主要対象経費</strong>。熊野大社の信仰文化解説・赤湯温泉の湯治文化解説</td></tr>
+          <tr><td>多言語化（音声ガイド・QRコード・パンフレット）</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光の<strong>主要対象経費</strong>。欧米豪富裕層向け5言語対応</td></tr>
+          <tr><td>体験コンテンツ造成（縁結び・ガストロノミー・湯治）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td>R8観光庁はモニター実証、文化観光は本格展開で分離</td></tr>
+          <tr><td>人材育成（ガイド研修・運営人材育成）</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光の<strong>主要対象経費</strong>。学芸員・通訳ガイド・解説員育成</td></tr>
+          <tr><td>運営費（人件費・委託費・賃借料）</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光は5年計画の運営費に充当可</td></tr>
+          <tr><td>JNTOとの海外プロモーション</td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td>文化観光は<strong>JNTOとの連携協力</strong>が制度上組み込み済。欧米豪富裕層向け</td></tr>
+          <tr><td>移動網（GSM・自動運転・ライドシェア）F/S</td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td>R8観光庁で実施（Bina合同会社が再委託）</td></tr>
+          <tr><td>ファンド組成支援（山形銀行）</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁でF/S。文化観光側は<strong>文化財修繕基金</strong>等の文化目的ファンドのみ対象</td></tr>
+          <tr><td>ICT・デジタル活用（VR/AR・公式英語サイト・WeChat）</td><td><span class="mark-cond">△</span></td><td><span class="mark-ok">○</span></td><td>文化観光側は<strong>解説コンテンツのデジタル化</strong>に充当</td></tr>
+          <tr><td>ブランディング・PR戦略策定（アルカディア観光局再委託）</td><td><span class="mark-ok">○</span></td><td><span class="mark-cond">△</span></td><td>R8観光庁で全体戦略策定、文化観光側は<strong>文化観光ブランディング</strong>に追加充当</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">🏛 主要施設 × 文化観光 充当設計案</h3>
+    <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .6rem">3拠点中核エリアと連携施設について、文化観光側で何に補助金を充当するかの具体案。</p>
+
+    <div class="facility-card">
+      <h4>1. 熊野大社（中核施設）<span class="amount">日本三熊野・年間40万人参拝</span></h4>
+      <dl class="alloc"><dt>R8観光庁</dt><dd>WS会場提供／回遊性をもつ動線構築調査・提案</dd></dl>
+      <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>多言語信仰文化解説（音声ガイド・QR）／「三羽の兎」隠し彫り伝説の英語ストーリーテリング／月結び祈願祭の海外プロモーション／神道文化の英語解説員育成／国宝・重文の借用展示企画</strong></dd></dl>
+    </div>
+    <div class="facility-card">
+      <h4>2. 赤湯温泉街（連携・観光主軸）<span class="amount">930年の歴史・ミシュランキー2施設</span></h4>
+      <dl class="alloc"><dt>R8観光庁</dt><dd>滞在拠点整備調査・事業性調査（旅館協同組合）／先進地視察の企画・実施</dd></dl>
+      <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>湯治文化の英語解説（上杉家御殿湯のストーリー）／ミシュランキー宿との連携プロモーション／ワイナリー×温泉×食のガストロノミーパッケージ造成／ソムリエ・ガイド英語研修</strong></dd></dl>
+    </div>
+    <div class="facility-card">
+      <h4>3. 赤湯駅（連携・回遊網）<span class="amount">JR東日本・東京から2時間半</span></h4>
+      <dl class="alloc"><dt>R8観光庁</dt><dd>回遊・周遊を目指した移動網構築連携／Bina合同会社のF/S（GSM・自動運転）</dd></dl>
+      <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>駅構内の多言語観光案内整備／JNTO連携の駅ポスター・デジタルサイネージ／到着客向け文化観光導線設計</strong></dd></dl>
+    </div>
+    <div class="facility-card">
+      <h4>4. つるのこ（漆山地区）<span class="amount">古民家再生・「鶴の恩返し」伝承地</span></h4>
+      <dl class="alloc"><dt>R8観光庁</dt><dd>面的開発コンセプトF/Sの一部</dd></dl>
+      <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>「鶴の恩返し」物語の体験プログラム造成／古民家建築解説／漆山地区の集落文化・農村景観の解説／滞在型農村観光の運営人材育成</strong></dd></dl>
+    </div>
+    <div class="facility-card">
+      <h4>5. ワイナリー集積地（連携・食文化）<span class="amount">県内最多・半径2km圏内6軒</span></h4>
+      <dl class="alloc"><dt>R8観光庁</dt><dd>食コンテンツ事業性検証（料理飲食店組合）</dd></dl>
+      <dl class="alloc"><dt class="bunka">文化観光</dt><dd><strong>ワイナリーツアーの多言語化／テロワール・酒井ワイナリー（東北最古）の歴史解説／日本一の米×ワインのペアリング体験／英語ソムリエ育成</strong></dd></dl>
+    </div>
+
+    <h3 class="sub">📅 補助金スタッキング タイムライン（5年フロー）</h3>
+    <div class="timeline-flow">
+      <div class="step"><span class="y">R8（2026）</span><span class="h">観光庁ソフト</span><div class="desc">ビジョン策定・推進事業体F/S・WS5回・先進地視察</div><span class="b">文化観光 1年目</span><div class="desc">解説情報整備・多言語化・人材育成・JNTO連携立ち上げ</div></div>
+      <div class="step"><span class="y">R9（2027）</span><span class="b">文化観光 2年目</span><div class="desc">推進事業体正式設立／3拠点運営体制／ファンド組成完了／GSM実証実験／本格的な文化観光体験ローンチ</div></div>
+      <div class="step"><span class="y">R10（2028）</span><span class="b">文化観光 3年目</span><div class="desc">民間ファンド活用整備／ガストロノミー体験磨き上げ／公共空間利活用／中間評価準備</div></div>
+      <div class="step"><span class="y">R11（2029）</span><span class="b">文化観光 4年目</span><div class="desc">中間評価実施／推進事業体の収益自立化／インバウンド宿泊客数・域内消費額の成果報告</div></div>
+      <div class="step"><span class="y">R12（2030）</span><span class="b">文化観光 5年目</span><div class="desc">5年計画完了・自立運営確立／全国モデル発信／観光庁・文化庁双方の成果報告会</div></div>
+    </div>
+
+    <h3 class="sub">✅ 申請前相談（5/12）で文化庁に確認すべき事項</h3>
+    <div class="checklist-confirm">
+      <h4>文化観光推進法 申請前相談 必須確認チェックリスト</h4>
+      <div class="item"><input type="checkbox"><div class="text"><strong>① R8観光庁ソフト事業（987万円）との経費区分書の様式</strong><small>R8単年事業との重複回避。経費区分の粒度・記載例を確認</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>② 観光まちづくりビジョン（R8策定）の文化観光化リライト経費の扱い</strong><small>R8で策定済の計画を文化観光フレームに翻訳する作業の対象可否</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>③ 推進事業体（DMO）の文化観光推進主体としての位置づけ</strong><small>R8でF/Sした推進事業体を文化観光地域計画の運営主体とする可否</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>④ 南陽市観光協会（DMO登録）が申請者となる場合の留意事項</strong><small>DMOとしての受給制限・公益目的の証明方法</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑤ 連携合意書（同意書）の書式・必要記載事項</strong><small>R8観光庁同意書を流用する場合の修正範囲</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑥ 熊野大社（宗教法人）が事業主体の一部となる場合の留意事項</strong><small>宗教法人としての受給制限・公益目的の証明方法</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑦ JNTOとの連携協力の具体的範囲</strong><small>欧米豪富裕層向けプロモーション・通訳・国際イベント参加等で文化観光に充当できる経費</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑧ ナショジオ「2026年に行くべき25選」山形県唯一選出の活用方法</strong><small>同選出のPR権利・活用範囲・連携の可否</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑨ ミシュランキー2施設との連携プロモーションの取扱い</strong><small>「山形座 瀧波」「OSTERIA SINCERITÀ」との連携体制の認定可否</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑩ 中間評価（4・5年目）の評価軸と補助額変動の幅</strong><small>達成基準と未達時の補助額減額・打ち切りリスク</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑪ 地方負担分の特別交付税措置の対象</strong><small>南陽市の負担分への措置範囲・申請方法</small></div></div>
+      <div class="item"><input type="checkbox"><div class="text"><strong>⑫ ファンド組成（R9〜山形銀行支援）と文化観光補助金の重複関係</strong><small>ファンドからの収益還元と保存協力金制度の整合性</small></div></div>
+    </div>
+
+    <div class="risk" style="margin-top:1rem">
+      <strong>💡 重複回避のための実務ルール（社内運用）：</strong>
+      <ol style="margin:.5rem 0 0 1.2rem;padding:0">
+        <li>すべての経費を <strong>「経費種別 × 制度（観光庁/文化庁）× 年度」</strong> の三次元で管理する原簿（Excel/Googleシート）を整備</li>
+        <li>同一物品・同一役務に対する仕様書・見積書・契約書は<strong>制度別に分離発注</strong>。1件の契約に複数補助金を混在させない</li>
+        <li>文化観光側の発注はすべて <strong>「R8観光庁ソフト未充当の経費か」</strong> をチェック → 経費区分書に記載 → 文化庁担当者と事前協議</li>
+        <li>南陽市観光協会＋プラットヨネザワの両事務局で<strong>「経費充当根拠書」</strong> を共有・常備</li>
+      </ol>
+    </div>
+
+    <h2 class="sec">🗂 米沢市 vs 赤湯&南陽市：適用差分</h2>
+    <div class="systems">
+      <div class="sys kanko">
+        <div class="ttl">⛩ 米沢市</div>
+        <h4>流用度：高（既存資産多）</h4>
+        <dl>
+          <dt>既存資産</dt><dd>R7総合計画・ハード10案件（27,113万円）・ソフト計画・人流データ</dd>
+          <dt>計画種別</dt><dd><strong>地域計画</strong>（米沢城跡・上杉神社・上杉博物館・稽照殿・東町等の連携）</dd>
+          <dt>強み</dt><dd>三事業（R7／ハード／ソフト）一体推進体制が既存</dd>
+          <dt>追加作業</dt><dd>文化観光フレームへの再構成・ロジックモデル新規作成</dd>
+          <dt>申請難度</dt><dd>★★☆☆☆ </dd>
+        </dl>
+      </div>
+      <div class="sys bunka">
+        <div class="ttl">♨ 赤湯&南陽市</div>
+        <h4>流用度：高（観光協会R8戦略文書あり）</h4>
+        <dl>
+          <dt>既存資産</dt><dd>R8観光庁ソフト事業戦略文書／連携10事業者同意書／観光まちづくりビジョン案</dd>
+          <dt>計画種別</dt><dd><strong>地域計画</strong>（熊野大社・赤湯温泉・赤湯駅3拠点エリア）</dd>
+          <dt>強み</dt><dd>南陽市観光協会主導の戦略策定済／ナショジオ選出／ミシュランキー2施設</dd>
+          <dt>追加作業</dt><dd>文化観光フレームへの言語翻訳・文化財保存観点の追加</dd>
+          <dt>申請難度</dt><dd>★★☆☆☆ </dd>
+        </dl>
+      </div>
+      <div class="sys strategy">
+        <div class="ttl">💡 並行申請戦略</div>
+        <h4>R8で2件同時申請</h4>
+        <dl>
+          <dt>米沢市</dt><dd>R7総合計画＋ハード/ソフト事業の三位一体ベース</dd>
+          <dt>赤湯&南陽市</dt><dd>R8観光庁ソフト事業の戦略文書ベース</dd>
+          <dt>共通</dt><dd>5/12申請前相談締切に向けて並行作業</dd>
+          <dt>5年累計</dt><dd>2件 × 7,500万円/年 × 5年 = 最大7.5億円規模</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h2 class="sec" id="logic-model-sample">📐 ロジックモデル サンプル（新規作成・申請素材）</h2>
+    <p class="lm-intro">
+      流用マトリクス⑫の <strong>「新規作成必須」</strong> の中核成果物。文化庁公式様式（94343001_01.pptx）の<strong>6段階構造</strong>に、赤湯&南陽市案件のドラフトを反映した1ページ完結版を作成しました。<strong>そのまま正式提出のたたき台として活用可能</strong>です。下部に詳細展開（4目標マトリクス／KPIマップ）も用意。
+    </p>
+
+    <div class="lm-preview">
+      <div class="preview-head">
+        <div>
+          <h4>📄 公式様式 94343001_01 準拠ドラフト ― 赤湯&南陽市</h4>
+          <span class="preview-tag" style="margin-left:.5rem">PowerPoint版・即時提出可能形式</span>
+        </div>
+        <div class="download-row">
+          <a href="files/94343001_01_logic_model_akayu.pptx" class="dl-btn" download>⬇ PPTXダウンロード</a>
+          <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" class="dl-btn alt" target="_blank">▶ 文化庁公式テンプレート</a>
+        </div>
+      </div>
+      <img src="images/logic_model_akayu_preview.png" alt="文化観光推進法 ロジックモデル（公式様式準拠・赤湯&南陽市案件）">
+      <p class="caption">
+        <strong>構成：</strong>左側「計画された行動」（インプット／アクティビティ）と右側「期待される成果」（アウトプット／初期・中間・最終アウトカム）を縦糸とし、下部にターゲット・課題・コンセプトを配置。
+        <strong>オレンジ枠</strong>は文化庁様式で重視される指標箇所をハイライト。
+        <strong>記載値はR8観光庁ソフト事業（南陽市観光協会・987万円）の戦略文書から再構成した初期案</strong>。「整う観光まちづくり」コンセプトを文化観光フレームで表現。申請前相談（5/12）で関係者と再検証・合意形成のうえ確定してください。
+      </p>
+    </div>
+
+    <h3 class="sub">⓪ 5段階フロー（全体像・解説用）</h3>
+    <div class="lm-flow">
+      <div class="lm-stage s1"><span class="stage-num">1</span><h5>投入 <small>Input / Resources</small></h5><ul>
+        <li><strong>補助金：</strong>観光庁ソフト987万・文化観光7,500万/年×5年</li>
+        <li><strong>既存資産：</strong>R8観光協会戦略文書／連携10事業者同意書／ビジョン案</li>
+        <li><strong>文化資源：</strong>熊野大社（日本三熊野）・赤湯温泉（930年）・つるのこ・ワイナリー集積地</li>
+        <li><strong>連携体制：</strong>南陽市・観光協会・熊野大社・温泉組合・10事業者</li>
+        <li><strong>外部認知：</strong>ナショジオ選出／ミシュランキー2施設／お米番付最優秀賞</li>
+      </ul></div>
+      <div class="lm-stage s2"><span class="stage-num">2</span><h5>活動 <small>Activity</small></h5><ul>
+        <li><strong>保存活用基盤：</strong>熊野大社の信仰文化保存・赤湯温泉の湯治文化継承</li>
+        <li><strong>解説情報整備：</strong>多言語（5言語）・音声ガイド・QR・「三羽の兎」物語化</li>
+        <li><strong>コンテンツ造成：</strong>縁結び体験・ガストロノミーペアリング・ワイナリーツアー</li>
+        <li><strong>人材育成：</strong>解説員・湯治文化ガイド・英語ソムリエ養成</li>
+        <li><strong>海外発信：</strong>JNTO連携・欧米豪富裕層向けPR</li>
+        <li><strong>運営基盤：</strong>推進事業体（DMO）設立・ファンド組成・モビリティF/S</li>
+      </ul></div>
+      <div class="lm-stage s3"><span class="stage-num">3</span><h5>アウトプット <small>Output</small></h5><ul>
+        <li>3拠点（熊野大社・赤湯温泉・赤湯駅）の文化観光拠点化</li>
+        <li>多言語解説整備：<strong>5言語×80箇所</strong></li>
+        <li>体験コンテンツ造成：<strong>年20プログラム</strong></li>
+        <li>育成解説員・ガイド：<strong>累計30名</strong></li>
+        <li>JNTO連携海外発信：<strong>年4回以上</strong></li>
+        <li>「整う観光」ブランド商品：<strong>30SKU</strong></li>
+        <li>推進事業体運営開始（R9）</li>
+      </ul></div>
+      <div class="lm-stage s4"><span class="stage-num">4</span><h5>アウトカム <small>Outcome</small></h5><ul>
+        <li>年間来訪者数：<strong>+50%</strong>（基準値→）</li>
+        <li>外国人来訪者比率：未計測 → <strong>20%</strong></li>
+        <li>域内消費額 一人当たり <strong>+50%</strong></li>
+        <li>商品売上 6,000-8,000万 → <strong>1.2億円</strong></li>
+        <li>文化財理解度 <strong>80%以上</strong></li>
+        <li>保存協力金収入：<strong>年800万円</strong></li>
+        <li>推進事業体補助依存率 <strong>50%以下</strong></li>
+      </ul></div>
+      <div class="lm-stage s5"><span class="stage-num">5</span><h5>インパクト <small>Impact</small></h5><ul>
+        <li><strong>2030年：</strong>「整う観光まちづくり」モデルの確立</li>
+        <li><strong>欧米豪富裕層</strong>の主要目的地化</li>
+        <li>地域GDP寄与：<strong>累計50億円超</strong></li>
+        <li>文化への再投資好循環の制度化</li>
+        <li>「Nanyo＝Onsen×Wine×Spirituality」の国際的認知</li>
+        <li>UIターン促進・住民の誇り醸成</li>
+        <li>持続可能な文化観光モデルの全国波及</li>
+      </ul></div>
+    </div>
+
+    <h3 class="sub">① 文化観光推進法 4目標 × 5段階 詳細マトリクス</h3>
+    <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .5rem">文化観光推進法が定める4つの目標を行軸、ロジックモデル5段階を列軸とした構造化マトリクス。<strong>申請書本文の論理構成にもそのまま流用可能</strong>。</p>
+    <div class="lm-matrix">
+      <table>
+        <thead><tr><th style="width:14%">4つの目標</th><th>① 投入</th><th>② 活動</th><th>③ アウトプット</th><th>④ アウトカム</th><th>⑤ インパクト</th></tr></thead>
+        <tbody>
+          <tr><th>① 文化資源の魅力発信</th><td>熊野大社の信仰文化／赤湯温泉の湯治文化／つるのこ伝承／専門家ネットワーク</td><td>多言語解説制作／三羽の兎ストーリーテリング／月結び祈願祭の海外PR／学術監修</td><td>5言語×80箇所の解説整備／公開イベント年12回／英語ストーリーコンテンツ年30本</td><td>文化財理解度80%以上／満足度4.5/5以上／SNS発信 年5,000件</td><td>「Nanyo＝信仰×湯治×食文化」の国際的認知獲得</td></tr>
+          <tr><th>② 国内外からの来訪促進</th><td>ナショジオ選出／ミシュランキー2施設／JNTOネットワーク／既存40万人参拝基盤</td><td>JNTO連携海外発信／インバウンドコンシェルジュ配置／ワイナリーツアー造成／ミシュランキー連携</td><td>海外プロモーション年4回／インバウンドツアー造成20本／公式英語サイト・WeChat開設</td><td>来訪者数 +50%／外国人比率 20%／欧米豪富裕層宿泊単価 +30%</td><td>2030年「整う観光地」として国際的認知の確立</td></tr>
+          <tr><th>③ 地域経済の活性化</th><td>R8観光庁ソフト事業／推進事業体構想／ファンド組成計画</td><td>商品開発（30SKU）／ガストロノミー体験プログラム／回遊動線整備／GSM・自動運転F/S</td><td>体験プログラム年20本／ブランド商品30SKU／回遊ルート整備／決済多様化</td><td>商品売上 6,000-8,000万→1.2億円／域内消費額 +50%／事業者売上累計 +10億</td><td>地域GDP寄与累計50億円超・UIターン促進・新規事業者参入</td></tr>
+          <tr><th>④ 文化への再投資の好循環</th><td>推進事業体（DMO）構想／山形銀行ファンド組成支援／保存協力金制度設計</td><td>推進事業体設立・運営／保存協力金徴収・還元／文化財修繕基金造成／中間評価対応</td><td>推進事業体運営開始／保存協力金制度導入／文化財修繕基金設置／年次報告</td><td>保存協力金収入 年800万／推進事業体補助依存率 50%以下／文化財修繕基金5,000万</td><td>保存・活用・経済の好循環が制度化され他地域モデルへ波及</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">② アウトカム／インパクト 数値目標 KPIマップ</h3>
+    <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .5rem">文化庁が重視する <strong>定量的な成果指標</strong> を、現状値・目標値・測定方法とともに整理。中間評価（4・5年目）に耐える設計。</p>
+    <div class="kpi-map">
+      <table>
+        <thead><tr><th style="width:24%">KPI指標</th><th style="width:8%">段階</th><th style="width:14%">現状（R7）</th><th style="width:14%">中間目標（R10）</th><th style="width:14%">最終目標（R12）</th><th>測定方法</th></tr></thead>
+        <tbody>
+          <tr><td><strong>3拠点稼働率（熊野・赤湯温泉・赤湯駅）</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">80%</td><td class="right target">95%</td><td>推進事業体運営報告／施設運営実績</td></tr>
+          <tr><td><strong>多言語解説整備件数</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">5言語×50箇所</td><td class="right target">5言語×80箇所</td><td>制作完了報告</td></tr>
+          <tr><td><strong>育成解説員・ガイド累計</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">15名</td><td class="right target">30名</td><td>研修修了証発行数</td></tr>
+          <tr><td><strong>体験コンテンツ造成数</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">年12本</td><td class="right target">年20本</td><td>推進事業体運営記録</td></tr>
+          <tr><td><strong>ワイナリーツアー参加者</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">年5,000人</td><td class="right target">年8,000人</td><td>ワイナリー連絡会集計</td></tr>
+          <tr><td><strong>年間来訪者数</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">基準値測定</td><td class="right">+25%</td><td class="right target">+50%</td><td>来訪者統計／施設来館者集計</td></tr>
+          <tr><td><strong>外国人来訪者比率</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">未計測</td><td class="right">12%</td><td class="right target">20%</td><td>来訪者調査／宿泊統計</td></tr>
+          <tr><td><strong>欧米豪富裕層宿泊単価</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">基準値測定</td><td class="right">+15%</td><td class="right target">+30%</td><td>赤湯温泉旅館組合統計</td></tr>
+          <tr><td><strong>来訪者一人当たり消費額</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">基準値測定</td><td class="right">+25%</td><td class="right target">+50%</td><td>意向調査／POSデータ</td></tr>
+          <tr><td><strong>文化財理解度（来訪者調査）</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">—</td><td class="right">65%</td><td class="right target">80%</td><td>来訪者アンケート</td></tr>
+          <tr><td><strong>商品売上規模</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">6,000-8,000万円</td><td class="right">1億円</td><td class="right target">1.2億円</td><td>事業者売上集計</td></tr>
+          <tr><td><strong>保存協力金 年間収入</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">未導入</td><td class="right">400万円</td><td class="right target">800万円</td><td>推進事業体会計報告</td></tr>
+          <tr><td><strong>推進事業体補助依存率</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">—</td><td class="right">70%</td><td class="right target">50%以下</td><td>推進事業体収支報告</td></tr>
+          <tr><td><strong>地域GDP寄与（累計）</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">20億円</td><td class="right target">50億円超</td><td>経済波及効果分析</td></tr>
+          <tr><td><strong>事業者売上拡大（累計）</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">+5億円</td><td class="right target">+10億円</td><td>10事業者の売上集計</td></tr>
+          <tr><td><strong>文化財修繕基金規模</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">3,000万円</td><td class="right target">5,000万円</td><td>基金会計報告</td></tr>
+          <tr><td><strong>新規事業者参入数</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">3社</td><td class="right target">7社</td><td>商工会登録／推進事業体協定</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="lm-note">
+      <strong>📝 PowerPoint化の手順：</strong>このサンプルを文化庁指定様式（<a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">ロジックモデル様式 PPTX 62KB</a>）に転記する際の推奨ステップ：
+      <ul>
+        <li><strong>スライド1：</strong>5段階フロー（上記⓪）— 全体像を1枚で示す</li>
+        <li><strong>スライド2〜5：</strong>4目標 × 5段階マトリクスを目標別に1枚ずつ展開（上記①）</li>
+        <li><strong>スライド6：</strong>KPIマップ（上記②）— 中間評価対応の数値目標を一覧化</li>
+        <li><strong>スライド7：</strong>因果関係の論理（投入→活動→...→インパクトの矢印・補足説明）</li>
+        <li><strong>備考：</strong>各KPIの<strong>「測定方法」「測定主体」「測定頻度」</strong>を必ず明記</li>
+      </ul>
+    </div>
+
+    <div class="lm-note" style="background:#f0f7ff;border-color:#a8d0f0;border-left-color:var(--soft-blue)">
+      <strong style="color:var(--soft-blue)">⚠ 数値目標の設定方針（要内部議論）：</strong>本サンプルの数値はR8観光庁ソフト事業の戦略文書・南陽市観光協会データから逆算した <strong>初期案</strong> です。下記は申請前相談（5/12）までに関係者で<strong>再検証・合意形成すべき主要論点</strong>です：
+      <ul>
+        <li>来訪者数+50%は<strong>R8基準値測定</strong>の結果次第で再設定が必要</li>
+        <li>外国人比率20%は<strong>JNTOネットワーク・ナショジオ選出活用前提</strong>。実現可能性を専門家と要検討</li>
+        <li>商品売上1.2億円は<strong>熊野大社の参拝者規模・温泉宿泊客数</strong>と単価設計から逆算が必要</li>
+        <li>保存協力金800万/年は<strong>熊野大社・赤湯温泉旅館組合との制度設計</strong>合意前提</li>
+        <li>推進事業体補助依存率50%以下は<strong>ファンド組成・収益事業化計画</strong>の精緻化前提</li>
+      </ul>
+    </div>
+
+    <h2 class="sec">🚀 5/12 申請前相談締切までのアクションプラン</h2>
+    <ol class="action-list">
+      <li><strong>5/2（土）まで：地域計画方針の最終決定</strong>（中核施設・連携施設の確定）<small>R8観光庁ソフト事業との整合性確認。3拠点（熊野大社・赤湯温泉・赤湯駅）と連携施設（つるのこ・ワイナリー）の位置づけを文化観光フレームで判断</small></li>
+      <li><strong>5/4（月）まで：関係者キックオフ</strong><small>南陽市観光協会・熊野大社・赤湯温泉旅館組合・温泉料飲組合・JR東日本・山形銀行・アルカディア観光局・Bina合同会社に文化観光推進法申請の方針共有</small></li>
+      <li><strong>5/6（水）まで：既存申請書類のフォルダリング</strong><small>R8観光庁ソフト事業申請書一式（様式1〜4・経費内訳・スケジュール・連携同意書）、南陽市観光振興計画、熊野大社・赤湯温泉統計を「文化観光推進法・流用素材」フォルダに集約</small></li>
+      <li><strong>5/8（金）まで：地域計画 ドラフト作成</strong>（未定稿でOK）<small>文化庁様式（Word 94093402_02）にR8観光庁戦略文書を流し込み。「観光資源 → 文化資源」「観光まちづくり → 文化観光推進」用語統一</small></li>
+      <li><strong>5/9（土）まで：申請前相談申込書作成</strong>（Excel様式）<small>事業概要・想定計画期間・主な連携先（10事業者）を記入</small></li>
+      <li><strong>5/12（火）17:00まで：申請前相談 メール提出</strong>（必須）<small>bunkakankosuishin@mext.go.jp 宛に①申込書 ②計画書ドラフトを送付</small></li>
+      <li><strong>5/13〜5/29：文化庁との相談 → 計画書ブラッシュアップ</strong><small>文化庁担当者のフィードバックを受け、ロジックモデル・概要資料を並行作成。R8観光庁ソフト事業との経費区分も確認</small></li>
+      <li><strong>5/18（月）：連携合意書 正式締結</strong><small>10事業者の署名取得（観光庁同意書を流用しつつ文化観光用に調整）</small></li>
+      <li><strong>6/1〜6/3 17:00：正式申請</strong><small>電子データのメール送付＋紙媒体一式の郵送</small></li>
+    </ol>
   </div>
 
-  <!-- Footer Common -->
+  <!-- Common Footer -->
   <section class="s">
     <h2 class="sec">🔗 関連ページ</h2>
     <div class="related-grid">
-      <a class="related" href="bunka-kanko-suishin.html">
-        <span class="cat">プロジェクト本体</span>
-        <span class="ttl">📜 文化観光推進事業</span>
-        <span class="desc">推進体制・スケジュール・作業ルール</span>
-      </a>
-      <a class="related" href="bunka-kanko-yonezawa.html">
-        <span class="cat">並行案件</span>
-        <span class="ttl">⛩ 米沢市 統合ページ</span>
-        <span class="desc">レキマチ案件のダッシュボード＋流用分析</span>
-      </a>
-      <a class="related" href="bunka-kanko-reuse-analysis.html#logic-model-sample">
-        <span class="cat">参考</span>
-        <span class="ttl">📐 ロジックモデルサンプル</span>
-        <span class="desc">公式様式94343001_01準拠1ページ完結ドラフト</span>
-      </a>
+      <a class="related" href="bunka-kanko-suishin.html"><span class="cat">プロジェクト本体</span><span class="ttl">📜 文化観光推進事業</span><span class="desc">推進体制・スケジュール・作業ルール</span></a>
+      <a class="related" href="bunka-kanko-yonezawa.html"><span class="cat">並行案件</span><span class="ttl">⛩ 米沢市 統合ページ</span><span class="desc">ダッシュボード＋流用分析＋ロジックモデル</span></a>
+      <a class="related" href="https://drive.google.com/drive/u/0/folders/1yWnH4b4xmcwqNy0nddx-4yAc1JER6dln" target="_blank"><span class="cat">並走事業</span><span class="ttl">📁 R8観光庁ソフト事業 申請書一式</span><span class="desc">南陽市観光協会・987.35万円</span></a>
     </div>
   </section>
 
