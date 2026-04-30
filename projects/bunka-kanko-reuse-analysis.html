@@ -178,6 +178,80 @@ h3.sub{font-size:.95rem;color:var(--text);margin:1.2rem 0 .6rem;letter-spacing:.
 .checklist-confirm .item .text{flex:1}
 .checklist-confirm .item small{color:var(--text-sub);display:block;margin-top:.15rem;font-size:.72rem}
 
+/* Logic Model 5-stage flow */
+.lm-intro{font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .8rem;line-height:1.7}
+.lm-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin:.6rem 0 1rem;position:relative}
+@media(max-width:880px){.lm-flow{grid-template-columns:1fr}}
+.lm-stage{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;
+  box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column;font-size:.78rem}
+.lm-stage::after{content:"▶";position:absolute;right:-.7rem;top:50%;transform:translateY(-50%);
+  color:var(--bunka-deep);font-size:1rem;font-weight:700;background:var(--bg);padding:0 .1rem;z-index:2}
+.lm-stage:last-child::after{display:none}
+@media(max-width:880px){.lm-stage::after{right:50%;top:auto;bottom:-1.2rem;transform:translateX(50%) rotate(90deg)}}
+.lm-stage .stage-num{display:inline-block;background:var(--bunka-deep);color:#fff;border-radius:999px;
+  width:1.5rem;height:1.5rem;line-height:1.5rem;text-align:center;font-size:.72rem;font-weight:700;margin-bottom:.3rem}
+.lm-stage h5{font-size:.92rem;color:var(--bunka-deep);margin:0 0 .4rem;font-weight:700;letter-spacing:.04em}
+.lm-stage h5 small{font-size:.7rem;color:var(--text-sub);font-weight:400;display:block;margin-top:.1rem}
+.lm-stage ul{list-style:none;padding:0;margin:0;font-size:.74rem;color:var(--text-sub);line-height:1.7;flex:1}
+.lm-stage ul li{padding:.15rem 0;border-bottom:1px dashed #f0f0f0}
+.lm-stage ul li:last-child{border-bottom:none}
+.lm-stage ul li strong{color:var(--text);font-weight:600}
+.lm-stage.s1{border-top:4px solid #6c757d}
+.lm-stage.s2{border-top:4px solid var(--soft-blue)}
+.lm-stage.s3{border-top:4px solid var(--green)}
+.lm-stage.s4{border-top:4px solid var(--bunka-gold)}
+.lm-stage.s5{border-top:4px solid var(--bunka-vermilion)}
+
+/* Logic Model 4-theme × 5-stage matrix */
+.lm-matrix{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem;font-size:.74rem;overflow-x:auto}
+.lm-matrix table{width:100%;border-collapse:collapse;min-width:900px}
+.lm-matrix th,.lm-matrix td{padding:.5rem .55rem;border:1px solid var(--border);text-align:left;vertical-align:top;font-size:.74rem;line-height:1.5}
+.lm-matrix thead th{background:var(--bunka-deep);color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-align:center}
+.lm-matrix thead th:first-child{text-align:left;background:#1a3354}
+.lm-matrix tbody th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.74rem;width:18%;text-align:left}
+.lm-matrix tbody tr:nth-child(odd) td{background:#fcfcfc}
+.lm-matrix tbody td strong{color:var(--text)}
+
+/* KPI mapping */
+.kpi-map{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem;font-size:.78rem}
+.kpi-map table{width:100%;border-collapse:collapse}
+.kpi-map th,.kpi-map td{padding:.6rem .7rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:.78rem}
+.kpi-map thead th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.74rem;letter-spacing:.04em;border-bottom:2px solid var(--bunka-gold)}
+.kpi-map .stage-tag{display:inline-block;font-size:.65rem;padding:.15rem .5rem;border-radius:3px;font-weight:700;letter-spacing:.04em}
+.kpi-map .tag-output{background:var(--soft-green);color:var(--green)}
+.kpi-map .tag-outcome{background:#fdf6e3;color:#8b6914}
+.kpi-map .tag-impact{background:var(--soft-red);color:var(--bunka-vermilion)}
+.kpi-map .right{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.kpi-map .baseline{color:var(--text-sub)}
+.kpi-map .target{color:var(--green)}
+
+/* LM 公式PPTプレビュー */
+.lm-preview{background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:1.2rem 1.2rem 1rem;box-shadow:var(--shadow);margin:.8rem 0 1rem;text-align:center}
+.lm-preview .preview-head{display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:.7rem;text-align:left;flex-wrap:wrap;gap:.5rem}
+.lm-preview .preview-tag{font-size:.72rem;color:var(--bunka-deep);background:var(--soft-blue-bg);
+  border:1px solid #c5d3e6;border-radius:999px;padding:.25rem .8rem;font-weight:700;letter-spacing:.04em}
+.lm-preview h4{font-size:1rem;color:var(--bunka-deep);font-weight:700;margin:0;display:inline-block}
+.lm-preview .download-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.lm-preview .dl-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;
+  background:var(--bunka-deep);color:#fff;text-decoration:none;border:none;
+  border-radius:6px;padding:.45rem .9rem;font-weight:700;letter-spacing:.04em}
+.lm-preview .dl-btn:hover{background:var(--bunka-vermilion);color:#fff}
+.lm-preview .dl-btn.alt{background:#fff;color:var(--bunka-deep);border:1.5px solid var(--bunka-deep)}
+.lm-preview .dl-btn.alt:hover{background:var(--bunka-deep);color:#fff}
+.lm-preview img{max-width:100%;height:auto;border:1px solid var(--border);
+  border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto}
+.lm-preview .caption{font-size:.78rem;color:var(--text-sub);margin-top:.6rem;line-height:1.7;text-align:left}
+.lm-preview .caption strong{color:var(--bunka-deep)}
+
+/* LM Note */
+.lm-note{background:#fff8e1;border:1px solid #ffd54f;border-left:4px solid var(--gold);
+  border-radius:8px;padding:.8rem 1.1rem;margin:.8rem 0;font-size:.83rem;line-height:1.7}
+.lm-note strong{color:#8b6914}
+.lm-note ul{margin:.3rem 0 0 1.2rem;padding:0}
+.lm-note li{margin:.15rem 0}
+
 /* Timeline visual */
 .timeline-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-top:.8rem;font-size:.72rem}
 @media(max-width:780px){.timeline-flow{grid-template-columns:1fr}}
@@ -371,7 +445,7 @@ footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);
           <td><strong>⑫ ロジックモデル</strong></td>
           <td>—（既存事業に該当書類なし）</td>
           <td><span class="score s30">20%</span></td>
-          <td>新規作成必須。文化観光ガイドブックP16-17参照。「投入→活動→成果→アウトカム→インパクト」の連鎖を設計。</td>
+          <td>新規作成必須。文化観光ガイドブックP16-17参照。「投入→活動→成果→アウトカム→インパクト」の連鎖を設計。<br><a href="#logic-model-sample" style="font-weight:700">▶ サンプル参照（本ページ下部）</a></td>
         </tr>
         <tr>
           <td><strong>⑬ 基本方針との整合性確認</strong></td>
@@ -674,6 +748,207 @@ footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);
         <dt>推奨</dt><dd><strong>B案：</strong>レキマチを本命、赤湯・熊野は相談で関係構築。R9以降の確実な申請を狙う</dd>
       </dl>
     </div>
+  </div>
+
+  <!-- ========== ロジックモデル サンプル ========== -->
+  <h2 class="sec" id="logic-model-sample">📐 ロジックモデル サンプル（新規作成・申請素材）</h2>
+  <p class="lm-intro">
+    流用マトリクス⑫の <strong>「新規作成必須」</strong> の中核成果物。文化庁公式様式（94343001_01.pptx）の<strong>6段階構造</strong>（インプット→アクティビティ→アウトプット→初期アウトカム→中間アウトカム→最終アウトカム）に、レキマチ案件のドラフトを反映した1ページ完結版を作成しました。<strong>そのまま正式提出のたたき台として活用可能</strong>です。下部に詳細展開（4目標マトリクス／KPIマップ）も用意。
+  </p>
+
+  <!-- 公式様式PPTプレビュー -->
+  <div class="lm-preview">
+    <div class="preview-head">
+      <div>
+        <h4>📄 公式様式 94343001_01 準拠ドラフト（1ページ完結）</h4>
+        <span class="preview-tag" style="margin-left:.5rem">PowerPoint版・即時提出可能形式</span>
+      </div>
+      <div class="download-row">
+        <a href="files/94343001_01_logic_model_official_format.pptx" class="dl-btn" download>⬇ PPTXダウンロード</a>
+        <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" class="dl-btn alt" target="_blank">▶ 文化庁公式テンプレート</a>
+      </div>
+    </div>
+    <img src="images/logic_model_preview.png" alt="文化観光推進法 ロジックモデル（公式様式準拠・米沢レキマチ案件）">
+    <p class="caption">
+      <strong>構成：</strong>左側「計画された行動」（インプット／アクティビティ）と右側「期待される成果」（アウトプット／初期・中間・最終アウトカム）を縦糸とし、下部にターゲット・課題・コンセプトを配置。
+      <strong>オレンジ枠</strong>は文化庁様式で重視される指標箇所をハイライト（満足度／来訪増・インバウンド増、文化資源理解、連携体制構築、最終アウトカム全体）。
+      <strong>記載値はR7総合計画・ハード/ソフト事業のKPIから逆算した初期案</strong>。申請前相談（5/12）で関係者と再検証・合意形成のうえ確定してください。
+    </p>
+  </div>
+
+  <h3 class="sub">⓪ 5段階フロー（全体像・解説用）</h3>
+  <div class="lm-flow">
+    <div class="lm-stage s1">
+      <span class="stage-num">1</span>
+      <h5>投入 <small>Input / Resources</small></h5>
+      <ul>
+        <li><strong>補助金：</strong>ハード2億・ソフト2,000万・文化観光7,500万/年×5年（最大3.75億）</li>
+        <li><strong>既存資産：</strong>R7総合計画／人流分析／ベンチマーク／SPC構想／勝利マーケット分析</li>
+        <li><strong>文化資源：</strong>稽照殿（国宝・重文）・上杉神社・米沢城跡・伝統発酵食文化</li>
+        <li><strong>連携体制：</strong>米沢市・上杉神社・山形大学・地元事業者8者・金融機関</li>
+        <li><strong>専門家：</strong>増田信吾氏・田原氏・黒田学部長・TOPPAN・アジリノ</li>
+      </ul>
+    </div>
+    <div class="lm-stage s2">
+      <span class="stage-num">2</span>
+      <h5>活動 <small>Activity</small></h5>
+      <ul>
+        <li><strong>保存活用基盤：</strong>稽照殿の保存環境改善・保存協力金制度導入</li>
+        <li><strong>解説情報整備：</strong>多言語（日英中韓泰）解説制作・音声ガイド・QRコンテンツ</li>
+        <li><strong>コンテンツ造成：</strong>「超勝利」ブランド体験・武家文化×発酵食×神道の物語化</li>
+        <li><strong>人材育成：</strong>解説員養成・通訳ガイド研修・インバウンドコンシェルジュ</li>
+        <li><strong>海外発信：</strong>JNTO連携プロモーション・多言語デジタルカタログ</li>
+        <li><strong>運営基盤：</strong>SPC設立・文化観光商品開発・モニターツアー</li>
+      </ul>
+    </div>
+    <div class="lm-stage s3">
+      <span class="stage-num">3</span>
+      <h5>アウトプット <small>Output</small></h5>
+      <ul>
+        <li>整備済10施設の文化観光拠点としての稼働</li>
+        <li>多言語解説整備件数：<strong>5言語×100箇所</strong></li>
+        <li>体験コンテンツ造成：<strong>年間20プログラム</strong></li>
+        <li>育成された解説員・ガイド：<strong>累計50名</strong></li>
+        <li>JNTO連携海外発信：<strong>年4回以上</strong></li>
+        <li>「超勝利」ブランド商品ラインナップ：<strong>30SKU</strong></li>
+        <li>SPC設立・運営開始（R8）</li>
+      </ul>
+    </div>
+    <div class="lm-stage s4">
+      <span class="stage-num">4</span>
+      <h5>アウトカム <small>Outcome</small></h5>
+      <ul>
+        <li>30分未満滞在率 65.8% → <strong>50%</strong></li>
+        <li>年間来訪者数 38.5万 → <strong>50万人</strong></li>
+        <li>外国人来訪者比率 5% → <strong>20%</strong></li>
+        <li>域内消費額：来訪者一人当たり <strong>+50%</strong></li>
+        <li>文化財理解度（来訪者調査） <strong>80%以上</strong></li>
+        <li>保存協力金収入：<strong>年間1,500万円</strong></li>
+        <li>SPC自立化：補助依存率 <strong>50%以下</strong></li>
+      </ul>
+    </div>
+    <div class="lm-stage s5">
+      <span class="stage-num">5</span>
+      <h5>インパクト <small>Impact</small></h5>
+      <ul>
+        <li><strong>2030年：</strong>謙信公生誕500年プレ事業の成功・国際的注目獲得</li>
+        <li><strong>持続可能な文化観光モデル</strong>の確立と他地域への波及</li>
+        <li>地域GDP寄与：<strong>累計100億円超</strong>の経済波及効果</li>
+        <li>文化への再投資好循環の制度化（保存協力金・SPC収益還元）</li>
+        <li>米沢ブランドの国際認知獲得（「Yonezawa＝武家文化」）</li>
+        <li>地域住民の誇り醸成・UIターン促進</li>
+        <li>文化資源の保存・継承体制の永続化</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub">① 文化観光推進法 4目標 × 5段階 詳細マトリクス</h3>
+  <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .5rem">文化観光推進法が定める4つの目標を行軸、ロジックモデル5段階を列軸とした構造化マトリクス。<strong>申請書本文（拠点計画／地域計画 様式）の論理構成にもそのまま流用可能</strong>。</p>
+  <div class="lm-matrix">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:14%">4つの目標</th>
+          <th>① 投入</th>
+          <th>② 活動</th>
+          <th>③ アウトプット</th>
+          <th>④ アウトカム</th>
+          <th>⑤ インパクト</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>① 文化資源の魅力発信</th>
+          <td>稽照殿の国宝・重文／R7総合計画の文化資源台帳／専門家ネットワーク</td>
+          <td>多言語解説制作／音声ガイド／QRコンテンツ／文化財公開イベント／学術監修</td>
+          <td>5言語×100箇所の解説整備／公開イベント年12回／学術監修記事年30本</td>
+          <td>文化財理解度80%以上／満足度4.5/5以上／SNS発信件数 年5,000件</td>
+          <td>「Yonezawa＝武家文化」の国際的認知獲得・文化資源価値の再定義</td>
+        </tr>
+        <tr>
+          <th>② 国内外からの来訪促進</th>
+          <td>Agoop人流分析／ベンチマーク／JNTOネットワーク／既存38.5万人の来訪基盤</td>
+          <td>JNTO連携海外発信／インバウンドコンシェルジュ配置／多言語デジタルカタログ／モニターツアー</td>
+          <td>海外プロモーション年4回／インバウンドツアー造成20本／公式英語サイト・Wechat開設</td>
+          <td>来訪者数 38.5万→50万／外国人比率 5%→20%／100km以遠比率 35.5%→45%</td>
+          <td>謙信公生誕500年（2030）に国際的観光地として確立</td>
+        </tr>
+        <tr>
+          <th>③ 地域経済の活性化</th>
+          <td>ハード整備済10施設／「超勝利」ブランド構想／勝利マーケット分析</td>
+          <td>商品開発（30SKU）／滞在型体験プログラム／飲食・物販コンテンツ／二次交通整備</td>
+          <td>体験プログラム年20本／ブランド商品30SKU／回遊ルート整備／決済多様化</td>
+          <td>30分未満退出率 65.8%→50%／域内消費額 来訪者一人当たり +50%／事業者売上累計+15億</td>
+          <td>地域GDP寄与累計100億円超・UIターン促進・新規事業者参入</td>
+        </tr>
+        <tr>
+          <th>④ 文化への再投資の好循環</th>
+          <td>SPC構想／山形銀行・米沢信用金庫支援／保存協力金制度の制度設計</td>
+          <td>SPC設立・運営／保存協力金徴収・還元／文化財修繕基金造成／中間評価対応</td>
+          <td>SPC運営開始／保存協力金制度導入／文化財修繕基金設置／年次報告</td>
+          <td>保存協力金収入 年1,500万／SPC補助依存率 50%以下／文化財修繕基金1億円規模</td>
+          <td>保存・活用・経済の好循環が制度化され他地域モデルへ波及</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">② アウトカム／インパクト 数値目標 KPIマップ</h3>
+  <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .5rem">文化庁が重視する <strong>定量的な成果指標</strong> を、現状値・目標値・測定方法とともに整理。中間評価（4・5年目）に耐える設計。</p>
+  <div class="kpi-map">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:24%">KPI指標</th>
+          <th style="width:8%">段階</th>
+          <th style="width:14%">現状（R7）</th>
+          <th style="width:14%">中間目標（R10）</th>
+          <th style="width:14%">最終目標（R12）</th>
+          <th>測定方法</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>整備済施設の稼働率</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">80%</td><td class="right target">95%</td><td>SPC運営報告／施設運営実績</td></tr>
+        <tr><td><strong>多言語解説整備件数</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">5言語×60箇所</td><td class="right target">5言語×100箇所</td><td>制作完了報告</td></tr>
+        <tr><td><strong>育成解説員・ガイド累計</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">25名</td><td class="right target">50名</td><td>研修修了証発行数</td></tr>
+        <tr><td><strong>体験コンテンツ造成数</strong></td><td><span class="stage-tag tag-output">アウトプット</span></td><td class="right baseline">—</td><td class="right">年12本</td><td class="right target">年20本</td><td>SPC運営記録</td></tr>
+        <tr><td><strong>30分未満滞在率（休日）</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">65.8%</td><td class="right">55%</td><td class="right target">50%</td><td>Agoop人流データ年次比較</td></tr>
+        <tr><td><strong>年間来訪者数</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">384,987人</td><td class="right">42万人</td><td class="right target">50万人</td><td>Agoop人流データ／施設来館者集計</td></tr>
+        <tr><td><strong>外国人来訪者比率</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">未計測</td><td class="right">12%</td><td class="right target">20%</td><td>来訪者調査／宿泊統計／施設アンケート</td></tr>
+        <tr><td><strong>100km以遠来訪者比率</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">35.5%</td><td class="right">40%</td><td class="right target">45%</td><td>Agoop人流データ</td></tr>
+        <tr><td><strong>来訪者一人当たり域内消費額</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">基準値測定</td><td class="right">+25%</td><td class="right target">+50%</td><td>来訪者意向調査／POSデータ</td></tr>
+        <tr><td><strong>文化財理解度（来訪者調査）</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">—</td><td class="right">65%</td><td class="right target">80%</td><td>来訪者アンケート（5段階×複数項目）</td></tr>
+        <tr><td><strong>保存協力金 年間収入</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">未導入</td><td class="right">800万円</td><td class="right target">1,500万円</td><td>SPC会計報告</td></tr>
+        <tr><td><strong>SPC補助依存率</strong></td><td><span class="stage-tag tag-outcome">アウトカム</span></td><td class="right baseline">—</td><td class="right">70%</td><td class="right target">50%以下</td><td>SPC収支報告</td></tr>
+        <tr><td><strong>地域GDP寄与（累計）</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">40億円</td><td class="right target">100億円超</td><td>地域経済波及効果分析（5年累計）</td></tr>
+        <tr><td><strong>事業者売上拡大（累計）</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">+8億円</td><td class="right target">+15億円</td><td>10事業者の売上集計</td></tr>
+        <tr><td><strong>文化財修繕基金規模</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">5,000万円</td><td class="right target">1億円</td><td>基金会計報告</td></tr>
+        <tr><td><strong>新規事業者参入数</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">5社</td><td class="right target">10社</td><td>商工会議所登録／SPC連携協定</td></tr>
+        <tr><td><strong>UIターン関連雇用創出</strong></td><td><span class="stage-tag tag-impact">インパクト</span></td><td class="right baseline">—</td><td class="right">15名</td><td class="right target">30名</td><td>連携事業者雇用報告</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="lm-note">
+    <strong>📝 PowerPoint化の手順：</strong>このサンプルを文化庁指定様式（<a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">ロジックモデル様式 PPTX 62KB</a>）に転記する際の推奨ステップ：
+    <ul>
+      <li><strong>スライド1：</strong>5段階フロー（上記⓪）— 全体像を1枚で示す</li>
+      <li><strong>スライド2〜5：</strong>4目標 × 5段階マトリクスを目標別に1枚ずつ展開（上記①）</li>
+      <li><strong>スライド6：</strong>KPIマップ（上記②）— 中間評価対応の数値目標を一覧化</li>
+      <li><strong>スライド7：</strong>因果関係の論理（投入→活動→...→インパクトの矢印・補足説明）</li>
+      <li><strong>備考：</strong>各KPIの<strong>「測定方法」「測定主体」「測定頻度」</strong>を必ず明記。中間評価で問われる項目</li>
+    </ul>
+  </div>
+
+  <div class="lm-note" style="background:#f0f7ff;border-color:#a8d0f0;border-left-color:var(--soft-blue)">
+    <strong style="color:var(--soft-blue)">⚠ 数値目標の設定方針（要内部議論）：</strong>本サンプルの数値はR7総合計画・ハード/ソフト事業のKPI・ベンチマーク（鹿島神宮・熊野大社）から逆算した <strong>初期案</strong> です。下記は申請前相談（5/12）までに関係者で<strong>再検証・合意形成すべき主要論点</strong>です：
+    <ul>
+      <li>50万人来訪／30分未満退出率50% は <strong>ハード事業申請</strong>のKPIと整合しているか（同事業40万人目標との関係）</li>
+      <li>外国人比率20%は<strong>JNTOネットワーク活用前提</strong>。実現可能性を専門家と要検討</li>
+      <li>保存協力金1,500万/年は<strong>稽照殿の参拝者規模</strong>と単価設計から逆算が必要</li>
+      <li>SPC補助依存率50%以下は<strong>収益事業化計画</strong>の精緻化前提</li>
+      <li>文化財理解度80%は<strong>調査設計</strong>（質問項目・サンプリング）の事前検討が必要</li>
+    </ul>
   </div>
 
   <!-- ========== アクションプラン ========== -->
