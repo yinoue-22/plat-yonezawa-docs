@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文化観光推進法申請 ｜ 既存申請からの流用可能性分析 ｜ プラットヨネザワ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1a2744;--primary-light:#2c3e5a;--accent:#c0392b;--gold:#b8860b;
+  --bg:#f5f5f0;--card:#fff;--text:#1d1d1d;--text-sub:#6c757d;--border:#e0e0e0;
+  --shadow:0 2px 16px rgba(0,0,0,.08);
+  --bunka-deep:#1f4068;--bunka-gold:#b58a2e;--bunka-vermilion:#8b1e1e;
+  --hard-red:#c0392b;--soft-blue:#2980b9;
+  --green:#1b7a4a;--soft-red:#fdecec;--soft-green:#eafaf1;--soft-blue-bg:#e8f4f8;--soft-gold:#fdf6e3;
+  --high:#1b7a4a;--mid:#d68910;--low:#c0392b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+a{color:var(--bunka-deep)}
+a:hover{color:var(--bunka-vermilion)}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.crumbs{font-size:.78rem;color:var(--text-sub);margin-bottom:.8rem;letter-spacing:.04em}
+.crumbs a{color:var(--text-sub);text-decoration:none}
+.crumbs a:hover{color:var(--bunka-deep)}
+.header-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
+.tag{font-size:.7rem;background:#eaf0f7;color:var(--bunka-deep);border:1px solid #c5d3e6;
+  border-radius:999px;padding:.2rem .7rem;font-weight:600;letter-spacing:.04em}
+.badge-status{font-size:.65rem;font-weight:700;letter-spacing:.08em;border-radius:3px;padding:.2rem .6rem;
+  background:var(--soft-gold);color:#8b6914;border:1px solid #e3d29a}
+h1.title{font-size:1.7rem;font-weight:900;margin:.2rem 0 .3rem;letter-spacing:.02em}
+.lead{color:var(--text-sub);font-size:.92rem;margin:0 0 1rem}
+.info-bar{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.78rem;color:var(--text-sub);margin:0 0 1.2rem}
+
+.exec-summary{background:linear-gradient(135deg,#1f4068 0%,#0f243d 100%);color:#fff;
+  border-radius:12px;padding:1.4rem 1.6rem;margin:0 0 1.6rem;box-shadow:var(--shadow)}
+.exec-summary h2{font-size:1.1rem;margin:0 0 .6rem;letter-spacing:.04em}
+.exec-summary p{font-size:.88rem;line-height:1.8;color:#dbe3ee;margin:0 0 .5rem}
+.exec-summary .big{font-size:1.6rem;font-weight:700;color:var(--bunka-gold);letter-spacing:.02em}
+.exec-summary .meta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+.exec-summary .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:.25rem .8rem;font-size:.72rem;color:#fff}
+
+h2.sec{font-size:1.05rem;font-weight:700;color:var(--bunka-deep);margin:2rem 0 1rem;
+  padding-bottom:.4rem;border-bottom:3px solid var(--bunka-gold);display:flex;align-items:center;gap:.4rem;letter-spacing:.04em}
+h3.sub{font-size:.95rem;color:var(--text);margin:1.2rem 0 .6rem;letter-spacing:.04em;font-weight:700;
+  padding-left:.6rem;border-left:3px solid var(--bunka-deep)}
+
+/* KPI cards */
+.grid{display:grid;gap:.8rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:780px){.grid-3,.grid-4{grid-template-columns:1fr}}
+.stat{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+.stat .label{font-size:.7rem;color:var(--text-sub);letter-spacing:.06em;font-weight:600}
+.stat .num{font-size:1.5rem;font-weight:700;color:var(--text);margin-top:.2rem;line-height:1.2}
+.stat .num small{font-size:.7rem;color:var(--text-sub);margin-left:.2rem}
+.stat .note{font-size:.7rem;color:var(--text-sub);margin-top:.2rem}
+.stat.high{border-top:3px solid var(--high)}
+.stat.mid{border-top:3px solid var(--mid)}
+.stat.low{border-top:3px solid var(--low)}
+
+/* Compare cards (3 systems comparison) */
+.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:.8rem 0 1.4rem}
+@media(max-width:780px){.systems{grid-template-columns:1fr}}
+.sys{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.1rem;box-shadow:var(--shadow);font-size:.82rem}
+.sys.hard{border-top:4px solid var(--hard-red)}
+.sys.soft{border-top:4px solid var(--soft-blue)}
+.sys.bunka{border-top:4px solid var(--bunka-gold)}
+.sys h4{font-size:1rem;margin:0 0 .5rem;font-weight:700}
+.sys .ttl{font-size:.7rem;color:var(--text-sub);letter-spacing:.06em}
+.sys dl{display:grid;grid-template-columns:80px 1fr;gap:.3rem .6rem;margin-top:.5rem;font-size:.78rem}
+.sys dt{color:var(--text-sub)}
+.sys dd{margin:0;color:var(--text)}
+.sys .status{display:inline-block;font-size:.65rem;border-radius:3px;padding:.15rem .5rem;font-weight:700;
+  background:var(--soft-green);color:var(--green);margin-top:.3rem}
+.sys .status.review{background:var(--soft-gold);color:#8b6914;border:1px solid #e3d29a}
+
+/* Reuse matrix */
+.matrix{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-top:.5rem}
+.matrix table{width:100%;border-collapse:collapse;font-size:.8rem}
+.matrix th,.matrix td{padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.matrix thead th{background:#fafafa;font-size:.72rem;color:var(--text-sub);font-weight:700;letter-spacing:.04em;
+  border-bottom:2px solid var(--bunka-deep)}
+.matrix th:first-child{width:24%}
+.matrix tbody tr:hover{background:#fafbfc}
+.score{display:inline-block;font-size:.7rem;font-weight:700;border-radius:3px;padding:.2rem .5rem;letter-spacing:.04em;white-space:nowrap}
+.score.s90{background:#d4edda;color:#155724}
+.score.s80{background:#dff0d8;color:#3c763d}
+.score.s70{background:#fcf8e3;color:#8a6d3b}
+.score.s50{background:#fff4e6;color:#d68910}
+.score.s30{background:#f8d7da;color:#721c24}
+.score.s00{background:#e0e0e0;color:#333}
+.matrix small{color:var(--text-sub);font-size:.7rem;display:block;margin-top:.2rem}
+
+/* Diff sections */
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+@media(max-width:780px){.diff-grid{grid-template-columns:1fr}}
+.diff-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+.diff-box.add{border-left:5px solid var(--high)}
+.diff-box.modify{border-left:5px solid var(--mid)}
+.diff-box.new{border-left:5px solid var(--low)}
+.diff-box.reframe{border-left:5px solid var(--bunka-deep)}
+.diff-box h4{font-size:.95rem;margin:0 0 .4rem;display:flex;align-items:center;gap:.4rem}
+.diff-box ul{margin:.3rem 0 0 1rem;font-size:.82rem;color:var(--text-sub);line-height:1.7}
+.diff-box ul li{margin-bottom:.2rem}
+.diff-box ul li strong{color:var(--text)}
+
+/* Action plan */
+.action-list{counter-reset:step;list-style:none;padding:0;margin:.6rem 0 0}
+.action-list li{counter-increment:step;background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:.9rem 1rem .9rem 3.2rem;margin-bottom:.6rem;position:relative;font-size:.86rem;box-shadow:var(--shadow)}
+.action-list li::before{content:counter(step);position:absolute;left:.9rem;top:.9rem;
+  width:1.8rem;height:1.8rem;background:var(--bunka-deep);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.action-list li strong{color:var(--bunka-vermilion)}
+.action-list li small{display:block;color:var(--text-sub);font-size:.75rem;margin-top:.3rem}
+
+/* Logic model diagram */
+.logic{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow);margin-top:.5rem}
+.logic-row{display:grid;grid-template-columns:120px 1fr;gap:.8rem;align-items:center;padding:.6rem 0;
+  border-bottom:1px dashed var(--border);font-size:.84rem}
+.logic-row:last-child{border-bottom:none}
+.logic-row .stage{background:var(--bunka-deep);color:#fff;border-radius:6px;padding:.4rem .6rem;
+  font-size:.72rem;font-weight:700;text-align:center;letter-spacing:.04em}
+.logic-row .stage.input{background:#6c757d}
+.logic-row .stage.activity{background:var(--soft-blue)}
+.logic-row .stage.output{background:var(--green)}
+.logic-row .stage.outcome{background:var(--bunka-gold)}
+.logic-row .stage.impact{background:var(--bunka-vermilion)}
+
+/* Risk */
+.risk{background:#fdfaf3;border:1px solid #e3d29a;border-radius:10px;padding:1rem 1.2rem;margin:.5rem 0;font-size:.85rem}
+.risk strong{color:#8b6914}
+
+/* Cost */
+.cost-table{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.cost-table table{width:100%;border-collapse:collapse;font-size:.82rem}
+.cost-table th,.cost-table td{padding:.7rem .8rem;border-bottom:1px solid var(--border);text-align:left}
+.cost-table thead th{background:#fafafa;font-weight:700;color:var(--bunka-deep);font-size:.78rem;letter-spacing:.04em}
+.cost-table .right{text-align:right}
+.cost-table .total{background:#fafbfc;font-weight:700}
+
+/* Footer */
+footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--text-sub);
+  border-top:1px solid var(--border);margin-top:2rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.5rem 0 1rem}
+@media(max-width:780px){.related-grid{grid-template-columns:1fr}}
+.related{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;
+  text-decoration:none;color:inherit;box-shadow:var(--shadow);font-size:.82rem;display:block}
+.related:hover{border-color:var(--bunka-deep);transform:translateY(-2px)}
+.related .cat{font-size:.7rem;color:var(--text-sub);letter-spacing:.06em}
+.related .ttl{font-weight:700;margin:.2rem 0;font-size:.92rem}
+.related .desc{font-size:.75rem;color:var(--text-sub);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="crumbs">
+    <a href="../index.html">ポータル</a> ＞ 拠点計画・地域計画 認定申請事業 ＞ <strong>既存申請からの流用可能性分析</strong>
+  </div>
+
+  <div class="header-row">
+    <span class="tag">📜 文化庁・文化観光推進法</span>
+    <span class="badge-status">分析レポート</span>
+  </div>
+
+  <h1 class="title">既存申請からの流用可能性分析</h1>
+  <p class="lead">レキマチ ハード事業（観光庁・1/2・上限2億円・4/22提出済）／レキマチ ソフト事業（観光庁・上限2,000万円・4/10提出済）から、文化観光推進法 拠点計画・地域計画 認定申請（文化庁・2/3・上限7,500万円/年）への流用可能性を成果物単位で精査。</p>
+
+  <div class="info-bar">
+    <span>📅 分析日：2026/4/30</span>
+    <span>🎯 対象締切：5/12（火）申請前相談 → 6/3（水）正式申請</span>
+    <span>🏢 対象案件：レキマチ／赤湯・熊野大社</span>
+  </div>
+
+  <!-- ========== Executive Summary ========== -->
+  <div class="exec-summary">
+    <h2>📌 結論サマリー</h2>
+    <p><span class="big">流用率：約65〜75%</span>　既存ハード・ソフト両事業の調査・データ・KPI・連携体制が文化観光推進法申請に高度に転用可能。<strong style="color:#fff">「ハード事業＋ソフト事業＋拠点／地域計画」の三位一体推進体制</strong>として整理することで、申請書の説得力が大幅に向上する。</p>
+    <p>ただし、<strong style="color:#fff">フレーム再構成（観光資源 → 文化資源／文化観光）と文化庁固有書類（ロジックモデル・概要資料・基本方針整合）の新規作成が必要</strong>。R7総合計画とハード・ソフト両事業の成果物を「文化観光の好循環」言語に翻訳し直すことが鍵。</p>
+    <div class="meta">
+      <span class="pill">📊 一次データ（Agoop）流用度 95%</span>
+      <span class="pill">🎯 KPI・ベンチマーク 85%</span>
+      <span class="pill">🏗 連携体制 80%</span>
+      <span class="pill">📝 申請書本文 55%</span>
+      <span class="pill">📐 ロジックモデル 新規</span>
+    </div>
+  </div>
+
+  <!-- ========== 三制度比較 ========== -->
+  <h2 class="sec">⚖ 三制度の構造比較</h2>
+  <div class="systems">
+    <div class="sys hard">
+      <div class="ttl">既存・観光庁</div>
+      <h4>レキマチ ハード事業</h4>
+      <span class="status">提出済 4/22</span>
+      <dl>
+        <dt>正式名</dt><dd>観光振興事業費補助金（地域資源を活用した観光まちづくり推進事業）</dd>
+        <dt>所管</dt><dd>観光庁 観光資源課</dd>
+        <dt>補助率</dt><dd>1/2（自己負担あり）</dd>
+        <dt>上限</dt><dd>2億円</dd>
+        <dt>対象</dt><dd>建造物の新築・改修、周辺環境整備</dd>
+        <dt>期間</dt><dd>R8〜R9.2.26（約1年）</dd>
+        <dt>規模</dt><dd>10案件・27,113.5万円</dd>
+      </dl>
+    </div>
+
+    <div class="sys soft">
+      <div class="ttl">既存・観光庁</div>
+      <h4>レキマチ ソフト事業</h4>
+      <span class="status">提出済 4/10</span>
+      <dl>
+        <dt>正式名</dt><dd>歴史的資源を活用した観光まちづくり推進事業（B モデル創出）</dd>
+        <dt>所管</dt><dd>観光庁 観光資源課</dd>
+        <dt>補助率</dt><dd>定額</dd>
+        <dt>上限</dt><dd>2,000万円</dd>
+        <dt>対象</dt><dd>調査・計画策定、コンテンツ造成、モニターツアー</dd>
+        <dt>期間</dt><dd>R8単年</dd>
+        <dt>成果物</dt><dd>事業計画書・モデル創出</dd>
+      </dl>
+    </div>
+
+    <div class="sys bunka">
+      <div class="ttl">新規・文化庁</div>
+      <h4>文化観光推進法 認定申請</h4>
+      <span class="status review">検討中</span>
+      <dl>
+        <dt>正式名</dt><dd>文化観光拠点施設を中核とした地域における文化観光の推進に関する法律 拠点／地域計画</dd>
+        <dt>所管</dt><dd>文化庁 文化拠点担当</dd>
+        <dt>補助率</dt><dd>2/3</dd>
+        <dt>上限</dt><dd>7,500万円／年（5年）</dd>
+        <dt>対象</dt><dd>文化資源の保存・活用・観光振興・経済循環</dd>
+        <dt>期間</dt><dd>原則5年（毎年度審査）</dd>
+        <dt>軸</dt><dd>計画認定 → 補助金活用</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ========== 流用マトリクス ========== -->
+  <h2 class="sec">🔁 成果物別 流用可能性マトリクス</h2>
+  <p style="font-size:.85rem;color:var(--text-sub);margin:0 0 .5rem">凡例：<span class="score s90">90%+</span>ほぼそのまま流用 <span class="score s80">70-90%</span>軽微な修正で流用 <span class="score s50">40-70%</span>再構成が必要 <span class="score s30">〜40%</span>新規作成寄り</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr>
+          <th>成果物カテゴリ</th>
+          <th>既存資産</th>
+          <th>流用度</th>
+          <th>必要な作業</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>① 一次データ（人流・属性）</strong></td>
+          <td>Agoop モバイル空間統計：384,987人/年、休日30分未満退出65.8%、100km以遠35.5%、二次交通分析（株式会社ニューメディア再委託）</td>
+          <td><span class="score s90">95%</span></td>
+          <td>そのまま転載可能。文化観光の文脈で「文化資源への来訪・接触」として再ラベリング。</td>
+        </tr>
+        <tr>
+          <td><strong>② ベンチマーク比較</strong></td>
+          <td>鹿島神宮（滞在型）・熊野大社（プロダクト売上6,000〜8,000万円）との比較分析</td>
+          <td><span class="score s90">90%</span></td>
+          <td>文化観光拠点における先進事例として転用。文化庁認定計画事例も追加すべし。</td>
+        </tr>
+        <tr>
+          <td><strong>③ 課題認識・ストーリー</strong></td>
+          <td>通過型観光・消費転換欠如・広域吸引力未活用・インバウンド対応不足・経営企画機能不在</td>
+          <td><span class="score s80">85%</span></td>
+          <td>「観光の課題」を「文化資源の活用が不十分」という文化観光フレームに翻訳。</td>
+        </tr>
+        <tr>
+          <td><strong>④ 整備計画（ハード）</strong></td>
+          <td>10案件・27,113.5万円・上杉神社授与所5,000万円・東光酒蔵397万円ほか</td>
+          <td><span class="score s80">80%</span></td>
+          <td>ハード補助金で整備済の施設を「文化観光拠点施設」として位置づけ直し、稼働後の活用計画として記述。</td>
+        </tr>
+        <tr>
+          <td><strong>⑤ コンテンツ造成計画（ソフト）</strong></td>
+          <td>「超勝利」ブランド構想・体験コンテンツ造成・モニターツアー・勝利マーケット分析</td>
+          <td><span class="score s80">85%</span></td>
+          <td>「文化資源の理解促進・魅力発信」コンテンツとして文化観光の文脈で再構成。多言語化・解説情報整備を強調。</td>
+        </tr>
+        <tr>
+          <td><strong>⑥ KPI（数値目標）</strong></td>
+          <td>30分未満滞在率50%へ改善／40万人以上／インバウンド計測体制／売上目標（事業者別）</td>
+          <td><span class="score s80">85%</span></td>
+          <td>文化観光は「来訪者数」「リピート率」「外国人来訪比率」「文化財理解度」等が重視されるため指標を再選定・追加。</td>
+        </tr>
+        <tr>
+          <td><strong>⑦ 連携体制（ステークホルダー）</strong></td>
+          <td>米沢市・上杉神社・山形大学・上杉コーポレーション・アジリノ・パシフィックダイナーサービス・ニューメディア・山形銀行・米沢信用金庫等</td>
+          <td><span class="score s80">80%</span></td>
+          <td>地域計画の場合、複数主体の連携合意（覚書・MOU）が必要。既存ネットワークを基に文書化。</td>
+        </tr>
+        <tr>
+          <td><strong>⑧ 推進主体・SPC構想</strong></td>
+          <td>R7で合意形成済のSPC設立構想・推進体制レポート</td>
+          <td><span class="score s80">75%</span></td>
+          <td>文化観光推進主体として再定義（文化資源の保存と活用を担う組織として位置づけ）。</td>
+        </tr>
+        <tr>
+          <td><strong>⑨ R7総合計画・ロードマップ</strong></td>
+          <td>「上杉の新・城下町づくり総合計画」・2030年生誕500年マイルストーン</td>
+          <td><span class="score s70">70%</span></td>
+          <td>文化観光推進法の「5年計画」フォーマットに合わせて期間設計を再定義。年度別事業計画化が必要。</td>
+        </tr>
+        <tr>
+          <td><strong>⑩ 申請書本文（拠点計画／地域計画 様式）</strong></td>
+          <td>ハード様式1〜5・ソフト申請書類の文章資産</td>
+          <td><span class="score s50">55%</span></td>
+          <td>文化庁様式は構成・記載項目が異なる。素材は流用しつつ、文化観光推進法の用語・観点で書き直し。</td>
+        </tr>
+        <tr>
+          <td><strong>⑪ 概要資料（PowerPoint）</strong></td>
+          <td>R7事業 D-1/D-2 報告書PPT・ハード様式4 事業概要</td>
+          <td><span class="score s50">60%</span></td>
+          <td>文化庁指定様式に合わせて再構成。ビジュアル要素は流用しつつ、文化観光の好循環図への置き換え必要。</td>
+        </tr>
+        <tr>
+          <td><strong>⑫ ロジックモデル</strong></td>
+          <td>—（既存事業に該当書類なし）</td>
+          <td><span class="score s30">20%</span></td>
+          <td>新規作成必須。文化観光ガイドブックP16-17参照。「投入→活動→成果→アウトカム→インパクト」の連鎖を設計。</td>
+        </tr>
+        <tr>
+          <td><strong>⑬ 基本方針との整合性確認</strong></td>
+          <td>—</td>
+          <td><span class="score s00">新規</span></td>
+          <td>文化観光推進法 基本方針／運用指針 との対応関係を明示する記述を新規作成。</td>
+        </tr>
+        <tr>
+          <td><strong>⑭ 文化財保存・継承の観点</strong></td>
+          <td>稽照殿グランドデザイン・文化財管理課題（R7で言及）</td>
+          <td><span class="score s50">60%</span></td>
+          <td>「保存を大前提」とする文化観光の姿勢を明記。保存と活用の両立メカニズムを言語化。</td>
+        </tr>
+        <tr>
+          <td><strong>⑮ JNTO等との海外発信連携</strong></td>
+          <td>—</td>
+          <td><span class="score s00">新規</span></td>
+          <td>JNTO海外宣伝活用計画を新規記述。ハード事業のインバウンド対応計画を発展させる。</td>
+        </tr>
+        <tr>
+          <td><strong>⑯ 経済循環・再投資メカニズム</strong></td>
+          <td>SPC設立構想・地域経済波及試算</td>
+          <td><span class="score s70">70%</span></td>
+          <td>「文化への再投資」の循環構造を明示する図表を作成。経済効果の文化振興への還元プロセスを記述。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== 差分整理 ========== -->
+  <h2 class="sec">📋 既存申請との差分（要追加・要再構成事項）</h2>
+
+  <div class="diff-grid">
+    <div class="diff-box add">
+      <h4>✚ 新規追加が必要な書類・要素</h4>
+      <ul>
+        <li><strong>ロジックモデル様式（PPT）</strong>：投入→活動→アウトプット→アウトカム→インパクトの連鎖図。文化庁指定様式</li>
+        <li><strong>概要資料（PPT）</strong>：文化庁指定様式での事業概要</li>
+        <li><strong>連携合意書／覚書</strong>：地域計画の場合、複数主体の連携合意を文書化</li>
+        <li><strong>5年計画ロードマップ</strong>：年度ごとの事業計画と中間評価対応</li>
+        <li><strong>JNTO等海外発信連携計画</strong></li>
+        <li><strong>基本方針・運用指針との対応表</strong></li>
+        <li><strong>文化財所有者・管理者との合意（上杉神社・稽照殿）</strong></li>
+      </ul>
+    </div>
+
+    <div class="diff-box reframe">
+      <h4>↻ フレーム再構成が必要</h4>
+      <ul>
+        <li><strong>「観光資源」→「文化資源」</strong>用語統一。歴史的建造物・神社仏閣・伝統文化を「文化資源」として位置づけ</li>
+        <li><strong>「滞在時間延長・消費拡大」→「文化資源理解の深化＋経済循環」</strong>へ目的を再定義</li>
+        <li><strong>「観光まちづくり」→「文化観光推進」</strong>の文脈で再記述</li>
+        <li><strong>R7総合計画</strong>を「文化観光推進」の枠組みに翻訳</li>
+        <li><strong>ハード整備の説明</strong>を「文化資源活用のための環境整備」として再構成</li>
+        <li><strong>SPC構想</strong>を「文化観光推進体制」として再定義</li>
+      </ul>
+    </div>
+
+    <div class="diff-box modify">
+      <h4>✎ 既存資産から軽微な修正で流用</h4>
+      <ul>
+        <li><strong>Agoop人流分析・二次交通分析</strong>（株式会社ニューメディア）：そのまま提出可能、ラベリングのみ調整</li>
+        <li><strong>ベンチマーク比較</strong>：鹿島神宮・熊野大社の数値はそのまま、文化観光拠点としての位置づけを追記</li>
+        <li><strong>ステークホルダーリスト</strong>：R7・ハード事業で構築済のネットワーク。覚書化作業のみ追加</li>
+        <li><strong>市民シンポジウム成果</strong>：合意形成プロセスの根拠として再活用</li>
+        <li><strong>増田信吾氏／田原氏／黒田学部長との関係</strong>：有識者ネットワークの裏付け</li>
+        <li><strong>勝利マーケット分析・「超勝利」ブランド</strong>：文化資源活用のリブランディング事例として強化</li>
+      </ul>
+    </div>
+
+    <div class="diff-box new">
+      <h4>⚠ 新たな観点で記述</h4>
+      <ul>
+        <li><strong>文化資源の「保存」を大前提とする姿勢</strong>：稽照殿の保存環境改善・保存協力金制度導入</li>
+        <li><strong>来訪者の「文化的・歴史的背景の理解」促進</strong>：解説情報整備、多言語ガイド、ストーリーテリング</li>
+        <li><strong>文化財の積極公開・活用</strong>：通常非公開コンテンツの計画的公開</li>
+        <li><strong>地域文化への波及</strong>：上杉文化を核とした地域全体の文化観光化</li>
+        <li><strong>持続可能な観光（GSTC等国際標準）への対応</strong></li>
+        <li><strong>地域住民の参画</strong>：保存・活用への市民エンゲージメント設計</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== 統合戦略：三事業一体推進 ========== -->
+  <h2 class="sec">🎯 推奨戦略：三事業一体推進フレーム</h2>
+  <p style="font-size:.88rem;color:var(--text-sub);margin:.4rem 0 1rem">既存ハード・ソフト両事業を、文化観光推進法の枠組みで「役割分担」として位置づけ直すことで、申請書の説得力が向上します。</p>
+
+  <div class="logic">
+    <div class="logic-row">
+      <div class="stage input">投入(Input)</div>
+      <div>R7総合計画・人流分析・市民合意形成済 ＋ ハード補助金（観光庁・1/2・2億円）＋ ソフト補助金（観光庁・上限2,000万円）＋ <strong>文化観光推進法補助金（文化庁・2/3・上限7,500万円/年）</strong></div>
+    </div>
+    <div class="logic-row">
+      <div class="stage activity">活動(Activity)</div>
+      <div><strong>ハード事業：</strong>10施設の整備（27,113.5万円）／<strong>ソフト事業：</strong>体験コンテンツ造成・モデル創出／<strong>文化観光：</strong>解説情報整備・多言語ガイド・文化財公開・JNTO海外発信</div>
+    </div>
+    <div class="logic-row">
+      <div class="stage output">産出(Output)</div>
+      <div>整備済10施設稼働 ＋ 「超勝利」ブランド体験プロダクト群 ＋ 文化観光中核エリア完成 ＋ 多言語解説整備 ＋ 文化財理解促進コンテンツ</div>
+    </div>
+    <div class="logic-row">
+      <div class="stage outcome">成果(Outcome)</div>
+      <div>30分未満滞在率 65.8% → 50% ／ 来訪者 38.5万 → 40万＋ ／ インバウンド比率向上 ／ 上杉文化への理解度・愛着度向上 ／ 域内消費額拡大</div>
+    </div>
+    <div class="logic-row">
+      <div class="stage impact">影響(Impact)</div>
+      <div>文化資源保存への再投資の好循環確立 ／ 2030年上杉謙信公生誕500年プレ開催成功 ／ 持続可能な文化観光地モデルの確立（他地域への波及）</div>
+    </div>
+  </div>
+
+  <!-- ========== 経費比較 ========== -->
+  <h2 class="sec">💰 補助金スタック試算（仮）</h2>
+  <p style="font-size:.85rem;color:var(--text-sub);margin:.3rem 0 .8rem">三事業の補助金を組み合わせた場合の最大調達額試算。文化観光推進法の補助対象は「ソフト＋計画推進」が中心のため、ハード事業との重複リスクは低い。</p>
+  <div class="cost-table">
+    <table>
+      <thead>
+        <tr><th>事業</th><th>所管</th><th>補助率</th><th class="right">補助上限</th><th>主用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>レキマチ ハード事業</td><td>観光庁</td><td>1/2</td><td class="right">20,000万円</td><td>建造物整備・周辺環境整備</td></tr>
+        <tr><td>レキマチ ソフト事業</td><td>観光庁</td><td>定額</td><td class="right">2,000万円</td><td>調査・コンテンツ造成・モデル創出</td></tr>
+        <tr><td><strong>文化観光推進法（年）</strong></td><td><strong>文化庁</strong></td><td><strong>2/3</strong></td><td class="right"><strong>7,500万円</strong></td><td>文化資源活用・解説情報整備・多言語化等</td></tr>
+        <tr><td>文化観光推進法（5年合計上限）</td><td>文化庁</td><td>2/3</td><td class="right">37,500万円</td><td>※毎年度審査（4・5年目は中間評価）</td></tr>
+        <tr class="total"><td colspan="3">単年 三事業上限合計（理論値）</td><td class="right">29,500万円</td><td>※実態は事業内容・期間で重複調整必要</td></tr>
+        <tr class="total"><td colspan="3">5年累積 上限合計（理論値）</td><td class="right">59,500万円</td><td>※ハード単年・ソフト単年・文化観光5年</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="risk">
+    <strong>⚠ 補助金の重複リスクに留意：</strong>同一経費に対する複数補助金からの重複交付は不可。ハード補助金で整備した施設の「整備費」は文化観光補助金の対象外。文化観光側は「整備された施設を活用したソフトコンテンツ・解説情報・多言語対応・人材育成・運営費」に充当する設計が現実的。各補助金の対象経費区分の整理を申請前相談時に明確化することが重要。
+  </div>
+
+  <!-- ========== レキマチvs赤湯・熊野での適用差 ========== -->
+  <h2 class="sec">🗂 レキマチ vs 赤湯・熊野大社：適用差分</h2>
+  <div class="systems">
+    <div class="sys hard">
+      <div class="ttl">⛩ レキマチ</div>
+      <h4>流用度：高（既存資産多）</h4>
+      <dl>
+        <dt>既存資産</dt><dd>R7総合計画・ハード10案件・ソフト計画・人流データ・ベンチマーク・SPC構想</dd>
+        <dt>計画種別</dt><dd><strong>地域計画</strong>を推奨（米沢城跡・上杉神社・上杉博物館・稽照殿・東町等の連携で面的に推進）</dd>
+        <dt>強み</dt><dd>R7総合計画＋ハード27,113.5万円＋ソフト2,000万円の三位一体推進体制が既存。連携合意基盤あり</dd>
+        <dt>追加作業</dt><dd>文化観光フレームへの再構成・ロジックモデル新規作成・基本方針整合性確認</dd>
+        <dt>申請難度</dt><dd>★★☆☆☆ （既存資産活用で標準的）</dd>
+      </dl>
+    </div>
+
+    <div class="sys soft">
+      <div class="ttl">♨ 赤湯・熊野大社</div>
+      <h4>流用度：中（部分流用）</h4>
+      <dl>
+        <dt>既存資産</dt><dd>レキマチ事業の手法・KPI設計・人流分析手法は応用可能。ただし当該エリアの一次データは別途取得が必要</dd>
+        <dt>計画種別</dt><dd><strong>拠点計画 or 地域計画</strong>。熊野大社単体（拠点）と赤湯温泉街連携（地域）の両ケース検討</dd>
+        <dt>強み</dt><dd>「日本三熊野」のブランド・温泉×信仰の独自性・既にプロダクト売上6,000-8,000万円の実績</dd>
+        <dt>追加作業</dt><dd>当該エリアの人流調査・関係者合意形成・連携体制構築・現状KPI測定</dd>
+        <dt>申請難度</dt><dd>★★★★☆ （新規エリア・短期間での合意形成が必要）</dd>
+      </dl>
+    </div>
+
+    <div class="sys bunka">
+      <div class="ttl">💡 戦略提案</div>
+      <h4>並行 or 段階申請</h4>
+      <dl>
+        <dt>段階A案</dt><dd>R8（今年度）はレキマチのみ申請、赤湯・熊野は計画策定支援活用しR9申請</dd>
+        <dt>段階B案</dt><dd>R8でレキマチ申請、赤湯・熊野はR8で「申請前相談」のみ提出して情報収集</dd>
+        <dt>並行案</dt><dd>R8で両案件同時申請（リソース集中投下が必要）</dd>
+        <dt>推奨</dt><dd><strong>B案：</strong>レキマチを本命、赤湯・熊野は相談で関係構築。R9以降の確実な申請を狙う</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ========== アクションプラン ========== -->
+  <h2 class="sec">🚀 5/12 申請前相談締切までのアクションプラン</h2>
+  <ol class="action-list">
+    <li><strong>5/2（土）まで：計画種別の最終決定</strong>（拠点 or 地域 ／ レキマチのみ or 両案件）<small>R7総合計画とハード10案件・ソフト計画を再確認し、文化観光推進法の枠組み（拠点／地域）に最適合する形を判断</small></li>
+    <li><strong>5/4（月）まで：関係者キックオフ</strong><small>米沢市文化財関係部署・上杉神社・上杉コーポレーション・パラドックス・アジリノ・山形大学に文化観光推進法申請の方針共有。地域計画の場合は連携合意の感触確認</small></li>
+    <li><strong>5/6（水）まで：既存申請書類のフォルダリング</strong><small>ハード様式1〜5、ソフト申請書類、R7総合計画、人流分析、ベンチマーク資料、稽照殿グランドデザイン、SPC構想 を「文化観光推進法・流用素材」フォルダに集約</small></li>
+    <li><strong>5/8（金）まで：拠点／地域計画 ドラフト作成</strong>（未定稿でOK）<small>文化庁様式（Word）に既存資産を流し込み。「観光資源 → 文化資源」「観光まちづくり → 文化観光推進」用語統一。基本方針・運用指針を確認</small></li>
+    <li><strong>5/9（土）まで：申請前相談申込書作成</strong>（Excel様式）<small>事業概要・想定計画期間・主な連携先を記入</small></li>
+    <li><strong>5/12（火）17:00まで：申請前相談 メール提出</strong>（必須）<small>bunkakankosuishin@mext.go.jp 宛に①申込書 ②計画書ドラフトを送付</small></li>
+    <li><strong>5/13〜5/29：文化庁との相談 → 計画書ブラッシュアップ</strong><small>文化庁担当者のフィードバックを受け、ロジックモデル・概要資料を並行作成</small></li>
+    <li><strong>6/1〜6/3 17:00：正式申請</strong><small>電子データのメール送付＋紙媒体一式の郵送</small></li>
+  </ol>
+
+  <!-- ========== 関連ページ ========== -->
+  <h2 class="sec">🔗 関連ページ</h2>
+  <div class="related-grid">
+    <a class="related" href="bunka-kanko-dashboard.html">
+      <span class="cat">親ページ</span>
+      <span class="ttl">📜 認定申請ダッシュボード</span>
+      <span class="desc">スケジュール・チェックリスト・タスク管理を集約</span>
+    </a>
+    <a class="related" href="rekimachi-hard.html">
+      <span class="cat">既存申請</span>
+      <span class="ttl">🏗 レキマチ ハード事業</span>
+      <span class="desc">10案件 27,113万円・観光庁提出済 4/22</span>
+    </a>
+    <a class="related" href="rekimachi-soft.html">
+      <span class="cat">既存申請</span>
+      <span class="ttl">🔍 レキマチ ソフト事業</span>
+      <span class="desc">調査・計画策定・観光庁提出済 4/10</span>
+    </a>
+    <a class="related" href="rekimachi-r7.html">
+      <span class="cat">前段事業</span>
+      <span class="ttl">🏯 レキマチ R7 エリア造成事業</span>
+      <span class="desc">総合計画策定・R7事業化支援（完了報告済）</span>
+    </a>
+    <a class="related" href="../index.html">
+      <span class="cat">ポータル</span>
+      <span class="ttl">🏠 ドキュメントポータル TOP</span>
+      <span class="desc">全事業のドキュメントを集約</span>
+    </a>
+  </div>
+
+  <footer>
+    プラットヨネザワ株式会社 — 文化観光推進法申請 流用可能性分析レポート<br>
+    分析日：2026年4月30日 ｜ 一次情報出典：rekimachi-hard.html・rekimachi-soft.html・rekimachi-r7.html・文化庁HP
+  </footer>
+</div>
+</body>
+</html>
