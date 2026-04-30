@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米沢市 地域計画 認定申請ダッシュボード | プラットヨネザワ</title>
+<meta name="description" content="文化観光推進法に基づく令和8年度地域計画 認定申請（米沢市レキマチ案件）の進捗管理ダッシュボード。">
+<style>
+  :root{
+    --bg:#f5f3ee;--paper:#ffffff;--ink:#1f2937;--sub:#4b5563;--muted:#6b7280;
+    --line:#e5e7eb;--accent:#8b1e1e;--accent-2:#1f4068;--gold:#b58a2e;
+    --green:#2e7d4f;--warn:#c0392b;
+    --soft-red:#fdecec;--soft-blue:#eaf0f7;--soft-gold:#f7f1e1;--soft-green:#e8f5ec;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-2);text-decoration:none;border-bottom:1px solid rgba(31,64,104,.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .wrap{max-width:1200px;margin:0 auto;padding:24px 24px 64px}
+  .crumbs{font-size:12px;color:var(--muted);margin-bottom:14px;letter-spacing:.04em}
+  .crumbs a{color:var(--muted);border:none}
+  .crumbs a:hover{color:var(--accent-2)}
+  .status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .top-tag{font-size:12px;color:var(--accent-2);background:var(--soft-blue);border:1px solid #c5d3e6;
+    border-radius:999px;padding:4px 12px;font-weight:600;letter-spacing:.04em}
+  .top-tag.case{background:#fdecec;color:var(--accent);border-color:#f3c2c2}
+  .top-status{font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:4px 10px;
+    background:#fff4e6;color:#d68910;border:1px solid #f0c674}
+  h1.title{font-size:30px;margin:6px 0 6px;letter-spacing:.02em}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 16px}
+  .info-bar{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--sub);margin:0 0 22px}
+  .alert{background:var(--soft-red);border:1px solid #f3c2c2;border-left:6px solid var(--warn);
+    border-radius:10px;padding:14px 18px;margin:0 0 28px;display:flex;gap:14px;align-items:center}
+  .alert .badge{background:var(--warn);color:#fff;border-radius:6px;padding:4px 10px;font-weight:700;
+    font-size:12px;letter-spacing:.06em;white-space:nowrap}
+  .alert .body{font-size:14px;color:#5a1212}
+  .alert strong{color:var(--warn)}
+  section.s{margin:36px 0}
+  h2.sec{font-size:20px;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--accent);letter-spacing:.04em}
+  h3.sub{font-size:14px;color:var(--sub);margin:18px 0 8px;letter-spacing:.04em}
+  .grid{display:grid;gap:14px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:880px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+  .card h4{margin:0 0 6px;font-size:13px;color:var(--muted);letter-spacing:.06em;font-weight:600}
+  .card .num{font-size:24px;font-weight:700;color:var(--ink)}
+  .card .unit{color:var(--muted);font-size:12px;margin-left:4px}
+  .card .note{color:var(--muted);font-size:12px;margin-top:6px}
+  .goals{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:880px){.goals{grid-template-columns:repeat(2,1fr)}}
+  .goal{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;box-shadow:var(--shadow)}
+  .goal .icon{font-size:22px;color:var(--gold);font-weight:700}
+  .goal .ttl{font-weight:700;margin:6px 0 4px;font-size:13px}
+  .goal .desc{font-size:11px;color:var(--sub);line-height:1.5}
+  .gantt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px 8px;box-shadow:var(--shadow);overflow-x:auto;position:relative}
+  .gantt .axis{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;border-bottom:1px solid var(--line);padding-bottom:6px;font-size:11px;color:var(--muted)}
+  .gantt .axis div{text-align:center;border-right:1px dashed var(--line)}
+  .gantt .axis div:first-child{text-align:left;border-right:none}
+  .gantt .row{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+  .gantt .row:last-child{border-bottom:none}
+  .gantt .label{font-size:13px;color:var(--ink);font-weight:600;padding-right:8px}
+  .bar{height:22px;border-radius:6px;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 8px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .bar.consult{background:linear-gradient(90deg,#3b82a8,#1f4068)}
+  .bar.deadline{background:#c0392b}
+  .bar.apply{background:linear-gradient(90deg,#b58a2e,#8b6914)}
+  .bar.approval{background:linear-gradient(90deg,#2e7d4f,#1d5e3a)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--sub);padding:10px 4px 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:14px;height:10px;border-radius:3px;display:inline-block}
+  .today-line{position:absolute;top:30px;bottom:8px;border-left:2px dashed #1f2937;z-index:5;pointer-events:none}
+  .today-line span{position:absolute;top:-20px;left:-22px;background:#1f2937;color:#fff;padding:1px 6px;font-size:10px;border-radius:4px;letter-spacing:.04em}
+  .case{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .case header.case-head{padding:14px 18px;color:#fff;background:linear-gradient(135deg,#8b1e1e,#5e1414)}
+  .case .ttl{font-size:18px;font-weight:700;letter-spacing:.04em}
+  .case .sub{font-size:12px;color:#f0e6d8;margin-top:2px}
+  .case .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--sub);margin-right:4px}
+  .pill.gold{background:var(--soft-gold);border-color:#e3d29a;color:#7a5a14}
+  .pill.red{background:var(--soft-red);border-color:#f3c2c2;color:#7a1c1c}
+  .pill.blue{background:var(--soft-blue);border-color:#c5d3e6;color:#1f4068}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px}
+  .kv dt{color:var(--muted)}
+  .kv dd{margin:0;color:var(--ink)}
+  .kv input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;color:var(--ink);background:#fdfdfd}
+  .checklist{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow)}
+  .checklist h4{margin:6px 0 10px;font-size:14px;letter-spacing:.04em}
+  .step-tag{display:inline-block;background:var(--accent-2);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:6px}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .check-item:last-child{border-bottom:none}
+  .check-item input[type="checkbox"]{margin-top:5px;accent-color:var(--accent)}
+  .check-item .desc{flex:1}
+  .check-item small{color:var(--muted)}
+  .fmt-links a{font-size:11px;margin-right:6px;color:var(--accent-2)}
+  table.tasks{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+  table.tasks th, table.tasks td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.tasks thead th{background:#fafafa;font-weight:600;color:var(--sub);font-size:12px;letter-spacing:.04em}
+  table.tasks input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
+  table.tasks select{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;background:#fff}
+  .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:880px){.links-grid{grid-template-columns:1fr}}
+  .link-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}
+  .link-card:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .link-card .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .link-card .ttl{font-weight:600}
+  .link-card .desc{font-size:12px;color:var(--sub)}
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+  @media(max-width:880px){.related-grid{grid-template-columns:1fr}}
+  .related{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .related:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .related .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .related .ttl{font-weight:700;margin:4px 0;font-size:14px}
+  .related .desc{font-size:12px;color:var(--sub);line-height:1.6}
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+  footer a{color:var(--muted);border:none}
+  footer a:hover{color:var(--accent-2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs">
+    <a href="../index.html">ポータル</a> ＞ 文化観光推進事業 ＞ 米沢市 地域計画 ダッシュボード
+  </div>
+
+  <div class="status-row">
+    <span class="top-tag">文化庁・文化観光推進法</span>
+    <span class="top-tag case">⛩ 米沢市レキマチ案件</span>
+    <span class="top-status">申請準備中</span>
+  </div>
+
+  <h1 class="title">米沢市 地域計画 認定申請ダッシュボード</h1>
+  <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（米沢市・上杉文化中核エリア）の進捗管理ボード</p>
+
+  <div class="info-bar">
+    <span>📋 所管：文化庁参事官（文化拠点担当）</span>
+    <span>💰 補助率：2/3（上限7,500万円／年）</span>
+    <span>📅 計画期間：原則5年</span>
+    <span>🏢 申請者：プラットヨネザワ株式会社</span>
+    <span>🎯 計画種別：<strong style="color:#8b1e1e">地域計画</strong></span>
+  </div>
+
+  <div class="alert">
+    <span class="badge">緊急</span>
+    <div class="body">
+      <strong>申請前相談申込期限：5/12（火）17:00 ※必須</strong>
+      ／本日（4/30）から残り12日。①申請前相談申込書 ②地域計画書（未定稿可）を
+      <a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a> へメール提出。
+    </div>
+  </div>
+
+  <!-- 制度サマリー -->
+  <section class="s">
+    <h2 class="sec">📊 制度サマリー</h2>
+    <div class="grid grid-4">
+      <div class="card">
+        <h4>補助率</h4>
+        <div class="num">2/3<span class="unit">補助</span></div>
+        <div class="note">事業費の2/3を国が補助</div>
+      </div>
+      <div class="card">
+        <h4>補助上限</h4>
+        <div class="num">7,500<span class="unit">万円／年</span></div>
+        <div class="note">1〜3年目／4・5年目は中間評価</div>
+      </div>
+      <div class="card">
+        <h4>計画期間</h4>
+        <div class="num">5<span class="unit">年（原則）</span></div>
+        <div class="note">補助金は毎年度審査あり</div>
+      </div>
+      <div class="card">
+        <h4>地方負担</h4>
+        <div class="num">特別交付税<span class="unit">措置</span></div>
+        <div class="note">米沢市の地方負担分</div>
+      </div>
+    </div>
+
+    <h3 class="sub">文化観光推進法が定める4つの目標</h3>
+    <div class="goals">
+      <div class="goal"><div class="icon">①</div><div class="ttl">文化資源の魅力発信</div><div class="desc">来訪者の文化資源理解を深める機会の創出</div></div>
+      <div class="goal"><div class="icon">②</div><div class="ttl">国内外からの来訪促進</div><div class="desc">文化拠点を中核とした観光振興</div></div>
+      <div class="goal"><div class="icon">③</div><div class="ttl">地域経済の活性化</div><div class="desc">往来・購買・宿泊等の消費活動拡大</div></div>
+      <div class="goal"><div class="icon">④</div><div class="ttl">文化への再投資の好循環</div><div class="desc">経済効果を文化振興へ再投資し持続的発展</div></div>
+    </div>
+  </section>
+
+  <!-- スケジュール -->
+  <section class="s">
+    <h2 class="sec">📅 令和8年度 認定申請スケジュール</h2>
+    <div class="gantt">
+      <div class="axis">
+        <div>フェーズ／週</div>
+        <div>4/27</div><div>5/4</div><div>5/11</div><div>5/18</div><div>5/25</div>
+        <div>6/1</div><div>6/8</div><div>6/15</div><div>6/22</div><div>6/29</div>
+        <div>7/6</div><div>7/13</div><div>7/20</div><div>7/27</div>
+      </div>
+      <div class="today-line" style="left:calc(160px + (100% - 160px) * (0/14 + 3/7/14));"><span>本日 4/30</span></div>
+      <div class="row">
+        <div class="label">Step1 申請前相談期間</div>
+        <div style="grid-column:2/7"><div class="bar consult">4/27（月）〜 5/29（金）　文化庁との相談・地域計画書ブラッシュアップ</div></div>
+      </div>
+      <div class="row">
+        <div class="label">└ 相談申込期限【必須】</div>
+        <div style="grid-column:4/5"><div class="bar deadline">⚠ 5/12（火）17:00 締切</div></div>
+      </div>
+      <div class="row">
+        <div class="label">└ 連携合意書 締結</div>
+        <div style="grid-column:5/6"><div class="bar consult">5/18 関係者署名取得</div></div>
+      </div>
+      <div class="row">
+        <div class="label">Step2 認定申請受付</div>
+        <div style="grid-column:7/8"><div class="bar apply">6/1（月）〜 6/3（水）17:00</div></div>
+      </div>
+      <div class="row">
+        <div class="label">有識者委員会 審査</div>
+        <div style="grid-column:8/15"><div class="bar approval">書面・有識者審査（約2ヶ月）</div></div>
+      </div>
+      <div class="row">
+        <div class="label">認定（予定）</div>
+        <div style="grid-column:15/16"><div class="bar approval">7月末頃 認定</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:linear-gradient(90deg,#3b82a8,#1f4068)"></i>申請前相談</span>
+      <span><i style="background:#c0392b"></i>必須締切</span>
+      <span><i style="background:linear-gradient(90deg,#b58a2e,#8b6914)"></i>認定申請受付</span>
+      <span><i style="background:linear-gradient(90deg,#2e7d4f,#1d5e3a)"></i>審査・認定</span>
+      <span><i style="background:#1f2937"></i>本日</span>
+    </div>
+  </section>
+
+  <!-- 案件カード（米沢のみ） -->
+  <section class="s">
+    <h2 class="sec">🗂 案件詳細</h2>
+    <div class="case" id="case-rekimachi">
+      <header class="case-head">
+        <div class="ttl">⛩ 米沢レキマチ 地域計画</div>
+        <div class="sub">米沢市／上杉家文化・武家文化を軸とした文化観光中核エリア</div>
+      </header>
+      <div class="body">
+        <div>
+          <span class="pill red">地域計画</span>
+          <span class="pill gold">三角エリア構想</span>
+          <span class="pill">国指定史跡「米沢城跡」</span>
+          <span class="pill">国宝・重要文化財</span>
+        </div>
+        <dl class="kv">
+          <dt>中核施設</dt><dd>上杉神社・稽照殿（中核）</dd>
+          <dt>連携施設</dt><dd>旧米沢高等工業学校本館／伝統発酵食ゾーン（東町）／米沢城跡／上杉博物館</dd>
+          <dt>テーマ</dt><dd>「青春であふれる、新・城下町時代」（R7総合計画踏襲）</dd>
+          <dt>連携想定</dt><dd>米沢市・米沢観光コンベンション協会・山形大学・10事業者・SPC</dd>
+          <dt>強み</dt><dd>R7総合計画＋ハード27,113万＋ソフト2,000万の三位一体推進体制／合意形成済</dd>
+          <dt>論点</dt><dd>多言語化／回遊性／繁忙期分散／受入基盤</dd>
+          <dt>R7との接続</dt><dd>「上杉の新・城下町づくり総合計画」の文化財活用パートと整合</dd>
+          <dt>連携合意状況</dt><dd>R7事業で構築済（要：地域計画用に覚書化）</dd>
+          <dt>担当（記入）</dt><dd><input type="text" placeholder="担当者名・部署"></dd>
+          <dt>窓口（記入）</dt><dd><input type="text" placeholder="米沢市・神社等の窓口"></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- チェックリスト -->
+  <section class="s">
+    <h2 class="sec">✅ 提出書類チェックリスト（地域計画専用）</h2>
+    <div class="grid grid-2">
+      <div class="checklist">
+        <h4><span class="step-tag">Step1</span>申請前相談（〜5/12 17:00）</h4>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>① 申請前相談申込書</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank">Excel様式</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_01.pdf" target="_blank">PDF</a>
+            </div>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>② 地域計画 様式（未定稿可）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94093402_08.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式94093402_02</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>送付先</strong><br>
+            <a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a>
+            <small>／TEL 03-6734-4893</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <h4><span class="step-tag">Step2</span>認定申請（6/1〜6/3 17:00）</h4>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>① 地域計画 申請書</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/92811001_03.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/92811001_04.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式92811001_03</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>② 地域計画 様式（最終版）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/93862101_06.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/93862101_07.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式93862101_06</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>③ 概要資料（PowerPoint）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/92787101_15.pptx" target="_blank">PPTX</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/92787101_16.pdf" target="_blank">PDF</a>
+            </div>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>④ ロジックモデル</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">PPTX</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94343001_02.pdf" target="_blank">PDF</a>
+            </div>
+            <small>※<a href="bunka-kanko-yonezawa-reuse-analysis.html#logic-model-sample">ドラフト版あり</a></small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>⑤ 連携合意書／覚書 ★地域計画特有</strong>
+            <small>米沢市・上杉神社・10事業者・山形大学との連携合意</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>⑥ 参考資料</strong>
+            <small>R7総合計画／Agoop人流／米沢市観光振興計画／上杉文化エリア地図</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- タスク管理 -->
+  <section class="s">
+    <h2 class="sec">📋 タスク・担当者管理</h2>
+    <table class="tasks">
+      <thead><tr><th style="width:30%">タスク</th><th style="width:20%">担当</th><th style="width:15%">期限</th><th style="width:15%">ステータス</th><th>メモ</th></tr></thead>
+      <tbody>
+        <tr><td>地域計画方針の最終決定（中核施設・連携施設）</td><td><input type="text"></td><td>5/2(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>関係者キックオフ（米沢市・上杉神社・大学・10事業者）</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>連携合意書ドラフト作成・関係者へ送付</td><td><input type="text"></td><td>5/5(火)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>地域計画書ドラフト v1作成（Word様式94093402_02）</td><td><input type="text"></td><td>5/8(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>申請前相談申込書（Excel様式）作成</td><td><input type="text"></td><td>5/9(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>申請前相談申込書 提出</td><td><input type="text"></td><td>5/12(火)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>連携合意書 正式締結（署名取得）</td><td><input type="text"></td><td>5/18(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>文化庁との相談 → 計画書ブラッシュアップ</td><td><input type="text"></td><td>〜5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>概要資料（PPTX）・ロジックモデル（PPTX）作成</td><td><input type="text"></td><td>5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>正式申請（電子＋郵送）</td><td><input type="text"></td><td>6/3(水)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">※ ブラウザ上で直接記入できます。保存はHTMLを上書き保存または別途メモにコピーしてください。</p>
+  </section>
+
+  <!-- リンク集 -->
+  <section class="s">
+    <h2 class="sec">🔗 一次資料・参考資料リンク集</h2>
+    <div class="links-grid">
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/92263701.html" target="_blank">
+        <span class="cat">本案内ページ</span>
+        <span class="ttl">拠点計画及び地域計画の作成・申請</span>
+        <span class="desc">スケジュール・様式すべての一次情報</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/index.html" target="_blank">
+        <span class="cat">制度概要</span>
+        <span class="ttl">文化観光（制度トップ）</span>
+        <span class="desc">4つの目標・好循環図・支援内容など</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94207001_01.pdf" target="_blank">
+        <span class="cat">基本方針</span>
+        <span class="ttl">基本方針（PDF・357KB）</span>
+        <span class="desc">計画作成時の必須参照資料</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94358501_26.pdf" target="_blank">
+        <span class="cat">運用指針</span>
+        <span class="ttl">法律運用指針（PDF・595KB）</span>
+        <span class="desc">申請書類の詳細記載要領</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94207001_03.pdf" target="_blank">
+        <span class="cat">ガイド</span>
+        <span class="ttl">文化観光推進ガイドブック（全体版・9MB）</span>
+        <span class="desc">P16-17にロジックモデル説明</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_02.pdf" target="_blank">
+        <span class="cat">申請ガイド</span>
+        <span class="ttl">認定申請ガイドブック（PDF・6MB）</span>
+        <span class="desc">様式の書き方・審査要点を解説</span>
+      </a>
+      <a class="link-card" href="rekimachi-r7.html">
+        <span class="cat">前段事業</span>
+        <span class="ttl">レキマチ R7 エリア造成事業</span>
+        <span class="desc">総合計画策定の基礎・本事業の文化観光フレームに転用</span>
+      </a>
+      <a class="link-card" href="rekimachi-hard.html">
+        <span class="cat">並走事業</span>
+        <span class="ttl">レキマチ ハード事業（観光庁・提出済）</span>
+        <span class="desc">10案件27,113万円の施設整備</span>
+      </a>
+      <a class="link-card" href="rekimachi-soft.html">
+        <span class="cat">並走事業</span>
+        <span class="ttl">レキマチ ソフト事業（観光庁・提出済）</span>
+        <span class="desc">調査・計画策定・コンテンツ造成</span>
+      </a>
+      <a class="link-card" href="mailto:bunkakankosuishin@mext.go.jp">
+        <span class="cat">問合せ先</span>
+        <span class="ttl">文化庁 文化観光拠点支援係</span>
+        <span class="desc">bunkakankosuishin@mext.go.jp ／ 03-6734-4893</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 関連ページ -->
+  <section class="s">
+    <h2 class="sec">🔗 関連ページ</h2>
+    <div class="related-grid">
+      <a class="related" href="bunka-kanko-suishin.html">
+        <span class="cat">プロジェクト本体</span>
+        <span class="ttl">📜 文化観光推進事業</span>
+        <span class="desc">推進体制・スケジュール・作業ルール（命名規則）</span>
+      </a>
+      <a class="related" href="bunka-kanko-yonezawa-reuse-analysis.html">
+        <span class="cat">分析レポート</span>
+        <span class="ttl">🔁 米沢市 流用可能性分析</span>
+        <span class="desc">既存ハード・ソフト事業から地域計画への流用率精査</span>
+      </a>
+      <a class="related" href="bunka-kanko-akayu-dashboard.html">
+        <span class="cat">並行案件</span>
+        <span class="ttl">♨ 赤湯&南陽市 ダッシュボード</span>
+        <span class="desc">赤湯熊野案件の進捗管理ボード</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    プラットヨネザワ株式会社 — 米沢市 地域計画 認定申請ダッシュボード<br>
+    最終更新：2026年4月30日 ｜ 一次情報出典：文化庁HP「拠点計画及び地域計画の作成・申請」<br>
+    <a href="../index.html">← ポータルに戻る</a>
+  </footer>
+</div>
+</body>
+</html>
