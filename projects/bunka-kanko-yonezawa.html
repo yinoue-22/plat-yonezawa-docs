@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米沢市 文化観光推進事業 | プラットヨネザワ</title>
+<meta name="description" content="文化観光推進法に基づく令和8年度地域計画 認定申請（米沢市レキマチ案件）の統合ダッシュボード（進捗管理＋流用可能性分析）。">
+<style>
+  :root{
+    --bg:#f5f3ee;--paper:#ffffff;--ink:#1f2937;--sub:#4b5563;--muted:#6b7280;
+    --line:#e5e7eb;--accent:#8b1e1e;--accent-2:#1f4068;--gold:#b58a2e;
+    --green:#2e7d4f;--warn:#c0392b;
+    --soft-red:#fdecec;--soft-blue:#eaf0f7;--soft-gold:#f7f1e1;--soft-green:#e8f5ec;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+    --hard-red:#c0392b;--soft-blue-2:#2980b9;
+    --high:#1b7a4a;--mid:#d68910;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-2);text-decoration:none;border-bottom:1px solid rgba(31,64,104,.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .wrap{max-width:1200px;margin:0 auto;padding:24px 24px 64px}
+  .crumbs{font-size:12px;color:var(--muted);margin-bottom:14px;letter-spacing:.04em}
+  .crumbs a{color:var(--muted);border:none}
+  .crumbs a:hover{color:var(--accent-2)}
+  .status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .top-tag{font-size:12px;color:var(--accent-2);background:var(--soft-blue);border:1px solid #c5d3e6;
+    border-radius:999px;padding:4px 12px;font-weight:600;letter-spacing:.04em}
+  .top-tag.case{background:#fdecec;color:var(--accent);border-color:#f3c2c2}
+  .top-status{font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:4px 10px;
+    background:#fff4e6;color:#d68910;border:1px solid #f0c674}
+  h1.title{font-size:30px;margin:6px 0 6px;letter-spacing:.02em}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 16px}
+  .info-bar{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--sub);margin:0 0 22px}
+  .alert{background:var(--soft-red);border:1px solid #f3c2c2;border-left:6px solid var(--warn);
+    border-radius:10px;padding:14px 18px;margin:0 0 24px;display:flex;gap:14px;align-items:center}
+  .alert .badge{background:var(--warn);color:#fff;border-radius:6px;padding:4px 10px;font-weight:700;
+    font-size:12px;letter-spacing:.06em;white-space:nowrap}
+  .alert .body{font-size:14px;color:#5a1212}
+  .alert strong{color:var(--warn)}
+
+  /* Tab Navigation */
+  .tabs{display:flex;gap:4px;margin:8px 0 24px;border-bottom:2px solid var(--line);position:sticky;top:0;
+    background:var(--bg);padding-top:8px;z-index:50}
+  .tab-btn{background:none;border:none;font-family:inherit;font-size:15px;font-weight:700;
+    color:var(--muted);padding:12px 22px;cursor:pointer;border-bottom:3px solid transparent;
+    margin-bottom:-2px;letter-spacing:.04em;transition:color .15s,border-color .15s,background .15s;
+    border-radius:8px 8px 0 0}
+  .tab-btn:hover{color:var(--accent);background:rgba(139,30,30,.04)}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(139,30,30,.06)}
+  .tab-btn .count{display:inline-block;font-size:11px;background:var(--line);color:var(--muted);
+    border-radius:999px;padding:2px 8px;margin-left:6px;font-weight:600}
+  .tab-btn.active .count{background:var(--accent);color:#fff}
+  .tab-panel{display:none;animation:fadeIn .25s ease}
+  .tab-panel.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  section.s{margin:24px 0 36px}
+  h2.sec{font-size:20px;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--accent);letter-spacing:.04em}
+  h3.sub{font-size:14px;color:var(--sub);margin:18px 0 8px;letter-spacing:.04em}
+  .grid{display:grid;gap:14px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:880px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+  .card h4{margin:0 0 6px;font-size:13px;color:var(--muted);letter-spacing:.06em;font-weight:600}
+  .card .num{font-size:24px;font-weight:700;color:var(--ink)}
+  .card .unit{color:var(--muted);font-size:12px;margin-left:4px}
+  .card .note{color:var(--muted);font-size:12px;margin-top:6px}
+  .goals{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:880px){.goals{grid-template-columns:repeat(2,1fr)}}
+  .goal{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;box-shadow:var(--shadow)}
+  .goal .icon{font-size:22px;color:var(--gold);font-weight:700}
+  .goal .ttl{font-weight:700;margin:6px 0 4px;font-size:13px}
+  .goal .desc{font-size:11px;color:var(--sub);line-height:1.5}
+  .gantt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px 8px;box-shadow:var(--shadow);overflow-x:auto;position:relative}
+  .gantt .axis{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;border-bottom:1px solid var(--line);padding-bottom:6px;font-size:11px;color:var(--muted)}
+  .gantt .axis div{text-align:center;border-right:1px dashed var(--line)}
+  .gantt .axis div:first-child{text-align:left;border-right:none}
+  .gantt .row{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+  .gantt .row:last-child{border-bottom:none}
+  .gantt .label{font-size:13px;color:var(--ink);font-weight:600;padding-right:8px}
+  .bar{height:22px;border-radius:6px;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 8px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .bar.consult{background:linear-gradient(90deg,#3b82a8,#1f4068)}
+  .bar.deadline{background:#c0392b}
+  .bar.apply{background:linear-gradient(90deg,#b58a2e,#8b6914)}
+  .bar.approval{background:linear-gradient(90deg,#2e7d4f,#1d5e3a)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--sub);padding:10px 4px 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:14px;height:10px;border-radius:3px;display:inline-block}
+  .today-line{position:absolute;top:30px;bottom:8px;border-left:2px dashed #1f2937;z-index:5;pointer-events:none}
+  .today-line span{position:absolute;top:-20px;left:-22px;background:#1f2937;color:#fff;padding:1px 6px;font-size:10px;border-radius:4px;letter-spacing:.04em}
+  .case{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .case header.case-head{padding:14px 18px;color:#fff;background:linear-gradient(135deg,#8b1e1e,#5e1414)}
+  .case .ttl{font-size:18px;font-weight:700;letter-spacing:.04em}
+  .case .sub{font-size:12px;color:#f0e6d8;margin-top:2px}
+  .case .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--sub);margin-right:4px}
+  .pill.gold{background:var(--soft-gold);border-color:#e3d29a;color:#7a5a14}
+  .pill.red{background:var(--soft-red);border-color:#f3c2c2;color:#7a1c1c}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px}
+  .kv dt{color:var(--muted)}
+  .kv dd{margin:0;color:var(--ink)}
+  .kv input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
+  .checklist{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow)}
+  .checklist h4{margin:6px 0 10px;font-size:14px;letter-spacing:.04em}
+  .step-tag{display:inline-block;background:var(--accent-2);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:6px}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .check-item:last-child{border-bottom:none}
+  .check-item input[type="checkbox"]{margin-top:5px;accent-color:var(--accent)}
+  .check-item .desc{flex:1}
+  .check-item small{color:var(--muted)}
+  .fmt-links a{font-size:11px;margin-right:6px;color:var(--accent-2)}
+  table.tasks{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+  table.tasks th, table.tasks td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.tasks thead th{background:#fafafa;font-weight:600;color:var(--sub);font-size:12px;letter-spacing:.04em}
+  table.tasks input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
+  table.tasks select{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;background:#fff}
+  .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:880px){.links-grid{grid-template-columns:1fr}}
+  .link-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}
+  .link-card:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .link-card .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .link-card .ttl{font-weight:600}
+  .link-card .desc{font-size:12px;color:var(--sub)}
+
+  /* Analysis tab styles */
+  .exec-summary{background:linear-gradient(135deg,#8b1e1e 0%,#5e1414 100%);color:#fff;
+    border-radius:12px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
+  .exec-summary h2{font-size:18px;margin:0 0 8px;color:#fff}
+  .exec-summary p{font-size:14px;line-height:1.8;color:#f0e6d8;margin:0 0 6px}
+  .exec-summary .big{font-size:24px;font-weight:700;color:var(--gold)}
+  .exec-summary .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .exec-summary .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    border-radius:999px;padding:4px 12px;font-size:11px;color:#fff}
+  .systems{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0 20px}
+  @media(max-width:880px){.systems{grid-template-columns:1fr}}
+  .sys{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:13px}
+  .sys.hard{border-top:4px solid var(--hard-red)}
+  .sys.soft{border-top:4px solid var(--soft-blue-2)}
+  .sys.bunka{border-top:4px solid var(--gold)}
+  .sys h4{font-size:15px;margin:0 0 6px;font-weight:700}
+  .sys .ttl{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .sys dl{display:grid;grid-template-columns:80px 1fr;gap:4px 10px;margin-top:8px;font-size:12px}
+  .sys dt{color:var(--muted)}
+  .sys dd{margin:0;color:var(--ink)}
+  .sys .status{display:inline-block;font-size:10px;border-radius:3px;padding:2px 8px;font-weight:700;
+    background:var(--soft-green);color:var(--high);margin-top:4px}
+  .sys .status.review{background:var(--soft-gold);color:#8b6914;border:1px solid #e3d29a}
+  .matrix{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-top:8px}
+  .matrix table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .matrix th,.matrix td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .matrix thead th{background:#fafafa;font-size:11px;color:var(--muted);font-weight:700;
+    border-bottom:2px solid var(--accent)}
+  .matrix th:first-child{width:24%}
+  .score{display:inline-block;font-size:11px;font-weight:700;border-radius:3px;padding:2px 8px;white-space:nowrap}
+  .score.s90{background:#d4edda;color:#155724}
+  .score.s80{background:#dff0d8;color:#3c763d}
+  .score.s70{background:#fcf8e3;color:#8a6d3b}
+  .score.s50{background:#fff4e6;color:#d68910}
+  .score.s30{background:#f8d7da;color:#721c24}
+  .score.s00{background:#e0e0e0;color:#333}
+
+  /* Footer */
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+  @media(max-width:880px){.related-grid{grid-template-columns:1fr}}
+  .related{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .related:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .related .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .related .ttl{font-weight:700;margin:4px 0;font-size:14px}
+  .related .desc{font-size:12px;color:var(--sub);line-height:1.6}
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+  footer a{color:var(--muted);border:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs">
+    <a href="../index.html">ポータル</a> ＞ 文化観光推進事業 ＞ 米沢市
+  </div>
+
+  <div class="status-row">
+    <span class="top-tag">文化庁・文化観光推進法</span>
+    <span class="top-tag case">⛩ 米沢市レキマチ案件</span>
+    <span class="top-status">申請準備中</span>
+  </div>
+
+  <h1 class="title">米沢市</h1>
+  <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（米沢市・上杉文化中核エリア）の統合管理ページ。ダッシュボードと流用可能性分析をタブで切り替えられます。</p>
+
+  <div class="info-bar">
+    <span>📋 所管：文化庁参事官（文化拠点担当）</span>
+    <span>💰 補助率：2/3（上限7,500万円／年）</span>
+    <span>📅 計画期間：原則5年</span>
+    <span>🏢 申請者：プラットヨネザワ株式会社</span>
+    <span>🎯 計画種別：<strong style="color:#8b1e1e">地域計画</strong></span>
+  </div>
+
+  <div class="alert">
+    <span class="badge">緊急</span>
+    <div class="body">
+      <strong>申請前相談申込期限：5/12（火）17:00 ※必須</strong>
+      ／本日（4/30）から残り12日。①申請前相談申込書 ②地域計画書（未定稿可）を
+      <a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a> へメール提出。
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="dashboard" role="tab">📊 ダッシュボード</button>
+    <button class="tab-btn" data-tab="analysis" role="tab">🔁 流用可能性分析 <span class="count">16</span></button>
+  </div>
+
+  <!-- ============================== -->
+  <!-- Tab 1: Dashboard               -->
+  <!-- ============================== -->
+  <div class="tab-panel active" data-tab="dashboard">
+
+    <section class="s">
+      <h2 class="sec">📊 制度サマリー</h2>
+      <div class="grid grid-4">
+        <div class="card"><h4>補助率</h4><div class="num">2/3<span class="unit">補助</span></div><div class="note">事業費の2/3を国が補助</div></div>
+        <div class="card"><h4>補助上限</h4><div class="num">7,500<span class="unit">万円／年</span></div><div class="note">1〜3年目／4・5年目は中間評価</div></div>
+        <div class="card"><h4>計画期間</h4><div class="num">5<span class="unit">年（原則）</span></div><div class="note">補助金は毎年度審査あり</div></div>
+        <div class="card"><h4>地方負担</h4><div class="num">特別交付税<span class="unit">措置</span></div><div class="note">米沢市の地方負担分</div></div>
+      </div>
+      <h3 class="sub">文化観光推進法が定める4つの目標</h3>
+      <div class="goals">
+        <div class="goal"><div class="icon">①</div><div class="ttl">文化資源の魅力発信</div><div class="desc">来訪者の文化資源理解を深める機会の創出</div></div>
+        <div class="goal"><div class="icon">②</div><div class="ttl">国内外からの来訪促進</div><div class="desc">文化拠点を中核とした観光振興</div></div>
+        <div class="goal"><div class="icon">③</div><div class="ttl">地域経済の活性化</div><div class="desc">往来・購買・宿泊等の消費活動拡大</div></div>
+        <div class="goal"><div class="icon">④</div><div class="ttl">文化への再投資の好循環</div><div class="desc">経済効果を文化振興へ再投資し持続的発展</div></div>
+      </div>
+    </section>
+
+    <section class="s">
+      <h2 class="sec">📅 令和8年度 認定申請スケジュール</h2>
+      <div class="gantt">
+        <div class="axis">
+          <div>フェーズ／週</div>
+          <div>4/27</div><div>5/4</div><div>5/11</div><div>5/18</div><div>5/25</div>
+          <div>6/1</div><div>6/8</div><div>6/15</div><div>6/22</div><div>6/29</div>
+          <div>7/6</div><div>7/13</div><div>7/20</div><div>7/27</div>
+        </div>
+        <div class="today-line" style="left:calc(160px + (100% - 160px) * (0/14 + 3/7/14));"><span>本日 4/30</span></div>
+        <div class="row"><div class="label">Step1 申請前相談</div><div style="grid-column:2/7"><div class="bar consult">4/27（月）〜 5/29（金）</div></div></div>
+        <div class="row"><div class="label">└ 相談申込期限【必須】</div><div style="grid-column:4/5"><div class="bar deadline">⚠ 5/12（火）17:00</div></div></div>
+        <div class="row"><div class="label">└ 連携合意書 締結</div><div style="grid-column:5/6"><div class="bar consult">5/18 関係者署名</div></div></div>
+        <div class="row"><div class="label">Step2 認定申請受付</div><div style="grid-column:7/8"><div class="bar apply">6/1〜6/3</div></div></div>
+        <div class="row"><div class="label">有識者委員会 審査</div><div style="grid-column:8/15"><div class="bar approval">書面・有識者審査（約2ヶ月）</div></div></div>
+        <div class="row"><div class="label">認定（予定）</div><div style="grid-column:15/16"><div class="bar approval">7月末頃 認定</div></div></div>
+      </div>
+      <div class="legend">
+        <span><i style="background:linear-gradient(90deg,#3b82a8,#1f4068)"></i>申請前相談</span>
+        <span><i style="background:#c0392b"></i>必須締切</span>
+        <span><i style="background:linear-gradient(90deg,#b58a2e,#8b6914)"></i>認定申請受付</span>
+        <span><i style="background:linear-gradient(90deg,#2e7d4f,#1d5e3a)"></i>審査・認定</span>
+        <span><i style="background:#1f2937"></i>本日</span>
+      </div>
+    </section>
+
+    <section class="s">
+      <h2 class="sec">🗂 案件詳細</h2>
+      <div class="case" id="case-rekimachi">
+        <header class="case-head">
+          <div class="ttl">⛩ 米沢レキマチ 地域計画</div>
+          <div class="sub">米沢市／上杉家文化・武家文化を軸とした文化観光中核エリア</div>
+        </header>
+        <div class="body">
+          <div>
+            <span class="pill red">地域計画</span>
+            <span class="pill gold">三角エリア構想</span>
+            <span class="pill">国指定史跡「米沢城跡」</span>
+            <span class="pill">国宝・重要文化財</span>
+          </div>
+          <dl class="kv">
+            <dt>中核施設</dt><dd>上杉神社・稽照殿（中核）</dd>
+            <dt>連携施設</dt><dd>旧米沢高等工業学校本館／伝統発酵食ゾーン（東町）／米沢城跡／上杉博物館</dd>
+            <dt>テーマ</dt><dd>「青春であふれる、新・城下町時代」（R7総合計画踏襲）</dd>
+            <dt>連携想定</dt><dd>米沢市・米沢観光コンベンション協会・山形大学・10事業者・SPC</dd>
+            <dt>強み</dt><dd>R7総合計画＋ハード27,113万＋ソフト2,000万の三位一体推進体制／合意形成済</dd>
+            <dt>連携合意状況</dt><dd>R7事業で構築済（要：地域計画用に覚書化）</dd>
+            <dt>担当（記入）</dt><dd><input type="text" placeholder="担当者名・部署"></dd>
+            <dt>窓口（記入）</dt><dd><input type="text" placeholder="米沢市・神社等の窓口"></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="s">
+      <h2 class="sec">✅ 提出書類チェックリスト（地域計画専用）</h2>
+      <div class="grid grid-2">
+        <div class="checklist">
+          <h4><span class="step-tag">Step1</span>申請前相談（〜5/12 17:00）</h4>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>① 申請前相談申込書</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank">Excel</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_01.pdf" target="_blank">PDF</a></div></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>② 地域計画 様式（未定稿可）</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank">Word</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94093402_08.pdf" target="_blank">PDF</a></div><small>様式94093402_02</small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>送付先</strong><br><a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a><small>／TEL 03-6734-4893</small></div></div>
+        </div>
+        <div class="checklist">
+          <h4><span class="step-tag">Step2</span>認定申請（6/1〜6/3 17:00）</h4>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>① 地域計画 申請書</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/92811001_03.docx" target="_blank">Word</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/92811001_04.pdf" target="_blank">PDF</a></div></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>② 地域計画 様式（最終版）</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/93862101_06.docx" target="_blank">Word</a> <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/93862101_07.pdf" target="_blank">PDF</a></div></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>③ 概要資料</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/92787101_15.pptx" target="_blank">PPTX</a></div></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>④ ロジックモデル</strong><div class="fmt-links"><a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">PPTX</a></div><small>※<a href="bunka-kanko-reuse-analysis.html#logic-model-sample">ドラフト版あり</a></small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>⑤ 連携合意書 ★地域計画特有</strong><small>米沢市・上杉神社・10事業者・山形大学</small></div></div>
+          <div class="check-item"><input type="checkbox"><div class="desc"><strong>⑥ 参考資料</strong><small>R7総合計画／Agoop人流／米沢市観光振興計画</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s">
+      <h2 class="sec">📋 タスク・担当者管理</h2>
+      <table class="tasks">
+        <thead><tr><th style="width:30%">タスク</th><th style="width:20%">担当</th><th style="width:15%">期限</th><th style="width:15%">ステータス</th><th>メモ</th></tr></thead>
+        <tbody>
+          <tr><td>地域計画方針の最終決定</td><td><input type="text"></td><td>5/2(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>関係者キックオフ（米沢市・上杉神社・大学・10事業者）</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>連携合意書ドラフト作成・送付</td><td><input type="text"></td><td>5/5(火)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>地域計画書ドラフト v1作成</td><td><input type="text"></td><td>5/8(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>申請前相談申込書 提出</td><td><input type="text"></td><td>5/12(火)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>連携合意書 正式締結（署名取得）</td><td><input type="text"></td><td>5/18(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>文化庁との相談 → 計画書ブラッシュアップ</td><td><input type="text"></td><td>〜5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>概要資料・ロジックモデル作成</td><td><input type="text"></td><td>5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+          <tr><td>正式申請（電子＋郵送）</td><td><input type="text"></td><td>6/3(水)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="s">
+      <h2 class="sec">🔗 一次資料・参考資料リンク集</h2>
+      <div class="links-grid">
+        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/92263701.html" target="_blank">
+          <span class="cat">本案内ページ</span><span class="ttl">拠点計画及び地域計画の作成・申請</span>
+          <span class="desc">スケジュール・様式すべての一次情報</span>
+        </a>
+        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94207001_03.pdf" target="_blank">
+          <span class="cat">ガイド</span><span class="ttl">文化観光推進ガイドブック（全体版・9MB）</span>
+          <span class="desc">P16-17にロジックモデル説明</span>
+        </a>
+        <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_02.pdf" target="_blank">
+          <span class="cat">申請ガイド</span><span class="ttl">認定申請ガイドブック（PDF・6MB）</span>
+          <span class="desc">様式の書き方・審査要点を解説</span>
+        </a>
+        <a class="link-card" href="rekimachi-r7.html">
+          <span class="cat">前段事業</span><span class="ttl">レキマチ R7 エリア造成事業</span>
+          <span class="desc">総合計画策定の基礎</span>
+        </a>
+        <a class="link-card" href="rekimachi-hard.html">
+          <span class="cat">並走事業</span><span class="ttl">レキマチ ハード事業（観光庁・提出済）</span>
+          <span class="desc">10案件27,113万円の施設整備</span>
+        </a>
+        <a class="link-card" href="rekimachi-soft.html">
+          <span class="cat">並走事業</span><span class="ttl">レキマチ ソフト事業（観光庁・提出済）</span>
+          <span class="desc">調査・計画策定・コンテンツ造成</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================== -->
+  <!-- Tab 2: Reuse Analysis          -->
+  <!-- ============================== -->
+  <div class="tab-panel" data-tab="analysis">
+
+    <div class="exec-summary">
+      <h2>📌 結論サマリー</h2>
+      <p><span class="big">流用率：約65〜75%</span>　既存ハード・ソフト両事業の調査・データ・KPI・連携体制が文化観光推進法地域計画申請に高度に転用可能。<strong style="color:#fff">「ハード事業＋ソフト事業＋地域計画」の三位一体推進体制</strong>として整理することで、申請書の説得力が大幅に向上する。</p>
+      <p>必要な作業は <strong style="color:#fff">フレーム再構成（観光資源 → 文化資源／文化観光）と文化庁固有書類（ロジックモデル・概要資料・基本方針整合）の新規作成</strong>。R7総合計画とハード・ソフト両事業の成果物を「文化観光の好循環」言語に翻訳。</p>
+      <div class="meta">
+        <span class="pill">📊 一次データ（Agoop）流用度 95%</span>
+        <span class="pill">🎯 KPI・ベンチマーク 85%</span>
+        <span class="pill">🏗 連携体制 80%</span>
+        <span class="pill">📝 申請書本文 55%</span>
+        <span class="pill">📐 ロジックモデル 新規</span>
+      </div>
+    </div>
+
+    <h2 class="sec">⚖ 三制度の構造比較</h2>
+    <div class="systems">
+      <div class="sys hard">
+        <div class="ttl">既存・観光庁</div>
+        <h4>レキマチ ハード事業</h4>
+        <span class="status">提出済 4/22</span>
+        <dl>
+          <dt>所管</dt><dd>観光庁 観光資源課</dd>
+          <dt>補助率</dt><dd>1/2</dd>
+          <dt>上限</dt><dd>2億円</dd>
+          <dt>対象</dt><dd>建造物の新築・改修、周辺環境整備</dd>
+          <dt>規模</dt><dd>10案件・27,113.5万円</dd>
+        </dl>
+      </div>
+      <div class="sys soft">
+        <div class="ttl">既存・観光庁</div>
+        <h4>レキマチ ソフト事業</h4>
+        <span class="status">提出済 4/10</span>
+        <dl>
+          <dt>所管</dt><dd>観光庁 観光資源課</dd>
+          <dt>補助率</dt><dd>定額</dd>
+          <dt>上限</dt><dd>2,000万円</dd>
+          <dt>対象</dt><dd>調査・計画策定、コンテンツ造成</dd>
+          <dt>成果物</dt><dd>事業計画書・モデル創出</dd>
+        </dl>
+      </div>
+      <div class="sys bunka">
+        <div class="ttl">新規・文化庁</div>
+        <h4>文化観光推進法 地域計画</h4>
+        <span class="status review">申請準備中</span>
+        <dl>
+          <dt>所管</dt><dd>文化庁 文化拠点担当</dd>
+          <dt>補助率</dt><dd>2/3</dd>
+          <dt>上限</dt><dd>7,500万円／年（5年）</dd>
+          <dt>対象</dt><dd>文化資源の保存・活用・観光振興・経済循環</dd>
+          <dt>軸</dt><dd>計画認定 → 補助金活用</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h2 class="sec">🔁 成果物別 流用可能性マトリクス</h2>
+    <p style="font-size:13px;color:var(--sub);margin:0 0 8px">凡例：<span class="score s90">90%+</span>ほぼそのまま流用 <span class="score s80">70-90%</span>軽微な修正で流用 <span class="score s50">40-70%</span>再構成が必要 <span class="score s30">〜40%</span>新規作成寄り</p>
+    <div class="matrix">
+      <table>
+        <thead><tr><th>成果物カテゴリ</th><th>既存資産（米沢レキマチ）</th><th>流用度</th><th>必要な作業</th></tr></thead>
+        <tbody>
+          <tr><td><strong>① 一次データ</strong></td><td>Agoop モバイル空間統計：上杉神社エリア384,987人/年、休日30分未満退出65.8%、100km以遠35.5%</td><td><span class="score s90">95%</span></td><td>そのまま転載可能。文化観光の文脈で「文化資源への来訪・接触」として再ラベリング</td></tr>
+          <tr><td><strong>② ベンチマーク比較</strong></td><td>鹿島神宮（休日30分未満退出23.3%）／熊野大社（プロダクト売上6,000-8,000万円）</td><td><span class="score s90">90%</span></td><td>文化観光拠点における先進事例として転用</td></tr>
+          <tr><td><strong>③ 課題認識・ストーリー</strong></td><td>通過型観光・消費転換欠如・広域吸引力未活用・インバウンド対応不足</td><td><span class="score s80">85%</span></td><td>「観光の課題」を「文化資源の活用が不十分」という文化観光フレームに翻訳</td></tr>
+          <tr><td><strong>④ 整備計画（ハード）</strong></td><td>10案件・27,113.5万円・上杉神社授与所5,000万円ほか</td><td><span class="score s80">80%</span></td><td>ハード補助金で整備済の施設を「文化観光拠点施設」として位置づけ直し</td></tr>
+          <tr><td><strong>⑤ コンテンツ造成計画（ソフト）</strong></td><td>「超勝利」ブランド構想・体験コンテンツ造成・モニターツアー</td><td><span class="score s80">85%</span></td><td>「文化資源の理解促進・魅力発信」コンテンツとして文化観光の文脈で再構成</td></tr>
+          <tr><td><strong>⑥ KPI（数値目標）</strong></td><td>30分未満滞在率50%へ改善／40万人以上／インバウンド計測体制／売上目標</td><td><span class="score s80">85%</span></td><td>「文化財理解度」「リピート率」等の指標を再選定・追加</td></tr>
+          <tr><td><strong>⑦ 連携体制</strong></td><td>米沢市・上杉神社・山形大学・10事業者・金融機関等</td><td><span class="score s80">80%</span></td><td>地域計画では複数主体の連携合意（覚書・MOU）が必要</td></tr>
+          <tr><td><strong>⑧ SPC構想・推進主体</strong></td><td>R7で合意形成済のSPC設立構想・推進体制レポート</td><td><span class="score s80">75%</span></td><td>文化観光推進主体として再定義</td></tr>
+          <tr><td><strong>⑨ R7総合計画・ロードマップ</strong></td><td>「上杉の新・城下町づくり総合計画」・2030年生誕500年マイルストーン</td><td><span class="score s70">70%</span></td><td>文化観光推進法の「5年計画」フォーマットに合わせて期間設計を再定義</td></tr>
+          <tr><td><strong>⑩ 申請書本文（地域計画 様式）</strong></td><td>ハード様式1〜5・ソフト申請書類の文章資産</td><td><span class="score s50">55%</span></td><td>文化庁様式は構成・記載項目が異なる。素材は流用しつつ書き直し</td></tr>
+          <tr><td><strong>⑪ 概要資料（PowerPoint）</strong></td><td>R7事業 D-1/D-2 報告書PPT・ハード様式4 事業概要</td><td><span class="score s50">60%</span></td><td>文化庁指定様式（92787101_15）に合わせて再構成</td></tr>
+          <tr><td><strong>⑫ ロジックモデル</strong></td><td>—（既存事業に該当書類なし）</td><td><span class="score s30">20%</span></td><td>新規作成必須。<a href="bunka-kanko-reuse-analysis.html#logic-model-sample">サンプル参照</a></td></tr>
+          <tr><td><strong>⑬ 連携合意書</strong></td><td>R7・ハード事業で構築済の連携体制（口頭合意）</td><td><span class="score s50">60%</span></td><td>★地域計画必須。10事業者・米沢市・神社・大学との正式覚書を5/18までに締結</td></tr>
+          <tr><td><strong>⑭ 文化財保存・継承の観点</strong></td><td>稽照殿グランドデザイン・文化財管理課題</td><td><span class="score s50">60%</span></td><td>「保存を大前提」とする文化観光の姿勢を明記</td></tr>
+          <tr><td><strong>⑮ JNTO等との海外発信連携</strong></td><td>—</td><td><span class="score s00">新規</span></td><td>JNTO海外宣伝活用計画を新規記述</td></tr>
+          <tr><td><strong>⑯ 経済循環・再投資メカニズム</strong></td><td>SPC設立構想・地域経済波及試算</td><td><span class="score s70">70%</span></td><td>「文化への再投資」の循環構造を明示する図表を作成</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer Common -->
+  <section class="s">
+    <h2 class="sec">🔗 関連ページ</h2>
+    <div class="related-grid">
+      <a class="related" href="bunka-kanko-suishin.html">
+        <span class="cat">プロジェクト本体</span>
+        <span class="ttl">📜 文化観光推進事業</span>
+        <span class="desc">推進体制・スケジュール・作業ルール</span>
+      </a>
+      <a class="related" href="bunka-kanko-akayu.html">
+        <span class="cat">並行案件</span>
+        <span class="ttl">♨ 赤湯&南陽市 統合ページ</span>
+        <span class="desc">赤湯熊野案件のダッシュボード＋流用分析</span>
+      </a>
+      <a class="related" href="bunka-kanko-reuse-analysis.html#logic-model-sample">
+        <span class="cat">参考</span>
+        <span class="ttl">📐 ロジックモデルサンプル</span>
+        <span class="desc">公式様式94343001_01準拠1ページ完結ドラフト</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    プラットヨネザワ株式会社 — 米沢市 文化観光推進事業 統合ページ<br>
+    最終更新：2026年4月30日 ｜ <a href="../index.html">← ポータルに戻る</a>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+    function activate(name){
+      tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+      panels.forEach(p => p.classList.toggle('active', p.dataset.tab === name));
+      try { history.replaceState(null, '', '#' + name); } catch(e){}
+      try { localStorage.setItem('yonezawa-tab', name); } catch(e){}
+    }
+    tabs.forEach(b => b.addEventListener('click', () => activate(b.dataset.tab)));
+    let initial = (location.hash || '').replace('#','');
+    if (!['dashboard','analysis'].includes(initial)) {
+      try { initial = localStorage.getItem('yonezawa-tab') || 'dashboard'; } catch(e){ initial = 'dashboard'; }
+    }
+    if (!['dashboard','analysis'].includes(initial)) initial = 'dashboard';
+    activate(initial);
+  })();
+</script>
+</body>
+</html>
