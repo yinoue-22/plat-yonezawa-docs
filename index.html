@@ -100,6 +100,29 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-bunka { background: #eaf0f7; color: #1f4068; }
 .badge-review { background: #fdf6e3; color: #8b6914; border: 1px solid #e3d29a; }
 .badge-deadline { background: #fdecea; color: #c0392b; font-weight: 700; }
+.badge-archived { background: #ececec; color: #6c757d; border: 1px solid #c0c0c0; }
+/* アーカイブセクション */
+.archive-section { margin-top: 3rem; }
+.archive-toggle {
+  list-style: none; cursor: pointer; user-select: none;
+  background: #fafafa; border: 1px solid var(--border); border-radius: 8px;
+  padding: .8rem 1.2rem; font-size: .9rem; font-weight: 700; color: var(--text-sub);
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.archive-toggle::-webkit-details-marker { display: none; }
+.archive-toggle:hover { background: #f0f0f0; color: var(--text); border-color: #b0b0b0; }
+.archive-toggle .chevron { font-size: .85rem; transition: transform .2s; }
+details[open] .archive-toggle .chevron { transform: rotate(90deg); }
+details[open] .archive-toggle { background: #ececec; color: var(--text); border-color: #b0b0b0; border-radius: 8px 8px 0 0; border-bottom: none; }
+.archive-body {
+  background: #fafafa; border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;
+  padding: 1.2rem 1.2rem .4rem; margin-top: -1px;
+}
+.archive-body .section-title { margin-top: .5rem; opacity: .85; }
+.archive-body .card { opacity: .92; }
+.archive-body .card:hover { opacity: 1; }
+.archive-note { font-size: .75rem; color: var(--text-sub); margin: 0 0 1rem; padding: .5rem .8rem; background: #fff4e6; border-left: 3px solid var(--gold); border-radius: 4px; }
 .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; line-height: 1.5; }
 .card p { font-size: .82rem; color: var(--text-sub); line-height: 1.6; }
 .card .card-meta {
@@ -148,26 +171,6 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
       <p>上杉神社・稽照殿エリアの施設整備・周辺環境整備。11事業者参画、補助上限2億円。申請〆切 4/22。</p>
     </a>
   </div>
-  <!-- よねざわ戦国花火大会 拡充提言事業 -->
-  <div class="section-title sengoku"><span class="icon">🎆</span> よねざわ戦国花火大会 拡充提言事業</div>
-  <div class="card-grid">
-    <a href="projects/sengoku-hanabi.html" class="card sengoku-card">
-      <span class="badge badge-sengoku">政策提言書</span>
-      <span class="badge badge-new">NEW</span>
-      <h3>戦国花火リサーチレポート<br>（全12章）</h3>
-      <p>米沢市長・山形県知事向け政策提言書。Agoop人流×ラッコKW有料版×SNSインサイトに基づく4本柱パッケージ。5年¥5億投資で累積ROI 3.8〜5.3倍。</p>
-    </a>
-    <a href="projects/sengoku-hanabi/axis-a-summary.html" class="card sengoku-card">
-      <span class="badge badge-soft">データ分析</span>
-      <h3>A軸：Agoop人流データ2年比較</h3>
-      <p>第一回（2024）2万人・第二回（2025）1.08万人の定量比較。居住地・距離・時間帯・属性・ペルソナの8軸分析。置賜3市5町全域の人流波及を実証。</p>
-    </a>
-    <a href="projects/sengoku-hanabi/axis-c-summary.html" class="card sengoku-card">
-      <span class="badge badge-soft">データ分析</span>
-      <h3>C軸：SNS・認知ブランド効果</h3>
-      <p>ラッコKW7キーワード／Instagram・X公式アカウントインサイト／広告運用実績。歴史資産月24.8万検索のうち戦国花火0.4%のみ捕捉という構造的機会損失を発見。</p>
-    </a>
-  </div>
   <!-- 米沢上杉まつり 多言語ガイド事業 -->
   <div class="section-title uesugi"><span class="icon">⚔️</span> 米沢上杉まつり 多言語ガイド事業</div>
   <div class="card-grid">
@@ -199,26 +202,15 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
         <span>📅 計画期間 5年</span>
       </div>
     </a>
-    <a href="projects/bunka-kanko-dashboard.html#case-rekimachi" class="card bunka-card">
-      <span class="badge badge-bunka">拠点計画 候補</span>
-      <span class="badge badge-review">検討中</span>
-      <h3>⛩ レキマチ（上杉神社ほか）</h3>
-      <p>米沢城跡・上杉神社・稽照殿・上杉博物館を中核とした文化観光拠点／地域計画。R7エリア造成事業の総合計画と接続し、ソフト事業（活用推進）と一体推進。</p>
+    <a href="projects/bunka-kanko-reuse-analysis.html" class="card bunka-card">
+      <span class="badge badge-bunka">分析レポート</span>
+      <span class="badge badge-new">NEW</span>
+      <h3>🔁 流用可能性分析レポート</h3>
+      <p>レキマチ ハード事業（観光庁・4/22提出済）／ソフト事業（観光庁・4/10提出済）から文化観光推進法申請への流用可能性を成果物別に精査。流用率約65〜75%、三事業一体推進フレームを提案。</p>
       <div class="card-meta">
-        <span>🏯 上杉文化エリア</span>
-        <span>📌 国宝・重要文化財</span>
-        <span>🔗 R7総合計画 接続</span>
-      </div>
-    </a>
-    <a href="projects/bunka-kanko-dashboard.html#case-akayu" class="card bunka-card">
-      <span class="badge badge-bunka">地域計画 候補</span>
-      <span class="badge badge-review">検討中</span>
-      <h3>♨ 赤湯温泉＆熊野大社</h3>
-      <p>南陽市・熊野大社（日本三熊野）と赤湯温泉街を結ぶ文化観光地域計画の検討。信仰文化×湯治文化の体験コンテンツ化、二次交通・滞在時間延伸を主要論点として整理。</p>
-      <div class="card-meta">
-        <span>⛩ 日本三熊野の一つ</span>
-        <span>♨ 赤湯温泉街</span>
-        <span>🌸 烏帽子山公園</span>
+        <span>📊 16カテゴリ分析</span>
+        <span>🎯 流用率 65-75%</span>
+        <span>💰 5年累計 上限 5.95億円</span>
       </div>
     </a>
   </div>
@@ -233,6 +225,39 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
     </a>
   </div>
   -->
+
+  <!-- =================== アーカイブ =================== -->
+  <details class="archive-section">
+    <summary class="archive-toggle">
+      <span>🗄 アーカイブ済み事業（クリックで展開）</span>
+      <span class="chevron">▶</span>
+    </summary>
+    <div class="archive-body">
+      <p class="archive-note">📌 過去または別ステータスに移行した事業のドキュメントです。引き続き各サブページから個別アクセス可能です。</p>
+
+      <!-- よねざわ戦国花火大会 拡充提言事業 -->
+      <div class="section-title sengoku"><span class="icon">🎆</span> よねざわ戦国花火大会 拡充提言事業 <span class="badge badge-archived" style="margin-left:.5rem">ARCHIVED</span></div>
+      <div class="card-grid">
+        <a href="projects/sengoku-hanabi.html" class="card sengoku-card">
+          <span class="badge badge-sengoku">政策提言書</span>
+          <span class="badge badge-archived">アーカイブ</span>
+          <h3>戦国花火リサーチレポート<br>（全12章）</h3>
+          <p>米沢市長・山形県知事向け政策提言書。Agoop人流×ラッコKW有料版×SNSインサイトに基づく4本柱パッケージ。5年¥5億投資で累積ROI 3.8〜5.3倍。</p>
+        </a>
+        <a href="projects/sengoku-hanabi/axis-a-summary.html" class="card sengoku-card">
+          <span class="badge badge-soft">データ分析</span>
+          <h3>A軸：Agoop人流データ2年比較</h3>
+          <p>第一回（2024）2万人・第二回（2025）1.08万人の定量比較。居住地・距離・時間帯・属性・ペルソナの8軸分析。置賜3市5町全域の人流波及を実証。</p>
+        </a>
+        <a href="projects/sengoku-hanabi/axis-c-summary.html" class="card sengoku-card">
+          <span class="badge badge-soft">データ分析</span>
+          <h3>C軸：SNS・認知ブランド効果</h3>
+          <p>ラッコKW7キーワード／Instagram・X公式アカウントインサイト／広告運用実績。歴史資産月24.8万検索のうち戦国花火0.4%のみ捕捉という構造的機会損失を発見。</p>
+        </a>
+      </div>
+    </div>
+  </details>
+
 </div>
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
