@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赤湯&南陽市 地域計画 認定申請ダッシュボード | プラットヨネザワ</title>
+<meta name="description" content="文化観光推進法に基づく令和8年度地域計画 認定申請（南陽市・赤湯熊野案件）の進捗管理ダッシュボード。">
+<style>
+  :root{
+    --bg:#f5f3ee;--paper:#ffffff;--ink:#1f2937;--sub:#4b5563;--muted:#6b7280;
+    --line:#e5e7eb;--accent-2:#1f4068;--accent:#0f243d;--gold:#b58a2e;
+    --green:#2e7d4f;--warn:#c0392b;
+    --soft-red:#fdecec;--soft-blue:#eaf0f7;--soft-gold:#f7f1e1;--soft-green:#e8f5ec;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-2);text-decoration:none;border-bottom:1px solid rgba(31,64,104,.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .wrap{max-width:1200px;margin:0 auto;padding:24px 24px 64px}
+  .crumbs{font-size:12px;color:var(--muted);margin-bottom:14px;letter-spacing:.04em}
+  .crumbs a{color:var(--muted);border:none}
+  .crumbs a:hover{color:var(--accent-2)}
+  .status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .top-tag{font-size:12px;color:var(--accent-2);background:var(--soft-blue);border:1px solid #c5d3e6;
+    border-radius:999px;padding:4px 12px;font-weight:600;letter-spacing:.04em}
+  .top-tag.case{background:#eaf0f7;color:#1f4068;border-color:#c5d3e6}
+  .top-status{font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:4px 10px;
+    background:#fff4e6;color:#d68910;border:1px solid #f0c674}
+  h1.title{font-size:30px;margin:6px 0 6px;letter-spacing:.02em}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 16px}
+  .info-bar{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--sub);margin:0 0 22px}
+  .alert{background:var(--soft-red);border:1px solid #f3c2c2;border-left:6px solid var(--warn);
+    border-radius:10px;padding:14px 18px;margin:0 0 28px;display:flex;gap:14px;align-items:center}
+  .alert .badge{background:var(--warn);color:#fff;border-radius:6px;padding:4px 10px;font-weight:700;
+    font-size:12px;letter-spacing:.06em;white-space:nowrap}
+  .alert .body{font-size:14px;color:#5a1212}
+  .alert strong{color:var(--warn)}
+  section.s{margin:36px 0}
+  h2.sec{font-size:20px;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--accent-2);letter-spacing:.04em}
+  h3.sub{font-size:14px;color:var(--sub);margin:18px 0 8px;letter-spacing:.04em}
+  .grid{display:grid;gap:14px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:880px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+  .card h4{margin:0 0 6px;font-size:13px;color:var(--muted);letter-spacing:.06em;font-weight:600}
+  .card .num{font-size:24px;font-weight:700;color:var(--ink)}
+  .card .unit{color:var(--muted);font-size:12px;margin-left:4px}
+  .card .note{color:var(--muted);font-size:12px;margin-top:6px}
+  .goals{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:880px){.goals{grid-template-columns:repeat(2,1fr)}}
+  .goal{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;box-shadow:var(--shadow)}
+  .goal .icon{font-size:22px;color:var(--gold);font-weight:700}
+  .goal .ttl{font-weight:700;margin:6px 0 4px;font-size:13px}
+  .goal .desc{font-size:11px;color:var(--sub);line-height:1.5}
+  .gantt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px 8px;box-shadow:var(--shadow);overflow-x:auto;position:relative}
+  .gantt .axis{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;border-bottom:1px solid var(--line);padding-bottom:6px;font-size:11px;color:var(--muted)}
+  .gantt .axis div{text-align:center;border-right:1px dashed var(--line)}
+  .gantt .axis div:first-child{text-align:left;border-right:none}
+  .gantt .row{display:grid;grid-template-columns:160px repeat(14,1fr);gap:0;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+  .gantt .row:last-child{border-bottom:none}
+  .gantt .label{font-size:13px;color:var(--ink);font-weight:600;padding-right:8px}
+  .bar{height:22px;border-radius:6px;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 8px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .bar.consult{background:linear-gradient(90deg,#3b82a8,#1f4068)}
+  .bar.deadline{background:#c0392b}
+  .bar.apply{background:linear-gradient(90deg,#b58a2e,#8b6914)}
+  .bar.approval{background:linear-gradient(90deg,#2e7d4f,#1d5e3a)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--sub);padding:10px 4px 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:14px;height:10px;border-radius:3px;display:inline-block}
+  .today-line{position:absolute;top:30px;bottom:8px;border-left:2px dashed #1f2937;z-index:5;pointer-events:none}
+  .today-line span{position:absolute;top:-20px;left:-22px;background:#1f2937;color:#fff;padding:1px 6px;font-size:10px;border-radius:4px;letter-spacing:.04em}
+  .case{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .case header.case-head{padding:14px 18px;color:#fff;background:linear-gradient(135deg,#1f4068,#0f243d)}
+  .case .ttl{font-size:18px;font-weight:700;letter-spacing:.04em}
+  .case .sub{font-size:12px;color:#dbe3ee;margin-top:2px}
+  .case .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--sub);margin-right:4px}
+  .pill.gold{background:var(--soft-gold);border-color:#e3d29a;color:#7a5a14}
+  .pill.blue{background:var(--soft-blue);border-color:#c5d3e6;color:#1f4068}
+  .pill.red{background:var(--soft-red);border-color:#f3c2c2;color:#7a1c1c}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;font-size:13px}
+  .kv dt{color:var(--muted)}
+  .kv dd{margin:0;color:var(--ink)}
+  .kv input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
+  .checklist{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow)}
+  .checklist h4{margin:6px 0 10px;font-size:14px;letter-spacing:.04em}
+  .step-tag{display:inline-block;background:var(--accent-2);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:6px}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .check-item:last-child{border-bottom:none}
+  .check-item input[type="checkbox"]{margin-top:5px;accent-color:var(--accent-2)}
+  .check-item .desc{flex:1}
+  .check-item small{color:var(--muted)}
+  .fmt-links a{font-size:11px;margin-right:6px;color:var(--accent-2)}
+  table.tasks{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+  table.tasks th, table.tasks td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.tasks thead th{background:#fafafa;font-weight:600;color:var(--sub);font-size:12px;letter-spacing:.04em}
+  table.tasks input[type="text"]{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;width:100%;font-family:inherit;background:#fdfdfd}
+  table.tasks select{border:1px solid var(--line);border-radius:6px;padding:4px 6px;font-size:12px;font-family:inherit;background:#fff}
+  /* Resource cards (南陽特有) */
+  .resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+  @media(max-width:880px){.resource-grid{grid-template-columns:1fr}}
+  .resource{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:8px;padding:12px 14px;font-size:12px}
+  .resource .cat-tag{font-size:10px;color:var(--gold);letter-spacing:.06em;font-weight:700}
+  .resource .nm{font-weight:700;font-size:13px;margin:3px 0;color:var(--ink)}
+  .resource .desc{color:var(--sub);font-size:11px;line-height:1.6}
+  /* Partners table */
+  .partners{background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;box-shadow:var(--shadow);font-size:12px}
+  .partners table{width:100%;border-collapse:collapse}
+  .partners th,.partners td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .partners thead th{background:#fafafa;font-weight:700;color:var(--accent-2);font-size:11px;letter-spacing:.04em}
+  .partners small{color:var(--muted);font-size:10px}
+  .partners .role-tag{display:inline-block;font-size:9px;background:var(--soft-blue);color:var(--accent-2);
+    border-radius:3px;padding:1px 6px;font-weight:700;margin-left:4px;letter-spacing:.04em}
+  .partners .role-tag.lead{background:#fdecec;color:#8b1e1e}
+  /* KGI/KPI box */
+  .kgi-box{background:linear-gradient(135deg,#1f4068 0%, #0f243d 100%);color:#fff;
+    border-radius:12px;padding:18px 22px;margin:10px 0;box-shadow:var(--shadow)}
+  .kgi-box h4{font-size:15px;margin:0 0 8px;color:#fff}
+  .kgi-box .num{font-size:18px;color:#d4b05a;font-weight:700;display:inline-block;margin-right:10px}
+  .kgi-box ul{margin:6px 0 0 16px;font-size:13px;color:#dbe3ee;line-height:1.8}
+  .kgi-box ul li{margin-bottom:4px}
+  .kgi-box ul li strong{color:#fff}
+  .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:880px){.links-grid{grid-template-columns:1fr}}
+  .link-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}
+  .link-card:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .link-card .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .link-card .ttl{font-weight:600}
+  .link-card .desc{font-size:12px;color:var(--sub)}
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+  @media(max-width:880px){.related-grid{grid-template-columns:1fr}}
+  .related{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .related:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .related .cat{font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .related .ttl{font-weight:700;margin:4px 0;font-size:14px}
+  .related .desc{font-size:12px;color:var(--sub);line-height:1.6}
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs">
+    <a href="../index.html">ポータル</a> ＞ 文化観光推進事業 ＞ 赤湯&南陽市 地域計画 ダッシュボード
+  </div>
+
+  <div class="status-row">
+    <span class="top-tag">文化庁・文化観光推進法</span>
+    <span class="top-tag case">♨ 赤湯&南陽市案件</span>
+    <span class="top-status">申請準備中</span>
+  </div>
+
+  <h1 class="title">赤湯&南陽市 地域計画 認定申請ダッシュボード</h1>
+  <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（南陽市・赤湯温泉×熊野大社）の進捗管理ボード</p>
+
+  <div class="info-bar">
+    <span>📋 所管：文化庁参事官（文化拠点担当）</span>
+    <span>💰 補助率：2/3（上限7,500万円／年）</span>
+    <span>📅 計画期間：原則5年</span>
+    <span>🏢 申請者：南陽市観光協会（会長：結城秀人）／プラットヨネザワ㈱</span>
+    <span>🎯 計画種別：<strong style="color:#1f4068">地域計画</strong></span>
+  </div>
+
+  <div class="alert">
+    <span class="badge">緊急</span>
+    <div class="body">
+      <strong>申請前相談申込期限：5/12（火）17:00 ※必須</strong>
+      ／本日（4/30）から残り12日。①申請前相談申込書 ②地域計画書（未定稿可）を
+      <a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a> へメール提出。
+    </div>
+  </div>
+
+  <!-- コンセプト -->
+  <section class="s">
+    <h2 class="sec">🎯 ビジョン・コンセプト</h2>
+    <div class="kgi-box">
+      <h4>地域成長戦略コンセプト</h4>
+      <p style="font-size:14px;margin:6px 0;color:#fff;font-weight:700">「人と地域が整うサステナブルエリア／『食』と『農』と『整い』を軸とした観光まちづくり」</p>
+      <p style="font-size:13px;color:#dbe3ee;margin:6px 0">東北のミシュランキー3つのうち2つを有するガストロノミーのエリア・<strong style="color:#fff">赤湯温泉</strong>、日本三大熊野の一つで縁結びの聖地として知られる<strong style="color:#fff">熊野大社</strong>、東京から2時間半で到着する<strong style="color:#fff">赤湯駅</strong> ― この3拠点を中核エリアとし、欧米豪の富裕層・長期滞在型インバウンドを主要ターゲットとした、ウォーカブル観光地としての回遊性創出を目指す。</p>
+    </div>
+  </section>
+
+  <!-- 制度サマリー -->
+  <section class="s">
+    <h2 class="sec">📊 制度サマリー</h2>
+    <div class="grid grid-4">
+      <div class="card">
+        <h4>補助率</h4>
+        <div class="num">2/3<span class="unit">補助</span></div>
+        <div class="note">事業費の2/3を国が補助</div>
+      </div>
+      <div class="card">
+        <h4>補助上限</h4>
+        <div class="num">7,500<span class="unit">万円／年</span></div>
+        <div class="note">1〜3年目／4・5年目は中間評価</div>
+      </div>
+      <div class="card">
+        <h4>計画期間</h4>
+        <div class="num">5<span class="unit">年（原則）</span></div>
+        <div class="note">補助金は毎年度審査あり</div>
+      </div>
+      <div class="card">
+        <h4>地方負担</h4>
+        <div class="num">特別交付税<span class="unit">措置</span></div>
+        <div class="note">南陽市の地方負担分</div>
+      </div>
+    </div>
+
+    <h3 class="sub">文化観光推進法が定める4つの目標</h3>
+    <div class="goals">
+      <div class="goal"><div class="icon">①</div><div class="ttl">文化資源の魅力発信</div><div class="desc">来訪者の文化資源理解を深める機会の創出</div></div>
+      <div class="goal"><div class="icon">②</div><div class="ttl">国内外からの来訪促進</div><div class="desc">文化拠点を中核とした観光振興</div></div>
+      <div class="goal"><div class="icon">③</div><div class="ttl">地域経済の活性化</div><div class="desc">往来・購買・宿泊等の消費活動拡大</div></div>
+      <div class="goal"><div class="icon">④</div><div class="ttl">文化への再投資の好循環</div><div class="desc">経済効果を文化振興へ再投資し持続的発展</div></div>
+    </div>
+  </section>
+
+  <!-- スケジュール -->
+  <section class="s">
+    <h2 class="sec">📅 令和8年度 認定申請スケジュール</h2>
+    <div class="gantt">
+      <div class="axis">
+        <div>フェーズ／週</div>
+        <div>4/27</div><div>5/4</div><div>5/11</div><div>5/18</div><div>5/25</div>
+        <div>6/1</div><div>6/8</div><div>6/15</div><div>6/22</div><div>6/29</div>
+        <div>7/6</div><div>7/13</div><div>7/20</div><div>7/27</div>
+      </div>
+      <div class="today-line" style="left:calc(160px + (100% - 160px) * (0/14 + 3/7/14));"><span>本日 4/30</span></div>
+      <div class="row">
+        <div class="label">Step1 申請前相談期間</div>
+        <div style="grid-column:2/7"><div class="bar consult">4/27（月）〜 5/29（金）　文化庁との相談・地域計画書ブラッシュアップ</div></div>
+      </div>
+      <div class="row">
+        <div class="label">└ 相談申込期限【必須】</div>
+        <div style="grid-column:4/5"><div class="bar deadline">⚠ 5/12（火）17:00 締切</div></div>
+      </div>
+      <div class="row">
+        <div class="label">└ 連携合意書 締結</div>
+        <div style="grid-column:5/6"><div class="bar consult">5/18 関係者署名取得</div></div>
+      </div>
+      <div class="row">
+        <div class="label">Step2 認定申請受付</div>
+        <div style="grid-column:7/8"><div class="bar apply">6/1（月）〜 6/3（水）17:00</div></div>
+      </div>
+      <div class="row">
+        <div class="label">有識者委員会 審査</div>
+        <div style="grid-column:8/15"><div class="bar approval">書面・有識者審査（約2ヶ月）</div></div>
+      </div>
+      <div class="row">
+        <div class="label">認定（予定）</div>
+        <div style="grid-column:15/16"><div class="bar approval">7月末頃 認定</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:linear-gradient(90deg,#3b82a8,#1f4068)"></i>申請前相談</span>
+      <span><i style="background:#c0392b"></i>必須締切</span>
+      <span><i style="background:linear-gradient(90deg,#b58a2e,#8b6914)"></i>認定申請受付</span>
+      <span><i style="background:linear-gradient(90deg,#2e7d4f,#1d5e3a)"></i>審査・認定</span>
+      <span><i style="background:#1f2937"></i>本日</span>
+    </div>
+  </section>
+
+  <!-- 案件カード -->
+  <section class="s">
+    <h2 class="sec">🗂 案件詳細</h2>
+    <div class="case" id="case-akayu">
+      <header class="case-head">
+        <div class="ttl">♨ 赤湯&南陽市 地域計画</div>
+        <div class="sub">南陽市／信仰文化×ガストロノミー×湯治文化の体験型文化観光エリア</div>
+      </header>
+      <div class="body">
+        <div>
+          <span class="pill blue">地域計画</span>
+          <span class="pill gold">3拠点中核エリア</span>
+          <span class="pill">日本三熊野の一つ</span>
+          <span class="pill red">ミシュランキー2施設</span>
+          <span class="pill">ナショジオ「2026年に行くべき25選」山形県唯一選出</span>
+        </div>
+        <dl class="kv">
+          <dt>申請事業者</dt><dd>南陽市観光協会（会長：結城秀人 ／ DMO）</dd>
+          <dt>中核施設</dt><dd>熊野大社（東北の伊勢・三羽の兎・年間40万人参拝）</dd>
+          <dt>連携施設</dt><dd>赤湯温泉（開湯930年・上杉の御湯・東北のミシュランキー2施設）／赤湯駅（JR東日本・東京から2時間半）／つるのこ（漆山地区・古民家再生・鶴の恩返し伝承地）</dd>
+          <dt>食・農資源</dt><dd>日本一の米（黒澤ファームお米番付最優秀賞2026）／県内最多ワイナリー集積地（半径2km圏内6軒）／鯉料理（上杉鷹山公が養殖奨励）／東北最古ワイナリー酒井ワイナリー</dd>
+          <dt>テーマ</dt><dd>「整う観光まちづくり」 ― 食×農×整いを軸としたサステナブルエリア</dd>
+          <dt>主要ターゲット</dt><dd>欧米豪の富裕層・長期滞在型インバウンド／国内ライフスタイル感度層</dd>
+          <dt>連携合意状況</dt><dd>R8観光庁ソフト事業（987万円）で同意書取得済（要：文化観光推進法用に再合意）</dd>
+          <dt>担当（記入）</dt><dd><input type="text" placeholder="担当者名・部署"></dd>
+          <dt>窓口（記入）</dt><dd><input type="text" placeholder="南陽市観光協会窓口"></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 観光資源 -->
+  <section class="s">
+    <h2 class="sec">🌟 主要観光資源（地域計画 中核要素）</h2>
+    <h3 class="sub">歴史・文化</h3>
+    <div class="resource-grid">
+      <div class="resource">
+        <div class="cat-tag">📿 歴史</div>
+        <div class="nm">熊野大社</div>
+        <div class="desc">大同元年（806年）創建・1,200年以上の古社。和歌山熊野三山・長野熊野皇大神社と並ぶ「日本三熊野」、「東北の伊勢」とも称される。命の源「むすひ」の神様、縁結びの聖地として年間約40万人参拝。本殿裏「三羽のうさぎ」隠し彫り伝説（謎解き体験型参拝）／満月夜「月結び」祈願祭／上杉・伊達・後白河天皇ゆかり</div>
+      </div>
+      <div class="resource">
+        <div class="cat-tag">♨ 文化</div>
+        <div class="nm">赤湯温泉</div>
+        <div class="desc">源義家の弟・義綱が傷ついた兵士を癒した寛治7年（1093年）開湯／930余年。米沢藩主・上杉家の御殿湯、「上杉の御湯」を冠する旅館残存。半径2kmに6ワイナリー集積、ぶどう収穫量国内3位の山形県中でも特に集積。2025年「山形座 瀧波」「OSTERIA SINCERITÀ」がミシュランキーをダブル受賞、東北のミシュランキー3つのうち2つが赤湯温泉に集中</div>
+      </div>
+      <div class="resource">
+        <div class="cat-tag">🏘 文化</div>
+        <div class="nm">つるのこ（漆山地区）</div>
+        <div class="desc">置賜地方の民話「鶴の恩返し」伝承地。漆山地区の古民家再生拠点。地域住民・移住者・来訪者が交わる「生きた文化の継承の場」として機能。赤湯温泉・熊野大社とは異なるレイヤーの「物語のある農村集落」、エリア全体に奥行きと多様性をもたらす</div>
+      </div>
+    </div>
+
+    <h3 class="sub">食・農業</h3>
+    <div class="resource-grid">
+      <div class="resource">
+        <div class="cat-tag">🌾 食</div>
+        <div class="nm">日本一の米（黒澤ファーム）</div>
+        <div class="desc">2026年1月、京都「お米番付」（全国190点出品・ミシュラン星付料理人審査）で南陽市黒澤拓真氏「つや姫」が最優秀賞受賞。ツヤ・甘み・香り・食感の7項目で頂点。置賜盆地の土壌・水・気候が生む米の品質を世界標準で実証。世界屈指のガストロノミー体験の核となりうる素材</div>
+      </div>
+      <div class="resource">
+        <div class="cat-tag">🍇 食</div>
+        <div class="nm">ワイナリー集積地</div>
+        <div class="desc">置賜盆地特有の寒暖差と独自テロワール。山形県内のぶどう発祥の地、半径2km圏内に6ワイナリー集積する日本屈指のワインタウン。1892年創業の東北最古「酒井ワイナリー」〜14ヶ国輸出「グレープリパブリック」まで多様性。「地域の文化・人・自然すべてをテロワールとする」コンセプト、インバウンド富裕層のガストロノミーツーリズムとの親和性</div>
+      </div>
+      <div class="resource">
+        <div class="cat-tag">🐟 食</div>
+        <div class="nm">鯉料理</div>
+        <div class="desc">米沢藩9代藩主上杉鷹山公が飢饉対策・栄養源確保のため養殖を奨励。地域の食文化として継承</div>
+      </div>
+    </div>
+
+    <h3 class="sub">自然・絶景</h3>
+    <div class="resource-grid">
+      <div class="resource">
+        <div class="cat-tag">⛰ 自然</div>
+        <div class="nm">十分一山の雲海・南陽スカイパーク</div>
+        <div class="desc">標高約500m・赤湯市街地から車で10分。放射冷却により置賜盆地を乳白色に覆う雲海絶景スポット。蔵王・吾妻・飯豊・朝日連峰が島のように頭を出す360度展望。秋（10〜12月中旬）の早朝限定の希少性。山形座 瀧波等の宿で「雲海ツアー」提供、前泊を促す「翌朝体験」として機能。パラグライダー・気球フライト体験も整備</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 連携体制 -->
+  <section class="s">
+    <h2 class="sec">👥 推進体制（連携10事業者・同意書取得済）</h2>
+    <p style="font-size:13px;color:var(--sub);margin-bottom:8px">R8観光庁ソフト事業申請時に「申請事業者との連携に関する同意書」を内部決裁を経て発行済み。文化観光推進法地域計画申請にあたっては、各事業者と再度連携合意を取得（既存合意の延長として活用可能）。</p>
+    <div class="partners">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">事業者</th>
+            <th style="width:14%">代表者</th>
+            <th style="width:14%">担当者</th>
+            <th>担当業務（地域計画における役割）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>南陽市観光協会</strong><span class="role-tag lead">申請主体</span></td><td>結城 秀人（会長）</td><td>櫻井 義大（事務局長）</td><td>プロジェクトリーダー／本事業全体の統括・進捗管理／観光まちづくりビジョン案策定推進／推進事業体組成検討／関係者間合意形成／事務局</td></tr>
+          <tr><td><strong>南陽市</strong></td><td>白岩 孝夫（市長）</td><td>渡邊 正規（商工観光課長）</td><td>域内合意形成支援／民間事業者を巻き込んだ中期観光振興計画に関する協議・調整</td></tr>
+          <tr><td><strong>南陽市商工会</strong></td><td>菅野 直彦（会長）</td><td>岸 恭平</td><td>市内民間事業者との連携支援／本事業全般に関する各種連携</td></tr>
+          <tr><td><strong>宗教法人 熊野大社</strong><span class="role-tag">中核施設</span></td><td>北野 達（宮司）</td><td>北野 淑人（権禰宜）</td><td>歴史・文化の主要連携先／回遊性をもつ動線構築に係る調査・提案／ワークショップ会場提供</td></tr>
+          <tr><td><strong>赤湯温泉旅館協同組合</strong><span class="role-tag">観光主軸</span></td><td>丸森 周平（組合長）</td><td>須藤 宏介（副組合長）</td><td>先進地視察の企画・実施／観光の主要連携先／滞在拠点整備等に係る調査・検討・事業性調査</td></tr>
+          <tr><td><strong>赤湯温泉料理飲食店組合</strong></td><td>渡部 英孝（組合長）</td><td>渡部 英孝</td><td>食分野の主要連携先／ガストロノミー・ローカル体験事業／拠点に係る事業性検証</td></tr>
+          <tr><td><strong>赤湯駅（JR東日本）</strong><span class="role-tag">回遊網</span></td><td>入間川 悟（米沢駅長）</td><td>入間川 悟</td><td>観光主要スポット拠点／回遊・周遊を目指した移動網構築に向けた連携</td></tr>
+          <tr><td><strong>銀行団／株式会社山形銀行</strong></td><td>三坂 英彦（南陽支店長）</td><td>三坂 英彦</td><td>ファンドの組成支援／ファイナンス計画作成アドバイザー</td></tr>
+          <tr><td><strong>やまがたアルカディア観光局</strong><span class="role-tag">DMO登録</span></td><td>内谷 重治（理事長）</td><td>佐藤 和之／鷲見 孝（専務理事）</td><td>住民・事業者アンケート実施／中核エリア全体のブランディング・PR戦略策定（ターゲット層設定・コアバリュー整理と関係者合意含む）／域内合意形成支援</td></tr>
+          <tr><td><strong>Bina合同会社</strong></td><td>小坂 典子（代表社員）</td><td>小坂 典子</td><td>推進事業体設立フィジビリティ調査（組織形態・収益モデル・資金調達スキーム）／面的開発コンセプトF/S・推進計画策定／スポット間移動網F/S（自動運転・ライドシェア・グリーンスローモビリティ等）</td></tr>
+          <tr><td><strong>プラットヨネザワ株式会社</strong><span class="role-tag lead">中核連携</span><span class="role-tag">DMO登録</span></td><td>宮嶌 浩聡（CEO）</td><td>小田 航平（COO）</td><td>事業者ワークショップ企画・運営／観光まちづくりビジョン案策定・意見集約／候補観光資源調査／市民向けシンポジウム企画・実施／プロジェクト全体マネジメント支援</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- KGI/KPI -->
+  <section class="s">
+    <h2 class="sec">🎯 KGI / KPI（地域計画ベース）</h2>
+    <div class="grid grid-2">
+      <div class="kgi-box">
+        <h4>📌 KGI（重要目標達成指標）</h4>
+        <ul>
+          <li><strong>① 観光まちづくりビジョン策定・合意</strong>：「人と地域が整うサステナブルエリア」を基本コンセプトとした観光まちづくりビジョン案（計画年度：2027〜2031年度）を策定し、関係者・行政・地域住民の合意を得る。南陽市の次期観光振興計画との連動を確認</li>
+          <li><strong>② 推進事業体（DMO/エリアマネジメント組織）設立F/Sと合意形成</strong>：観光まちづくりを持続的に推進する推進事業体の設立に向けたF/Sを完了し、組織形態・役割分担・資金スキームの骨格について関係者間の合意形成</li>
+          <li><strong>③ 面的開発の方向性と移動網設計</strong>：3拠点（熊野大社・赤湯温泉・赤湯駅）を結ぶウォーカブル動線・グリーンモビリティ等の方向性確定</li>
+        </ul>
+      </div>
+      <div class="kgi-box" style="background:linear-gradient(135deg,#b58a2e,#8b6914)">
+        <h4>📈 KPI（進捗指標・地域計画想定）</h4>
+        <ul>
+          <li><strong>事業者ワークショップ：</strong>令和8年度内に5回開催（プラットヨネザワ）</li>
+          <li><strong>住民・事業者アンケート：</strong>1回・300件（アルカディア観光局）</li>
+          <li><strong>R9 1月目途：</strong>観光まちづくりビジョン案合意・南陽市次期観光振興計画への盛り込み協議開始</li>
+          <li><strong>市民向けシンポジウム：</strong>1回開催・ビジョン案を地域住民へ周知</li>
+          <li><strong>5年計画KPI：</strong>来訪者数+50%／インバウンド比率20%／消費単価+50%／文化財理解度80%以上</li>
+          <li><strong>商品売上：</strong>6,000-8,000万円（推定R7）→ 1.2億円規模（R12）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- チェックリスト -->
+  <section class="s">
+    <h2 class="sec">✅ 提出書類チェックリスト（地域計画専用）</h2>
+    <div class="grid grid-2">
+      <div class="checklist">
+        <h4><span class="step-tag">Step1</span>申請前相談（〜5/12 17:00）</h4>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>① 申請前相談申込書</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank">Excel様式</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_01.pdf" target="_blank">PDF</a>
+            </div>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>② 地域計画 様式（未定稿可）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94093402_08.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式94093402_02 ／ R8観光庁ソフト事業の戦略文書を流用</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>送付先</strong><br>
+            <a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a>
+            <small>／TEL 03-6734-4893</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <h4><span class="step-tag">Step2</span>認定申請（6/1〜6/3 17:00）</h4>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>① 地域計画 申請書</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/92811001_03.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/92811001_04.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式92811001_03</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>② 地域計画 様式（最終版）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/93862101_06.docx" target="_blank">Word</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/93862101_07.pdf" target="_blank">PDF</a>
+            </div>
+            <small>様式93862101_06</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>③ 概要資料（PowerPoint）</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/92787101_15.pptx" target="_blank">PPTX</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/92787101_16.pdf" target="_blank">PDF</a>
+            </div>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>④ ロジックモデル</strong>
+            <div class="fmt-links">
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/powerpoint/94343001_01.pptx" target="_blank">PPTX</a>
+              <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94343001_02.pdf" target="_blank">PDF</a>
+            </div>
+            <small>※レキマチ版を参考に南陽版を作成</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>⑤ 連携合意書／覚書 ★地域計画特有</strong>
+            <small>南陽市・熊野大社・赤湯温泉旅館組合・赤湯温泉料理飲食店組合・JR東日本・山形銀行・アルカディア観光局・商工会・Bina合同会社・プラットヨネザワとの連携合意（観光庁ソフト事業の同意書を流用可）</small>
+          </div>
+        </div>
+        <div class="check-item">
+          <input type="checkbox">
+          <div class="desc">
+            <strong>⑥ 参考資料</strong>
+            <small>R8観光庁ソフト事業申請書一式／南陽市観光振興計画／熊野大社参拝者統計／赤湯温泉宿泊統計／ナショジオ選出資料</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- タスク管理 -->
+  <section class="s">
+    <h2 class="sec">📋 タスク・担当者管理</h2>
+    <table class="tasks">
+      <thead><tr><th style="width:30%">タスク</th><th style="width:20%">担当</th><th style="width:15%">期限</th><th style="width:15%">ステータス</th><th>メモ</th></tr></thead>
+      <tbody>
+        <tr><td>地域計画方針の最終決定（中核施設・連携施設）</td><td><input type="text"></td><td>5/2(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>関係者キックオフ（南陽市観光協会・熊野大社・温泉組合）</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>R8観光庁ソフト事業との整合性確認・経費区分整理</td><td><input type="text"></td><td>5/4(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>連携合意書ドラフト作成（観光庁同意書から流用）</td><td><input type="text"></td><td>5/5(火)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>地域計画書ドラフト v1作成（観光庁ソフト事業の戦略文書を流用）</td><td><input type="text"></td><td>5/8(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>申請前相談申込書（Excel様式）作成</td><td><input type="text"></td><td>5/9(土)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>申請前相談申込書 提出</td><td><input type="text"></td><td>5/12(火)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>連携合意書 正式締結（10事業者署名取得）</td><td><input type="text"></td><td>5/18(月)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>文化庁との相談 → 計画書ブラッシュアップ</td><td><input type="text"></td><td>〜5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>概要資料・ロジックモデル（PPTX）作成</td><td><input type="text"></td><td>5/29(金)</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+        <tr><td>正式申請（電子＋郵送）</td><td><input type="text"></td><td>6/3(水)17:00</td><td><select><option>未着手</option><option>進行中</option><option>完了</option></select></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- リンク集 -->
+  <section class="s">
+    <h2 class="sec">🔗 一次資料・参考資料リンク集</h2>
+    <div class="links-grid">
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/92263701.html" target="_blank">
+        <span class="cat">本案内ページ</span>
+        <span class="ttl">拠点計画及び地域計画の作成・申請</span>
+        <span class="desc">スケジュール・様式すべての一次情報</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/index.html" target="_blank">
+        <span class="cat">制度概要</span>
+        <span class="ttl">文化観光（制度トップ）</span>
+        <span class="desc">4つの目標・好循環図・支援内容など</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94207001_03.pdf" target="_blank">
+        <span class="cat">ガイド</span>
+        <span class="ttl">文化観光推進ガイドブック（全体版・9MB）</span>
+        <span class="desc">P16-17にロジックモデル説明</span>
+      </a>
+      <a class="link-card" href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/pdf/94370601_02.pdf" target="_blank">
+        <span class="cat">申請ガイド</span>
+        <span class="ttl">認定申請ガイドブック（PDF・6MB）</span>
+        <span class="desc">様式の書き方・審査要点を解説</span>
+      </a>
+      <a class="link-card" href="https://drive.google.com/drive/u/0/folders/1yWnH4b4xmcwqNy0nddx-4yAc1JER6dln" target="_blank">
+        <span class="cat">並走事業</span>
+        <span class="ttl">📁 R8観光庁ソフト事業 申請書一式（Google Drive）</span>
+        <span class="desc">南陽市観光協会申請・987.35万円・本案件の戦略文書のベース</span>
+      </a>
+      <a class="link-card" href="mailto:bunkakankosuishin@mext.go.jp">
+        <span class="cat">問合せ先</span>
+        <span class="ttl">文化庁 文化観光拠点支援係</span>
+        <span class="desc">bunkakankosuishin@mext.go.jp ／ 03-6734-4893</span>
+      </a>
+      <a class="link-card" href="mailto:info@nanyoshi-kanko.jp">
+        <span class="cat">申請者連絡先</span>
+        <span class="ttl">南陽市観光協会</span>
+        <span class="desc">info@nanyoshi-kanko.jp ／ 0238-33-9512（事務局長 櫻井氏）</span>
+      </a>
+      <a class="link-card" href="mailto:k.oda@plat-yonezawa.jp">
+        <span class="cat">推進担当</span>
+        <span class="ttl">プラットヨネザワ COO 小田航平氏</span>
+        <span class="desc">k.oda@plat-yonezawa.jp ／ 0238-33-0056</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 関連ページ -->
+  <section class="s">
+    <h2 class="sec">🔗 関連ページ</h2>
+    <div class="related-grid">
+      <a class="related" href="bunka-kanko-suishin.html">
+        <span class="cat">プロジェクト本体</span>
+        <span class="ttl">📜 文化観光推進事業</span>
+        <span class="desc">推進体制・スケジュール・作業ルール（命名規則）</span>
+      </a>
+      <a class="related" href="bunka-kanko-akayu-reuse-analysis.html">
+        <span class="cat">分析レポート</span>
+        <span class="ttl">🔁 赤湯&南陽市 流用可能性分析</span>
+        <span class="desc">R8観光庁ソフト事業から地域計画への流用率精査</span>
+      </a>
+      <a class="related" href="bunka-kanko-yonezawa-dashboard.html">
+        <span class="cat">並行案件</span>
+        <span class="ttl">⛩ 米沢市 ダッシュボード</span>
+        <span class="desc">レキマチ案件の進捗管理ボード</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    プラットヨネザワ株式会社 — 赤湯&南陽市 地域計画 認定申請ダッシュボード<br>
+    申請事業者：南陽市観光協会／推進連携：プラットヨネザワ株式会社<br>
+    最終更新：2026年4月30日 ｜ 一次情報出典：文化庁HP「拠点計画及び地域計画の作成・申請」／南陽市観光協会R8観光庁ソフト事業申請書<br>
+    <a href="../index.html">← ポータルに戻る</a>
+  </footer>
+</div>
+</body>
+</html>
