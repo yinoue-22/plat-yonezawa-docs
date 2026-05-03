@@ -324,6 +324,28 @@ table.glossary tbody td{padding:10px 12px;vertical-align:top}
 .spot .name{font-weight:700;color:var(--c-bg-deep);font-size:1rem;margin-bottom:4px}
 .spot .desc{font-size:0.85rem;color:var(--c-ink-soft)}
 
+/* 陣形図（SCENE 2用） */
+.formations-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 6px;
+  align-items:start;
+}
+.formations-grid figure{
+  margin:0;background:var(--c-paper);
+  border:1px solid var(--c-line);border-radius:6px;
+  padding:6px;box-shadow:0 2px 8px rgba(26,58,50,0.08);
+  text-align:center;
+}
+.formations-grid img{
+  display:block;width:100%;height:auto;border-radius:4px;
+}
+.formations-grid figcaption{
+  font-size:0.78rem;color:var(--c-ink-soft);margin-top:6px;
+  font-style:italic;line-height:1.4;
+}
+@media (max-width:600px){
+  .formations-grid{grid-template-columns:1fr}
+}
+
 /* シーンカード（5シーン演武解説用） */
 .scene-list{margin:20px 0}
 .scene-card{
@@ -558,6 +580,11 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         2026年4月29日（水・祝）〜 5月3日（日・祝）<br>
         メインイベント「川中島合戦」は <strong>5月3日 14:00〜15:30</strong>（松川河川敷）。
       </div>
+      <div class="callout deep">
+        <div class="callout-title">🎌 祭りのコンセプト：<strong>敬・楽・伝・招</strong></div>
+        <strong>敬</strong>（敬う）= 上杉謙信公・鷹山公への尊崇　／　<strong>楽</strong>（楽しむ）= 観客も参加者も全力で楽しむ<br>
+        <strong>伝</strong>（伝える）= 戦国の歴史と義の精神を未来へ　／　<strong>招</strong>（招く）= 国内外からのゲストを温かく迎える
+      </div>
       <p>このページは、上杉まつりを訪れる外国人の方にも、案内する通訳者の方にも使えるよう、<strong>3言語（日本語／英語／繁體中文）×2モード（観光客向け／通訳者向け）</strong>で構成されています。上のタブで切り替えてご覧ください。</p>
     </div>
     <div class="en">
@@ -568,6 +595,11 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         April 29 (Wed) – May 3 (Sun), 2026.<br>
         The main event, the <strong>Kawanakajima Battle Reenactment</strong>, takes place on <strong>May 3, 14:00–15:30</strong>, at the Matsukawa Riverbank.
       </div>
+      <div class="callout deep">
+        <div class="callout-title">🎌 Festival Concept: <strong>Kei · Raku · Den · Shō</strong> (敬・楽・伝・招)</div>
+        <strong>Kei (敬, Respect)</strong> = honoring Lord Kenshin and Lord Yōzan　／　<strong>Raku (楽, Enjoyment)</strong> = visitors and participants alike enjoying to the fullest<br>
+        <strong>Den (伝, Tradition)</strong> = passing the spirit of <em>gi</em> (righteousness) and Sengoku history to the next generation　／　<strong>Shō (招, Welcome)</strong> = warmly inviting guests from Japan and abroad
+      </div>
       <p>This guide is designed both for international visitors and for the interpreters and volunteers who assist them — in three languages (Japanese / English / Traditional Chinese) and two modes (Visitor Guide / Interpreter Study). Use the tabs above to switch.</p>
     </div>
     <div class="tw">
@@ -577,6 +609,11 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div class="callout-title">🗓 舉辦期間</div>
         2026年4月29日（週三・國定假日）〜 5月3日（週日・國定假日）<br>
         主軸活動「川中島合戰」於 <strong>5月3日 14:00〜15:30</strong>（松川河岸）。
+      </div>
+      <div class="callout deep">
+        <div class="callout-title">🎌 祭典理念：<strong>敬・樂・傳・招</strong></div>
+        <strong>敬</strong>（崇敬）= 對上杉謙信公與鷹山公的尊崇　／　<strong>樂</strong>（享樂）= 觀眾與參加者皆全力同樂<br>
+        <strong>傳</strong>（傳承）= 將戰國歷史與「義」之精神傳給未來　／　<strong>招</strong>（迎賓）= 熱情迎接國內外賓客
       </div>
       <p>本頁同時為外國旅客與導覽口譯員設計，提供 <strong>三語（日／英／繁中）× 雙模式（遊客／口譯員）</strong>。請使用上方分頁切換。</p>
     </div>
@@ -1589,6 +1626,23 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
     <span class="tw">▲ 上杉軍象徵「毘」（毘沙門天）與「龍」（不動明王）的旗印</span>
   </div>
 
+  <!-- 2026年謙信役 -->
+  <div class="callout deep" style="border-left-color:var(--c-crimson)">
+    <div class="callout-title" style="color:var(--c-crimson)">
+      <span class="ja">🎭 2026年の上杉謙信役は…渡辺 稔（わたなべ みのる）さん！</span>
+      <span class="en">🎭 The 2026 Lord Uesugi Kenshin is… Mr. Watanabe Minoru!</span>
+      <span class="tw">🎭 2026年的上杉謙信由⋯渡邊 稔先生擔任！</span>
+    </div>
+    <p style="margin-bottom:0">
+      <span class="ja">公式コメント：「<strong>戦場の緊張感を表現します！</strong>」<br>
+      白馬に跨り、白頭巾姿で武田本陣に斬り込む ── あの三太刀七太刀の名場面を、毎年違う方が演じます。観客はぜひ「今年の謙信公」のお顔を覚えて、写真に収めてください。</span>
+      <span class="en">Official statement: "<strong>I will express the tension of the battlefield!</strong>"<br>
+      Mounted on a white horse and clad in his iconic white headcloth, this year's Kenshin will charge into Shingen's headquarters in the famous "Three Strikes, Seven Strikes" scene. A different actor takes the role each year — be sure to capture this year's Kenshin in your photos.</span>
+      <span class="tw">官方留言：「<strong>我將呈現戰場的緊張感！</strong>」<br>
+      騎乘白馬、頭戴白巾衝入武田本陣的「三太刀七太刀」名場景，每年由不同人飾演。請記下今年謙信公的容貌並拍照留念。</span>
+    </p>
+  </div>
+
   <!-- バイリンガル動画（繁体字+英字幕） -->
   <div class="video-wrap">
     <video controls preload="metadata" poster="images/video_poster.jpg">
@@ -1890,6 +1944,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           鶴が翼を広げる姿に似ていることからこの名がついた。<br>
           しかし上杉の波状攻撃に12段の鶴翼は次々破られ、信玄本陣まで肉薄された。
         </p>
+        <h4>📊 陣形図（公式参考資料）</h4>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="上杉軍 車懸りの陣の図解" loading="lazy">
+            <figcaption>上杉軍：車懸りの陣 ─ 円形の波状攻撃</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="武田軍 鶴翼の陣の図解" loading="lazy">
+            <figcaption>武田軍：鶴翼の陣 ─ 翼を広げて包囲</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="interpreter-box">
@@ -2139,6 +2204,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           However, the 12 tiers were broken through one after another by Uesugi's wave attacks,<br>
           and Shingen's headquarters were pressed to the verge of ruin.
         </p>
+        <h4>📊 Formation Diagrams (Official Reference)</h4>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="Diagram of the Uesugi Wheel Formation (Kurumagakari no Jin)" loading="lazy">
+            <figcaption>Uesugi: Kurumagakari no Jin ─ rotating wave attacks</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="Diagram of the Takeda Crane-Wing Formation (Kakuyoku no Jin)" loading="lazy">
+            <figcaption>Takeda: Kakuyoku no Jin ─ wings spread to encircle</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="interpreter-box">
@@ -2372,6 +2448,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           因似鶴張翅之姿而得名。<br>
           然而12段鶴翼被上杉的波狀攻擊接連突破，逼近信玄本陣。
         </p>
+        <h4>📊 陣形圖解（官方參考資料）</h4>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="上杉軍 車懸之陣圖解" loading="lazy">
+            <figcaption>上杉軍：車懸之陣 ─ 圓形波狀攻擊</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="武田軍 鶴翼之陣圖解" loading="lazy">
+            <figcaption>武田軍：鶴翼之陣 ─ 雙翼展開包圍</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="interpreter-box">
@@ -2592,6 +2679,16 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div><span class="scene-num">SCENE 2</span><span class="scene-title">陣形対決：車懸り vs 鶴翼</span></div>
         <span class="scene-en">Kurumagakari no Jin vs Kakuyoku no Jin</span>
         <p>武田軍は啄木鳥戦法の失策により少数で苦戦。<strong>12段の鶴翼の陣</strong>を組んで妻女山攻撃部隊（香坂隊）の到着を待つ。一方、上杉軍は<strong>車懸りの陣</strong>で武田の本陣を次々と突破していく。</p>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="上杉軍 車懸りの陣の図解" loading="lazy">
+            <figcaption>上杉軍：車懸りの陣（円形に部隊を配置し、車輪のように回転攻撃）</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="武田軍 鶴翼の陣の図解" loading="lazy">
+            <figcaption>武田軍：鶴翼の陣（中央へ敵を引き込み、左右の翼で包囲）</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="scene-card featured">
@@ -2630,6 +2727,16 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
       <div class="scene-card">
         <div><span class="scene-num">SCENE 2</span><span class="scene-title">Kurumagakari vs Kakuyoku Formation</span></div>
         <p>The Takeda forces, whose <em>"Kitsutsuki Senpo"</em> (the strategy of the woodpecker) had been discovered and had been reduced to a mere handful of men, were forced to fight an uphill battle. The Takeda forces fought desperately in a 12-tiered <em>"Kakuyoku no Jin"</em> formation to hold out until the Saijōsan attack force reached the battlefield. In contrast, the Uesugi forces, attacking by the <em>"Kurumagakari no Jin"</em> formation, broke through Shingen's 12-tiered preparations, which fortify Takeda's headquarters, one after another.</p>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="Diagram of the Uesugi Wheel Formation (Kurumagakari no Jin)" loading="lazy">
+            <figcaption>Uesugi: Kurumagakari no Jin — units arranged in a circle, rotating like a wheel for relentless attacks.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="Diagram of the Takeda Crane-Wing Formation (Kakuyoku no Jin)" loading="lazy">
+            <figcaption>Takeda: Kakuyoku no Jin — main camp at center, wings spread left and right to encircle the enemy.</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="scene-card featured">
@@ -2667,6 +2774,16 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div><span class="scene-num">SCENE 2</span><span class="scene-title">陣形對決：車懸 vs 鶴翼</span></div>
         <span class="scene-en">Kurumagakari vs Kakuyoku</span>
         <p>武田因啄木鳥戰法落空，以少數兵力苦戰，組成<strong>12段鶴翼之陣</strong>等待妻女山攻擊隊（香坂隊）抵達。上杉則以<strong>車懸之陣</strong>突破武田12段防線。</p>
+        <div class="formations-grid">
+          <figure>
+            <img src="images/Formation%20kuruma.png" alt="上杉軍 車懸之陣圖解" loading="lazy">
+            <figcaption>上杉軍：車懸之陣（部隊呈圓形配置，如車輪般輪轉攻擊）</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Formation%20kakuyoku.png" alt="武田軍 鶴翼之陣圖解" loading="lazy">
+            <figcaption>武田軍：鶴翼之陣（中央吸引敵軍，左右雙翼包圍）</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="scene-card featured">
@@ -2749,10 +2866,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           <div class="tl-desc">甲冑姿の武者が、上杉家代々の墓所から上杉神社へ行進。夕陽に照らされる甲冑が幻想的。</div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">18:30</div>
-          <div class="tl-title">武禘式 本式</div>
+          <div class="tl-time">17:30</div>
+          <div class="tl-title">武禘式 軍陣式</div>
           <div class="tl-meta">📍 伝国の杜前広場</div>
-          <div class="tl-desc">謙信公が出陣前に行った戦勝祈願の儀式を再現。火縄銃の発砲、神聖な雰囲気の中での「五沾水の儀」が見どころ。<strong>夜のかがり火に照らされる武者は写真映え抜群</strong>。</div>
+          <div class="tl-desc">本式に向け陣形が整えられる。観覧者はこの時点までに到着推奨。</div>
+        </div>
+        <div class="tl-item major">
+          <div class="tl-time">18:30〜19:30</div>
+          <div class="tl-title">⭐ 武禘式 本式</div>
+          <div class="tl-meta">📍 伝国の杜前広場</div>
+          <div class="tl-desc">謙信公が出陣前に行った戦勝祈願の儀式を再現。<strong>夜のかがり火に照らされる武者は写真映え抜群</strong>。<br>
+          <strong>6ステップの進行</strong>：① 開式宣言 → ② 軍団集結 → ③ 軍神勧請 → ④ 五沾水の儀 → ⑤ 賜旗 → ⑥ 出陣（火縄銃の発砲）</div>
         </div>
       </div>
 
@@ -2769,8 +2893,9 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div class="tl-item">
           <div class="tl-time">10:20〜12:30</div>
           <div class="tl-title">⚔️ 上杉軍団行列</div>
-          <div class="tl-meta">📍 興譲小学校 → 市内目抜き通り → 松川河川敷</div>
-          <div class="tl-desc">甲冑姿の上杉軍団500名が市内をパレード。装飾山車・騎馬武者・鼓笛隊あわせて千人超の大行列。観覧無料。</div>
+          <div class="tl-meta">📍 興譲小学校 → 米沢信用金庫本店前合流 → 市内目抜き通り → 松川河川敷</div>
+          <div class="tl-desc">甲冑姿の上杉軍団500名が市内をパレード。装飾山車・騎馬武者・鼓笛隊あわせて千人超の大行列。観覧無料。<br>
+          <strong>ルート</strong>：10:30 興譲小学校出発 → 10:40 <strong>米沢信用金庫本店前で合流</strong>（みこし渡御と上杉軍団行列の集結地点）→ 市内パレード → 松川河川敷（合戦会場）</div>
         </div>
         <div class="tl-item">
           <div class="tl-time">14:00〜15:30</div>
@@ -2866,10 +2991,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           <div class="tl-desc">Armored warriors march from the ancestral mausoleum to the shrine. The afternoon sun on the armor is breathtaking.</div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">18:30</div>
-          <div class="tl-title">Buteishiki Ritual</div>
+          <div class="tl-time">17:30</div>
+          <div class="tl-title">Buteishiki Battle Formation</div>
           <div class="tl-meta">📍 Denkoku-no-Mori Plaza</div>
-          <div class="tl-desc">A reenactment of Lord Kenshin's pre-battle prayer for victory. Highlights include the matchlock volley and the sacred <em>Goten-sui</em> water rite. <strong>Warriors lit by torches at night make for unforgettable photos.</strong></div>
+          <div class="tl-desc">Formations prepared for the main rite. Arrive by this time to secure a viewing spot.</div>
+        </div>
+        <div class="tl-item major">
+          <div class="tl-time">18:30–19:30</div>
+          <div class="tl-title">⭐ Buteishiki Ritual (Main)</div>
+          <div class="tl-meta">📍 Denkoku-no-Mori Plaza</div>
+          <div class="tl-desc">A reenactment of Lord Kenshin's pre-battle prayer for victory. <strong>Warriors lit by torches at night make for unforgettable photos.</strong><br>
+          <strong>Six-step sequence</strong>: ① Opening declaration → ② Army assembly → ③ Invocation of war deities → ④ <em>Goten-sui</em> water rite → ⑤ Banner award → ⑥ Departure (matchlock volley)</div>
         </div>
       </div>
 
@@ -2886,8 +3018,9 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div class="tl-item">
           <div class="tl-time">10:20–12:30</div>
           <div class="tl-title">⚔️ Uesugi Army Procession</div>
-          <div class="tl-meta">📍 Kōjō Elementary → Main Street → Matsukawa Riverbank</div>
-          <div class="tl-desc">500 armored Uesugi warriors parade through the city. With floats, mounted samurai, and youth marching bands, the whole procession exceeds 1,000 participants. Free to watch.</div>
+          <div class="tl-meta">📍 Kōjō Elementary → Yonezawa Shinkin Bank HQ (merge point) → Main Street → Matsukawa Riverbank</div>
+          <div class="tl-desc">500 armored Uesugi warriors parade through the city. With floats, mounted samurai, and youth marching bands, the whole procession exceeds 1,000 participants. Free to watch.<br>
+          <strong>Route</strong>: 10:30 depart Kōjō Elementary → 10:40 <strong>merge in front of Yonezawa Shinkin Bank HQ</strong> (where the <em>Mikoshi</em> procession joins the Uesugi Army Procession) → Main Street parade → Matsukawa Riverbank (battle venue).</div>
         </div>
         <div class="tl-item">
           <div class="tl-time">14:00–15:30</div>
@@ -2983,10 +3116,17 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           <div class="tl-desc">甲冑武者由上杉家歷代墓所行進至上杉神社，夕陽下的甲冑映照堪稱夢幻。</div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">18:30</div>
-          <div class="tl-title">武禘式 本式</div>
+          <div class="tl-time">17:30</div>
+          <div class="tl-title">武禘式 軍陣式</div>
           <div class="tl-meta">📍 傳國之杜前廣場</div>
-          <div class="tl-desc">重現謙信公出陣前祈求戰勝的儀式。火繩槍齊射、神聖的「五沾水之儀」為看點。<strong>篝火映照下的武者最適合拍照。</strong></div>
+          <div class="tl-desc">為本式整備陣形。觀眾建議於此時間前抵達就位。</div>
+        </div>
+        <div class="tl-item major">
+          <div class="tl-time">18:30〜19:30</div>
+          <div class="tl-title">⭐ 武禘式 本式</div>
+          <div class="tl-meta">📍 傳國之杜前廣場</div>
+          <div class="tl-desc">重現謙信公出陣前祈求戰勝的儀式。<strong>篝火映照下的武者最適合拍照。</strong><br>
+          <strong>六步驟流程</strong>：① 開式宣言 → ② 軍團集結 → ③ 軍神勸請 → ④ 五沾水之儀 → ⑤ 賜旗 → ⑥ 出陣（火繩槍齊射）</div>
         </div>
       </div>
 
@@ -3003,8 +3143,9 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <div class="tl-item">
           <div class="tl-time">10:20〜12:30</div>
           <div class="tl-title">⚔️ 上杉軍團行列</div>
-          <div class="tl-meta">📍 興讓小學校 → 市區主幹道 → 松川河岸</div>
-          <div class="tl-desc">500名甲冑姿上杉軍團遊行市區。連同裝飾山車、騎馬武者、鼓笛隊，超過千人的大遊行。免費觀賞。</div>
+          <div class="tl-meta">📍 興讓小學校 → 米澤信用金庫本店前會合 → 市區主幹道 → 松川河岸</div>
+          <div class="tl-desc">500名甲冑姿上杉軍團遊行市區。連同裝飾山車、騎馬武者、鼓笛隊，超過千人的大遊行。免費觀賞。<br>
+          <strong>路線</strong>：10:30 興讓小學校出發 → 10:40 <strong>米澤信用金庫本店前會合</strong>（神轎渡御與上杉軍團行列匯合點）→ 市區遊行 → 松川河岸（合戰會場）</div>
         </div>
         <div class="tl-item">
           <div class="tl-time">14:00〜15:30</div>
