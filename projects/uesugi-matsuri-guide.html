@@ -324,6 +324,38 @@ table.glossary tbody td{padding:10px 12px;vertical-align:top}
 .spot .name{font-weight:700;color:var(--c-bg-deep);font-size:1rem;margin-bottom:4px}
 .spot .desc{font-size:0.85rem;color:var(--c-ink-soft)}
 
+/* シーンカード（5シーン演武解説用） */
+.scene-list{margin:20px 0}
+.scene-card{
+  background:linear-gradient(135deg, #fdfaf0 0%, #fff8e0 100%);
+  border-left:5px solid var(--c-bg-deep);
+  padding:18px 22px 14px;margin-bottom:16px;
+  border-radius:0 6px 6px 0;
+  box-shadow:0 2px 8px rgba(26,58,50,0.06);
+  position:relative;
+}
+.scene-card.featured{border-left-color:var(--c-crimson);background:linear-gradient(135deg,#fff5f0 0%,#ffeae0 100%)}
+.scene-card .scene-num{
+  display:inline-block;font-family:var(--font-en);font-size:0.95rem;
+  font-weight:700;color:var(--c-gold-dark);letter-spacing:0.15em;
+  background:var(--c-gold);color:var(--c-white);padding:1px 10px;border-radius:3px;
+  margin-right:10px;vertical-align:1px;
+}
+.scene-card.featured .scene-num{background:var(--c-crimson)}
+.scene-card .scene-title{
+  display:inline-block;font-weight:700;font-size:1.05rem;
+  color:var(--c-bg-deep);
+}
+.scene-card .scene-en{
+  font-family:var(--font-en);font-size:0.85rem;color:var(--c-gold-dark);
+  display:block;margin-top:2px;margin-left:54px;letter-spacing:0.03em;
+}
+.scene-card p{margin:8px 0 0;font-size:0.92rem;line-height:1.75}
+.source-note{
+  font-size:0.72rem;color:var(--c-gray);font-style:italic;
+  margin-top:14px;text-align:right;letter-spacing:0.02em;
+}
+
 /* ヒーロー画像（章扉用） */
 .hero-photo{
   display:block;width:100%;max-height:380px;object-fit:cover;
@@ -1626,6 +1658,28 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p>武田軍の中でひときわ目を引くのが「香坂隊」。歴史上は武田四天王の一人・<strong>高坂昌信（こうさかまさのぶ）</strong>が率いた精鋭の別働隊で、川中島合戦では <strong>「啄木鳥戦法」（敵の背後を奇襲する作戦）</strong> の実行部隊でした。</p>
         <p>米沢上杉まつりでは、毎年この香坂隊に <strong>外国人参加者が公式プログラムとして加わります</strong>。動画92秒目の「武田増援の香坂兵団が川を渡って戦場に駆けつける」シーンが、まさにこの部隊の到着場面です。</p>
         <p>🎌 <strong>観覧のヒント</strong>：「<strong>高坂弾正忠昌信（こうさかだんじょうのちゅうまさのぶ）</strong>」と書かれた白い旗印を探してみてください。</p>
+
+        <div style="background:rgba(255,255,255,0.55);border:1px dashed var(--c-crimson);border-radius:4px;padding:12px 16px;margin-top:12px;font-size:0.9rem">
+          <strong style="color:var(--c-crimson)">📋 参加者ハンドブック（公式英文ブリーフィングより）</strong>
+          <p style="margin:8px 0 4px"><strong>当日の流れ・装備</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>本格的な甲冑が支給される</li>
+            <li>整列行進・振付された動きを実施</li>
+            <li>誘導のもと川を渡る</li>
+            <li>安全配慮された模擬戦闘シーン</li>
+            <li>大歓声の観客と豊富な撮影機会</li>
+          </ul>
+          <p style="margin:8px 0 4px"><strong>参加のコツ</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>チームリーダーの指示に従う</li>
+            <li>キャラクターに入り込みつつ、接触は避ける</li>
+            <li>川を渡る際は慎重に</li>
+            <li>こまめに水分補給</li>
+            <li>そして全力で楽しむ！</li>
+          </ul>
+          <p style="margin:8px 0 0;font-size:0.85rem"><strong>文化的補足</strong>：このイベントは武士の精神と歴史を称えるもの。皆様の参加がその精神を未来へつなぎます。地元の方々は皆様の熱意と尽力に深く感謝しています。</p>
+        </div>
+        <p class="source-note" style="margin-top:6px">※ 米沢上杉まつり川中島合戦保存会・公式英文ブリーフィングより</p>
       </div>
 
       <h3>❓ なぜ米沢で再現するの？</h3>
@@ -1683,6 +1737,30 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p>Within the Takeda army, the <strong>Kōsaka Unit (香坂隊)</strong> is a must-watch. Historically, this was the elite detached force led by <strong>Kōsaka Masanobu</strong> — one of Takeda's "Four Heavenly Kings" — who executed the famous <strong>"Woodpecker Strategy"</strong> (a maneuver to ambush the enemy's rear) at the Fourth Battle of Kawanakajima.</p>
         <p>At the Yonezawa Uesugi Festival, this unit is the <strong>official program through which international participants join the battle</strong> each year. The scene at 1:32 of the video — "the Kōsaka troops cross the river as Takeda reinforcements" — is precisely this unit's arrival on the battlefield.</p>
         <p>🎌 <strong>Spotting Tip</strong>: Look for the white banner reading "<strong>高坂弾正忠昌信</strong>" (Kōsaka Danjō no Chū Masanobu).</p>
+
+        <div style="background:rgba(255,255,255,0.55);border:1px dashed var(--c-crimson);border-radius:4px;padding:12px 16px;margin-top:12px;font-size:0.9rem">
+          <strong style="color:var(--c-crimson)">📋 Participant Handbook (from the Official Briefing)</strong>
+          <p style="margin:8px 0 4px"><strong>Your Role in the Reenactment</strong></p>
+          <p style="margin:0 0 8px">You are part of the Takeda Army's Kosaka Unit. You will cross the river to reinforce the main army during a key moment of the battle. Your arrival will energize the scene and represent the dramatic turning point.</p>
+          <p style="margin:8px 0 4px"><strong>What to Expect</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>Full samurai armor provided</li>
+            <li>Marching and choreographed movements</li>
+            <li>River crossing under guidance</li>
+            <li>Mock battle scenes with safety measures</li>
+            <li>Excited crowd and photo opportunities</li>
+          </ul>
+          <p style="margin:8px 0 4px"><strong>Tips for Participants</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>Follow team leader instructions</li>
+            <li>Stay in character, but avoid contact</li>
+            <li>Cross the river carefully</li>
+            <li>Stay hydrated</li>
+            <li>Enjoy the performance!</li>
+          </ul>
+          <p style="margin:8px 0 0;font-size:0.85rem"><strong>Cultural Notes</strong>: This event honors samurai values and history. Your participation helps keep this spirit alive. Locals appreciate your enthusiasm and effort.</p>
+        </div>
+        <p class="source-note" style="margin-top:6px">※ From the official English-language briefing by the Kawanakajima Battle Preservation Society.</p>
       </div>
 
       <h3>❓ Why Yonezawa?</h3>
@@ -1740,6 +1818,28 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         <p>武田軍中最引人注目的就是「香坂隊」。歷史上由武田四天王之一・<strong>高坂昌信</strong>率領的精銳別動隊，川中島合戰中正是執行<strong>「啄木鳥戰法」（奇襲敵後之計）</strong>的實戰部隊。</p>
         <p>米澤上杉祭典中，<strong>香坂隊作為官方計畫每年接納外國旅客一同參戰</strong>。影片92秒處「武田增援的香坂兵團渡河奔赴戰場」一幕，正是此部隊的到達場景。</p>
         <p>🎌 <strong>觀賞重點</strong>：尋找寫有「<strong>高坂弾正忠昌信</strong>」的白色字旗。</p>
+
+        <div style="background:rgba(255,255,255,0.55);border:1px dashed var(--c-crimson);border-radius:4px;padding:12px 16px;margin-top:12px;font-size:0.9rem">
+          <strong style="color:var(--c-crimson)">📋 參加者手冊（依官方英文簡介整理）</strong>
+          <p style="margin:8px 0 4px"><strong>當日內容・裝備</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>提供正規甲冑</li>
+            <li>整列行進與編排好的動作</li>
+            <li>由工作人員引導渡河</li>
+            <li>具安全考量的模擬戰鬥</li>
+            <li>滿場觀眾喝采與絕佳拍照機會</li>
+          </ul>
+          <p style="margin:8px 0 4px"><strong>參加要訣</strong></p>
+          <ul style="margin:0 0 8px 22px">
+            <li>遵從隊長指示</li>
+            <li>融入角色但避免實際接觸</li>
+            <li>渡河時請小心</li>
+            <li>記得隨時補充水分</li>
+            <li>盡情享受演出！</li>
+          </ul>
+          <p style="margin:8px 0 0;font-size:0.85rem"><strong>文化補充</strong>：此活動旨在傳承武士精神與歷史。各位的參與有助延續此精神。當地居民由衷感謝您的熱情與努力。</p>
+        </div>
+        <p class="source-note" style="margin-top:6px">※ 米澤上杉祭典川中島合戰保存會・官方英文參加者簡介</p>
       </div>
 
       <h3>❓ 為何在米澤重現？</h3>
@@ -1781,6 +1881,14 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           円形に部隊を配置し、最前列が戦って疲弊すると後方部隊と入れ替わり、<br>
           常に新鮮な部隊で連続攻撃を加える戦法。<br>
           武田本隊は別働隊到着までの数時間、苦戦を強いられた。
+        </p>
+        <h4>武田の防御：鶴翼の陣（かくよくのじん）</h4>
+        <p style="font-family:monospace;font-size:0.88rem;line-height:1.7;color:var(--c-cream);background:rgba(0,0,0,0.3);padding:14px;border-radius:4px">
+          上杉の車懸りに対し、武田は<strong>鶴翼の陣（12段）</strong>で応戦。<br>
+          本陣を中央に置き、左右に部隊を翼のように展開する陣形。<br>
+          敵を中央に引き込み、左右の翼で挟み込んで包囲殲滅するのが本来の意図。<br>
+          鶴が翼を広げる姿に似ていることからこの名がついた。<br>
+          しかし上杉の波状攻撃に12段の鶴翼は次々破られ、信玄本陣まで肉薄された。
         </p>
       </div>
 
@@ -2022,6 +2130,15 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           while fresh units cycled forward — a relentless wave of fresh attackers.<br>
           Takeda's main force was pinned for hours before the detached force arrived.
         </p>
+        <h4>Takeda's Defense: Kakuyoku no Jin (Crane-Wing Formation)</h4>
+        <p style="font-family:monospace;font-size:0.88rem;line-height:1.7;color:var(--c-cream);background:rgba(0,0,0,0.3);padding:14px;border-radius:4px">
+          In response, Takeda fought desperately in a 12-tiered <strong>Kakuyoku no Jin</strong>.<br>
+          A formation in which the main camp is centered and spread out to the left and right,<br>
+          like a crane spreading its wings. The enemy is drawn into the center,<br>
+          while the left and right wings squeeze in to encircle the enemy.<br>
+          However, the 12 tiers were broken through one after another by Uesugi's wave attacks,<br>
+          and Shingen's headquarters were pressed to the verge of ruin.
+        </p>
       </div>
 
       <div class="interpreter-box">
@@ -2247,6 +2364,14 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
           以新銳部隊持續波狀攻擊。<br>
           武田本隊在分遣隊抵達前數小時間陷入苦戰。
         </p>
+        <h4>武田的防禦：鶴翼之陣（かくよくのじん）</h4>
+        <p style="font-family:monospace;font-size:0.88rem;line-height:1.7;color:var(--c-cream);background:rgba(0,0,0,0.3);padding:14px;border-radius:4px">
+          針對上杉的車懸之陣，武田以<strong>鶴翼之陣（12段）</strong>應戰。<br>
+          本陣居中，左右部隊如鶴翼般展開。<br>
+          將敵軍引入中央後，再以左右雙翼夾擊包圍殲滅。<br>
+          因似鶴張翅之姿而得名。<br>
+          然而12段鶴翼被上杉的波狀攻擊接連突破，逼近信玄本陣。
+        </p>
       </div>
 
       <div class="interpreter-box">
@@ -2442,6 +2567,128 @@ footer .small{font-size:0.75rem;color:var(--c-gray);margin-top:8px}
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- ===== 演武5シーンの流れ（両モード共通表示） ===== -->
+  <h3>
+    <span class="ja">📖 演武5シーンの流れ（公式シナリオ）</span>
+    <span class="en">📖 The Five Scenes of the Reenactment (Official Scenario)</span>
+    <span class="tw">📖 演武五幕流程（官方腳本）</span>
+  </h3>
+
+  <div class="ja">
+    <p class="lead">90分の合戦は5つの章に分かれて進行します。観客が「今このシーン」と理解できるよう、公式参加者向け英文ブリーフィングに基づき各シーンの流れを整理しました。</p>
+
+    <p>1561年秋の川中島合戦が再現される。上杉行列の後、松川河川敷の南側に上杉軍、北側に武田軍が陣取る（吾妻連峰には残雪）。<strong>上杉本陣</strong>には頭巾姿の謙信を中心に28将が居並び、<strong>武田本陣</strong>では赤備えの軍団が諏訪法性の兜をかぶった信玄を守る。上杉は戦勝祈願の儀、武田は<strong>三献の儀（さんこんのぎ）</strong>を行う。儀式の後、上杉の30匁筒（雷筒）の一斉射撃で決戦の火蓋が切られる。</p>
+
+    <div class="scene-list">
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 1</span><span class="scene-title">霧晴れ・開戦</span></div>
+        <span class="scene-en">Morning Fog Clears</span>
+        <p>夜明けに朝霧が晴れた瞬間、信玄の眼前には妻女山にいるはずの<strong>1万を超える上杉軍</strong>が出現する。啄木鳥戦法が察知された証拠。不意を突かれた8,000の武田軍が動揺する中、上杉の総攻撃が始まる。</p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 2</span><span class="scene-title">陣形対決：車懸り vs 鶴翼</span></div>
+        <span class="scene-en">Kurumagakari no Jin vs Kakuyoku no Jin</span>
+        <p>武田軍は啄木鳥戦法の失策により少数で苦戦。<strong>12段の鶴翼の陣</strong>を組んで妻女山攻撃部隊（香坂隊）の到着を待つ。一方、上杉軍は<strong>車懸りの陣</strong>で武田の本陣を次々と突破していく。</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 3</span><span class="scene-title">一騎打ち（三太刀七太刀）</span></div>
+        <span class="scene-en">One-to-One Fight</span>
+        <p>武田軍が苦戦する乱戦の中、信玄が「風林火山」の軍旗に囲まれ単独でいたところへ、白馬の謙信が斬り込む。謙信が太刀を一の太刀、二の太刀、三の太刀と振るい、信玄は軍配で受け止める。武田の従者が槍で謙信の馬を傷つけ、馬は驚いて狂奔。信玄はかろうじて一命を取り留め、両雄の戦いは終わる。</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 4</span><span class="scene-title">河越え増援（香坂隊到着）</span></div>
+        <span class="scene-en">River Crossing Reinforcements</span>
+        <p>合戦開始から3時間。20,000の戦闘で多くの武田武将が散る激戦。<strong>午前10時、妻女山を空しく攻撃した武田の12,000の別働隊（香坂隊）が山を下り、川を渡って八幡原へ駆けつける</strong>。この増援により、上杉軍は逆に挟撃される形となり、戦況が逆転し始める。<br><em>※ ここが外国人参加者が出陣する公式シーン。動画92秒目。</em></p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 5</span><span class="scene-title">収束</span></div>
+        <span class="scene-en">Convergence</span>
+        <p>武田増援の出現で上杉軍の陣列は崩れ、武田が勢いを盛り返す。疲れた上杉軍は新手の武田軍と苦戦。<strong>卯の刻（早朝）から辰の刻（午前）まで上杉が勝ち、辰の刻から巳の刻（昼前）にかけて武田が勝つ</strong>。両軍とも前代未聞の死傷者を出し、夕陽が西に沈む頃、謙信は善光寺へ帰還した。こうして「川中島の戦い」── 戦国史上最大の戦い ── は終結した。</p>
+      </div>
+    </div>
+
+    <p class="source-note">※ 本セクションは米沢上杉まつり川中島合戦保存会による公式参加者向け英文ブリーフィングを翻訳・要約したものです。</p>
+  </div>
+
+  <div class="en">
+    <p class="lead">The 90-minute reenactment unfolds in five distinct scenes. Based on the official English-language briefing for participants, here is the play-by-play guide so you can recognize each moment as it happens.</p>
+
+    <p>Kawanakajima in the fall of 1561 will be reenacted. After the Uesugi procession, a large army gathered on the banks of the Matsukawa River. <strong>Uesugi's army</strong> takes the south side and <strong>Takeda's army</strong> the north, with the Azuma mountain range covered with lingering snow. Uesugi's main camp is lined with <strong>28 warriors with Lord Kenshin in a hood</strong> at the center. On the other side, Takeda's army with red armor guards <strong>Lord Shingen in Suwa Hosei's helmet</strong>. The Uesugi camp holds a ceremony to pray for victory, and the Takeda camp holds a <strong>sankon-no-gi</strong> ceremony. After the ceremony, the decisive battle is set off by the simultaneous firing of Uesugi's thunderbolts — 30 monme cylinders.</p>
+
+    <div class="scene-list">
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 1</span><span class="scene-title">Morning Fog Clears</span></div>
+        <p>When the early morning fog cleared, Shingen saw in front of him the entire Uesugi army of over 10,000 men, which was supposed to be at Mt. Saijo. The battle of Kawanakajima had finally begun. The Uesugi forces launched a furious attack against the 8,000 Takeda officers and men who had been caught by surprise and were shaken.</p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 2</span><span class="scene-title">Kurumagakari vs Kakuyoku Formation</span></div>
+        <p>The Takeda forces, whose <em>"Kitsutsuki Senpo"</em> (the strategy of the woodpecker) had been discovered and had been reduced to a mere handful of men, were forced to fight an uphill battle. The Takeda forces fought desperately in a 12-tiered <em>"Kakuyoku no Jin"</em> formation to hold out until the Saijōsan attack force reached the battlefield. In contrast, the Uesugi forces, attacking by the <em>"Kurumagakari no Jin"</em> formation, broke through Shingen's 12-tiered preparations, which fortify Takeda's headquarters, one after another.</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 3</span><span class="scene-title">One-to-One Fight</span></div>
+        <p>The Takeda forces continued to struggle. In the midst of the melee, Shingen was alone when Kenshin rode into Takeda's main camp, which was surrounded by the military banner of the <em>Furin Kazan</em>. The fateful rivals of the Warring States period were now about to meet in a showdown. On horseback, Lord Kenshin brandished his sword and slashed, while Shingen received the blow with his military fan — first sword, second sword, and then third sword. Soon Shingen's samurai servants rushed in, their outstretched spears wounding Kenshin's riding horse. The horse reared up in surprise, then ran off like a madman. Shingen narrowly escaped with his life, and the battle between the two heroes was over.</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 4</span><span class="scene-title">River Crossing Reinforcements</span></div>
+        <p>Three hours have passed since the battle began. The battle was a bloody one, and many generals of the Takeda army were scattered in the fight that involved a total of 20,000 large forces. <strong>At 10:00 a.m., a detachment of 12,000 of Takeda's army, which had vacantly attacked Mt. Saijo, descended the mountain and rushed across the river to Hachimanbara.</strong> With these reinforcements, the Uesugi forces were caught in a pincer attack and their position began to reverse.<br><em>※ This is the official scene where international participants charge in. Video timestamp: 1:32.</em></p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 5</span><span class="scene-title">Convergence</span></div>
+        <p>The Uesugi forces' ranks begin to break down with the appearance of Takeda's reinforcements, and Takeda's forces regain their strength and pursue them. The Uesugi forces, beginning to show signs of fatigue, were forced to fight hard against the new Takeda forces. <strong>From the hour of the Rabbit to the hour of the Dragon, Uesugi was the victor. From the hour of the Dragon to the hour of the Snake, Takeda wins.</strong> In this fierce battle, both the Uesugi and Takeda armies suffered unprecedented casualties. When Kenshin and his men returned to Zenkoji Temple, the sun was setting in the west. Thus ended the "Battle of Kawanakajima," the greatest battle in the history of the Warring States period.</p>
+      </div>
+    </div>
+
+    <p class="source-note">※ Based on the official English-language briefing prepared for Kosaka Unit participants by the Kawanakajima Battle Preservation Society.</p>
+  </div>
+
+  <div class="tw">
+    <p class="lead">90分鐘的合戰分為五幕進行。基於官方英文簡介，整理出讓觀眾「正在看哪一幕」的時序指南。</p>
+
+    <p>1561年秋的川中島合戰將被重現。上杉行列之後，大軍於松川河岸聚集。<strong>上杉軍</strong>佈陣於南側，<strong>武田軍</strong>於北側，吾妻山脈尚有殘雪。上杉本陣以頭巾姿的謙信為中心，28將並列；對面武田軍紅色甲冑護衛<strong>戴諏訪法性兜的信玄</strong>。上杉陣中舉行戰勝祈願儀式，武田陣中舉行<strong>三獻之儀</strong>。儀式後，上杉的30匁筒（雷筒）齊射揭開決戰序幕。</p>
+
+    <div class="scene-list">
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 1</span><span class="scene-title">拂曉霧散・開戰</span></div>
+        <span class="scene-en">Morning Fog Clears</span>
+        <p>清晨霧氣散盡之際，信玄眼前出現本應在妻女山的<strong>逾1萬上杉大軍</strong>，正是啄木鳥戰法被識破的證據。對倉促應戰、士氣動搖的8,000武田軍，上杉展開總攻。</p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 2</span><span class="scene-title">陣形對決：車懸 vs 鶴翼</span></div>
+        <span class="scene-en">Kurumagakari vs Kakuyoku</span>
+        <p>武田因啄木鳥戰法落空，以少數兵力苦戰，組成<strong>12段鶴翼之陣</strong>等待妻女山攻擊隊（香坂隊）抵達。上杉則以<strong>車懸之陣</strong>突破武田12段防線。</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 3</span><span class="scene-title">單挑（三太刀七太刀）</span></div>
+        <span class="scene-en">One-to-One Fight</span>
+        <p>武田苦戰之際，被「風林火山」軍旗環繞的信玄獨自在本陣，白馬謙信衝入。謙信揮刀一・二・三太刀，信玄以軍配抵擋。武田家臣以長槍刺傷謙信坐騎，馬受驚狂奔。信玄險些喪命，兩雄之戰告終。</p>
+      </div>
+
+      <div class="scene-card featured">
+        <div><span class="scene-num">SCENE 4</span><span class="scene-title">渡河增援（香坂隊登場）</span></div>
+        <span class="scene-en">River Crossing Reinforcements</span>
+        <p>戰起3小時，2萬人混戰，武田將領散落各處。<strong>上午10時，原計畫攻擊妻女山落空的武田12,000別動隊（香坂隊）下山渡河奔赴八幡原。</strong>此增援使上杉反陷入夾擊，戰況逆轉。<br><em>※ 此為外國旅客出陣的官方場景。影片1分32秒處。</em></p>
+      </div>
+
+      <div class="scene-card">
+        <div><span class="scene-num">SCENE 5</span><span class="scene-title">終結</span></div>
+        <span class="scene-en">Convergence</span>
+        <p>武田增援登場後，上杉陣列開始崩潰，武田軍勢復振。疲憊的上杉軍與新銳武田軍激戰。<strong>卯時（清晨）至辰時（上午）上杉勝；辰時至巳時（中午前）武田勝。</strong>雙方傷亡前所未有，夕陽西沉時，謙信率部返回善光寺。如此「川中島之戰」── 戰國史上最大戰役 ── 落幕。</p>
+      </div>
+    </div>
+
+    <p class="source-note">※ 本節依據川中島合戰保存會編製的官方英文參加者簡介翻譯整理。</p>
   </div>
 </section>
 
