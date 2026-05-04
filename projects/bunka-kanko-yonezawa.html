@@ -234,6 +234,108 @@
     padding:14px 18px;margin:1rem 0}
   .callout h3{color:var(--bunka-vermilion);font-size:.92rem;margin:0 0 .4rem;border:none;padding:0}
   .callout p{font-size:.82rem;color:var(--ink);margin:.3rem 0}
+
+  /* ===== Tab 4 (申請書ドラフト) styles ===== */
+  /* Markers */
+  .tbd-mark{display:inline-block;background:#ffd166;color:#7a4a00;font-size:.66rem;font-weight:700;
+    padding:.1rem .4rem;border-radius:3px;margin-right:.3rem;letter-spacing:.04em}
+  .req-mark{display:inline-block;background:#fcebec;color:var(--warn);font-size:.66rem;font-weight:700;
+    padding:.1rem .4rem;border-radius:3px;margin-right:.3rem;letter-spacing:.04em;border:1px solid #f3c2c2}
+  .ok-mark{display:inline-block;background:var(--soft-green);color:var(--green);font-size:.66rem;font-weight:700;
+    padding:.1rem .4rem;border-radius:3px;margin-right:.3rem;letter-spacing:.04em}
+  .ref-mark{display:inline-block;background:var(--soft-blue-bg);color:var(--bunka-deep);font-size:.66rem;font-weight:700;
+    padding:.1rem .4rem;border-radius:3px;margin-right:.3rem;letter-spacing:.04em}
+
+  /* Body text (mincho for application body) */
+  .body-text{font-family:'Noto Serif JP','Yu Mincho','Hiragino Mincho ProN',serif;
+    font-size:.92rem;line-height:1.95;color:var(--ink);margin:.6rem 0;text-align:justify}
+  .body-text strong{color:var(--bunka-vermilion);font-weight:700}
+
+  /* Form section (white card) */
+  .form-section{background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:1.5rem 1.7rem;margin:0 0 1.4rem;box-shadow:var(--shadow)}
+
+  /* Document title */
+  .doc-title{text-align:center;font-family:'Noto Serif JP','Yu Mincho',serif;font-size:1.3rem;font-weight:700;
+    margin:.6rem 0 1.4rem;color:var(--ink);letter-spacing:.04em;line-height:1.4}
+
+  /* Applicant table */
+  .applicant-table{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:.82rem;background:#fff}
+  .applicant-table th,.applicant-table td{border:1px solid var(--border);padding:8px 12px;vertical-align:top}
+  .applicant-table th{background:#fafafa;text-align:left;font-weight:600;color:var(--ink);width:24%}
+  .applicant-table th.sub-head{background:var(--soft-red);color:var(--bunka-vermilion);width:18%}
+  .applicant-table td.tbd{background:#fff8e1;color:#a06900}
+  .applicant-table td.filled{background:#f0f7ed;color:var(--ink)}
+
+  /* Cultural property table */
+  .cp-table{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.82rem;background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .cp-table th{background:var(--bunka-vermilion);color:#fff;padding:8px 10px;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.04em}
+  .cp-table td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  .cp-table tr:nth-child(even) td{background:#fafafa}
+
+  /* Goal box */
+  .goal-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1rem 1.2rem;margin:.6rem 0;
+    border-left:5px solid var(--bunka-vermilion)}
+  .goal-box .goal-num{font-size:.7rem;background:var(--bunka-vermilion);color:#fff;
+    padding:.2rem .6rem;border-radius:3px;font-weight:700;margin-right:.5rem;letter-spacing:.04em}
+  .goal-box .goal-name{font-weight:700;color:var(--ink);font-size:.92rem}
+  .goal-box .relate{font-size:.7rem;color:var(--muted);margin-left:.4rem}
+  .goal-box p{margin:.5rem 0;font-size:.82rem;color:var(--ink)}
+  .goal-box dl{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;margin:.6rem 0;font-size:.8rem}
+  .goal-box dt{color:var(--bunka-deep);font-weight:700}
+
+  /* Project box */
+  .project-box{background:#fafafa;border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.82rem}
+  .project-box .pj-num{display:inline-block;background:var(--bunka-deep);color:#fff;
+    padding:.15rem .5rem;border-radius:3px;font-weight:700;font-size:.68rem;margin-right:.4rem;letter-spacing:.04em}
+  .project-box .pj-name{font-weight:700;color:var(--ink)}
+  .project-box dl{display:grid;grid-template-columns:110px 1fr;gap:4px 10px;margin-top:.4rem;font-size:.78rem}
+  .project-box dt{color:var(--bunka-deep);font-weight:600}
+
+  /* Spreadsheet form (申請前相談申込書) */
+  .spreadsheet-form{background:#fafafa;border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.6rem;margin:.5rem 0;font-size:.86rem}
+  .spreadsheet-form h4{font-size:.92rem;color:var(--bunka-vermilion);margin:1rem 0 .5rem;font-weight:700}
+  .spreadsheet-form h4:first-child{margin-top:0}
+  .ssr-table{width:100%;border-collapse:collapse;background:#fff;font-size:.82rem}
+  .ssr-table th,.ssr-table td{border:1px solid var(--border);padding:7px 10px;vertical-align:top}
+  .ssr-table th{background:#fafafa;text-align:left;font-weight:600;width:30%}
+  .ssr-table td.filled{background:#f0f7ed}
+  .ssr-table td.tbd{background:#fff8e1;color:#a06900}
+  .ssr-table ul{margin:0 0 0 1rem;padding:0;list-style:disc}
+  .ssr-table ul li{margin:0;font-size:.8rem}
+
+  /* KPI table (for goals) */
+  .kpi-target-table{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.78rem;background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .kpi-target-table th{background:#fafafa;color:var(--sub);font-weight:600;padding:8px 10px;text-align:left;font-size:.72rem;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+  .kpi-target-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .kpi-target-table .target-row td{background:var(--soft-red);color:var(--bunka-vermilion);font-weight:700}
+  .kpi-target-table tr:last-child td{border-bottom:none}
+
+  /* Note box */
+  .note-box{background:#fafafa;border-left:3px solid var(--muted);padding:.6rem .9rem;margin:.6rem 0;
+    font-size:.74rem;color:var(--muted);line-height:1.6;border-radius:0 4px 4px 0}
+  .note-box.ref{background:var(--soft-blue-bg);border-left-color:var(--bunka-deep);color:var(--bunka-deep)}
+  .note-box strong{color:inherit}
+
+  /* Form links banner */
+  .form-links{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 1.4rem;box-shadow:var(--shadow)}
+  .form-links .ttl{font-size:.78rem;color:var(--bunka-vermilion);font-weight:700;margin-bottom:.6rem;letter-spacing:.04em}
+  .form-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+  @media(max-width:740px){.form-links-grid{grid-template-columns:1fr}}
+  .form-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;
+    text-decoration:none;color:var(--ink);background:#fafafa;font-size:.82rem;transition:.15s}
+  .form-link:hover{border-color:var(--bunka-vermilion);background:#fff;text-decoration:none;color:var(--ink);transform:translateY(-1px)}
+  .form-link .icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.7rem;color:#fff;flex-shrink:0;letter-spacing:.04em}
+  .form-link .icon.xlsx{background:#1f7244}
+  .form-link .icon.docx{background:#2a5a9e}
+  .form-link .icon.gd{background:#fbbc04;color:#444}
+  .form-link .meta-info{flex:1;min-width:0}
+  .form-link .meta-info .name{font-weight:700;color:var(--ink);font-size:.82rem;line-height:1.3;margin-bottom:2px;display:block}
+  .form-link .meta-info .desc{font-size:.7rem;color:var(--muted);line-height:1.3;display:block}
+  .form-link .arrow{color:var(--muted);font-size:.85rem}
+  .form-links-section{margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--line)}
+  .form-links-section .section-label{font-size:.7rem;color:var(--muted);font-weight:600;margin-bottom:.4rem;letter-spacing:.04em}
 </style>
 </head>
 <body>
@@ -254,7 +356,7 @@
 
   <h1 class="title">米沢市</h1>
   <p class="lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請（米沢市・上杉文化中核エリア）の統合管理ページ。
-    ダッシュボード／流用可能性分析／<strong>第5期米沢市観光振興計画 適合性分析</strong>の3タブで切り替えられます。</p>
+    ダッシュボード／流用可能性分析／第5期米沢市観光振興計画 適合性／<strong>申請書ドラフト</strong>の4タブで切り替えられます。</p>
 
   <div class="info-bar">
     <span>📋 所管：文化庁参事官（文化拠点担当）</span>
@@ -279,7 +381,8 @@
   <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="dashboard" role="tab">📊 ダッシュボード</button>
     <button class="tab-btn" data-tab="analysis" role="tab">🔁 流用可能性分析</button>
-    <button class="tab-btn" data-tab="plan5" role="tab">📕 第5期観光振興計画 適合性<span class="new-flag">NEW</span></button>
+    <button class="tab-btn" data-tab="plan5" role="tab">📕 第5期観光振興計画 適合性</button>
+    <button class="tab-btn" data-tab="draft" role="tab">📝 申請書ドラフト<span class="new-flag">NEW</span></button>
   </div>
 
   <!-- ============================================================================================================
@@ -1038,6 +1141,764 @@
 
   </div>
 
+  <!-- ============================================================================================================
+       TAB 4: 申請書ドラフト  ★NEW
+       ============================================================================================================ -->
+  <div class="tab-panel" data-tab="draft">
+
+    <p class="lead">
+      文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請の <strong>未定稿レベルドラフト</strong>。
+      Google Drive にある2様式（①申請前相談申込書／②地域計画）を、これまでの分析（ダッシュボード／流用可能性／第5期観光振興計画適合性）から得た内容で埋めたものです。
+    </p>
+    <p class="lead">
+      <span class="tbd-mark">TBD</span> は申請前相談で文化庁助言を受けて確定する箇所、<span class="req-mark">要協議</span> は関係主体との合意形成が必要な箇所、<span class="ref-mark">参考</span> は既存資料からの転載箇所です。
+    </p>
+
+    <div class="info-bar">
+      <span>📅 作成日：2026年5月4日</span>
+      <span>🎯 提出期限：2026年5月12日（火）17:00</span>
+      <span>📧 提出先：bunkakankosuishin@mext.go.jp</span>
+      <span>👤 担当：井上陽平（プラットヨネザワ株式会社）</span>
+    </div>
+
+    <div class="callout">
+      <h3>📝 ドラフト粒度の方針</h3>
+      <p>本ドラフトは「未定稿レベル」（5/12 申請前相談時点で文化庁に提出する版）として作成。確定情報は埋め、不確定箇所は <span class="tbd-mark">TBD</span> で明示し、文化庁担当者との協議で確定する設計。本様式（docx）への流し込みは、本ドラフト承認後に実施。</p>
+    </div>
+
+    <!-- 提出様式リンク（冒頭） -->
+    <div class="form-links">
+      <div class="ttl">📎 提出様式（本ドラフトを流し込む対象ファイル）</div>
+      <div class="form-links-grid">
+        <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+          <span class="icon gd">GD</span>
+          <span class="meta-info">
+            <span class="name">①申請前相談申込書様式.xlsx</span>
+            <span class="desc">Google Drive（事業者ドラフト・記入済）</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+          <span class="icon gd">GD</span>
+          <span class="meta-info">
+            <span class="name">②地域計画.docx</span>
+            <span class="desc">Google Drive（様式テンプレート）</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+      <div class="form-links-section">
+        <div class="section-label">📚 文化庁公式 原本テンプレート（参考）</div>
+        <div class="form-links-grid">
+          <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank" rel="noopener" class="form-link">
+            <span class="icon xlsx">XLSX</span>
+            <span class="meta-info">
+              <span class="name">①申請前相談申込書（原本）</span>
+              <span class="desc">様式94370601_01 ／ 文化庁公式</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank" rel="noopener" class="form-link">
+            <span class="icon docx">DOCX</span>
+            <span class="meta-info">
+              <span class="name">②地域計画 様式（原本）</span>
+              <span class="desc">様式94093402_02 ／ 文化庁公式</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 目次 -->
+    <div class="toc">
+      <strong>このタブの目次：</strong>
+      <a href="#draft-form1">様式① 申請前相談申込書</a>
+      <a href="#draft-sec1">1. 実施体制</a>
+      <a href="#draft-sec2">2. 事務体制</a>
+      <a href="#draft-sec3">3. 計画区域</a>
+      <a href="#draft-sec4">4. 基本的な方針</a>
+      <a href="#draft-sec5">5. 目標</a>
+      <a href="#draft-sec6">6. 評価</a>
+      <a href="#draft-sec7">7. 中核施設</a>
+      <a href="#draft-sec8">8. 推進事業</a>
+      <a href="#draft-sec9">9. 計画期間</a>
+    </div>
+
+    <!-- ============== 様式① ============== -->
+    <h2 class="sec" id="draft-form1">📋 様式① 申請前相談申込書</h2>
+    <p style="font-size:.85rem;">
+      <span class="ok-mark">既記入</span> 大部分は事業者ドラフトで記入済。<span class="tbd-mark">TBD</span> は希望日時の確定のみ。
+    </p>
+
+    <div class="spreadsheet-form">
+      <div class="doc-title">文化観光推進法に基づく拠点計画及び地域計画の認定申請<br>申請前相談申込書</div>
+      <p style="text-align:right;font-size:.82rem;margin-bottom:1rem;">令和8年5月12日</p>
+
+      <h4>代表申請者</h4>
+      <table class="ssr-table">
+        <tr><th>住所</th><td class="filled">〒992-0037 山形県米沢市本町2丁目1−12 マチスタヂオ</td></tr>
+        <tr><th>団体名</th><td class="filled">プラットヨネザワ株式会社</td></tr>
+        <tr><th>代表者職名・氏名</th><td class="filled">代表取締役・宮嶌　浩聡</td></tr>
+      </table>
+
+      <h4>1. 申請予定計画</h4>
+      <table class="ssr-table">
+        <tr><th>進捗状況</th><td class="filled">計画本体作成・検討中</td></tr>
+        <tr><th>計画の種類</th><td class="filled">地域計画</td></tr>
+        <tr><th>計画名</th><td class="filled">上杉謙信公生誕500年をめがけた「上杉の城下町」文化観光中核エリア地域計画</td></tr>
+        <tr><th>文化観光拠点施設の名称</th>
+          <td class="filled">
+            <ul>
+              <li>上杉神社（宗教法人上杉神社）</li>
+              <li>上杉神社稽照殿</li>
+              <li>米沢市上杉博物館（伝国の杜）</li>
+              <li>旧米沢高等工業学校本館</li>
+              <li>東光の酒蔵</li>
+              <li>小島伝承の館</li>
+              <li>旧遠万織物</li>
+              <li>上杉城史苑</li>
+              <li>旧白根澤邸</li>
+              <li>東町ポケットパーク</li>
+              <li>マチスタヂオ</li>
+              <li>肉のすがい</li>
+              <li>福島屋社員寮</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
+      <h4>2. 申請前相談希望日時（オンラインミーティング）</h4>
+      <table class="ssr-table">
+        <tr><th>第1希望</th><td class="tbd"><span class="tbd-mark">TBD</span> 5/13〜5/16 のいずれか 14:00〜16:00 を推奨</td></tr>
+        <tr><th>第2希望</th><td class="tbd"><span class="tbd-mark">TBD</span> 5/19〜5/22 のいずれか 10:00〜12:00 を推奨</td></tr>
+        <tr><th>第3希望</th><td class="tbd"><span class="tbd-mark">TBD</span> 5/26〜5/29 のいずれか 13:00〜15:00 を推奨</td></tr>
+      </table>
+      <div class="note-box">日付は令和8年4月28日〜5月29日。時間は10:00〜17:00、1回1〜2時間程度。早めの日付希望の場合、計画案も早めに提出が必要。</div>
+
+      <h4>3. 担当者連絡先</h4>
+      <table class="ssr-table">
+        <tr><th>団体名</th><td class="filled">プラットヨネザワ株式会社</td></tr>
+        <tr><th>職名・氏名</th><td class="filled">事務局・井上陽平</td></tr>
+        <tr><th>電話番号</th><td class="filled">0238-33-0056</td></tr>
+        <tr><th>メールアドレス</th><td class="filled">y.inoue@plat-yonezawa.jp</td></tr>
+        <tr><th>書類などの送付先</th><td class="filled">k.oda@plat-yonezawa.jp</td></tr>
+      </table>
+    </div>
+
+    <!-- ============== 様式② 地域計画 ============== -->
+    <div class="form-section">
+      <div class="doc-title">上杉謙信公生誕500年をめがけた<br>「上杉の城下町」文化観光中核エリア地域計画</div>
+      <p style="text-align:center;font-size:.85rem;color:var(--muted);">様式94093402_02 ／ 計画期間：令和8年度〜令和12年度（5年間）</p>
+    </div>
+
+    <!-- 1. 実施体制 -->
+    <h2 class="sec" id="draft-sec1">1. 実施体制</h2>
+    <table class="applicant-table">
+      <tr>
+        <th class="sub-head">協議会</th>
+        <th>名称</th>
+        <td class="tbd"><span class="tbd-mark">TBD</span>（協議会名称は5/12申請前相談で確定。仮称：「上杉の城下町文化観光推進協議会」）</td>
+      </tr>
+      <tr>
+        <th class="sub-head" rowspan="2">申請者①<br><span style="font-weight:400;font-size:.7rem;">市町村又は都道府県</span></th>
+        <th>名称・所在地</th>
+        <td class="filled">米沢市（〒992-8501 山形県米沢市金池五丁目2番25号）</td>
+      </tr>
+      <tr><th>代表者</th><td class="filled">米沢市長　近藤　洋介</td></tr>
+      <tr>
+        <th class="sub-head" rowspan="3">申請者②<br><span style="font-weight:400;font-size:.7rem;">中核施設の設置者</span></th>
+        <th>施設の名称・所在地</th>
+        <td class="filled">上杉神社・稽照殿（〒992-0052 山形県米沢市丸の内一丁目4-13）</td>
+      </tr>
+      <tr><th>設置者の名称・所在地</th><td class="filled">宗教法人上杉神社（〒992-0052 山形県米沢市丸の内一丁目4-13）</td></tr>
+      <tr><th>代表者</th><td class="tbd"><span class="tbd-mark">TBD</span> 宮司　<span style="color:#a06900;">（要確認・記載）</span></td></tr>
+      <tr>
+        <th class="sub-head" rowspan="2">申請者③<br><span style="font-weight:400;font-size:.7rem;">文化観光推進事業者</span><br>（施行規則1条2項1号）</th>
+        <th>名称・所在地</th>
+        <td class="filled">一般社団法人米沢観光コンベンション協会（〒992-0012 山形県米沢市金池三丁目1番14号 置賜総合文化センター内）</td>
+      </tr>
+      <tr><th>代表者</th><td class="tbd"><span class="tbd-mark">TBD</span> 会長　<span style="color:#a06900;">（要確認・記載）</span></td></tr>
+      <tr>
+        <th class="sub-head" rowspan="2">申請者④<br><span style="font-weight:400;font-size:.7rem;">文化観光推進事業者</span><br>（施行規則1条2項2号）</th>
+        <th>名称・所在地</th>
+        <td class="filled">プラットヨネザワ株式会社（〒992-0037 山形県米沢市本町2丁目1番12号 マチスタヂオ）</td>
+      </tr>
+      <tr><th>代表者</th><td class="filled">代表取締役　宮嶌　浩聡</td></tr>
+    </table>
+
+    <div class="note-box ref">
+      <strong>📎 参考資料として添付予定：</strong>
+      ① 協議会名簿（13名・米沢市観光振興委員会名簿を母体）
+      ② 協議会組織化の公表日・公表方法・公表内容
+      ③ 各申請者の概要資料
+      ④ 国土形成計画・米沢市まちづくり総合計画2026-2035・第5期米沢市観光振興計画との調和を示す書類
+    </div>
+
+    <!-- 2. 事務の実施体制 -->
+    <h2 class="sec" id="draft-sec2">2. 事務の実施体制</h2>
+    <p class="body-text">
+      本計画の実施事務は、<strong>申請者④プラットヨネザワ株式会社が事務局機能を担い</strong>、申請者①米沢市（観光文化スポーツ部）、申請者③一般社団法人米沢観光コンベンション協会（米沢市版DMO候補）、申請者②宗教法人上杉神社の三者と密接に連携しながら推進する。
+    </p>
+
+    <h3 class="sub">役割分担</h3>
+    <table class="cp-table">
+      <thead>
+        <tr><th style="width:24%;">主体</th><th>役割</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>米沢市</strong>（観光文化スポーツ部・文化財関係課）</td><td>計画の総合監督、文化財保存活用施策の遂行、関連法令との整合確保、特別交付税措置の手続。令和8年4月新設の「観光文化スポーツ部」が窓口となり、本計画と「第5期米沢市観光振興計画（R8-R12）」の整合運営を担う。</td></tr>
+        <tr><td><strong>宗教法人上杉神社</strong>（中核施設設置者）</td><td>稽照殿に所蔵する国宝・重要文化財の保存責任、文化資源の公開・解説の主体、来訪者受入環境の整備。学術監修体制の構築（米沢藩研究者・山形大学等との連携）。</td></tr>
+        <tr><td><strong>一般社団法人米沢観光コンベンション協会</strong>（施行規則1条2項1号事業者・米沢市版DMO候補）</td><td>多様な関係者との連携体制構築、観光データの収集・整理・分析、KPI設定とPDCAサイクル運営、文化観光推進施策の方針策定。第5期観光振興計画(3)③で位置付けられた「米沢市版DMO」機能を担う。</td></tr>
+        <tr><td><strong>プラットヨネザワ株式会社</strong>（施行規則1条2項2号事業者・事務局）</td><td>計画事務局運営、二次交通整備、東町エリアを含む商店街にぎわいづくり、上杉城史苑等を含む滞在型コンテンツの企画・実施、ハード10案件・ソフト1案件（観光庁採択）の連動運営。<span class="tbd-mark">TBD</span> SPC設立準備の事務局。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">関連事業者ネットワーク（13事業者）</h3>
+    <p class="body-text">
+      観光庁ハード補助金10案件で連携する10事業者（東光の酒蔵、合同会社光悦、上杉コーポレーション、旧遠万織物、マチスタヂオ、肉のすがい、福島屋社員寮、旧白根澤邸 ほか）と、ソフト補助金で連携する関連団体・有識者（山形大学、増田信吾氏、田原氏、黒田学部長等）が事業実施者として参画する。
+    </p>
+
+    <!-- 3. 計画区域 -->
+    <h2 class="sec" id="draft-sec3">3. 計画区域</h2>
+    <p class="body-text">
+      本計画区域は、<strong>米沢市中心市街地のうち、史跡米沢城跡（上杉神社・稽照殿）を中核とし、北は米沢駅、南は南原街道、東は伝統発酵食ゾーン（東町）、西は松川河畔までを含む「上杉文化エリア」</strong>とする。
+    </p>
+
+    <h3 class="sub">区域の範囲</h3>
+    <ul class="compact">
+      <li><strong>中核施設：</strong>上杉神社・稽照殿（米沢市丸の内一丁目4-13）</li>
+      <li><strong>連携施設群（北側）：</strong>米沢市上杉博物館（伝国の杜）、上杉記念館、上杉城史苑</li>
+      <li><strong>連携施設群（東側／伝統発酵食ゾーン）：</strong>東光の酒蔵、小島伝承の館（合同会社光悦）、旧遠万織物</li>
+      <li><strong>連携施設群（中心市街地）：</strong>旧米沢高等工業学校本館、旧白根澤邸、東町ポケットパーク、マチスタヂオ、肉のすがい、福島屋社員寮</li>
+      <li><strong>玄関口：</strong>JR米沢駅、道の駅米沢</li>
+    </ul>
+
+    <div class="note-box ref">
+      <strong>📎 添付予定：</strong> 計画区域図（中核施設の位置を明示／三角エリア構想図／観光庁ハード10案件位置図／第5期観光振興計画 P.66の上杉文化エリア定義図を踏襲）
+    </div>
+    <p style="font-size:.85rem;"><span class="req-mark">要協議</span> 計画区域の最終ライン（特に東町エリアの範囲確定）は5/12申請前相談で文化庁助言を受けて確定。</p>
+
+    <!-- 4. 基本的な方針 -->
+    <h2 class="sec" id="draft-sec4">4. 基本的な方針</h2>
+
+    <h3 class="sub">4-1. 現状分析</h3>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">4-1-1. 主要な文化資源</h4>
+    <p class="body-text">
+      本計画区域内には、上杉謙信公・上杉鷹山公を象徴とする<strong>上杉家文化・武家文化</strong>に関わる多様な文化資源が集積する。文化資源の分類別の数及び具体例は以下の通り。
+    </p>
+
+    <table class="cp-table">
+      <thead>
+        <tr><th style="width:28%;">分類</th><th>主な内容（具体例）</th><th style="width:10%;">数</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>建造物</strong></td><td>上杉神社本殿（伊東忠太設計）／旧米沢高等工業学校本館（重要文化財）／東光の酒蔵（江戸期酒造蔵）／旧遠万織物 等</td><td>10件超</td></tr>
+        <tr><td><strong>絵画・彫刻</strong></td><td>稽照殿所蔵 上杉謙信公画像／武将図／神像彫刻 等</td><td><span class="tbd-mark">TBD</span></td></tr>
+        <tr><td><strong>工芸品</strong></td><td>稽照殿所蔵 上杉謙信所用具足・甲冑・刀剣・「色々威腹巻 兜・大袖付」（国宝）等</td><td>多数</td></tr>
+        <tr><td><strong>書跡・典籍／古文書</strong></td><td>稽照殿・上杉博物館所蔵 上杉家文書（重要文化財）／謙信公書状 等</td><td>多数</td></tr>
+        <tr><td><strong>歴史資料</strong></td><td>米沢藩関連史料（伝国の杜）／上杉鷹山関連資料</td><td>多数</td></tr>
+        <tr><td><strong>民俗文化財</strong></td><td>米沢上杉まつり、武てい式、上杉雪灯篭まつり 等の民俗行事</td><td>複数</td></tr>
+        <tr><td><strong>工芸技術</strong></td><td>米沢織、笹野一刀彫、伝統発酵食（醤油・味噌・酒） 等</td><td>複数</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">【国指定等文化財】（別表）</h4>
+    <table class="cp-table">
+      <thead><tr><th style="width:28%;">文化財分類</th><th>名称</th></tr></thead>
+      <tbody>
+        <tr><td>国宝（工芸品）</td><td>色々威腹巻 兜・大袖付（上杉謙信公所用／稽照殿）<span class="tbd-mark">TBD</span> 正確な名称・指定番号</td></tr>
+        <tr><td>重要文化財（美術工芸品）</td><td>上杉家文書（米沢市上杉博物館 伝国の杜所蔵）／上杉謙信公関係の刀剣類 等 <span class="tbd-mark">TBD</span></td></tr>
+        <tr><td>重要有形民俗文化財</td><td><span class="tbd-mark">TBD</span> 該当の有無を要確認</td></tr>
+        <tr><td>登録有形文化財（建造物）</td><td>旧米沢高等工業学校本館 ほか <span class="tbd-mark">TBD</span> リスト確定</td></tr>
+        <tr><td>重要美術品</td><td><span class="tbd-mark">TBD</span> 該当の有無を要確認</td></tr>
+        <tr><td>国指定史跡</td><td>米沢城跡</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      <span class="req-mark">要協議</span> 国指定等文化財の正確なリスト（名称・指定番号・指定年月日）は、申請前に米沢市文化財関係課・上杉神社・伝国の杜から正式取得し、別表として添付する。
+    </div>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">4-1-2. 観光客の動向</h4>
+    <p class="body-text">
+      本計画区域内（上杉文化エリア）への来訪者数は、Agoopモバイル空間統計に基づき<strong>年間約384,987人（令和6年度実績）</strong>。来訪者の動向は以下の特徴を持つ：
+    </p>
+    <ul class="compact">
+      <li><strong>休日30分未満退出率：65.8%</strong>（通過型観光が主流）</li>
+      <li><strong>100km以遠の遠方来訪者比率：35.5%</strong>（広域吸引力あり）</li>
+      <li><strong>主要属性：</strong>50-60代家族連れ・観光バス団体客が中心</li>
+      <li><strong>訪日外国人来訪者：</strong>計測体制未整備のため概数のみ。台湾・東アジアからのインバウンドが主要、約5%と推定 <span class="tbd-mark">TBD</span> 正確な数値の取得</li>
+    </ul>
+    <p class="body-text">
+      米沢市全体では、<strong>令和6年度の観光客入込数 3,361千人、観光消費額 154億円</strong>（第5期米沢市観光振興計画 P.18参照）。
+    </p>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">4-1-3. 他の地域との比較</h4>
+    <p class="body-text">
+      文化観光拠点の先進事例として<strong>鹿島神宮（茨城県）・熊野大社（和歌山県）</strong>と比較分析した結果、以下の強み・弱みが明らかとなった。
+    </p>
+    <table class="cp-table">
+      <thead><tr><th style="width:18%;">観点</th><th>本計画区域の状況</th><th>先進地比較</th></tr></thead>
+      <tbody>
+        <tr><td><strong>強み</strong></td><td>① 上杉謙信公・鷹山公を軸とした<strong>明確な歴史ストーリー</strong>と国宝級文化財／② 米沢城跡を含む面的な文化資源集積／③ R7総合計画＋ハード27,113万円＋ソフト2,000万円の三位一体推進体制</td><td>鹿島神宮と同等の歴史的求心力。プロダクト売上面では熊野大社（年6,000-8,000万円）を目標とする余地大</td></tr>
+        <tr><td><strong>弱み</strong></td><td>① 通過型観光（30分未満退出65.8%）／② インバウンド対応不足／③ 多言語解説整備の不十分さ／④ 文化資源の「保存」観点の体系化不足／⑤ 国際的認知度の低さ</td><td>鹿島神宮の宿泊回遊型モデル、熊野大社の世界遺産連動型モデルに学ぶ余地あり</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">4-2. 課題</h3>
+    <p class="body-text">
+      4-1の現状分析を踏まえ、<strong>主要ターゲット（① 国内40-60代家族連れ・歴史ファン、② 台湾・東アジアインバウンド、③ 国内Z世代・歴史コンテンツファン）</strong>を意識した上で、本計画区域が抱える課題を以下5点に整理する。
+    </p>
+    <div class="goal-box">
+      <p><span class="goal-num">課題1</span><strong>文化資源の理解促進機会の不足</strong>　— 国宝・重要文化財を所蔵する稽照殿の解説情報が日本語中心。多言語化・音声ガイド・QRコンテンツの整備が不十分で、来訪者の文化資源理解が限定的。</p>
+      <p><span class="goal-num">課題2</span><strong>通過型観光からの脱却の必要性</strong>　— 休日30分未満退出率が65.8%と高く、文化資源との深い関わりを持たないまま帰路につく来訪者が大半。滞在時間延長と消費活動拡大が急務。</p>
+      <p><span class="goal-num">課題3</span><strong>インバウンドの取り込み不足</strong>　— 山形県の国際的認知向上の機運がある中で、本計画区域は外国人来訪者比率が低く、JNTO等との連携体制も未整備。</p>
+      <p><span class="goal-num">課題4</span><strong>文化財保存への持続的再投資メカニズムの欠如</strong>　— 観光振興による経済効果が、文化財保存・修繕に還流する仕組みが制度化されていない。</p>
+      <p><span class="goal-num">課題5</span><strong>推進主体の経営企画機能の不在</strong>　— 多様な関係者（市・神社・大学・10事業者）の連携はあるが、計画的に文化観光を経営する司令塔機能（DMO/SPC）が確立していない。</p>
+    </div>
+
+    <h3 class="sub">4-3. 取組強化事項及び基本的な方向性</h3>
+    <p class="body-text">
+      4-2の課題を踏まえ、本計画区域では以下の<strong>5つの取組強化事項</strong>を設定する。<strong>「上杉謙信公・鷹山公を起点とする武家文化と精神文化を、保存・活用・創造の循環で次世代に繋ぐ文化観光地」</strong>という目指すべき将来像のもとで設定するものである。
+    </p>
+    <div class="goal-box">
+      <p><span class="goal-num">取組1</span><strong>文化資源の解説情報整備の強化</strong>（課題1関連）<br>
+        稽照殿・上杉博物館等で<strong>5言語×100箇所の多言語解説／音声ガイド／QRコンテンツ</strong>を整備。学術監修体制を構築し、来訪者の文化資源理解度向上を図る。</p>
+      <p><span class="goal-num">取組2</span><strong>滞在型・体験型コンテンツの造成強化</strong>（課題2関連）<br>
+        「超勝利」ブランドを核とした<strong>体験プログラム年20本／ブランド商品30SKU</strong>を造成。30分未満滞在率を65.8%→50%へ改善。</p>
+      <p><span class="goal-num">取組3</span><strong>インバウンド受入・国際発信の強化</strong>（課題3関連）<br>
+        JNTOとの連携協力体制を構築し、<strong>海外プロモーション年4回以上、インバウンドツアー20本造成</strong>。台湾を主要ターゲットに、外国人来訪者比率5%→20%を目指す。</p>
+      <p><span class="goal-num">取組4</span><strong>文化財保存への再投資メカニズムの構築</strong>（課題4関連）<br>
+        <strong>保存協力金制度の導入（年1,500万円）／文化財修繕基金の創設（5年で1億円規模）</strong>を進め、観光収益が文化財保存に還流する制度を確立。</p>
+      <p><span class="goal-num">取組5</span><strong>推進主体（DMO/SPC）の確立</strong>（課題5関連）<br>
+        米沢観光コンベンション協会を母体とする<strong>米沢市版DMO体制を強化</strong>し、第5期観光振興計画(3)③で位置付けた業務整理・統合を実施。<span class="tbd-mark">TBD</span> あわせて<strong>SPC設立</strong>を検討。</p>
+    </div>
+
+    <h3 class="sub">4-4. 文化の振興を起点とした、観光の振興、地域の活性化の好循環の創出</h3>
+    <p class="body-text">
+      本計画では、<strong>文化の振興（保存・活用・創造）を起点</strong>として、観光振興（来訪促進）と地域活性化（経済循環）を実現し、その経済効果を<strong>文化財保存・新たな文化創造への再投資</strong>に還流する好循環を以下の構造で創出する。
+    </p>
+    <ol class="compact">
+      <li><strong>文化の振興（起点）：</strong>稽照殿の保存環境改善・上杉博物館の常設展示充実・学術監修による解説情報整備</li>
+      <li><strong>観光の振興：</strong>多言語解説・体験コンテンツ造成・JNTO連携による国内外からの来訪促進</li>
+      <li><strong>地域の活性化：</strong>滞在時間延長による飲食・物販・宿泊の消費活動拡大／東町伝統発酵食ゾーンを含む域内消費循環</li>
+      <li><strong>再投資の好循環：</strong>① 保存協力金（年1,500万円）→ 稽照殿等の保存環境改善／② 文化財修繕基金（5年累計1億円規模）→ 米沢市指定文化財の修繕／③ DMO/SPCの収益事業利益 → 新たな文化創造</li>
+    </ol>
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">経済効果の再投資ルートの具体化</h4>
+    <ul class="compact">
+      <li><strong>保存協力金制度：</strong>稽照殿入館者からの任意協力金（1人500円目安）。年間約3万人×500円 = 1,500万円</li>
+      <li><strong>文化財修繕基金：</strong>DMO/SPCの収益事業から年2,000万円を5年積立で1億円規模を目標</li>
+      <li><strong>新たな文化創造への投資：</strong>令和12年（謙信公生誕500年）を集大成として、「新・上杉文化プロジェクト」を立ち上げ</li>
+    </ul>
+    <div class="note-box ref">
+      <strong>📎 参考：</strong> 第5期米沢市観光振興計画 第3章6節(4)「観光振興と市民生活のしあわせ向上循環」（P.72）と理念整合。
+    </div>
+
+    <!-- 5. 目標 -->
+    <h2 class="sec" id="draft-sec5">5. 目標</h2>
+    <p style="font-size:.85rem;">
+      4-3の取組強化事項に対応する<strong>5つの目標</strong>を設定。各目標は中間評価年（R11）と計画終了年（R12）に向けて段階的に達成する設計。
+      ※ 国外からの来訪者数については、計画期間（5年）で<strong>4倍に増加</strong>する目標（基準値が低いため）。
+    </p>
+
+    <div class="goal-box">
+      <p><span class="goal-num">目標①</span><span class="goal-name">文化資源理解度の向上</span><span class="relate">（課題1関連、取組強化事項1関連）</span></p>
+      <p><strong>目標値設定の考え方：</strong>来訪者アンケートにおいて「上杉文化・米沢藩の歴史について新しい発見があった」と回答する割合。年間2回（夏期・冬期）の来訪者調査（n=500）で把握。NPS指標も補完的に採用。</p>
+      <table class="kpi-target-table">
+        <tr><th>年度</th><th>R7（実績）</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th></tr>
+        <tr class="target-row"><td><strong>目標値</strong></td><td>—</td><td>40%</td><td>55%</td><td>65%</td><td>75%</td><td><strong>80%以上</strong></td></tr>
+      </table>
+      <div class="project-box">
+        <span class="pj-num">事業1-①</span><span class="pj-name">多言語解説情報整備事業</span>
+        <dl><dt>R8</dt><dd>稽照殿・上杉博物館の英語解説整備（基礎50箇所）</dd>
+          <dt>R9</dt><dd>中国語繁体・韓国語追加（累計100箇所）</dd>
+          <dt>R10</dt><dd>音声ガイド・QRコンテンツ展開</dd>
+          <dt>R11</dt><dd>タイ語追加・既存解説のブラッシュアップ</dd>
+          <dt>R12</dt><dd>5言語×100箇所完成・運用安定化</dd></dl>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <p><span class="goal-num">目標②</span><span class="goal-name">滞在時間延長と域内消費額の拡大</span><span class="relate">（課題2関連、取組強化事項2関連）</span></p>
+      <p><strong>目標値設定の考え方：</strong>Agoopモバイル空間統計による30分未満退出率と、第5期観光振興計画の市全体観光消費額目標（R12目標 23,192百万円）の整合をとる。</p>
+      <table class="kpi-target-table">
+        <tr><th>年度</th><th>R6（実績）</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th></tr>
+        <tr class="target-row"><td><strong>30分未満退出率</strong></td><td>65.8%</td><td>62%</td><td>58%</td><td>55%</td><td>52%</td><td><strong>50%以下</strong></td></tr>
+        <tr class="target-row"><td><strong>市観光消費額（億円・市全体／第5期計画KPI）</strong></td><td>154</td><td>214</td><td>219</td><td>223</td><td>227</td><td><strong>232</strong></td></tr>
+      </table>
+      <div class="project-box">
+        <span class="pj-num">事業1-②</span><span class="pj-name">体験型・滞在型コンテンツ造成事業</span>
+        <dl><dt>R8</dt><dd>「超勝利」ブランド開発・体験プログラム年5本造成</dd>
+          <dt>R9</dt><dd>体験プログラム年12本／ブランド商品15SKU</dd>
+          <dt>R10</dt><dd>体験プログラム年16本／ブランド商品20SKU／ガストロノミーコース造成</dd>
+          <dt>R11</dt><dd>体験プログラム年18本／ブランド商品25SKU</dd>
+          <dt>R12</dt><dd>体験プログラム年20本／ブランド商品30SKU・謙信公生誕500年集大成展開</dd></dl>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <p><span class="goal-num">目標③</span><span class="goal-name">国内外からの来訪者数の増加（特にインバウンド）</span><span class="relate">（課題3関連、取組強化事項3関連）</span></p>
+      <p><strong>目標値設定の考え方：</strong>第5期計画の市全体KPI（R12目標 3,672千人）に整合させつつ、本計画区域の来訪者数（38.5万人）を50万人へ。外国人来訪者比率は5%→20%（5年で4倍）を目指す。</p>
+      <table class="kpi-target-table">
+        <tr><th>年度</th><th>R6（実績）</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th></tr>
+        <tr class="target-row"><td><strong>本計画区域 年間来訪者数（千人）</strong></td><td>385</td><td>410</td><td>430</td><td>450</td><td>475</td><td><strong>500</strong></td></tr>
+        <tr class="target-row"><td><strong>外国人来訪者比率</strong></td><td>5%（推定）</td><td>8%</td><td>12%</td><td>15%</td><td>18%</td><td><strong>20%</strong></td></tr>
+        <tr class="target-row"><td><strong>市全体 観光入込客数（千人／第5期計画KPI）</strong></td><td>3,361</td><td>3,462</td><td>3,513</td><td>3,565</td><td>3,618</td><td><strong>3,672</strong></td></tr>
+      </table>
+      <div class="project-box">
+        <span class="pj-num">事業4-①</span><span class="pj-name">JNTO連携・海外発信事業</span>
+        <dl><dt>R8</dt><dd>JNTO連携体制構築・台湾向け媒体年2回</dd>
+          <dt>R9</dt><dd>海外プロモーション年4回・英語公式サイト・WeChat開設</dd>
+          <dt>R10</dt><dd>多言語デジタルカタログ制作・インバウンドツアー10本</dd>
+          <dt>R11</dt><dd>インバウンドツアー15本・FAMツアー実施</dd>
+          <dt>R12</dt><dd>インバウンドツアー20本・謙信公生誕500年国際広報集大成</dd></dl>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <p><span class="goal-num">目標④</span><span class="goal-name">来訪者一人当たり消費額の増加・地域内宿泊者数の確保</span><span class="relate">（課題2関連、取組強化事項2関連）</span></p>
+      <p><strong>目標値設定の考え方：</strong>POSデータ・宿泊統計による把握。来訪者一人当たり消費額は基準値測定を実施し、+50%を目標。地域内宿泊者数は米沢八湯（小野川温泉・白布温泉等）への誘導施策と連動。</p>
+      <table class="kpi-target-table">
+        <tr><th>年度</th><th>R7（実績）</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th></tr>
+        <tr class="target-row"><td><strong>来訪者一人当たり消費額の増加率</strong></td><td>0%（基準）</td><td>+10%</td><td>+20%</td><td>+30%</td><td>+40%</td><td><strong>+50%</strong></td></tr>
+        <tr class="target-row"><td><strong>地域内宿泊者数（人／年）</strong></td><td><span class="tbd-mark">TBD</span></td><td colspan="5"><span class="tbd-mark">TBD</span> 第5期観光振興計画と連動して数値設定</td></tr>
+      </table>
+      <div class="project-box">
+        <span class="pj-num">事業3-①</span><span class="pj-name">飲食・物販・宿泊連携事業（東町伝統発酵食ゾーン × 米沢八湯）</span>
+        <dl><dt>R8</dt><dd>東光の酒蔵×小島伝承の館の連携プログラム造成・米沢八湯誘客連動</dd>
+          <dt>R9-R12</dt><dd>段階的に拡張（連携事業者数10事業者→20事業者）</dd></dl>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <p><span class="goal-num">目標⑤</span><span class="goal-name">文化財保存への再投資額の確立</span><span class="relate">（課題4関連、取組強化事項4関連）</span></p>
+      <p><strong>目標値設定の考え方：</strong>SPC会計報告に基づく。保存協力金（任意1人500円）と文化財修繕基金（DMO/SPC収益事業から年積立）の合計を計測。</p>
+      <table class="kpi-target-table">
+        <tr><th>年度</th><th>R7（実績）</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th></tr>
+        <tr class="target-row"><td><strong>保存協力金 年間収入（万円）</strong></td><td>0</td><td>300</td><td>700</td><td>1,000</td><td>1,300</td><td><strong>1,500</strong></td></tr>
+        <tr class="target-row"><td><strong>文化財修繕基金 累計（万円）</strong></td><td>0</td><td>1,500</td><td>3,500</td><td>5,500</td><td>7,500</td><td><strong>10,000</strong></td></tr>
+      </table>
+      <div class="project-box">
+        <span class="pj-num">事業1-③</span><span class="pj-name">保存協力金制度導入・文化財修繕基金創設事業</span>
+        <dl><dt>R8</dt><dd>制度設計・上杉神社との合意・基金規約策定</dd>
+          <dt>R9</dt><dd>運用開始・徴収体制整備</dd>
+          <dt>R10-R12</dt><dd>運用拡大・徴収拠点拡張・基金活用の文化財修繕事業実施</dd></dl>
+      </div>
+    </div>
+
+    <div class="note-box ref">
+      <strong>💡 二段KPI設計：</strong>
+      本計画は<strong>市全体マクロ層</strong>（第5期米沢市観光振興計画の3,672千人・232億円）と<strong>中核エリア・ミクロ層</strong>（本地域計画の50万人・各取組指標）の二段で目標を設計。
+      市の正式数値目標と本計画固有指標の整合性を確保しつつ、文化観光推進法固有の評価軸（文化財理解度・保存協力金）を補完する。
+    </div>
+
+    <!-- 6. 評価 -->
+    <h2 class="sec" id="draft-sec6">6. 目標の達成状況の評価</h2>
+    <p class="body-text">
+      第5の目標の達成状況の評価は、<strong>「上杉の城下町文化観光推進協議会」（仮称）</strong>を中心に、関係主体が連携して以下の体制で実施する。
+    </p>
+
+    <h3 class="sub">評価体制</h3>
+    <ul class="compact">
+      <li><strong>評価主体：</strong>「上杉の城下町文化観光推進協議会」（仮称・<span class="tbd-mark">TBD</span>）／第5期米沢市観光振興計画の評価機関「米沢市観光振興委員会」（13名）を母体に、文化財所有者（上杉神社）・大学（山形大学）・有識者を加えた拡張形で運営。</li>
+      <li><strong>評価頻度：</strong>毎年度（事業終了後3ヶ月以内）／中間評価（おおむね3年後＝R10末）／計画終了時評価（R12末）</li>
+      <li><strong>評価方法：</strong>① 来訪者調査（年2回・n=500、文化資源理解度・NPS）／② Agoopモバイル空間統計（年次比較）／③ POSデータ・宿泊統計（来訪者消費額・地域内宿泊者数）／④ DMO/SPC会計報告（保存協力金・文化財修繕基金）</li>
+      <li><strong>改善体制：</strong>評価結果を踏まえ、毎年度PDCAを回し、必要に応じて事業内容・KPIを修正。中間評価（R10末）では文化庁による公的評価も受け、必要に応じて補助金交付額の調整・打切り判断に対応。</li>
+    </ul>
+
+    <h3 class="sub">DMO等観光関係者からの評価体制</h3>
+    <p class="body-text">
+      <strong>米沢観光コンベンション協会（米沢市版DMO）</strong>が観光関係者の取りまとめ役として、地域内の事業者・宿泊施設・飲食店・交通事業者等からの評価を集約し、協議会に報告する体制を構築する。あわせて<strong>地域連携DMO「やまがたアルカディア観光局」</strong>とも連携し、置賜地域全体の文化観光成果指標との接続を図る。
+    </p>
+
+    <!-- 7. 中核施設 -->
+    <h2 class="sec" id="draft-sec7">7. 中核とする文化観光拠点施設</h2>
+
+    <table class="cp-table">
+      <thead>
+        <tr><th colspan="2" style="background:var(--bunka-vermilion);color:#fff;font-size:.95rem;padding:12px;">文化観光拠点施設名：上杉神社（稽照殿）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width:24%;"><strong>主要な文化資源</strong></td>
+          <td>
+            国宝「色々威腹巻 兜・大袖付」（上杉謙信公所用）、上杉謙信公画像、上杉家関係刀剣類、武具・甲冑類、上杉鷹山公関係資料 ほか<br>
+            <span class="tbd-mark">TBD</span> 国指定等文化財の正確なリストは別表にて添付
+          </td>
+        </tr>
+        <tr>
+          <td><strong>主要な文化資源についての解説・紹介の状況</strong></td>
+          <td>下記「現状の取組」「本計画における取組」を参照</td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　現状の取組（解説・紹介）</td>
+          <td>
+            <ul class="compact" style="margin:0">
+              <li><strong>施行規則第1条第1項第1号：</strong>稽照殿内のパネル解説（日本語のみ）／神職・巫女による口頭案内</li>
+              <li><strong>施行規則第1条第1項第2号：</strong>一部展示にQR紙資料配布／公式サイトの解説掲載（日本語のみ）</li>
+              <li><strong>施行規則第1条第1項第3号：</strong>上杉家廟所の4ヶ国語史跡案内板あり。稽照殿は日本語パネルのみで多言語化されていない</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　本計画における取組</td>
+          <td>
+            <ul class="compact" style="margin:0">
+              <li><strong>第1号：</strong>学術監修体制（山形大学・米沢藩研究者）を構築し、5言語×100箇所の解説情報を整備</li>
+              <li><strong>第2号：</strong>音声ガイドアプリ／QRコンテンツ／3DビューワーによるICT活用</li>
+              <li><strong>第3号：</strong>英・中（繁）・韓・タイ語の多言語解説／インバウンドコンシェルジュ配置</li>
+              <li><strong>補助金活用実績（現状）：</strong>観光庁ハード補助金（R8採択・補助2,500万円・授与所改修）／観光庁ソフト補助金（R8採択・上限2,000万円）</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>施行規則第1条第2項第1号 文化観光推進事業者との連携</strong></td>
+          <td>連携先：一般社団法人米沢観光コンベンション協会</td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　現状の取組</td>
+          <td>米沢観光コンベンション協会と連絡会開催（年2回）／観光案内所連携／上杉まつり等イベント協働。データ収集・KPI設定・PDCAサイクルは未確立</td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　本計画における取組</td>
+          <td>米沢観光コンベンション協会を米沢市版DMOとして位置付け、稽照殿来訪者データの一元管理／文化観光推進KPIの統一設定／PDCAサイクルの確立／月次連絡会議の開催</td>
+        </tr>
+        <tr>
+          <td><strong>施行規則第1条第2項第2号 文化観光推進事業者との連携</strong></td>
+          <td>連携先：プラットヨネザワ株式会社</td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　現状の取組</td>
+          <td>R7総合計画策定時より連携。ハード・ソフト補助金の事務局を担当／米沢駅〜上杉神社の二次交通設計／東町伝統発酵食ゾーンとの連携設計</td>
+        </tr>
+        <tr>
+          <td style="background:#fafafa;font-weight:600;">　本計画における取組</td>
+          <td>本計画事務局として、上杉神社〜上杉博物館〜上杉城史苑〜東町を結ぶ周遊導線整備／滞在型コンテンツの企画・販売主体／<span class="tbd-mark">TBD</span> SPC設立に向けた準備</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box ref">
+      <strong>📎 添付予定資料：</strong> ① 解説・紹介の取組内容を示す写真等／② 多言語化整備計画（5言語×100箇所のロードマップ）／③ 既存補助金交付決定通知書（観光庁ハード・ソフト）
+    </div>
+
+    <!-- 8. 推進事業 -->
+    <h2 class="sec" id="draft-sec8">8. 地域文化観光推進事業</h2>
+
+    <h3 class="sub">8-1. 事業の内容</h3>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-1-1. 文化資源の総合的な魅力の増進に関する事業</h4>
+    <div class="project-box">
+      <span class="pj-num">事業1-①</span><span class="pj-name">多言語解説情報整備事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>稽照殿・上杉博物館等で5言語（日・英・中繁・韓・タイ）×100箇所の解説情報を整備。学術監修（山形大学・米沢藩研究者）／音声ガイド／QRコンテンツ／3Dビューワー</dd>
+        <dt>実施主体</dt><dd>上杉神社／米沢市／米沢観光コンベンション協会／プラットヨネザワ</dd>
+        <dt>実施時期</dt><dd>R8.4〜R12.3（5年）</dd>
+        <dt>継続見込</dt><dd>R12以降は保存協力金収入と入館料収入で運用維持。SPC設立後は同社運用</dd>
+        <dt>アウトプット目標</dt><dd>5言語×100箇所の解説整備完成／音声ガイド利用者年5万人</dd>
+        <dt>必要資金調達方法</dt><dd>5年累計 30百万円（内訳：文化観光推進法補助金 20百万円／上杉神社自己資金 5百万円／観光庁ソフト連動 5百万円）</dd>
+      </dl>
+    </div>
+    <div class="project-box">
+      <span class="pj-num">事業1-②</span><span class="pj-name">体験型・滞在型コンテンツ造成事業（「超勝利」ブランド開発）</span>
+      <dl>
+        <dt>事業内容</dt><dd>上杉謙信公の戦勝祈願に着想した「超勝利」ブランドを核に、体験プログラム・グッズ商品を造成。武家文化体験／発酵食ガストロノミー／伝統工芸ワークショップ等</dd>
+        <dt>実施主体</dt><dd>プラットヨネザワ／米沢観光コンベンション協会／合同会社光悦／（株）東光／（株）上杉コーポレーション</dd>
+        <dt>実施時期</dt><dd>R8.4〜R12.3（5年）</dd>
+        <dt>継続見込</dt><dd>商品売上・体験プログラム収益で自律的運営</dd>
+        <dt>アウトプット目標</dt><dd>R12時点で体験プログラム年20本／ブランド商品30SKU</dd>
+        <dt>必要資金調達方法</dt><dd>5年累計 40百万円（内訳：文化観光推進法補助金 25百万円／観光庁ソフト 10百万円／自己資金 5百万円）</dd>
+      </dl>
+    </div>
+    <div class="project-box">
+      <span class="pj-num">事業1-③</span><span class="pj-name">保存協力金制度導入・文化財修繕基金創設事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>稽照殿等での保存協力金（任意1人500円）の徴収体制構築／文化財修繕基金規約策定／DMO/SPC運用体制整備</dd>
+        <dt>実施主体</dt><dd>上杉神社／米沢市／米沢観光コンベンション協会</dd>
+        <dt>実施時期</dt><dd>R8.4〜R9.3（制度設計）／R9.4〜R12.3（運用）</dd>
+        <dt>継続見込</dt><dd>R12時点で保存協力金年1,500万円・修繕基金累計1億円規模で自律的運用</dd>
+        <dt>アウトプット目標</dt><dd>保存協力金 R12時点 年1,500万円／文化財修繕基金 累計1億円</dd>
+        <dt>必要資金調達方法</dt><dd>制度設計費 5百万円（内訳：文化観光推進法補助金 4百万円／自己資金 1百万円）</dd>
+      </dl>
+    </div>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-1-2. 地域内移動の利便増進に関する事業</h4>
+    <div class="project-box">
+      <span class="pj-num">事業2-①</span><span class="pj-name">二次交通整備・周遊性向上事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>米沢駅〜道の駅米沢〜上杉神社〜東町伝統発酵食ゾーンを結ぶ周遊導線整備。電動レンタサイクル拡充／「乗るパス」連携／インバウンド向け多言語マップ／QR導線案内</dd>
+        <dt>実施主体</dt><dd>米沢市／プラットヨネザワ／米沢観光コンベンション協会</dd>
+        <dt>実施時期</dt><dd>R8.4〜R12.3（5年）</dd>
+        <dt>継続見込</dt><dd>第5期観光振興計画 基本方針(4)③と連動し、市の交通施策と一体運用</dd>
+        <dt>アウトプット目標</dt><dd>レンタサイクル年間利用者2万人／周遊型来訪者比率の向上</dd>
+        <dt>必要資金調達方法</dt><dd>5年累計 15百万円（内訳：文化観光推進法補助金 10百万円／市予算 5百万円）</dd>
+      </dl>
+    </div>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-1-3. 飲食・販売・宿泊施設との連携促進に関する事業</h4>
+    <div class="project-box">
+      <span class="pj-num">事業3-①</span><span class="pj-name">東町伝統発酵食ゾーン × 米沢八湯 連携事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>東町（東光の酒蔵・小島伝承の館等）の発酵食文化と米沢八湯の温泉文化を連携させた滞在型観光プログラムの造成。共通乗車券・宿泊プラン</dd>
+        <dt>実施主体</dt><dd>プラットヨネザワ／温泉米沢八湯会／関連10事業者</dd>
+        <dt>実施時期</dt><dd>R8.4〜R12.3（5年）</dd>
+        <dt>継続見込</dt><dd>連携事業者の収益事業として継続（共通乗車券割引制度の8-2-1で特例措置申請予定）</dd>
+        <dt>アウトプット目標</dt><dd>連携事業者数 R8時点10→R12時点20／共通プラン年間販売 5,000枚</dd>
+        <dt>必要資金調達方法</dt><dd>5年累計 18百万円（内訳：文化観光推進法補助金 12百万円／観光庁ソフト 4百万円／事業者拠出 2百万円）</dd>
+      </dl>
+    </div>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-1-4. 国内外における地域の宣伝に関する事業</h4>
+    <div class="project-box">
+      <span class="pj-num">事業4-①</span><span class="pj-name">JNTO連携・海外発信事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>JNTOとの連携協力に基づき、台湾・東アジアを主要ターゲットに海外プロモーション・FAMツアー・多言語デジタルコンテンツ制作</dd>
+        <dt>実施主体</dt><dd>米沢観光コンベンション協会／プラットヨネザワ／米沢市</dd>
+        <dt>実施時期</dt><dd>R8.4〜R12.3（5年）</dd>
+        <dt>継続見込</dt><dd>R12以降は事業者拠出・市予算で継続運営</dd>
+        <dt>アウトプット目標</dt><dd>海外プロモーション年4回／インバウンドツアー年20本／多言語公式サイト・WeChat運用</dd>
+        <dt>必要資金調達方法</dt><dd>5年累計 25百万円（内訳：文化観光推進法補助金 18百万円／市予算 4百万円／自己資金 3百万円）</dd>
+      </dl>
+    </div>
+    <div class="project-box">
+      <span class="pj-num">事業4-②</span><span class="pj-name">上杉謙信公生誕500年（R12）記念集大成プロジェクト</span>
+      <dl>
+        <dt>事業内容</dt><dd>令和12年の謙信公生誕500年を集大成として、姉妹都市上越市等と連携した記念イベント・国際広報・上杉博物館特別展示</dd>
+        <dt>実施主体</dt><dd>米沢市／上杉神社／米沢観光コンベンション協会／プラットヨネザワ／姉妹都市上越市</dd>
+        <dt>実施時期</dt><dd>R10.4〜R12.12（準備〜本番）</dd>
+        <dt>継続見込</dt><dd>記念イベント終了後はその成果を基盤に「新・上杉文化プロジェクト」へ発展</dd>
+        <dt>アウトプット目標</dt><dd>記念イベント参加者10万人／海外メディア掲載50件以上</dd>
+        <dt>必要資金調達方法</dt><dd>3年累計 30百万円（内訳：文化観光推進法補助金 18百万円／市予算 5百万円／民間協賛 7百万円）</dd>
+      </dl>
+    </div>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-1-5. 上記事業に必要な施設・設備の整備に関する事業</h4>
+    <div class="project-box">
+      <span class="pj-num">事業5-①</span><span class="pj-name">解説情報整備のための施設・設備整備事業</span>
+      <dl>
+        <dt>事業内容</dt><dd>事業1-①の解説整備に必要な音声ガイド端末・QRサインボード・多言語表示パネル・3Dスキャン機材の整備（建造物本体の改修は観光庁ハード補助金で実施）</dd>
+        <dt>実施主体</dt><dd>上杉神社／米沢市／プラットヨネザワ</dd>
+        <dt>実施時期</dt><dd>R8.4〜R10.3（前半重点）</dd>
+        <dt>継続見込</dt><dd>SPC運用への移行・更新費は基金で対応</dd>
+        <dt>アウトプット目標</dt><dd>音声ガイド端末200台／QRサインボード100基／3Dビューワー10基</dd>
+        <dt>必要資金調達方法</dt><dd>3年累計 12百万円（内訳：文化観光推進法補助金 8百万円／観光庁ハード連動 4百万円）</dd>
+      </dl>
+    </div>
+
+    <h3 class="sub">8-2. 特別の措置に関する事項</h3>
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-2-1. 必要とする特例措置の内容</h4>
+    <table class="cp-table">
+      <tbody>
+        <tr><td style="width:30%;background:#fafafa;font-weight:600;">事業番号・事業名</td><td>事業3-① 東町伝統発酵食ゾーン × 米沢八湯 連携事業</td></tr>
+        <tr><td style="background:#fafafa;font-weight:600;">必要とする特例の根拠</td><td>文化観光推進法第15条（共通乗車船券に関する特例）<span class="tbd-mark">TBD</span> 申請前相談で確定</td></tr>
+        <tr><td style="background:#fafafa;font-weight:600;">特例措置を受けようとする主体</td><td>プラットヨネザワ／温泉米沢八湯会</td></tr>
+        <tr><td style="background:#fafafa;font-weight:600;">特例措置を受けようとする事業内容</td><td>米沢駅〜上杉神社〜東町〜米沢八湯（小野川温泉等）を結ぶ共通乗車船券（バス・タクシー連携）の運賃割引（最大30%割引）。特に外国人観光旅客向けの一日乗り放題チケット</td></tr>
+        <tr><td style="background:#fafafa;font-weight:600;">事業実施による文化観光推進に対する効果</td><td>滞在時間延長と域内消費額拡大に直接寄与。30分未満退出率を65.8%→50%へ改善する重要施策</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">8-2-2. オブジェ等の設置に関する取組等</h4>
+    <p style="font-size:.85rem;"><span class="tbd-mark">TBD</span> 現時点では具体的計画なし。R10〜R11の謙信公生誕500年プレ事業に向けて検討予定。</p>
+
+    <h3 class="sub">8-3. 必要な資金の額及び調達方法</h3>
+    <table class="cp-table">
+      <thead><tr><th style="width:18%;">年度</th><th style="width:14%;">総事業費</th><th>事業番号・所要資金額・内訳</th></tr></thead>
+      <tbody>
+        <tr><td><strong>令和8年度</strong></td><td><strong>30百万円</strong></td><td>事業1-① 6百万円（文化観光4／自己2）／事業1-② 8百万円（文化観光5／観光庁ソフト2／自己1）／事業1-③ 3百万円（文化観光2／自己1）／事業2-① 3百万円（文化観光2／市1）／事業3-① 3百万円／事業4-① 4百万円／事業5-① 3百万円</td></tr>
+        <tr><td><strong>令和9年度</strong></td><td><strong>32百万円</strong></td><td>各事業の段階的拡張</td></tr>
+        <tr><td><strong>令和10年度</strong></td><td><strong>30百万円</strong></td><td>各事業の段階的拡張＋謙信公生誕500年プレ事業準備</td></tr>
+        <tr><td><strong>令和11年度</strong></td><td><strong>28百万円</strong></td><td>中間評価対応＋運用安定化</td></tr>
+        <tr><td><strong>令和12年度</strong></td><td><strong>50百万円</strong></td><td>謙信公生誕500年集大成プロジェクト本番＋全事業の運用継続</td></tr>
+        <tr style="background:var(--soft-red);"><td><strong>合計</strong></td><td><strong>170百万円</strong></td><td>うち文化観光推進法補助金（補助率2/3・上限7,500万円/年）想定 約113百万円<span class="tbd-mark">TBD</span> 5/12申請前相談で精緻化</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box ref">
+      <strong>💡 補助金スタック設計：</strong>
+      ハード（観光庁・1/2・27,113万円・R8単年）はすでに採択済／ソフト（観光庁・上限2,000万円・R8単年）はすでに採択済／文化観光推進法（文化庁・2/3・上限7,500万円/年×5年）が本申請対象。
+      経費は同一物品・同一役務で重複しないよう、ハード=建造物整備、ソフト=R8単年のコンテンツ造成、文化観光=5年継続の解説整備・人材育成・運営、という形で分離。
+    </div>
+
+    <!-- 9. 計画期間 -->
+    <h2 class="sec" id="draft-sec9">9. 計画期間</h2>
+    <p class="body-text">
+      <strong>令和8年度（2026年4月）から令和12年度（2031年3月）までの5年間</strong>。
+    </p>
+    <ul class="compact">
+      <li><strong>R8（2026）：</strong>多言語解説基礎整備・「超勝利」ブランド始動・JNTO連携体制構築・保存協力金制度設計</li>
+      <li><strong>R9（2027）：</strong>多言語解説2言語追加・体験コンテンツ12本・海外プロモーション本格化・保存協力金運用開始</li>
+      <li><strong>R10（2028）：</strong>運用の自立化推進・中間評価準備・謙信公生誕500年プレ事業準備</li>
+      <li><strong>R11（2029）：</strong>中間評価実施・補助額調整・成果指標達成度確認</li>
+      <li><strong>R12（2030）：</strong>上杉謙信公生誕500年記念集大成事業／持続化モデル完成</li>
+    </ul>
+    <div class="note-box ref">
+      <strong>📎 整合性：</strong>
+      ① 米沢市まちづくり総合計画 2026-2035（前期5年と一致）
+      ② 第5期米沢市観光振興計画 R8-R12（完全一致）
+      ③ 観光庁ハード補助金 R8単年事業との連動（R8.2.26竣工後の活用フェーズに対応）
+      ④ 観光庁ソフト補助金 R8単年事業との連動（R8策定計画の実装フェーズに対応）
+    </div>
+
+    <!-- 5/12 確認事項 -->
+    <h2 class="sec">📌 5/12 申請前相談時の主要確認事項</h2>
+    <ol class="steps">
+      <li><strong>協議会名称の確定</strong>：「上杉の城下町文化観光推進協議会」（仮称）の正式名称</li>
+      <li><strong>申請者②③の代表者氏名</strong>：上杉神社宮司／米沢観光コンベンション協会会長</li>
+      <li><strong>国指定等文化財の正確なリスト</strong>：稽照殿・伝国の杜の所蔵リストと指定番号</li>
+      <li><strong>計画区域の最終ライン</strong>：特に東町伝統発酵食ゾーンの範囲</li>
+      <li><strong>SPC設立構想の取扱い</strong>：申請段階で記載するか否か</li>
+      <li><strong>共通乗車券の特例措置の根拠条文</strong>：文化観光推進法第15条の適用範囲</li>
+      <li><strong>各事業の予算精緻化</strong>：年度別事業費の内訳確認</li>
+      <li><strong>第5期観光振興計画との整合表記の粒度</strong>：「市の正式上位計画」としての引用方法</li>
+      <li><strong>JNTOとの連携協力の具体的範囲</strong>：制度上の連携メニュー</li>
+      <li><strong>地方負担分の特別交付税措置</strong>：米沢市の負担分への措置範囲</li>
+    </ol>
+
+    <!-- 提出様式リンク（末尾再掲） -->
+    <div class="form-links">
+      <div class="ttl">📎 提出様式リンク（再掲）</div>
+      <div class="form-links-grid">
+        <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+          <span class="icon gd">GD</span>
+          <span class="meta-info">
+            <span class="name">①申請前相談申込書様式.xlsx</span>
+            <span class="desc">Google Drive（事業者ドラフト・記入済）</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+          <span class="icon gd">GD</span>
+          <span class="meta-info">
+            <span class="name">②地域計画.docx</span>
+            <span class="desc">Google Drive（様式テンプレート）</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank" rel="noopener" class="form-link">
+          <span class="icon xlsx">XLSX</span>
+          <span class="meta-info">
+            <span class="name">①申請前相談申込書（原本）</span>
+            <span class="desc">様式94370601_01 ／ 文化庁公式</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank" rel="noopener" class="form-link">
+          <span class="icon docx">DOCX</span>
+          <span class="meta-info">
+            <span class="name">②地域計画 様式（原本）</span>
+            <span class="desc">様式94093402_02 ／ 文化庁公式</span>
+          </span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.8rem;line-height:1.6;">
+        📧 提出先：<a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a>
+        ／ 期限：<strong style="color:var(--bunka-vermilion);">2026年5月12日（火）17:00</strong>
+      </p>
+    </div>
+
+  </div>
+
   <!-- ============================================================
        FOOTER
        ============================================================ -->
@@ -1053,7 +1914,7 @@
   (function(){
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.tab-panel');
-    const validTabs = ['dashboard','analysis','plan5'];
+    const validTabs = ['dashboard','analysis','plan5','draft'];
     function activate(name){
       tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
       panels.forEach(p => p.classList.toggle('active', p.dataset.tab === name));
