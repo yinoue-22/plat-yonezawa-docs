@@ -320,7 +320,15 @@
   /* Form links banner */
   .form-links{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 1.4rem;box-shadow:var(--shadow)}
   .form-links .ttl{font-size:.78rem;color:var(--bunka-vermilion);font-weight:700;margin-bottom:.6rem;letter-spacing:.04em}
-  .form-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .form-category{margin-bottom:.9rem}
+  .form-category:last-child{margin-bottom:0}
+  .form-category .category-label{font-size:.85rem;color:var(--ink);font-weight:700;margin-bottom:.4rem;
+    display:flex;align-items:center;gap:6px;padding-left:4px;border-left:4px solid var(--bunka-vermilion);padding-left:10px}
+  .icon-mini{display:inline-flex;align-items:center;justify-content:center;width:32px;height:18px;
+    border-radius:3px;font-size:.6rem;color:#fff;font-weight:700;letter-spacing:.04em}
+  .icon-mini.xlsx{background:#1f7244}
+  .icon-mini.docx{background:#2a5a9e}
+  .form-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
   @media(max-width:740px){.form-links-grid{grid-template-columns:1fr}}
   .form-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;
     text-decoration:none;color:var(--ink);background:#fafafa;font-size:.82rem;transition:.15s}
@@ -336,6 +344,50 @@
   .form-link .arrow{color:var(--muted);font-size:.85rem}
   .form-links-section{margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--line)}
   .form-links-section .section-label{font-size:.7rem;color:var(--muted);font-weight:600;margin-bottom:.4rem;letter-spacing:.04em}
+
+  /* Inline confirmation callout */
+  .confirm-box{background:linear-gradient(135deg,#fff8e1 0%,#fff3c4 100%);
+    border:2px solid var(--bunka-gold);border-radius:10px;padding:12px 16px;margin:.8rem 0;
+    position:relative;font-size:.82rem;line-height:1.7}
+  .confirm-box::before{content:"⚠";position:absolute;left:-10px;top:-8px;background:var(--bunka-gold);
+    color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;font-weight:700;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .confirm-box .ttl{font-weight:700;color:#7a4a00;font-size:.82rem;margin-bottom:.4rem;letter-spacing:.04em;padding-left:.4rem}
+  .confirm-box ul{margin:0 0 0 1.4rem;padding:0}
+  .confirm-box li{margin-bottom:.2rem;color:var(--ink);font-size:.78rem}
+  .confirm-box li strong{color:#7a4a00}
+
+  /* 既存事業との関係整理 セクション (色付きハイライト) */
+  .relation-summary{background:linear-gradient(135deg,#e8f4f8 0%,#d6ebf3 100%);
+    border:2px solid var(--bunka-deep);border-radius:12px;padding:1.4rem 1.6rem;margin:0 0 1.4rem;box-shadow:var(--shadow)}
+  .relation-summary h3.title{color:var(--bunka-deep);font-size:1.05rem;margin:0 0 .8rem;border:none;padding:0;font-weight:700}
+  .relation-summary .lead-txt{font-size:.85rem;color:var(--ink);margin:.5rem 0;line-height:1.8}
+  .relation-summary .lead-txt strong{color:var(--bunka-vermilion)}
+
+  /* 関係整理テーブル */
+  .relation-table{width:100%;border-collapse:collapse;font-size:.82rem;background:#fff;
+    border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:.5rem 0}
+  .relation-table th{background:var(--bunka-deep);color:#fff;padding:8px 10px;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.04em}
+  .relation-table td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  .relation-table .src-row{background:#f0f7ed;font-weight:600;color:var(--green)}
+  .relation-table tr:nth-child(even) td{background:#fafafa}
+
+  /* Status pill (審査中・採択済) */
+  .status-pill{display:inline-block;font-size:.66rem;font-weight:700;padding:.15rem .5rem;
+    border-radius:3px;letter-spacing:.04em;margin-left:.3rem}
+  .status-pill.review{background:#fff4e6;color:#d68910;border:1px solid #f0c674}
+  .status-pill.adopted{background:var(--soft-green);color:var(--green);border:1px solid #bce5cd}
+  .status-pill.preparing{background:var(--soft-red);color:var(--bunka-vermilion);border:1px solid #f3c2c2}
+
+  /* 補助金スタックテーブル（再構成版） */
+  .stack-table{width:100%;border-collapse:collapse;font-size:.82rem;background:#fff;
+    border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:.5rem 0}
+  .stack-table th{background:#fafafa;color:var(--sub);font-weight:600;padding:8px 10px;text-align:left;font-size:.74rem;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+  .stack-table td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  .stack-table .col-target{background:var(--soft-red);color:var(--bunka-vermilion);font-weight:700;width:24%}
+  .stack-table .col-h{background:#f0f7ed;color:var(--green);font-weight:600}
+  .stack-table .col-s{background:#e8f4f8;color:var(--bunka-deep);font-weight:600}
+  .stack-table .col-b{background:#fff8e1;color:#7a4a00;font-weight:600}
 </style>
 </head>
 <body>
@@ -1166,42 +1218,117 @@
       <p>本ドラフトは「未定稿レベル」（5/12 申請前相談時点で文化庁に提出する版）として作成。確定情報は埋め、不確定箇所は <span class="tbd-mark">TBD</span> で明示し、文化庁担当者との協議で確定する設計。本様式（docx）への流し込みは、本ドラフト承認後に実施。</p>
     </div>
 
+    <!-- ============== 既存事業との関係整理 ============== -->
+    <div class="relation-summary">
+      <h3 class="title">📊 既存事業との関係整理 — どのように要件を充足し、補助金重複を回避するか</h3>
+      <p class="lead-txt">
+        本地域計画は、<strong>3つの既存資産（米沢市第5期観光振興計画／観光庁レキマチハード／観光庁レキマチソフト）</strong>を基盤として構築している。
+        補助金重複回避の観点から、各既存事業から「何を取り込み、何を取り込まないか」を以下に明示する。
+      </p>
+
+      <h4 style="font-size:.92rem;color:var(--bunka-deep);margin:1rem 0 .5rem;font-weight:700;">① 米沢市第5期観光振興計画 R8-R12 の取り込み（市の上位計画として）</h4>
+      <table class="relation-table">
+        <thead>
+          <tr><th style="width:24%;">第5期計画の要素</th><th style="width:18%;">本地域計画での位置づけ</th><th>取り込み方／要件充足の方法</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>計画期間 R8-R12（5年）</td><td>計画期間（9. 計画期間）</td><td>市の正式計画期間と<strong>完全一致</strong>させ、地域計画の5年計画として設定。中間評価年（R10末）も整合</td></tr>
+          <tr><td>「上杉文化エリア」の定義（P.66）</td><td>3. 計画区域</td><td>市が公式に定義した「上杉神社を中心とする上杉文化エリア」を<strong>本計画区域の根拠</strong>として引用</td></tr>
+          <tr><td>上杉謙信公生誕500年プロジェクト（重点視点2）</td><td>4-3 取組強化2／8-1-4 事業4-②</td><td>R12集大成事業として明記。市と本計画の象徴的同期</td></tr>
+          <tr><td>米沢市版DMO構想（基本方針(3)③）</td><td>1. 実施体制／6. 評価／7. 中核施設</td><td>市が位置付けたDMOを<strong>本計画の推進主体（申請者③）</strong>として活用</td></tr>
+          <tr><td>市全体KPI（観光入込客数3,672千人・観光消費額232億円）</td><td>5. 目標 ②③</td><td>市マクロKPIと本計画ミクロKPIの<strong>二段構造</strong>で表記</td></tr>
+          <tr><td>米沢市観光振興委員会（13名）</td><td>1. 実施体制（協議会母体）</td><td>市の既存評価機関を協議会の母体として再編成（連携合意の素地）</td></tr>
+          <tr><td>観光文化スポーツ部 新設（R8.4）</td><td>1. 実施体制／2. 事務体制</td><td>市の文化×観光統合の組織的根拠として記載</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.78rem;color:var(--ink);margin:.5rem 0;line-height:1.7;">
+        ✅ <strong>要件充足の論理：</strong>第5期計画は<strong>市の正式な意思決定文書</strong>として、文化観光推進法 地域計画の様式に直接引用可能。これにより「市町村の都市計画に関する基本的な方針との調和」（様式1の留意事項）が明確に説明できる。
+      </p>
+
+      <h4 style="font-size:.92rem;color:var(--bunka-deep);margin:1.2rem 0 .5rem;font-weight:700;">② レキマチハード（観光庁・<span class="status-pill review">審査中</span>）のマージ</h4>
+      <table class="relation-table">
+        <thead>
+          <tr><th style="width:24%;">レキマチハードの要素</th><th style="width:18%;">本地域計画での位置づけ</th><th>マージ方／補助金重複回避</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10案件・27,113万円・建造物整備</td><td>3. 計画区域／7. 中核施設</td><td>整備対象施設13施設を<strong>「文化観光拠点施設」として位置付け直し</strong>。整備費はハードのみ計上、本計画は活用フェーズで運用</td></tr>
+          <tr><td>上杉神社授与所改修 5,000万円（補助2,500万円）</td><td>7. 中核施設（補助金申請状況）</td><td>授与所の<strong>建物整備はハード</strong>／<strong>音声ガイド・QR・多言語解説は文化観光</strong>で経費分離</td></tr>
+          <tr><td>東光の酒蔵・旧遠万織物 等9案件</td><td>3. 計画区域（連携施設群）</td><td>建物改修はハード／<strong>運用後の解説整備・体験プログラム造成は文化観光</strong>で経費分離</td></tr>
+          <tr><td>R7総合計画・三角エリア構想</td><td>4-1-3 比較／4-3 取組強化</td><td>合意形成済みの構想を<strong>本計画の出発点</strong>として記載</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.78rem;color:var(--ink);margin:.5rem 0;line-height:1.7;">
+        ✅ <strong>重複回避ルール：</strong>ハード = <span class="status-pill review">審査中</span> の建造物本体・什器・外構整備（R8単年）／文化観光 = ハードで整備された施設の<strong>解説情報・人材育成・多言語化・運営</strong>（R8〜R12 5年継続）。
+      </p>
+
+      <h4 style="font-size:.92rem;color:var(--bunka-deep);margin:1.2rem 0 .5rem;font-weight:700;">③ レキマチソフト（観光庁・<span class="status-pill review">審査中</span>）のマージ</h4>
+      <table class="relation-table">
+        <thead>
+          <tr><th style="width:24%;">レキマチソフトの要素</th><th style="width:18%;">本地域計画での位置づけ</th><th>マージ方／補助金重複回避</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Agoopモバイル空間統計（384,987人・退出率65.8%）</td><td>4-1-2 観光客動向</td><td>調査データを<strong>そのまま転載</strong>。文化観光側で<strong>追加調査は実施しない</strong>（経費重複回避）</td></tr>
+          <tr><td>鹿島神宮・熊野大社のベンチマーク調査</td><td>4-1-3 他地域との比較</td><td>調査結果をそのまま転載／追加調査なし</td></tr>
+          <tr><td>「超勝利」ブランド構想・モニターツアー</td><td>4-3 取組2／8-1-1 事業1-②</td><td>R8単年のモニターツアーはソフト／<strong>R9〜R12の継続コンテンツ造成・展開は文化観光</strong>で経費分離</td></tr>
+          <tr><td>R8策定計画書・モデル創出</td><td>各項目の論理基盤</td><td>策定済の文書資産を<strong>本計画書の論理構成に流用</strong>。文化観光側で計画再策定は実施しない（経費重複回避）</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.78rem;color:var(--ink);margin:.5rem 0;line-height:1.7;">
+        ✅ <strong>重複回避ルール：</strong>ソフト = <span class="status-pill review">審査中</span> R8単年の調査・モニターツアー・計画策定／文化観光 = ソフトで策定した計画の<strong>R9〜R12の実装・展開・年次更新</strong>。
+      </p>
+
+      <div class="confirm-box" style="margin-top:1rem;">
+        <div class="ttl">📌 5/12 申請前相談での確認ポイント</div>
+        <ul>
+          <li><strong>第5期計画の引用粒度：</strong>「市町村の都市計画に関する基本的な方針との調和」をどの程度詳細に記載するか</li>
+          <li><strong>ハード・ソフト審査結果のタイミング：</strong>採択前の段階で本申請を進める場合の取扱い（採択後の追記・修正対応）</li>
+          <li><strong>経費区分書の様式：</strong>3制度の経費分離を示す文書の粒度・記載例</li>
+          <li><strong>ソフトで実施するモニターツアーと文化観光の解説整備の併走：</strong>R8時点での重複可能性</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- 提出様式リンク（冒頭） -->
     <div class="form-links">
       <div class="ttl">📎 提出様式（本ドラフトを流し込む対象ファイル）</div>
-      <div class="form-links-grid">
-        <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
-          <span class="icon gd">GD</span>
-          <span class="meta-info">
-            <span class="name">①申請前相談申込書様式.xlsx</span>
-            <span class="desc">Google Drive（事業者ドラフト・記入済）</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
-          <span class="icon gd">GD</span>
-          <span class="meta-info">
-            <span class="name">②地域計画.docx</span>
-            <span class="desc">Google Drive（様式テンプレート）</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-      </div>
-      <div class="form-links-section">
-        <div class="section-label">📚 文化庁公式 原本テンプレート（参考）</div>
+
+      <div class="form-category">
+        <div class="category-label"><span class="icon-mini xlsx">XLSX</span>エクセル様式（①申請前相談申込書）</div>
         <div class="form-links-grid">
+          <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+            <span class="icon gd">GD</span>
+            <span class="meta-info">
+              <span class="name">事業者ドラフト（記入済）</span>
+              <span class="desc">Google Drive ／ 担当：井上</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
           <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank" rel="noopener" class="form-link">
             <span class="icon xlsx">XLSX</span>
             <span class="meta-info">
-              <span class="name">①申請前相談申込書（原本）</span>
+              <span class="name">文化庁公式 原本テンプレート</span>
               <span class="desc">様式94370601_01 ／ 文化庁公式</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="form-category">
+        <div class="category-label"><span class="icon-mini docx">DOCX</span>ワード様式（②地域計画）</div>
+        <div class="form-links-grid">
+          <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+            <span class="icon gd">GD</span>
+            <span class="meta-info">
+              <span class="name">事業者ドラフト（テンプレート）</span>
+              <span class="desc">Google Drive ／ 本ドラフトの流し込み先</span>
             </span>
             <span class="arrow">↗</span>
           </a>
           <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank" rel="noopener" class="form-link">
             <span class="icon docx">DOCX</span>
             <span class="meta-info">
-              <span class="name">②地域計画 様式（原本）</span>
+              <span class="name">文化庁公式 原本テンプレート</span>
               <span class="desc">様式94093402_02 ／ 文化庁公式</span>
             </span>
             <span class="arrow">↗</span>
@@ -1335,6 +1462,17 @@
       ④ 国土形成計画・米沢市まちづくり総合計画2026-2035・第5期米沢市観光振興計画との調和を示す書類
     </div>
 
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（1. 実施体制）</div>
+      <ul>
+        <li><strong>協議会の名称</strong>を確定（仮称：「上杉の城下町文化観光推進協議会」）</li>
+        <li><strong>申請者② 上杉神社の代表者氏名</strong>（宮司の正式氏名）</li>
+        <li><strong>申請者③ 米沢観光コンベンション協会の代表者氏名</strong>（会長の正式氏名）</li>
+        <li><strong>各申請者の概要資料・登記簿・定款等</strong>の収集（添付資料用）</li>
+        <li><strong>協議会組織化の公表方法</strong>（プレスリリース／市公式サイト掲載）</li>
+      </ul>
+    </div>
+
     <!-- 2. 事務の実施体制 -->
     <h2 class="sec" id="draft-sec2">2. 事務の実施体制</h2>
     <p class="body-text">
@@ -1350,7 +1488,7 @@
         <tr><td><strong>米沢市</strong>（観光文化スポーツ部・文化財関係課）</td><td>計画の総合監督、文化財保存活用施策の遂行、関連法令との整合確保、特別交付税措置の手続。令和8年4月新設の「観光文化スポーツ部」が窓口となり、本計画と「第5期米沢市観光振興計画（R8-R12）」の整合運営を担う。</td></tr>
         <tr><td><strong>宗教法人上杉神社</strong>（中核施設設置者）</td><td>稽照殿に所蔵する国宝・重要文化財の保存責任、文化資源の公開・解説の主体、来訪者受入環境の整備。学術監修体制の構築（米沢藩研究者・山形大学等との連携）。</td></tr>
         <tr><td><strong>一般社団法人米沢観光コンベンション協会</strong>（施行規則1条2項1号事業者・米沢市版DMO候補）</td><td>多様な関係者との連携体制構築、観光データの収集・整理・分析、KPI設定とPDCAサイクル運営、文化観光推進施策の方針策定。第5期観光振興計画(3)③で位置付けられた「米沢市版DMO」機能を担う。</td></tr>
-        <tr><td><strong>プラットヨネザワ株式会社</strong>（施行規則1条2項2号事業者・事務局）</td><td>計画事務局運営、二次交通整備、東町エリアを含む商店街にぎわいづくり、上杉城史苑等を含む滞在型コンテンツの企画・実施、ハード10案件・ソフト1案件（観光庁採択）の連動運営。<span class="tbd-mark">TBD</span> SPC設立準備の事務局。</td></tr>
+        <tr><td><strong>プラットヨネザワ株式会社</strong>（施行規則1条2項2号事業者・事務局）</td><td>計画事務局運営、二次交通整備、東町エリアを含む商店街にぎわいづくり、上杉城史苑等を含む滞在型コンテンツの企画・実施、ハード10案件・ソフト1案件（観光庁<span class="status-pill review">審査中</span>）の連動運営。<span class="tbd-mark">TBD</span> SPC設立準備の事務局。</td></tr>
       </tbody>
     </table>
 
@@ -1377,7 +1515,16 @@
     <div class="note-box ref">
       <strong>📎 添付予定：</strong> 計画区域図（中核施設の位置を明示／三角エリア構想図／観光庁ハード10案件位置図／第5期観光振興計画 P.66の上杉文化エリア定義図を踏襲）
     </div>
-    <p style="font-size:.85rem;"><span class="req-mark">要協議</span> 計画区域の最終ライン（特に東町エリアの範囲確定）は5/12申請前相談で文化庁助言を受けて確定。</p>
+
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（3. 計画区域）</div>
+      <ul>
+        <li><strong>計画区域の最終ライン</strong>（特に東町伝統発酵食ゾーンの範囲確定）</li>
+        <li><strong>計画区域図の作成</strong>（中核施設の位置を明示・三角エリア構想図と整合）</li>
+        <li><strong>第5期観光振興計画 P.66の上杉文化エリア図</strong>の引用方法（市の正式定義の活用粒度）</li>
+        <li><strong>都市計画区域</strong>との整合確認（米沢市都市計画基本方針との調和）</li>
+      </ul>
+    </div>
 
     <!-- 4. 基本的な方針 -->
     <h2 class="sec" id="draft-sec4">4. 基本的な方針</h2>
@@ -1418,6 +1565,17 @@
     </table>
     <div class="note-box">
       <span class="req-mark">要協議</span> 国指定等文化財の正確なリスト（名称・指定番号・指定年月日）は、申請前に米沢市文化財関係課・上杉神社・伝国の杜から正式取得し、別表として添付する。
+    </div>
+
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（4-1. 現状分析）</div>
+      <ul>
+        <li><strong>国指定等文化財の正確なリスト</strong>（名称・指定番号・指定年月日・所在）— 米沢市文化財関係課／上杉神社／伝国の杜から取得</li>
+        <li><strong>稽照殿の主要文化資源の写真</strong>（参考資料として添付・解説に使用）</li>
+        <li><strong>外国人来訪者の正確な数値</strong>（宿泊統計・観光案内所カウント等）</li>
+        <li><strong>絵画・彫刻の点数</strong>（4-1-1表のTBD箇所）</li>
+        <li><strong>登録有形文化財・重要美術品の該当有無</strong>（米沢市文化財一覧と突合）</li>
+      </ul>
     </div>
 
     <h4 style="font-size:.88rem;color:var(--bunka-deep);margin:1rem 0 .4rem;font-weight:700;">4-1-2. 観光客の動向</h4>
@@ -1593,6 +1751,17 @@
       市の正式数値目標と本計画固有指標の整合性を確保しつつ、文化観光推進法固有の評価軸（文化財理解度・保存協力金）を補完する。
     </div>
 
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（5. 目標）</div>
+      <ul>
+        <li><strong>地域内宿泊者数のR7基準値</strong>（目標④のTBD箇所）— 第5期観光振興計画と連動して設定</li>
+        <li><strong>外国人来訪者比率20%（5年で4倍）の妥当性</strong> — JNTOネットワーク活用前提の実現可能性を要確認</li>
+        <li><strong>保存協力金1,500万円/年の根拠</strong>（稽照殿参拝者規模×単価設計）— 上杉神社との合意</li>
+        <li><strong>文化財理解度80%の調査設計</strong>（質問項目・サンプリング・実施主体）</li>
+        <li><strong>NPS指標の採用</strong>（補完指標としての位置付け）</li>
+      </ul>
+    </div>
+
     <!-- 6. 評価 -->
     <h2 class="sec" id="draft-sec6">6. 目標の達成状況の評価</h2>
     <p class="body-text">
@@ -1648,7 +1817,7 @@
               <li><strong>第1号：</strong>学術監修体制（山形大学・米沢藩研究者）を構築し、5言語×100箇所の解説情報を整備</li>
               <li><strong>第2号：</strong>音声ガイドアプリ／QRコンテンツ／3DビューワーによるICT活用</li>
               <li><strong>第3号：</strong>英・中（繁）・韓・タイ語の多言語解説／インバウンドコンシェルジュ配置</li>
-              <li><strong>補助金活用実績（現状）：</strong>観光庁ハード補助金（R8採択・補助2,500万円・授与所改修）／観光庁ソフト補助金（R8採択・上限2,000万円）</li>
+              <li><strong>補助金申請状況（現状）：</strong>観光庁ハード補助金<span class="status-pill review">審査中</span>（R8申請・補助2,500万円・授与所改修）／観光庁ソフト補助金<span class="status-pill review">審査中</span>（R8申請・上限2,000万円）</li>
             </ul>
           </td>
         </tr>
@@ -1680,7 +1849,18 @@
     </table>
 
     <div class="note-box ref">
-      <strong>📎 添付予定資料：</strong> ① 解説・紹介の取組内容を示す写真等／② 多言語化整備計画（5言語×100箇所のロードマップ）／③ 既存補助金交付決定通知書（観光庁ハード・ソフト）
+      <strong>📎 添付予定資料：</strong> ① 解説・紹介の取組内容を示す写真等／② 多言語化整備計画（5言語×100箇所のロードマップ）／③ 観光庁ハード・ソフト 補助金申請書類（<span class="status-pill review">審査中</span>のため採択通知ではなく申請書を添付）
+    </div>
+
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（7. 中核施設）</div>
+      <ul>
+        <li><strong>稽照殿の主要文化資源リスト</strong>（特に国宝・重要文化財の正式名称）</li>
+        <li><strong>解説・紹介の写真資料</strong>（参考資料として添付・現状の取組を示すもの）</li>
+        <li><strong>上杉神社との合意</strong>（中核施設設置者として申請者②に位置付ける旨）</li>
+        <li><strong>観光庁ハード・ソフトの審査結果タイミング</strong>と本計画記載との整合（採択前提の記述粒度）</li>
+        <li><strong>米沢観光コンベンション協会の DMO 化スケジュール</strong>（協会の役割明確化）</li>
+      </ul>
     </div>
 
     <!-- 8. 推進事業 -->
@@ -1813,10 +1993,53 @@
         <tr style="background:var(--soft-red);"><td><strong>合計</strong></td><td><strong>170百万円</strong></td><td>うち文化観光推進法補助金（補助率2/3・上限7,500万円/年）想定 約113百万円<span class="tbd-mark">TBD</span> 5/12申請前相談で精緻化</td></tr>
       </tbody>
     </table>
-    <div class="note-box ref">
-      <strong>💡 補助金スタック設計：</strong>
-      ハード（観光庁・1/2・27,113万円・R8単年）はすでに採択済／ソフト（観光庁・上限2,000万円・R8単年）はすでに採択済／文化観光推進法（文化庁・2/3・上限7,500万円/年×5年）が本申請対象。
-      経費は同一物品・同一役務で重複しないよう、ハード=建造物整備、ソフト=R8単年のコンテンツ造成、文化観光=5年継続の解説整備・人材育成・運営、という形で分離。
+    <div class="callout">
+      <h3>💡 補助金スタック設計（重複回避ルール）</h3>
+      <p style="margin-bottom:.5rem;">3つの補助金は<strong>同一物品・同一役務に対する重複交付不可</strong>（補助金等適正化法第7条）のため、対象経費を明確に分離して設計する。</p>
+      <table class="stack-table">
+        <thead>
+          <tr><th style="width:24%;">補助金</th><th style="width:18%;">所管・補助率・上限</th><th style="width:12%;">期間</th><th style="width:12%;">状況</th><th>本計画における対象経費（重複回避）</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-h"><strong>観光庁ハード補助金</strong></td>
+            <td>観光庁・1/2・27,113万円</td>
+            <td>R8単年</td>
+            <td><span class="status-pill review">審査中</span></td>
+            <td><strong>建造物整備</strong>（10施設の改修工事・什器・外構）</td>
+          </tr>
+          <tr>
+            <td class="col-s"><strong>観光庁ソフト補助金</strong></td>
+            <td>観光庁・定額・2,000万円</td>
+            <td>R8単年</td>
+            <td><span class="status-pill review">審査中</span></td>
+            <td><strong>R8単年のコンテンツ造成</strong>（モニターツアー・調査・モデル創出）</td>
+          </tr>
+          <tr style="background:var(--soft-red);">
+            <td class="col-b"><strong>文化観光推進法 補助金</strong></td>
+            <td><strong>文化庁・2/3・7,500万円/年×5年</strong></td>
+            <td><strong>R8〜R12（5年）</strong></td>
+            <td><span class="status-pill preparing">本申請対象</span></td>
+            <td><strong>5年継続の解説情報整備・人材育成・多言語化・運営費</strong>（ハード・ソフトと重複しない部分）</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.6rem;font-size:.78rem;color:var(--ink);">
+        📋 <strong>運用ルール：</strong>すべての経費を「経費種別 × 補助金充当 × 年度」の三次元で管理する原簿（Excel/Googleシート）を整備し、文化観光側の発注はすべて「ハード未充当・ソフト未充当の経費か」をチェックして経費区分書に記載する。
+      </p>
+    </div>
+
+    <div class="confirm-box">
+      <div class="ttl">📌 5/12 申請前に確認すべき事項（8. 推進事業）</div>
+      <ul>
+        <li><strong>各事業の予算精緻化</strong>（年度別事業費の内訳・補助金充当の確定）</li>
+        <li><strong>共通乗車券特例の根拠条文</strong>（文化観光推進法第15条の適用範囲確認）</li>
+        <li><strong>JNTOとの連携協力の具体的範囲</strong>（制度上の連携メニュー）</li>
+        <li><strong>SPC設立構想の取扱い</strong>（申請段階で記載するか否か）</li>
+        <li><strong>事業実施主体の合意</strong>（10事業者・米沢観光コンベンション協会・上杉神社）</li>
+        <li><strong>経費区分書の様式</strong>（3制度の経費分離を示す文書の文化庁要求粒度）</li>
+        <li><strong>ハード・ソフト審査結果待ち</strong>での予算根拠提示方法（採択前提の予算）</li>
+      </ul>
     </div>
 
     <!-- 9. 計画期間 -->
@@ -1839,58 +2062,101 @@
       ④ 観光庁ソフト補助金 R8単年事業との連動（R8策定計画の実装フェーズに対応）
     </div>
 
-    <!-- 5/12 確認事項 -->
-    <h2 class="sec">📌 5/12 申請前相談時の主要確認事項</h2>
-    <ol class="steps">
-      <li><strong>協議会名称の確定</strong>：「上杉の城下町文化観光推進協議会」（仮称）の正式名称</li>
-      <li><strong>申請者②③の代表者氏名</strong>：上杉神社宮司／米沢観光コンベンション協会会長</li>
-      <li><strong>国指定等文化財の正確なリスト</strong>：稽照殿・伝国の杜の所蔵リストと指定番号</li>
-      <li><strong>計画区域の最終ライン</strong>：特に東町伝統発酵食ゾーンの範囲</li>
-      <li><strong>SPC設立構想の取扱い</strong>：申請段階で記載するか否か</li>
-      <li><strong>共通乗車券の特例措置の根拠条文</strong>：文化観光推進法第15条の適用範囲</li>
-      <li><strong>各事業の予算精緻化</strong>：年度別事業費の内訳確認</li>
-      <li><strong>第5期観光振興計画との整合表記の粒度</strong>：「市の正式上位計画」としての引用方法</li>
-      <li><strong>JNTOとの連携協力の具体的範囲</strong>：制度上の連携メニュー</li>
-      <li><strong>地方負担分の特別交付税措置</strong>：米沢市の負担分への措置範囲</li>
-    </ol>
+    <!-- 5/12 確認事項（全体総括） -->
+    <h2 class="sec">📌 5/12 申請前相談時の確認事項（総まとめ）</h2>
+    <p style="font-size:.85rem;">
+      各セクションに分散配置した <span class="confirm-box" style="display:inline;padding:.1rem .4rem;border-width:1px;background:#fff8e1;color:#7a4a00;font-weight:700;">📌 確認すべき事項</span> を、申請前相談（5/12）に向けて整理。
+    </p>
+
+    <div class="card-grid-2">
+      <div class="card">
+        <h3 class="sub" style="margin-top:0;">⚙ 制度・体制関連</h3>
+        <ol class="steps" style="font-size:.78rem;">
+          <li><strong>協議会名称の確定</strong>（仮称：「上杉の城下町文化観光推進協議会」）</li>
+          <li><strong>申請者②③の代表者氏名</strong>（上杉神社宮司／米沢観光コンベンション協会会長）</li>
+          <li><strong>SPC設立構想の取扱い</strong>（申請段階で記載するか否か）</li>
+          <li><strong>第5期観光振興計画との整合表記の粒度</strong>（「市の正式上位計画」としての引用方法）</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3 class="sub" style="margin-top:0;">📋 文化資源・調査関連</h3>
+        <ol class="steps" style="font-size:.78rem;">
+          <li><strong>国指定等文化財の正確なリスト</strong>（稽照殿・伝国の杜の所蔵リストと指定番号）</li>
+          <li><strong>計画区域の最終ライン</strong>（特に東町伝統発酵食ゾーンの範囲）</li>
+          <li><strong>稽照殿の主要文化資源の写真</strong>（参考資料）</li>
+          <li><strong>外国人来訪者の正確な数値</strong>（4-1-2のTBD箇所）</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3 class="sub" style="margin-top:0;">💰 補助金・予算関連</h3>
+        <ol class="steps" style="font-size:.78rem;">
+          <li><strong>ハード・ソフト審査結果のタイミング</strong>（<span class="status-pill review">審査中</span>段階での申請の取扱い）</li>
+          <li><strong>各事業の予算精緻化</strong>（年度別事業費の内訳確認）</li>
+          <li><strong>共通乗車券の特例措置の根拠条文</strong>（文化観光推進法第15条）</li>
+          <li><strong>経費区分書の様式</strong>（3制度の経費分離の文化庁要求粒度）</li>
+          <li><strong>地方負担分の特別交付税措置</strong>（米沢市負担分への措置範囲）</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3 class="sub" style="margin-top:0;">🌐 KPI・連携関連</h3>
+        <ol class="steps" style="font-size:.78rem;">
+          <li><strong>外国人来訪者比率20%（5年で4倍）の妥当性</strong></li>
+          <li><strong>保存協力金1,500万円/年の根拠</strong>（参拝者規模×単価）</li>
+          <li><strong>文化財理解度80%の調査設計</strong>（質問項目・サンプリング）</li>
+          <li><strong>JNTOとの連携協力の具体的範囲</strong>（制度上の連携メニュー）</li>
+          <li><strong>米沢観光コンベンション協会の DMO 化スケジュール</strong></li>
+        </ol>
+      </div>
+    </div>
 
     <!-- 提出様式リンク（末尾再掲） -->
     <div class="form-links">
       <div class="ttl">📎 提出様式リンク（再掲）</div>
-      <div class="form-links-grid">
-        <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
-          <span class="icon gd">GD</span>
-          <span class="meta-info">
-            <span class="name">①申請前相談申込書様式.xlsx</span>
-            <span class="desc">Google Drive（事業者ドラフト・記入済）</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
-          <span class="icon gd">GD</span>
-          <span class="meta-info">
-            <span class="name">②地域計画.docx</span>
-            <span class="desc">Google Drive（様式テンプレート）</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank" rel="noopener" class="form-link">
-          <span class="icon xlsx">XLSX</span>
-          <span class="meta-info">
-            <span class="name">①申請前相談申込書（原本）</span>
-            <span class="desc">様式94370601_01 ／ 文化庁公式</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank" rel="noopener" class="form-link">
-          <span class="icon docx">DOCX</span>
-          <span class="meta-info">
-            <span class="name">②地域計画 様式（原本）</span>
-            <span class="desc">様式94093402_02 ／ 文化庁公式</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
+
+      <div class="form-category">
+        <div class="category-label"><span class="icon-mini xlsx">XLSX</span>エクセル様式（①申請前相談申込書）</div>
+        <div class="form-links-grid">
+          <a href="https://drive.google.com/file/d/1gDZcNczWCx52JA_Q_RaibNqYKoeKuUvi/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+            <span class="icon gd">GD</span>
+            <span class="meta-info">
+              <span class="name">事業者ドラフト（記入済）</span>
+              <span class="desc">Google Drive ／ 担当：井上</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/excel/94370601_01.xlsx" target="_blank" rel="noopener" class="form-link">
+            <span class="icon xlsx">XLSX</span>
+            <span class="meta-info">
+              <span class="name">文化庁公式 原本テンプレート</span>
+              <span class="desc">様式94370601_01</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
       </div>
+
+      <div class="form-category">
+        <div class="category-label"><span class="icon-mini docx">DOCX</span>ワード様式（②地域計画）</div>
+        <div class="form-links-grid">
+          <a href="https://drive.google.com/file/d/1UjaGYIbZHx5J8z8M_BAHXnPmyzJAnqFw/view?usp=drivesdk" target="_blank" rel="noopener" class="form-link">
+            <span class="icon gd">GD</span>
+            <span class="meta-info">
+              <span class="name">事業者ドラフト（テンプレート）</span>
+              <span class="desc">Google Drive ／ 本ドラフトの流し込み先</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+          <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/bunkakanko/word/94093402_02.docx" target="_blank" rel="noopener" class="form-link">
+            <span class="icon docx">DOCX</span>
+            <span class="meta-info">
+              <span class="name">文化庁公式 原本テンプレート</span>
+              <span class="desc">様式94093402_02</span>
+            </span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
       <p style="font-size:.72rem;color:var(--muted);margin-top:.8rem;line-height:1.6;">
         📧 提出先：<a href="mailto:bunkakankosuishin@mext.go.jp">bunkakankosuishin@mext.go.jp</a>
         ／ 期限：<strong style="color:var(--bunka-vermilion);">2026年5月12日（火）17:00</strong>
