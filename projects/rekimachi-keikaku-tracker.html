@@ -190,6 +190,42 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .ref-list li { margin-bottom:.3rem; list-style:disc; margin-left:1.2rem; }
 .ref-list a { color:var(--blue); word-break:break-all; }
 
+/* ── 5W1H イントロカード（初見向け） ── */
+.intro-card {
+  background:linear-gradient(135deg,#fff8e7 0%,#fff 100%);
+  border:1px solid #ffd54f; border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); margin-bottom:.9rem;
+}
+.intro-title {
+  font-size:1rem; font-weight:900; color:var(--primary);
+  margin-bottom:.5rem; padding-bottom:.4rem;
+  border-bottom:2px solid var(--orange);
+  display:flex; align-items:center; gap:.4rem;
+}
+.intro-desc { font-size:.85rem; color:var(--text); line-height:1.85; margin-bottom:.8rem; }
+.w5h-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.6rem; margin-top:.6rem; }
+.w5h-item {
+  background:#fffdf3; border-left:3px solid var(--orange); border-radius:6px;
+  padding:.65rem .85rem;
+}
+.w5h-label { font-size:.7rem; font-weight:700; color:#5d4037; margin-bottom:.25rem; letter-spacing:.02em; }
+.w5h-body { font-size:.78rem; line-height:1.65; color:var(--text); }
+.w5h-body strong { color:var(--primary); }
+
+/* ── 公式資料リファレンスカード ── */
+.ref-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:.55rem; }
+.ref-card {
+  display:flex; align-items:center; gap:.6rem;
+  background:#fff; border:1px solid var(--border); border-radius:8px;
+  padding:.65rem .85rem; text-decoration:none; color:var(--text);
+  transition:background .15s,border-color .15s,transform .15s;
+}
+.ref-card:hover { background:#f0f4ff; border-color:#c5d5ff; transform:translateY(-1px); }
+.ref-card .ref-icon { font-size:1.3rem; flex-shrink:0; }
+.ref-card-body { line-height:1.4; }
+.ref-card .ref-title { font-size:.8rem; font-weight:700; color:var(--primary); }
+.ref-card .ref-desc { font-size:.68rem; color:var(--text-sub); margin-top:.1rem; }
+
 footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
 </style>
 </head>
@@ -221,6 +257,81 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
 
 <!-- ============ TAB 1: 進捗サマリー ============ -->
 <div id="tab-summary" class="tab-pane active">
+
+  <!-- 5W1H イントロ（初見の方向け） -->
+  <div class="intro-card">
+    <div class="intro-title">🔰 はじめての方へ — この事業の 5W1H</div>
+    <p class="intro-desc">
+      観光庁メニュー集 R8 から抽出した「○候補」3 補助金のうちの 1 つ。
+      <strong>米沢市が「歴まち計画」を策定して 3 省同時認定を取得し、社総交（街なみ環境整備事業）等の交付率上乗せを獲得する中期戦略</strong>。
+      レキマチハード本体（既申請・R9.2 完了予定）の財源を二重化するための、裏方の準備プロジェクトです。
+    </p>
+    <div class="w5h-grid">
+      <div class="w5h-item">
+        <div class="w5h-label">📌 What（何を取りに行く？）</div>
+        <div class="w5h-body">市町村が策定し<strong>文部科学・農水・国交の 3 省が同時認定</strong>する法定計画（歴まち法／2008 年成立）。認定後、社総交（街なみ環境整備事業）／都市再生整備計画事業の交付率拡充（40→45%）等の上乗せ効果が発動。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">👥 Who（誰が動く？）</div>
+        <div class="w5h-body"><strong>米沢市が策定主体</strong>（都市計画課＋文化財担当課）／プラットヨネザワが伴走支援／3 省（国交省都市局・文化庁・農水省）が認定／有識者・上杉神社・伝国の杜・山形大・町内会が参画。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📅 When（いつ？）</div>
+        <div class="w5h-body">R8.5（2026）打診・準備 → R8.9 米沢市 R9 予算化判断 → R8.12 推進協議会設置 → R9 計画素案・パブコメ → <strong>R10 前半（2028 春）3 省同時認定</strong> → R10 秋 社総交予算反映。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📍 Where（どこで？）</div>
+        <div class="w5h-body"><strong>上杉神社・米沢城跡（国史跡）・稽照殿（重文集積）を中核とする「上杉の城下町」の重点区域</strong>。粡町・東町・上杉神社周辺の面的整備にハマる。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">💡 Why（なぜやる？）</div>
+        <div class="w5h-body">①ハード本体（レキマチ）の整備財源を二重化／②社総交（街なみ整備）の歴史的風致形成建造物の修理補助対象化／③景観改善推進事業・歴史的観光資源高質化支援事業の発動／④米沢市の都市計画的な裏付け強化。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">🛠 How（どう進める？）</div>
+        <div class="w5h-body">①米沢市意向打診 → ②3 省事前相談 → ③推進協議会設置 → ④計画素案策定（7 章構成）→ ⑤パブコメ → ⑥3 省同時申請 → ⑦認定 → ⑧社総交予算反映。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 国の公式資料・参考リンク -->
+  <div class="card">
+    <div class="section-title">📚 国の公式資料・参考リンク</div>
+    <div class="ref-grid">
+      <a href="https://www.mlit.go.jp/toshi/rekimachi/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">国交省 歴まちトップページ</div><div class="ref-desc">制度全体の入口</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/toshi/rekimachi/toshi_history_tk_000010.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">国交省 歴まち計画認定状況</div><div class="ref-desc">先行認定都市の確認</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/common/001017215.pdf" target="_blank" class="ref-card">
+        <div class="ref-icon">📄</div>
+        <div class="ref-card-body"><div class="ref-title">街なみ環境整備事業 パンフレット</div><div class="ref-desc">事業内容・要件 PDF</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/toshi/rekimachi/content/001597421.pdf" target="_blank" class="ref-card">
+        <div class="ref-icon">📄</div>
+        <div class="ref-card-body"><div class="ref-title">歴まち制度 パンフレット</div><div class="ref-desc">3 省共同認定の概要 PDF</div></div>
+      </a>
+      <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/shokan_horei/bunkazai/rekishifuchi/index.html" target="_blank" class="ref-card">
+        <div class="ref-icon">📜</div>
+        <div class="ref-card-body"><div class="ref-title">文化庁 歴まち法ページ</div><div class="ref-desc">文化庁所管部分の解説</div></div>
+      </a>
+      <a href="https://www.bunka.go.jp/seisaku/bunka_gyosei/shokan_horei/bunkazai/rekishifuchi/kojokeikaku.html" target="_blank" class="ref-card">
+        <div class="ref-icon">📜</div>
+        <div class="ref-card-body"><div class="ref-title">文化庁 認定計画一覧</div><div class="ref-desc">先行 100 都市のリスト</div></div>
+      </a>
+      <a href="https://www.nilim.go.jp/lab/ddg/rekimachidb/" target="_blank" class="ref-card">
+        <div class="ref-icon">🗂</div>
+        <div class="ref-card-body"><div class="ref-title">国総研 歴まち情報サイト</div><div class="ref-desc">認定都市アーカイブ</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kankocho/jirei_shien/kankochiikizukuri_shien.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">観光庁 R8 支援メニュー集</div><div class="ref-desc">本トラッカーの抽出元</div></div>
+      </a>
+    </div>
+  </div>
 
   <div class="alert alert-warn">
     <strong>📍 直近の最重要事項：</strong>
@@ -325,17 +436,10 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
     <div class="section-title">プロジェクト体制</div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">井</div>
+        <div class="avatar" style="background:#1d4ed8;">プ</div>
         <div>
-          <div class="team-name">井上 陽平</div>
-          <div class="team-role">プラットヨネザワ／PM・社内ポータル運用<br>市役所窓口調整・素案ドラフト</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">小</div>
-        <div>
-          <div class="team-name">小田 COO</div>
-          <div class="team-role">プラットヨネザワ／補助金統括<br>3省事前相談・有識者連携</div>
+          <div class="team-name">プラットヨネザワ株式会社</div>
+          <div class="team-role">PM・市役所窓口調整・素案ドラフト・3省事前相談・有識者連携・補助金統括<br>（井上陽平／小田 COO ほか）</div>
         </div>
       </div>
       <div class="team-card">
