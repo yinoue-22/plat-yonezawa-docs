@@ -219,6 +219,42 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .ref-list li { margin-bottom:.3rem; list-style:disc; margin-left:1.2rem; }
 .ref-list a { color:var(--blue); word-break:break-all; }
 
+/* ── 5W1H イントロカード（初見向け） ── */
+.intro-card {
+  background:linear-gradient(135deg,#fff8e7 0%,#fff 100%);
+  border:1px solid #ffd54f; border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); margin-bottom:.9rem;
+}
+.intro-title {
+  font-size:1rem; font-weight:900; color:var(--primary);
+  margin-bottom:.5rem; padding-bottom:.4rem;
+  border-bottom:2px solid var(--orange);
+  display:flex; align-items:center; gap:.4rem;
+}
+.intro-desc { font-size:.85rem; color:var(--text); line-height:1.85; margin-bottom:.8rem; }
+.w5h-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.6rem; margin-top:.6rem; }
+.w5h-item {
+  background:#fffdf3; border-left:3px solid var(--orange); border-radius:6px;
+  padding:.65rem .85rem;
+}
+.w5h-label { font-size:.7rem; font-weight:700; color:#5d4037; margin-bottom:.25rem; letter-spacing:.02em; }
+.w5h-body { font-size:.78rem; line-height:1.65; color:var(--text); }
+.w5h-body strong { color:var(--primary); }
+
+/* ── 公式資料リファレンスカード ── */
+.ref-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:.55rem; }
+.ref-card {
+  display:flex; align-items:center; gap:.6rem;
+  background:#fff; border:1px solid var(--border); border-radius:8px;
+  padding:.65rem .85rem; text-decoration:none; color:var(--text);
+  transition:background .15s,border-color .15s,transform .15s;
+}
+.ref-card:hover { background:#f0f4ff; border-color:#c5d5ff; transform:translateY(-1px); }
+.ref-card .ref-icon { font-size:1.3rem; flex-shrink:0; }
+.ref-card-body { line-height:1.4; }
+.ref-card .ref-title { font-size:.8rem; font-weight:700; color:var(--primary); }
+.ref-card .ref-desc { font-size:.68rem; color:var(--text-sub); margin-top:.1rem; }
+
 footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
 </style>
 </head>
@@ -250,6 +286,77 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
 
 <!-- ============ TAB 1: 進捗サマリー ============ -->
 <div id="tab-summary" class="tab-pane active">
+
+  <!-- 5W1H イントロ（初見の方向け） -->
+  <div class="intro-card">
+    <div class="intro-title">🔰 はじめての方へ — この事業の 5W1H</div>
+    <p class="intro-desc">
+      観光庁メニュー集 R8 から抽出した「○候補」3 補助金のうちの 1 つ。
+      <strong>経産省所管の補助金で、米沢織（国指定品名「置賜紬」）の高付加価値化・後継者育成・新商品開発・需要開拓に上限 2,000 万円</strong>。
+      ただし<strong>伝産法計画認定が補助金応募の 1 か月前までに必須</strong>＝ 2 段ロケット構造で、R8.12 認定→R9.1 応募の逆算スケジュール。
+    </p>
+    <div class="w5h-grid">
+      <div class="w5h-item">
+        <div class="w5h-label">📌 What（何を取りに行く？）</div>
+        <div class="w5h-body">経産省所管の<strong>伝統的工芸品産業支援補助金</strong>（補助率 1/2 or 2/3、上限 2,000 万円）。後継者育成／技術記録／需要開拓／意匠開発／産地プロデューサー等の事業に充当。事前要件として伝産法計画認定が必須。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">👥 Who（誰が動く？）</div>
+        <div class="w5h-body">申請主体は<strong>「品を製造する協同組合等」</strong>。米沢では<strong>米沢繊維協議会（56 社）</strong>が候補だが、協議会という法人格が伝産法上の「協同組合等」要件を満たすか<strong>東北経産局への要件照会が最大論点</strong>。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📅 When（いつ？）</div>
+        <div class="w5h-body">★逆算スケジュール：R8.5 主体適格性確認 → R8.6-10 計画案策定 → R8.10-11 経産局事前相談 → <strong>R8.12 伝産法計画認定取得</strong> → R9.1 補助金応募 → R9.4 採択 → R9.4-R10.3 事業実施 → <strong>R9.9 OF R9 本番で成果反映</strong>。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📍 Where（どこで？）</div>
+        <div class="w5h-body"><strong>米沢繊維協議会（米織会館・本町 1-5-21）</strong>を中核に、新田織物・近賢織物・キハラ・山口織物（鷹山堂）・東北整練・<strong>旧遠万織物（レキマチハード連動）</strong>等の各工房。置賜地域全体（米沢・南陽・長井・白鷹・川西）も連携可能性。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">💡 Why（なぜやる？）</div>
+        <div class="w5h-body">①米沢織（置賜紬）の高付加価値化／②後継者育成プログラムの財源確保／③訪日富裕層向け新商品共同開発／④<strong>360°オープンファクトリー R9 本番（2027.9 想定）でショールーム改修・原方刺し子体験・新商品をお披露目</strong>／⑤レキマチハード（旧遠万改修）とソフトの組合せ。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">🛠 How（どう進める？）</div>
+        <div class="w5h-body">①経産省本省＋東北経産局への適格性照会 → ②米沢繊維協議会への打診・役員会方針決定 → ③計画タイプ選定（振興＋共同振興の 2 本立てが本命）→ ④計画案策定 → ⑤経産局事前相談 → ⑥<strong>伝産法計画認定取得（R8.12）</strong> → ⑦補助金応募（R9.1）。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 国の公式資料・参考リンク -->
+  <div class="card">
+    <div class="section-title">📚 国の公式資料・参考リンク</div>
+    <div class="ref-grid">
+      <a href="https://www.meti.go.jp/policy/mono_info_service/mono/nichiyo-densan/densan/plan.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">経産省 伝産法 計画認定・補助金</div><div class="ref-desc">制度トップページ</div></div>
+      </a>
+      <a href="https://kyokai.kougeihin.jp/crafts/" target="_blank" class="ref-card">
+        <div class="ref-icon">📜</div>
+        <div class="ref-card-body"><div class="ref-title">経産省 指定伝産品 一覧</div><div class="ref-desc">「置賜紬」の指定情報</div></div>
+      </a>
+      <a href="https://kyokai.kougeihin.jp/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">伝統的工芸品産業振興協会</div><div class="ref-desc">業界横断の推進機関</div></div>
+      </a>
+      <a href="https://www.tohoku.meti.go.jp/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">東北経済産業局</div><div class="ref-desc">地方窓口・事前相談先</div></div>
+      </a>
+      <a href="https://www.yoneori.com/" target="_blank" class="ref-card">
+        <div class="ref-icon">🧵</div>
+        <div class="ref-card-body"><div class="ref-title">米沢繊維協議会 公式</div><div class="ref-desc">申請主体候補</div></div>
+      </a>
+      <a href="https://www.jpo.go.jp/system/trademark/gaiyo/chidan/shoukai/ichiran/5026436.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏷</div>
+        <div class="ref-card-body"><div class="ref-title">地域団体商標「米沢織」</div><div class="ref-desc">商標登録 第 5026436 号</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kankocho/jirei_shien/kankochiikizukuri_shien.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">観光庁 R8 支援メニュー集</div><div class="ref-desc">本トラッカーの抽出元</div></div>
+      </a>
+    </div>
+  </div>
 
   <div class="alert alert-danger">
     <strong>⚠️ 最大の論点：「米沢繊維協議会が伝産法上の主体要件を満たすか」</strong><br>
@@ -462,17 +569,10 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
     <div class="section-title">プロジェクト体制</div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">井</div>
+        <div class="avatar" style="background:#1d4ed8;">プ</div>
         <div>
-          <div class="team-name">井上 陽平</div>
-          <div class="team-role">プラットヨネザワ／PM・米沢繊維協議会窓口</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">小田</div>
-        <div>
-          <div class="team-name">小田 COO</div>
-          <div class="team-role">プラットヨネザワ／補助金統括・経産局事前相談</div>
+          <div class="team-name">プラットヨネザワ株式会社</div>
+          <div class="team-role">PM・米沢繊維協議会窓口・経産局事前相談・補助金統括<br>（井上陽平／小田 COO ほか）</div>
         </div>
       </div>
       <div class="team-card">
