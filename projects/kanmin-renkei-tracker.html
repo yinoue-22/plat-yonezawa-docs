@@ -196,6 +196,42 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .ref-list li { margin-bottom:.3rem; list-style:disc; margin-left:1.2rem; }
 .ref-list a { color:var(--blue); word-break:break-all; }
 
+/* ── 5W1H イントロカード（初見向け） ── */
+.intro-card {
+  background:linear-gradient(135deg,#fff8e7 0%,#fff 100%);
+  border:1px solid #ffd54f; border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); margin-bottom:.9rem;
+}
+.intro-title {
+  font-size:1rem; font-weight:900; color:var(--primary);
+  margin-bottom:.5rem; padding-bottom:.4rem;
+  border-bottom:2px solid var(--orange);
+  display:flex; align-items:center; gap:.4rem;
+}
+.intro-desc { font-size:.85rem; color:var(--text); line-height:1.85; margin-bottom:.8rem; }
+.w5h-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.6rem; margin-top:.6rem; }
+.w5h-item {
+  background:#fffdf3; border-left:3px solid var(--orange); border-radius:6px;
+  padding:.65rem .85rem;
+}
+.w5h-label { font-size:.7rem; font-weight:700; color:#5d4037; margin-bottom:.25rem; letter-spacing:.02em; }
+.w5h-body { font-size:.78rem; line-height:1.65; color:var(--text); }
+.w5h-body strong { color:var(--primary); }
+
+/* ── 公式資料リファレンスカード ── */
+.ref-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:.55rem; }
+.ref-card {
+  display:flex; align-items:center; gap:.6rem;
+  background:#fff; border:1px solid var(--border); border-radius:8px;
+  padding:.65rem .85rem; text-decoration:none; color:var(--text);
+  transition:background .15s,border-color .15s,transform .15s;
+}
+.ref-card:hover { background:#f0f4ff; border-color:#c5d5ff; transform:translateY(-1px); }
+.ref-card .ref-icon { font-size:1.3rem; flex-shrink:0; }
+.ref-card-body { line-height:1.4; }
+.ref-card .ref-title { font-size:.8rem; font-weight:700; color:var(--primary); }
+.ref-card .ref-desc { font-size:.68rem; color:var(--text-sub); margin-top:.1rem; }
+
 .target-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.7rem; }
 .target-card {
   background:linear-gradient(135deg,#f0f4ff 0%,#e8eef9 100%);
@@ -236,6 +272,73 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
 
 <!-- ============ TAB 1: 進捗サマリー ============ -->
 <div id="tab-summary" class="tab-pane active">
+
+  <!-- 5W1H イントロ（初見の方向け） -->
+  <div class="intro-card">
+    <div class="intro-title">🔰 はじめての方へ — この事業の 5W1H</div>
+    <p class="intro-desc">
+      観光庁メニュー集 R8 から抽出した「○候補」3 補助金のうちの 1 つ。
+      <strong>国交省国土政策局所管の調査費（FS 補助）で、米沢駅前広場・道の駅米沢・上杉城史苑等の拠点整備事業化検討に 1/2 補助</strong>。
+      年 3 回募集なので <strong>直近 R8 第 3 回（6 月中旬）が現実的ターゲット</strong>。
+    </p>
+    <div class="w5h-grid">
+      <div class="w5h-item">
+        <div class="w5h-label">📌 What（何を取りに行く？）</div>
+        <div class="w5h-body">国交省国土政策局所管の<strong>調査費補助（補助率 1/2）</strong>。地方公共団体が民間と連携する基盤整備事業の<strong>事業化検討（FS）</strong>に使える。R8 予算 398 百万円・年 3 回募集。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">👥 Who（誰が動く？）</div>
+        <div class="w5h-body"><strong>米沢市が申請主体</strong>（総合政策課・地方政策担当）／プラットヨネザワが伴走支援／<strong>民間連携事業者</strong>（JR 東日本仙台支社・上杉コーポレーション・道の駅米沢指定管理者・山形交通・米沢タクシー協会）の参画意向書が必須。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📅 When（いつ？）</div>
+        <div class="w5h-body">★直近：<strong>R8 第 3 回応募（6/15 想定締切）</strong>→ 8 月上旬交付決定 → R8.8〜R9.3 調査実施 → R9.3 完了報告 → R9 以降 PPP/PFI 公募 → R10〜事業着手。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">📍 Where（どこで？）</div>
+        <div class="w5h-body"><strong>米沢駅前広場・道の駅米沢・上杉城史苑</strong>を結節点とした観光中核エリア。東町ポケットパーク・粡町ポケットパーク・シャトルバス停留所インフラも候補。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">💡 Why（なぜやる？）</div>
+        <div class="w5h-body">①レキマチハードは個別建造物に集中。本調査費で<strong>面的な拠点ネットワーク</strong>の事業化検討を補完／②PPP/PFI 検討で民間活力導入の可能性を可視化／③360°オープンファクトリー本番（9/10-13）のリアル人流データを基礎データに組み込み可。</div>
+      </div>
+      <div class="w5h-item">
+        <div class="w5h-label">🛠 How（どう進める？）</div>
+        <div class="w5h-body">①国交省国土政策局調整室への電話相談 → ②米沢市の申請主体合意 → ③連携事業者の参画意向書取得 → ④応募書類作成 → ⑤6/15 第 3 回応募 → ⑥交付決定 → ⑦コンサル選定 → ⑧概略設計＋PPP/PFI 検討。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 国の公式資料・参考リンク -->
+  <div class="card">
+    <div class="section-title">📚 国の公式資料・参考リンク</div>
+    <div class="ref-grid">
+      <a href="https://www.mlit.go.jp/kokudoseisaku/kanminrenkei.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">国交省 官民連携基盤整備推進調査費</div><div class="ref-desc">制度トップページ</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kokudoseisaku/content/001973264.pdf" target="_blank" class="ref-card">
+        <div class="ref-icon">📄</div>
+        <div class="ref-card-body"><div class="ref-title">事例集（R7.11 版・6.5MB）</div><div class="ref-desc">採択事例 8 件＋R7 初回 13 件</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kokudoseisaku/content/001465352.pdf" target="_blank" class="ref-card">
+        <div class="ref-icon">📄</div>
+        <div class="ref-card-body"><div class="ref-title">制度の手引き</div><div class="ref-desc">応募・実施の実務ガイド</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kokudoseisaku/content/001465353.pdf" target="_blank" class="ref-card">
+        <div class="ref-icon">📄</div>
+        <div class="ref-card-body"><div class="ref-title">公募要領</div><div class="ref-desc">必要書類・スケジュール</div></div>
+      </a>
+      <a href="https://www.mlit.go.jp/kankocho/jirei_shien/kankochiikizukuri_shien.html" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">観光庁 R8 支援メニュー集</div><div class="ref-desc">本トラッカーの抽出元</div></div>
+      </a>
+      <a href="https://www8.cao.go.jp/pfi/" target="_blank" class="ref-card">
+        <div class="ref-icon">🏛</div>
+        <div class="ref-card-body"><div class="ref-title">内閣府 PFI 推進室</div><div class="ref-desc">PPP/PFI 制度全体</div></div>
+      </a>
+    </div>
+  </div>
 
   <div class="alert alert-danger">
     <strong>⚡ R8第3回応募が直近の現実的ターゲット：</strong>
@@ -377,17 +480,10 @@ footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-s
     <div class="section-title">プロジェクト体制</div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">井</div>
+        <div class="avatar" style="background:#1d4ed8;">プ</div>
         <div>
-          <div class="team-name">井上 陽平</div>
-          <div class="team-role">プラットヨネザワ／PM・市役所窓口・企画書ドラフト</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="avatar" style="background:#1d4ed8;">小</div>
-        <div>
-          <div class="team-name">小田 COO</div>
-          <div class="team-role">プラットヨネザワ／補助金統括・国交省事前相談</div>
+          <div class="team-name">プラットヨネザワ株式会社</div>
+          <div class="team-role">PM・市役所窓口・企画書ドラフト・国交省事前相談・補助金統括<br>（井上陽平／小田 COO ほか）</div>
         </div>
       </div>
       <div class="team-card">
