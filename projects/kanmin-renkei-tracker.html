@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米沢市 官民連携基盤整備推進調査費 | 進捗管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --green: #28a745;
+  --orange: #fd7e14;
+  --blue: #007bff;
+  --red: #dc3545;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+
+.hero {
+  background:linear-gradient(135deg,#1a2744 0%,#16213e 50%,#0f3460 100%);
+  color:#fff; padding:1.5rem 2rem 1.2rem; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; top:-40%; right:-10%; width:300px; height:300px;
+  background:radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius:50%;
+}
+.hero .project-label { font-size:.7rem; letter-spacing:.1em; opacity:.7; margin-bottom:.3rem; text-transform:uppercase; }
+.hero h1 { font-size:1.35rem; font-weight:900; margin-bottom:.2rem; }
+.hero .subtitle { font-size:.8rem; opacity:.75; margin-bottom:.6rem; }
+.hero .meta { display:flex; flex-wrap:wrap; gap:.6rem; font-size:.75rem; opacity:.75; }
+.phase-badge {
+  display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  border-radius:20px; padding:.25rem .9rem; font-size:.76rem; font-weight:700; margin-bottom:.6rem;
+}
+
+.tab-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  display:flex; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.tab {
+  flex:1; padding:.85rem .5rem; border:none; background:none; cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif; font-size:.8rem; font-weight:500;
+  color:var(--text-sub); border-bottom:3px solid transparent; transition:all .15s;
+  display:flex; align-items:center; justify-content:center; gap:.3rem;
+}
+.tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:700; }
+.tab:hover:not(.active) { background:#f8f9fa; color:var(--text); }
+
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+
+.container { max-width:960px; margin:0 auto; padding:1.5rem 1.5rem 3rem; }
+.card {
+  background:var(--card); border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:.9rem;
+}
+.section-title {
+  font-size:.95rem; font-weight:700; color:var(--primary);
+  margin-bottom:1rem; padding-bottom:.4rem; border-bottom:2px solid var(--primary);
+}
+
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-bottom:1rem; }
+@media(max-width:640px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+.stat-box {
+  background:var(--card); border-radius:10px; padding:.9rem;
+  box-shadow:var(--shadow); border:1px solid var(--border);
+  text-align:center; border-top:4px solid var(--border);
+}
+.stat-box.green  { border-top-color:var(--green); }
+.stat-box.blue   { border-top-color:var(--blue); }
+.stat-box.orange { border-top-color:var(--orange); }
+.stat-box.navy   { border-top-color:var(--primary); }
+.stat-val { font-size:1.5rem; font-weight:900; color:var(--primary); line-height:1.2; }
+.stat-label { font-size:.7rem; color:var(--text-sub); margin-top:.25rem; }
+.stat-sub { font-size:.65rem; color:var(--text-sub); }
+
+.progress-wrap { margin:.5rem 0; }
+.progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--text-sub); margin-bottom:.25rem; }
+.progress-bar { background:#e9ecef; border-radius:6px; height:9px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:6px; }
+.fill-green  { background:linear-gradient(90deg,#28a745,#34ce57); }
+.fill-blue   { background:linear-gradient(90deg,#007bff,#6610f2); }
+.fill-orange { background:linear-gradient(90deg,#fd7e14,#ffc107); }
+.fill-gray   { background:#ced4da; }
+
+.timeline { position:relative; padding-left:1.6rem; }
+.timeline::before { content:''; position:absolute; left:.5rem; top:0; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:.9rem; }
+.tl-dot {
+  position:absolute; left:-1.25rem; top:.35rem;
+  width:16px; height:16px; border-radius:50%; border:2.5px solid;
+}
+.tl-dot.done   { background:var(--green);  border-color:var(--green); }
+.tl-dot.active { background:#fff;          border-color:var(--blue); }
+.tl-dot.next   { background:#fff;          border-color:var(--orange); }
+.tl-dot.future { background:#fff;          border-color:var(--border); }
+.tl-date  { font-size:.72rem; color:var(--text-sub); }
+.tl-title { font-size:.88rem; font-weight:700; }
+.tl-desc  { font-size:.78rem; color:var(--text-sub); margin-top:.15rem; }
+.tl-who   { font-size:.72rem; color:var(--blue); margin-top:.1rem; }
+
+.task-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.task-table thead th {
+  background:#f8f9fa; text-align:left; padding:.5rem .65rem;
+  font-size:.73rem; font-weight:700; color:var(--text-sub); border-bottom:2px solid var(--border);
+}
+.task-table tbody tr { border-bottom:1px solid #f0f0f0; }
+.task-table tbody tr:hover { background:#fafafa; }
+.task-table td { padding:.5rem .65rem; vertical-align:middle; }
+.task-name { font-weight:600; }
+.task-done .task-name { color:var(--text-sub); text-decoration:line-through; }
+.check-circle {
+  width:20px; height:20px; border-radius:50%; border:2px solid var(--border);
+  display:inline-flex; align-items:center; justify-content:center; font-size:.63rem; font-weight:700;
+}
+.check-circle.done   { background:var(--green);  border-color:var(--green);  color:#fff; }
+.check-circle.active { border-color:var(--blue);  color:var(--blue); }
+.check-circle.next   { border-color:var(--orange); color:var(--orange); }
+.check-circle.none   { border-color:#ccc; }
+
+.tag {
+  display:inline-block; padding:.12rem .55rem; border-radius:10px;
+  font-size:.68rem; font-weight:700; white-space:nowrap;
+}
+.tag-plat   { background:#dbeafe; color:#1d4ed8; }
+.tag-city   { background:#fef3c7; color:#92400e; }
+.tag-mlit   { background:#fce7f3; color:#9d174d; }
+.tag-private { background:#f0fdf4; color:#166534; }
+.tag-jr     { background:#e0f2fe; color:#075985; }
+.tag-ws     { background:#ffe5d9; color:#c45a1e; }
+
+.deadline { font-size:.76rem; }
+.deadline.urgent { color:var(--red); font-weight:700; }
+.deadline.soon   { color:var(--orange); font-weight:600; }
+.deadline.ok     { color:var(--text-sub); }
+
+.badge { display:inline-block; padding:.18rem .65rem; border-radius:20px; font-size:.71rem; font-weight:700; }
+.badge-done   { background:#d4edda; color:#155724; }
+.badge-active { background:#cce5ff; color:#004085; }
+.badge-next   { background:#fff3cd; color:#856404; }
+.badge-future { background:#f1f3f4; color:#5f6368; }
+
+.alert { padding:.65rem .9rem; border-radius:0 8px 8px 0; font-size:.81rem; margin-bottom:.8rem; border-left:4px solid; }
+.alert-ok     { background:#e8f5e9; border-color:var(--green); color:#1b5e20; }
+.alert-warn   { background:#fff8e1; border-color:var(--orange); color:#5d4037; }
+.alert-danger { background:#fdecea; border-color:var(--red); color:#7b1a12; }
+.alert-info   { background:#e8f4fd; border-color:var(--blue); color:#0c5460; }
+
+.dep-section { margin-bottom:1.2rem; }
+.dep-label { font-size:.72rem; font-weight:700; color:var(--text-sub); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.5rem; }
+.dep-chain { display:flex; align-items:center; flex-wrap:wrap; gap:.25rem; margin-bottom:.4rem; }
+.dep-node {
+  padding:.35rem .8rem; border-radius:8px; font-size:.78rem; font-weight:600;
+  border:2px solid; line-height:1.3; text-align:center;
+}
+.dep-node.done   { background:#d4edda; border-color:var(--green);  color:#155724; }
+.dep-node.active { background:#cce5ff; border-color:var(--blue);   color:#004085; }
+.dep-node.next   { background:#fff3cd; border-color:var(--orange); color:#856404; }
+.dep-node.future { background:#f8f9fa; border-color:#ced4da;       color:#6c757d; }
+.dep-arrow { color:#adb5bd; font-size:1rem; }
+.dep-warning {
+  background:#fff8e1; border:1px solid #ffd54f; border-radius:8px;
+  padding:.6rem .9rem; font-size:.8rem; color:#5d4037; margin-top:.4rem;
+}
+.dep-warning strong { display:block; margin-bottom:.15rem; color:#bf360c; }
+
+.team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.7rem; }
+.team-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.9rem; box-shadow:var(--shadow); display:flex; gap:.7rem; align-items:flex-start; }
+.avatar { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:.82rem; color:#fff; flex-shrink:0; }
+.team-name { font-size:.85rem; font-weight:700; }
+.team-role { font-size:.73rem; color:var(--text-sub); line-height:1.4; }
+
+.contact-box { background:#f0f4ff; border:1px solid #c5d5ff; border-radius:10px; padding:1rem; font-size:.83rem; }
+.contact-box h4 { font-weight:700; color:var(--primary); margin-bottom:.3rem; }
+
+.kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; }
+.kpi-item { text-align:center; padding:.7rem; background:#f8f9fa; border-radius:8px; }
+.kpi-val  { font-size:1rem; font-weight:900; color:var(--primary); }
+.kpi-label{ font-size:.7rem; color:var(--text-sub); margin-top:.2rem; }
+
+.case-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.7rem; }
+.case-card { background:#f8f9fa; border:1px solid var(--border); border-radius:10px; padding:.85rem; }
+.case-title { font-size:.85rem; font-weight:700; color:var(--primary); margin-bottom:.2rem; }
+.case-meta { font-size:.7rem; color:var(--text-sub); margin-bottom:.4rem; }
+.case-desc { font-size:.78rem; line-height:1.6; }
+
+.ref-list { font-size:.78rem; line-height:1.7; }
+.ref-list li { margin-bottom:.3rem; list-style:disc; margin-left:1.2rem; }
+.ref-list a { color:var(--blue); word-break:break-all; }
+
+.target-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.7rem; }
+.target-card {
+  background:linear-gradient(135deg,#f0f4ff 0%,#e8eef9 100%);
+  border:1px solid #c5d5ff; border-radius:10px; padding:.9rem;
+}
+.target-name { font-size:.9rem; font-weight:900; color:var(--primary); margin-bottom:.25rem; }
+.target-tag { font-size:.65rem; color:var(--blue); font-weight:700; margin-bottom:.4rem; }
+.target-desc { font-size:.75rem; color:var(--text-sub); line-height:1.5; }
+
+footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="project-label">プラットヨネザワ × 米沢市 ｜ 補助金準備プロジェクト</div>
+  <div class="phase-badge">🟡 R8第3回応募準備フェーズ（6月中旬締切）</div>
+  <h1>米沢市 官民連携基盤整備推進調査費</h1>
+  <div class="subtitle">米沢駅周辺・道の駅米沢・上杉城史苑を結節点とした「上杉の城下町」観光中核エリアの拠点整備フィジビリティ調査</div>
+  <div class="meta">
+    <span>PM／井上 陽平（プラットヨネザワ）</span>
+    <span>申請主体／米沢市</span>
+    <span>R8第3回応募／6月中旬</span>
+    <span>更新日／2026-05-08</span>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab active" onclick="showTab('summary', this)">📊 進捗サマリー</button>
+  <button class="tab" onclick="showTab('milestones', this)">🎯 マイルストーン</button>
+  <button class="tab" onclick="showTab('tasks', this)">📋 タスク・担当</button>
+  <button class="tab" onclick="showTab('deps', this)">🔗 影響・依存関係</button>
+</div>
+
+<div class="container">
+
+<!-- ============ TAB 1: 進捗サマリー ============ -->
+<div id="tab-summary" class="tab-pane active">
+
+  <div class="alert alert-danger">
+    <strong>⚡ R8第3回応募が直近の現実的ターゲット：</strong>
+    第1回（2/10〜3/6）は終了済、第2回（4月中旬）も実質終了。
+    <strong>残り約5週間で第3回（6月中旬）に乗せる必要あり。</strong>
+    国交省国土政策局 調整室への事前相談 → 米沢市の申請主体合意 → 企画書作成 を並行で進める。
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box green">
+      <div class="stat-val">0</div>
+      <div class="stat-label">完了タスク</div>
+      <div class="stat-sub">準備フェーズ開始前</div>
+    </div>
+    <div class="stat-box blue">
+      <div class="stat-val">2</div>
+      <div class="stat-label">対応中タスク</div>
+      <div class="stat-sub">国交省事前相談・市役所打診</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-val">6/15</div>
+      <div class="stat-label">次のマイルストーン</div>
+      <div class="stat-sub">★第3回応募締切（想定）</div>
+    </div>
+    <div class="stat-box navy">
+      <div class="stat-val">R10〜</div>
+      <div class="stat-label">事業着手 目標</div>
+      <div class="stat-sub">調査結果に基づく整備事業</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">フェーズ別進捗</div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 1</strong>　国交省／米沢市 事前相談（R8.5〜6上旬）</span>
+        <span>5%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-blue" style="width:5%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 2</strong>　応募書類作成・第3回応募（R8.6中旬）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 3</strong>　内容確認・実施計画協議（R8.7〜8上旬）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 4</strong>　調査実施（R8.8〜R9.3／単年度・繰越し可）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 5</strong>　完了報告→事業化フェーズへ（R9.4〜R10）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">事業の概要と狙い</div>
+    <p style="font-size:.85rem; line-height:1.85;">
+      <strong>官民連携基盤整備推進調査費</strong>＝国交省国土政策局所管の調査費で、地方公共団体が民間と連携して行う基盤整備事業の<strong>事業化検討（フィジビリティ調査）</strong>に必要な経費の1/2を補助。年3回募集・単年度執行。
+      対象事業は国交省所管の社会資本整備事業（道路・港湾・河川・公園・市街地整備等）。
+      支援対象の調査は、①概略設計、②基礎データ収集（地形・地質・交通量等）、③整備効果検討、④PPP/PFI導入可能性検討の4種。
+      <br><br>
+      米沢市の応募テーマ（仮）：<strong>「上杉の城下町 観光中核エリア整備事業」事業化検討</strong>。米沢駅前広場・道の駅米沢・上杉城史苑を結節点とした広域観光・交流拠点ネットワーク形成の概略設計＋PPP/PFI導入可能性検討。
+      R8重点配分項目②「広域的な観光又は交流拠点形成の促進に係る調査」に該当。
+    </p>
+    <div class="kpi-row" style="margin-top:1rem;">
+      <div class="kpi-item">
+        <div class="kpi-val">1/2</div>
+        <div class="kpi-label">補助率<br>（以内）</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">398百万円</div>
+        <div class="kpi-label">R8予算規模<br>全国共通</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">年3回</div>
+        <div class="kpi-label">募集回数<br>1月／4月／6月</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">対象拠点の候補（米沢駅・道の駅・城史苑＋α）</div>
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-name">🚉 米沢駅 駅前広場</div>
+        <div class="target-tag">JR東日本＋市</div>
+        <div class="target-desc">2次交通の結節点／オープンファクトリー連動シャトルバス発着拠点／駅前回遊動線の起点。広場の概略設計＋PPP導入検討の主軸候補。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-name">🛣️ 道の駅米沢</div>
+        <div class="target-tag">市＋指定管理</div>
+        <div class="target-desc">国道13号沿いの広域集客拠点／オープンファクトリー北エリア（窪田）連動／道の駅やまがた蔵王（H30採択）の隣接事例あり。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-name">🏯 上杉城史苑</div>
+        <div class="target-tag">㈱上杉コーポレーション</div>
+        <div class="target-desc">上杉神社・松岬神社の正面拠点／レキマチハードの整備対象／360°オープンファクトリーシャトル発着拠点／観光中核エリアの心臓部。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-name">🌳 東町ポケットパーク</div>
+        <div class="target-tag">市＋プラット</div>
+        <div class="target-desc">レキマチハードで整備予定の街なか小公園／伝統発酵食ゾーンの結節点／案内サイン・休憩施設の概略設計。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-name">🌳 粡町ポケットパーク</div>
+        <div class="target-tag">市＋粡町商店会</div>
+        <div class="target-desc">200年企業集積の中心／ローカルブライト視察ルート／オープンファクトリー市街地ルート停留所。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-name">🚌 シャトルバス停留所インフラ</div>
+        <div class="target-tag">運輸局＋連携事業者</div>
+        <div class="target-desc">9月本番のA案東コース／B案乗るパス／C案タクシーの停留所整備。広域観光ネットワーク形成として概略設計。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">プロジェクト体制</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar" style="background:#1d4ed8;">井</div>
+        <div>
+          <div class="team-name">井上 陽平</div>
+          <div class="team-role">プラットヨネザワ／PM・市役所窓口・企画書ドラフト</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#1d4ed8;">小</div>
+        <div>
+          <div class="team-name">小田 COO</div>
+          <div class="team-role">プラットヨネザワ／補助金統括・国交省事前相談</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">市</div>
+        <div>
+          <div class="team-name">米沢市 総合政策課</div>
+          <div class="team-role">★申請主体／応募書類作成・国交省窓口対応</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">都</div>
+        <div>
+          <div class="team-name">米沢市 都市整備部 都市計画課</div>
+          <div class="team-role">駅前広場・市街地整備の所管</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">建</div>
+        <div>
+          <div class="team-name">米沢市 建設部 道路維持課</div>
+          <div class="team-role">道の駅米沢・道路系インフラの所管</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">観</div>
+        <div>
+          <div class="team-name">米沢市 観光商工課</div>
+          <div class="team-role">観光振興計画との整合・観光交通系の調整</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#9d174d;">国</div>
+        <div>
+          <div class="team-name">国交省 国土政策局 地方政策課 調整室</div>
+          <div class="team-role">★主管／事前相談窓口・実施計画協議</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#9d174d;">東</div>
+        <div>
+          <div class="team-name">東北地方整備局</div>
+          <div class="team-role">実施計画協議・地方ブロックでの調整</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#075985;">JR</div>
+        <div>
+          <div class="team-name">JR東日本 仙台支社</div>
+          <div class="team-role">米沢駅・駅前広場の連携事業者</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#166534;">城</div>
+        <div>
+          <div class="team-name">㈱上杉コーポレーション</div>
+          <div class="team-role">上杉城史苑の運営・連携事業者</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#166534;">道</div>
+        <div>
+          <div class="team-name">道の駅米沢 指定管理者</div>
+          <div class="team-role">道の駅米沢の運営・連携事業者</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#166534;">交</div>
+        <div>
+          <div class="team-name">山形交通 / 米沢タクシー協会</div>
+          <div class="team-role">2次交通連動の連携事業者</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">参考事例（観光・拠点整備系の採択事例）</div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-title">🏔 道の駅「やまがた蔵王」 ★山形県内</div>
+        <div class="case-meta">山形市 ／ H30年度実施 → R5.12開業</div>
+        <div class="case-desc">蔵王・山寺等の広域観光資源と連動した道の駅。広域連携検討・周遊ルート調査・PPP/PFI導入可能性検討（DBO方式採用）。1年で来場177万人。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🚌 盛岡バスセンター</div>
+        <div class="case-meta">盛岡市 ／ H30年度実施 → R4.10開業</div>
+        <div class="case-desc">旧バスセンター跡地に新バスターミナル＋にぎわい施設一体整備。需要調査・概略設計・整備効果検討。年20万人乗降。グッドデザイン賞（R5）。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🛣 道の駅「まえばし赤城」</div>
+        <div class="case-meta">前橋市 ／ H28年度実施 → R5.3開業</div>
+        <div class="case-desc">PPP/PFI導入可能性検討→独立採算型PFI＋DO方式採用。1年で来場440万人。2025年道の駅大賞 全国総合1位。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🌊 長井海の手公園</div>
+        <div class="case-meta">横須賀市 ／ R元年度実施 → R5.4再開業</div>
+        <div class="case-desc">既存公園の再整備＋未供用部の一体整備。Park-PFI公募。年来園111万人（再整備前比150%）。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🏞 金田一近隣公園</div>
+        <div class="case-meta">二戸市 ／ H30年度実施 → R4.3開業</div>
+        <div class="case-desc">温泉地復活×Park-PFI。カダルテラス金田一を併設。グッドデザイン賞（R5）・土木学会優秀賞（R5）。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🌸 せいせきカワマチ</div>
+        <div class="case-meta">多摩市 ／ R2年度実施 → R5.10完成</div>
+        <div class="case-desc">かわまちづくり計画＋多目的広場・堤防天端整備＋PPP導入。R6 かわまち大賞。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🏯 高山市（広域観光拠点形成検討）</div>
+        <div class="case-meta">岐阜県高山市 ／ R7初回採択（800万円）</div>
+        <div class="case-desc">広域観光拠点形成の事業化検討。R8重点配分項目②と同テーマで採択。米沢市の参考事例として最も近い。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">⛵ 呉市（音戸の瀬戸公園再整備）</div>
+        <div class="case-meta">広島県呉市 ／ R7初回採択（2,500万円）</div>
+        <div class="case-desc">観光振興＋地域活性化基盤整備調査。観光拠点として位置付け。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-box">
+    <h4>📞 主要問合せ先</h4>
+    <ul style="font-size:.78rem; list-style:none; padding-left:0; line-height:1.85;">
+      <li>・国交省 国土政策局 地方政策課 調整室／TEL 03-5253-8360（直通）／03-5253-8111（内線29-916,29-924）</li>
+      <li>・E-mail: hqt-chouseisitu@gxb.mlit.go.jp</li>
+      <li>・東北地方整備局 企画部 企画課（仙台）</li>
+      <li>・米沢市 総合政策部 総合政策課（要：申請主体担当の特定）</li>
+      <li>・米沢市 都市整備部 都市計画課（駅前広場担当）</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============ TAB 2: マイルストーン ============ -->
+<div id="tab-milestones" class="tab-pane">
+
+  <div class="alert alert-info">
+    <strong>R8第3回応募（6月中旬）→ R9.3月調査完了 → R10事業化</strong>を最短ルートで設計。
+    第3回を逃すとR9第1回（1月下旬）まで7か月待ちとなり、R10事業着手が1年遅延。
+  </div>
+
+  <!-- Phase 1-2 R8第3回応募準備 -->
+  <div class="card">
+    <div class="section-title">🚀 Phase 1〜2：事前相談・第3回応募（R8.5〜6）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月12日（火）</div>
+        <div class="tl-title">🔵 ① 国交省 国土政策局 調整室 電話相談</div>
+        <div class="tl-desc">弊社（小田COO）から直電（03-5253-8360）。「米沢市が観光拠点整備の事業化検討で本制度活用を検討中／第3回応募に間に合うか／対象事業の適格性」を確認。30分程度。</div>
+        <div class="tl-who">担当：プラット（小田）→ 国土政策局調整室</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月14日〜20日</div>
+        <div class="tl-title">🔵 ② 米沢市への打診（総合政策課・都市計画課）</div>
+        <div class="tl-desc">国交省のフィードバックを持って、米沢市の主管課（総合政策課または地方政策担当）に「申請主体としての受け入れ」を打診。
+        都市計画課・建設部・観光商工課の3課横断での調整準備。</div>
+        <div class="tl-who">担当：プラット（井上・小田）→ 米沢市</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月22日（金）</div>
+        <div class="tl-title">⏳ ③ 米沢市庁内連絡会議（仮）</div>
+        <div class="tl-desc">米沢市内の総合政策課／都市計画課／道路維持課／観光商工課の4課で課題感共有。本制度応募の合意取得。弊社・関連民間事業者（JR東日本／上杉コーポレーション／道の駅指定管理者）の連携意向確認。</div>
+        <div class="tl-who">担当：米沢市（事務局）／プラット伴走</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月25日〜29日</div>
+        <div class="tl-title">⏳ ④ 対象事業の絞り込み・テーマ設定</div>
+        <div class="tl-desc">①米沢駅前広場の概略設計＋PPP導入可能性検討、②道の駅米沢の機能拡充検討、③上杉城史苑エリアの拠点整備検討、④東町・粡町ポケットパーク群の概略設計 — の中から1〜2テーマに絞る。R8重点配分項目②（広域観光・交流拠点形成）にハマるテーマを優先。</div>
+        <div class="tl-who">担当：米沢市＋プラット</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026年6月1日〜10日</div>
+        <div class="tl-title">⏳ ⑤ 応募書類作成（実施主体＝米沢市）</div>
+        <div class="tl-desc">必要書類：①事業化検討計画書、②調査内容（概略設計／基礎データ収集／整備効果検討／PPP・PFI導入可能性検討）、③連携民間事業者の参画証跡、④概算経費。プラットがドラフト支援、米沢市が最終化。</div>
+        <div class="tl-who">担当：米沢市＋プラット支援</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026年6月12日〜15日</div>
+        <div class="tl-title">⏳ ⑥ ★第3回応募（締切想定 6/15前後）</div>
+        <div class="tl-desc">国交省国土政策局へ電子・郵送で提出。対象事業：「上杉の城下町 観光中核エリア整備事業」事業化検討（仮称）。</div>
+        <div class="tl-who">担当：米沢市</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 3 内容確認・実施計画協議 -->
+  <div class="card">
+    <div class="section-title">📋 Phase 3：内容確認・実施計画協議（R8.6下旬〜8上旬）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月下旬</div>
+        <div class="tl-title">予定 ⑦ 国土政策局による内容確認</div>
+        <div class="tl-desc">提出書類の確認・財務省への資料提出。修正指示があれば対応。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月</div>
+        <div class="tl-title">予定 ⑧ 東北地方整備局との実施計画協議</div>
+        <div class="tl-desc">調査内容・スケジュール・概算事業費の調整。地方整備局が実施段階の協議窓口。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月下旬〜8月上旬</div>
+        <div class="tl-title">予定 ⑨ 内定通知 → 交付申請 → 交付決定</div>
+        <div class="tl-desc">第3回は8月上旬交付決定が目安。交付決定後でないと調査着手NG（事前着手禁止）。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 4 調査実施 -->
+  <div class="card">
+    <div class="section-title">🛠 Phase 4：調査実施（R8.8〜R9.3）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年8月中旬</div>
+        <div class="tl-title">予定 ⑩ 委託コンサル選定（プロポーザル方式）</div>
+        <div class="tl-desc">公共空間・PPP/PFI実績のあるコンサル（パシコン／日本工営／オリエンタルコンサルタンツ／日建設計シビル等）から選定。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年9月10日〜13日</div>
+        <div class="tl-title">予定 ⑪ ★360°オープンファクトリー連動データ取得</div>
+        <div class="tl-desc">本年度本番の人流・回遊・滞在データを基礎データ収集の一部として組み込む。シャトルバス利用実績・道の駅米沢の流入データ・城史苑の集客データを定量化。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年10月〜2027年1月</div>
+        <div class="tl-title">予定 ⑫ 概略設計・基礎データ収集</div>
+        <div class="tl-desc">対象拠点の概略設計図・パース作成・概算事業費算出。地形・地質・交通量等の基礎データ収集。住民・事業者ヒアリング。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年1月〜2月</div>
+        <div class="tl-title">予定 ⑬ 整備効果検討・PPP/PFI導入可能性検討</div>
+        <div class="tl-desc">便益・経済効果の検討／VFM（Value for Money）算定／市直接発注 vs Park-PFI vs DBO等の事業手法比較。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年2月下旬</div>
+        <div class="tl-title">予定 ⑭ 中間報告書作成・米沢市内合意</div>
+        <div class="tl-desc">最終報告書の前段で市内連絡会議に共有。事業化方針を内部合意。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年3月</div>
+        <div class="tl-title">予定 ⑮ 完了実績報告</div>
+        <div class="tl-desc">国土政策局へ完了報告書提出。次年度繰越し可だが、原則単年度。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 5 事業化 -->
+  <div class="card">
+    <div class="section-title">🏗 Phase 5：事業化フェーズ（R9.4〜）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年4月〜9月（R9.4〜9）</div>
+        <div class="tl-title">予定 ⑯ 事業実施方針の策定（PPP/PFI採用時）</div>
+        <div class="tl-desc">調査結果に基づき、米沢市が事業実施方針を策定。PPP/PFI採用の場合は内閣府PPP/PFIアクションプラン整合チェック。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年10月〜2028年3月（R9下期）</div>
+        <div class="tl-title">予定 ⑰ PPP/PFI事業者の公募</div>
+        <div class="tl-desc">公募設置等指針の策定→事業者公募→事業計画認定（Park-PFI、DBO、コンセッション等）。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2028年4月〜2029年3月（R10〜）</div>
+        <div class="tl-title">予定 ⑱ 整備事業着手 → 供用開始</div>
+        <div class="tl-desc">★前橋まえばし赤城モデル：H28調査→R5開業（5年）。米沢市はR8調査→R12-R13開業を想定（最速5年・標準7-8年）。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 3: タスク・担当 ============ -->
+<div id="tab-tasks" class="tab-pane">
+
+  <div class="alert alert-danger">
+    <strong>⚡ 直近5週間の超短期戦：</strong>
+    5/12国交省電話相談 → 5/14-20米沢市打診 → 5/22庁内会議 → 6/15★第3回応募 のスケジュール。<strong>米沢市が「申請主体になる意思」を6/1までに固める</strong>のが最大のクリティカルポイント。
+  </div>
+
+  <!-- プラットヨネザワ側タスク -->
+  <div class="card">
+    <div class="section-title">🟦 プラットヨネザワ側のタスク</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle active">▶</span></td>
+          <td><span class="task-name">国交省 国土政策局 調整室 電話相談</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">適格性確認・第3回応募スケジュール照会・米沢市が主体になる場合の留意点</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/12</span></td>
+          <td><span class="badge badge-active">対応中</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle active">▶</span></td>
+          <td><span class="task-name">米沢市への打診用 提案資料の作成</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">「上杉の城下町 観光中核エリア整備事業」事業化検討の構想素案＋連携民間事業者リスト</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/14</span></td>
+          <td><span class="badge badge-active">対応中</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">→</span></td>
+          <td><span class="task-name">米沢市総合政策課・都市計画課へのアポ取得</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">部長→課長ラインで「申請主体としての受け入れ」を打診</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/16</span></td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">→</span></td>
+          <td><span class="task-name">関連民間事業者への参画意向確認</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">JR東日本仙台支社／上杉コーポレーション／道の駅米沢指定管理者／山形交通／米沢タクシー協会</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/22</span></td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">山形市（やまがた蔵王）事例の聞き取り調査</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">★H30採択の隣接事例。米沢市と同行で訪問・実務担当者にヒアリング</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">5/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">応募書類のドラフト作成支援</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">事業化検討計画書／調査内容／概算経費／連携協定の証跡 のドラフト</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">6/8</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">採択後：オープンファクトリー連動の人流データ提供</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">9/10-13本番の人流・回遊・滞在データを基礎データとして提供</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline ok">9/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 米沢市側タスク -->
+  <div class="card">
+    <div class="section-title">🟧 米沢市側のタスク（★申請主体）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">プラット提案の受け入れ判断</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">総合政策課または地方政策担当が窓口となるか確認</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline urgent">5/20</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">庁内連絡会議の開催</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">総合政策課／都市計画課／道路維持課／観光商工課の4課横断調整</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline urgent">5/22</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">★申請主体としての最終合意</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">市長レベルの判断・補正予算 or 既存予算からの拠出可否</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline urgent">6/1</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">応募書類の最終化・市長決裁</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">プラットドラフトをベースに、市の規程・財務面から最終チェック</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline urgent">6/12</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">★第3回応募提出</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">国交省国土政策局へ正式提出</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline urgent">6/15</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">国土政策局・地方整備局への対応</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">内容確認・実施計画協議の窓口</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline soon">7/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">委託コンサル選定（プロポーザル方式）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">公共空間・PPP/PFI実績のあるコンサル数社から選定</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline ok">8/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">調査実施・進捗管理</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">9月〜翌2月までの調査をマネジメント</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline ok">2027/02</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">完了実績報告</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">国交省への報告書提出</span>
+          </td>
+          <td><span class="tag tag-city">米沢市</span></td>
+          <td><span class="deadline ok">2027/03</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 国（国交省）側タスク -->
+  <div class="card">
+    <div class="section-title">🟪 国交省側の動き</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事前相談の受付・助言</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">国土政策局 調整室／随時</span>
+          </td>
+          <td><span class="tag tag-mlit">国交省</span></td>
+          <td><span class="deadline ok">通年</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">応募書類の内容確認</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">財務省提出資料の整備含む</span>
+          </td>
+          <td><span class="tag tag-mlit">国交省</span></td>
+          <td><span class="deadline ok">6月下旬</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">東北地方整備局との実施計画協議</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">米沢市・地方整備局との3者調整</span>
+          </td>
+          <td><span class="tag tag-mlit">国交省</span></td>
+          <td><span class="deadline ok">7月</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">交付決定</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">第3回は8月上旬目処</span>
+          </td>
+          <td><span class="tag tag-mlit">国交省</span></td>
+          <td><span class="deadline ok">8月上旬</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 連携民間事業者タスク -->
+  <div class="card">
+    <div class="section-title">🟩 連携民間事業者（民間活動と一体性の証跡）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">JR東日本仙台支社：駅前広場連携意向書</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">米沢駅の駅前広場・観光案内・ホスピタリティ強化での連携意向</span>
+          </td>
+          <td><span class="tag tag-jr">JR</span></td>
+          <td><span class="deadline soon">6/5</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">㈱上杉コーポレーション：城史苑連携意向書</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">レキマチハードと連動した城史苑エリアの拠点機能強化</span>
+          </td>
+          <td><span class="tag tag-private">連携</span></td>
+          <td><span class="deadline soon">6/5</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">道の駅米沢 指定管理者：機能拡充意向書</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">広域観光拠点としての機能拡充の連携意向</span>
+          </td>
+          <td><span class="tag tag-private">連携</span></td>
+          <td><span class="deadline soon">6/5</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">山形交通／米沢タクシー協会：交通ハブ連携</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">2次交通連動の事業活動意向</span>
+          </td>
+          <td><span class="tag tag-private">連携</span></td>
+          <td><span class="deadline soon">6/5</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">プラットヨネザワ：DMO主体の連携意向書</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">レキマチハード・観光振興計画との整合性ある連携</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">6/5</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 重要会議 -->
+  <div class="card">
+    <div class="section-title">🟨 重要な会議・WS</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>会議名</th><th width="80">主催</th><th width="100">予定時期</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle next">→</span></td>
+          <td><span class="task-name">国交省＋米沢市＋プラット 三者打合せ</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">事前相談を踏まえた具体テーマの絞り込み（オンライン可）</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline urgent">5/27</span></td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">連携事業者キックオフ会議</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">JR・上杉コーポ・道の駅・交通事業者・プラットの連携合意</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline soon">6/3</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">山形市道の駅蔵王 視察</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">隣接事例の現地視察＋実務担当者との意見交換</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline soon">5月下旬-6月上旬</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">中間報告会（調査結果共有）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">市役所・連携事業者・有識者を集めて中間報告</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline ok">2026/12</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">最終報告会・事業化方針会議</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">PPP/PFI採用の方針決定</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline ok">2027/02</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============ TAB 4: 影響・依存関係 ============ -->
+<div id="tab-deps" class="tab-pane">
+
+  <div class="alert alert-info">
+    本制度は<strong>米沢市が申請主体（民間直接申請不可）</strong>＋<strong>民間事業活動と一体的</strong>＋<strong>国交省所管インフラ限定</strong>の3点が成立しないと応募できない。さらにR8第3回（6月中旬）を逃すと7か月遅延が発生。
+  </div>
+
+  <!-- Critical Chain ① -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン①：第3回応募までの5週間</div>
+    <div class="dep-section">
+      <div class="dep-label">最短ルート (R8.5.12 → R8.6.15)</div>
+      <div class="dep-chain">
+        <div class="dep-node active">国交省事前相談<br>(5/12)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">市役所打診<br>(5/14-20)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">庁内連絡会議<br>(5/22)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">市の主体合意<br>(6/1)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">応募書類完成<br>(6/12)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">★第3回応募<br>(6/15)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 第3回を逃した場合のインパクト：</strong>
+        次回は<strong>R9第1回（2027年1月下旬）</strong>。7か月遅延で交付決定が2027年5月、調査完了が2028年3月、事業化が2028年4月以降に。
+        <strong>R10事業着手のスケジュールが1年丸ごとずれる。</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ② -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン②：応募適格性の3要件</div>
+    <div class="dep-section">
+      <div class="dep-label">本制度の必須要件</div>
+      <div class="dep-chain">
+        <div class="dep-node future">米沢市<br>申請主体</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">民間事業活動と<br>一体的</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">国交省所管<br>インフラ</div>
+        <span class="dep-arrow">＝</span>
+        <div class="dep-node future">適格</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 要件チェック：</strong>
+        ①米沢市が申請主体になることに合意するか — <strong>最大のハードル</strong>。<br>
+        ②民間事業活動との一体性 — JR東日本／上杉コーポレーション／道の駅指定管理／交通事業者／プラットの参画意向書の取得が必須。<br>
+        ③国交省所管インフラ限定 — 駅前広場（道路）・道の駅（道路）・公園・市街地整備はOK／神社境内地・私有地は対象外。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ③ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン③：R8重点配分項目への合致</div>
+    <div class="dep-section">
+      <div class="dep-label">R8重点配分項目（採択優位性に直結）</div>
+      <div class="dep-chain">
+        <div class="dep-node future">①PPP/PFI推進</div>
+        <span class="dep-arrow">／</span>
+        <div class="dep-node active">②広域観光・交流拠点形成</div>
+        <span class="dep-arrow">／</span>
+        <div class="dep-node future">③二地域居住・半島離島</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 採点アップのコツ：</strong>
+        ②「広域観光又は交流拠点形成の促進」が米沢に最もハマる。<strong>PPP/PFI検討を必ず組み込み</strong>、①と②の重複適合を狙う。
+        高山市（R7初回採択／800万円）が「広域観光拠点形成検討」のテーマで採択された直近事例。米沢市の参考にできる。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ④ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン④：他補助金・事業との並走整合</div>
+    <div class="dep-section">
+      <div class="dep-label">並走中の関連事業との整合</div>
+      <div class="dep-chain">
+        <div class="dep-node active">レキマチハード<br>(R9.2完了)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">本調査費<br>(R8調査)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">街なみ環境整備<br>(R10〜認定後)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">PPP/PFI事業<br>(R10〜)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 整合の論点：</strong>
+        レキマチハードは「個別施設の改修」（旧白根澤邸／福島屋／旧遠万織物 等）に集中。本調査費は「面的な拠点ネットワーク」を扱う。
+        重複ではなく<strong>役割分担</strong>として整理：レキマチ＝個別建造物／本調査費＝拠点間動線＋公共空間／歴まち計画＝面的な街なみ＋公共施設の交付率上乗せ。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ⑤ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン⑤：オープンファクトリー本年度本番との同期</div>
+    <div class="dep-section">
+      <div class="dep-label">9月本番のデータ取得→調査への組み込み</div>
+      <div class="dep-chain">
+        <div class="dep-node future">交付決定<br>(8月上旬)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">調査契約<br>(8月中旬)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">★OF本番<br>(9/10-13)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">人流データ取得<br>(9月下旬)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">基礎データ反映<br>(10月-)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ タイミングの妙：</strong>
+        交付決定は8月上旬→OF本番は9月10-13日。<strong>このタイミングで採択されると、OF本番のリアルな人流・回遊データを基礎データ収集の主軸として組み込める</strong>。
+        逆に交付決定が遅れると（9月以降）、OF本番のデータは「事前調査」扱いとして補助対象外（事前着手禁止規定）。
+      </div>
+    </div>
+  </div>
+
+  <!-- クリティカルパスまとめ -->
+  <div class="card" style="border-left:4px solid var(--orange);">
+    <div class="section-title">📌 R8第3回応募〜R10事業化までのクリティカルパス</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月12日</div>
+        <div class="tl-title">国交省 国土政策局 調整室 電話相談</div></div>
+      <div class="tl-item"><div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月14-20日</div>
+        <div class="tl-title">米沢市総合政策課・都市計画課 打診</div></div>
+      <div class="tl-item"><div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月22日</div>
+        <div class="tl-title">米沢市庁内連絡会議</div></div>
+      <div class="tl-item"><div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月27日</div>
+        <div class="tl-title">国交省＋米沢市＋プラット 三者打合せ</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月1日</div>
+        <div class="tl-title">★米沢市の申請主体合意（最大の山）</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月3日</div>
+        <div class="tl-title">連携事業者キックオフ・参画意向書取得</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月12日</div>
+        <div class="tl-title">応募書類完成・市長決裁</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月15日</div>
+        <div class="tl-title">★第3回応募提出</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月</div>
+        <div class="tl-title">東北地方整備局との実施計画協議</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年8月上旬</div>
+        <div class="tl-title">★交付決定</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年9月10-13日</div>
+        <div class="tl-title">★OF本番でリアル人流データ取得</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年2月</div>
+        <div class="tl-title">最終報告書・事業化方針決定</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年4月〜</div>
+        <div class="tl-title">PPP/PFI事業者公募準備</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2028年4月〜</div>
+        <div class="tl-title">★整備事業着手</div></div>
+    </div>
+  </div>
+
+  <!-- 出典 -->
+  <div class="card">
+    <div class="section-title">📎 出典・参考リンク</div>
+    <ul class="ref-list">
+      <li>国交省 官民連携基盤整備推進調査費トップ：<a href="https://www.mlit.go.jp/kokudoseisaku/kanminrenkei.html" target="_blank">https://www.mlit.go.jp/kokudoseisaku/kanminrenkei.html</a></li>
+      <li>事例集（R7.11版）：<a href="https://www.mlit.go.jp/kokudoseisaku/content/001973264.pdf" target="_blank">https://www.mlit.go.jp/kokudoseisaku/content/001973264.pdf</a></li>
+      <li>制度の手引き：<a href="https://www.mlit.go.jp/kokudoseisaku/content/001465352.pdf" target="_blank">https://www.mlit.go.jp/kokudoseisaku/content/001465352.pdf</a></li>
+      <li>R7初回採択結果：<a href="https://www.mlit.go.jp/kokudoseisaku/kanminrenkei.html" target="_blank">https://www.mlit.go.jp/kokudoseisaku/kanminrenkei.html</a> （高山市・呉市等13件）</li>
+      <li>（参考）山形市 道の駅やまがた蔵王／盛岡市 盛岡バスセンター／前橋市 まえばし赤城 — 事例集P.3-12参照</li>
+      <li>社内：観光庁R8支援メニュー フィルタリングレポート v2 ／ 候補3補助金 深掘り調査レポート v1</li>
+      <li>関連トラッカー：米沢市 歴まち計画＋街なみ環境整備事業 ／ 360°よねざわオープンファクトリー</li>
+    </ul>
+  </div>
+
+</div>
+
+</div><!-- /container -->
+
+<footer>© 2026 プラットヨネザワ株式会社（PM／井上 陽平）｜米沢市 官民連携基盤整備推進調査費 専用進捗管理ページ ｜ 最終更新：2026-05-08</footer>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

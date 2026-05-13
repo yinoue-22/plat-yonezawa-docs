@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米沢織（置賜紬）伝統工芸品産業支援補助金 | 進捗管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --green: #28a745;
+  --orange: #fd7e14;
+  --blue: #007bff;
+  --red: #dc3545;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+
+.hero {
+  background:linear-gradient(135deg,#1a2744 0%,#3d1a1a 50%,#8b1a1a 100%);
+  color:#fff; padding:1.5rem 2rem 1.2rem; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; top:-40%; right:-10%; width:300px; height:300px;
+  background:radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius:50%;
+}
+.hero .project-label { font-size:.7rem; letter-spacing:.1em; opacity:.7; margin-bottom:.3rem; text-transform:uppercase; }
+.hero h1 { font-size:1.35rem; font-weight:900; margin-bottom:.2rem; }
+.hero .subtitle { font-size:.8rem; opacity:.75; margin-bottom:.6rem; }
+.hero .meta { display:flex; flex-wrap:wrap; gap:.6rem; font-size:.75rem; opacity:.75; }
+.phase-badge {
+  display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  border-radius:20px; padding:.25rem .9rem; font-size:.76rem; font-weight:700; margin-bottom:.6rem;
+}
+
+.tab-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  display:flex; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.tab {
+  flex:1; padding:.85rem .5rem; border:none; background:none; cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif; font-size:.8rem; font-weight:500;
+  color:var(--text-sub); border-bottom:3px solid transparent; transition:all .15s;
+  display:flex; align-items:center; justify-content:center; gap:.3rem;
+}
+.tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:700; }
+.tab:hover:not(.active) { background:#f8f9fa; color:var(--text); }
+
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+
+.container { max-width:960px; margin:0 auto; padding:1.5rem 1.5rem 3rem; }
+.card {
+  background:var(--card); border-radius:10px; padding:1.2rem;
+  box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:.9rem;
+}
+.section-title {
+  font-size:.95rem; font-weight:700; color:var(--primary);
+  margin-bottom:1rem; padding-bottom:.4rem; border-bottom:2px solid var(--primary);
+}
+
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-bottom:1rem; }
+@media(max-width:640px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+.stat-box {
+  background:var(--card); border-radius:10px; padding:.9rem;
+  box-shadow:var(--shadow); border:1px solid var(--border);
+  text-align:center; border-top:4px solid var(--border);
+}
+.stat-box.green  { border-top-color:var(--green); }
+.stat-box.blue   { border-top-color:var(--blue); }
+.stat-box.orange { border-top-color:var(--orange); }
+.stat-box.navy   { border-top-color:var(--primary); }
+.stat-val { font-size:1.5rem; font-weight:900; color:var(--primary); line-height:1.2; }
+.stat-label { font-size:.7rem; color:var(--text-sub); margin-top:.25rem; }
+.stat-sub { font-size:.65rem; color:var(--text-sub); }
+
+.progress-wrap { margin:.5rem 0; }
+.progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--text-sub); margin-bottom:.25rem; }
+.progress-bar { background:#e9ecef; border-radius:6px; height:9px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:6px; }
+.fill-green  { background:linear-gradient(90deg,#28a745,#34ce57); }
+.fill-blue   { background:linear-gradient(90deg,#007bff,#6610f2); }
+.fill-orange { background:linear-gradient(90deg,#fd7e14,#ffc107); }
+.fill-red    { background:linear-gradient(90deg,#dc3545,#c2185b); }
+.fill-gray   { background:#ced4da; }
+
+.timeline { position:relative; padding-left:1.6rem; }
+.timeline::before { content:''; position:absolute; left:.5rem; top:0; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:.9rem; }
+.tl-dot {
+  position:absolute; left:-1.25rem; top:.35rem;
+  width:16px; height:16px; border-radius:50%; border:2.5px solid;
+}
+.tl-dot.done   { background:var(--green);  border-color:var(--green); }
+.tl-dot.active { background:#fff;          border-color:var(--blue); }
+.tl-dot.next   { background:#fff;          border-color:var(--orange); }
+.tl-dot.future { background:#fff;          border-color:var(--border); }
+.tl-date  { font-size:.72rem; color:var(--text-sub); }
+.tl-title { font-size:.88rem; font-weight:700; }
+.tl-desc  { font-size:.78rem; color:var(--text-sub); margin-top:.15rem; }
+.tl-who   { font-size:.72rem; color:var(--blue); margin-top:.1rem; }
+
+.task-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.task-table thead th {
+  background:#f8f9fa; text-align:left; padding:.5rem .65rem;
+  font-size:.73rem; font-weight:700; color:var(--text-sub); border-bottom:2px solid var(--border);
+}
+.task-table tbody tr { border-bottom:1px solid #f0f0f0; }
+.task-table tbody tr:hover { background:#fafafa; }
+.task-table td { padding:.5rem .65rem; vertical-align:middle; }
+.task-name { font-weight:600; }
+.task-done .task-name { color:var(--text-sub); text-decoration:line-through; }
+.check-circle {
+  width:20px; height:20px; border-radius:50%; border:2px solid var(--border);
+  display:inline-flex; align-items:center; justify-content:center; font-size:.63rem; font-weight:700;
+}
+.check-circle.done   { background:var(--green);  border-color:var(--green);  color:#fff; }
+.check-circle.active { border-color:var(--blue);  color:var(--blue); }
+.check-circle.next   { border-color:var(--orange); color:var(--orange); }
+.check-circle.none   { border-color:#ccc; }
+
+.tag {
+  display:inline-block; padding:.12rem .55rem; border-radius:10px;
+  font-size:.68rem; font-weight:700; white-space:nowrap;
+}
+.tag-plat   { background:#dbeafe; color:#1d4ed8; }
+.tag-yoneori { background:#fce7f3; color:#9d174d; }
+.tag-meti   { background:#fff7ed; color:#9a3412; }
+.tag-of     { background:#f3e8ff; color:#6b21a8; }
+.tag-city   { background:#fef3c7; color:#92400e; }
+.tag-private { background:#f0fdf4; color:#166534; }
+.tag-ws     { background:#ffe5d9; color:#c45a1e; }
+
+.deadline { font-size:.76rem; }
+.deadline.urgent { color:var(--red); font-weight:700; }
+.deadline.soon   { color:var(--orange); font-weight:600; }
+.deadline.ok     { color:var(--text-sub); }
+
+.badge { display:inline-block; padding:.18rem .65rem; border-radius:20px; font-size:.71rem; font-weight:700; }
+.badge-done   { background:#d4edda; color:#155724; }
+.badge-active { background:#cce5ff; color:#004085; }
+.badge-next   { background:#fff3cd; color:#856404; }
+.badge-future { background:#f1f3f4; color:#5f6368; }
+
+.alert { padding:.65rem .9rem; border-radius:0 8px 8px 0; font-size:.81rem; margin-bottom:.8rem; border-left:4px solid; }
+.alert-ok     { background:#e8f5e9; border-color:var(--green); color:#1b5e20; }
+.alert-warn   { background:#fff8e1; border-color:var(--orange); color:#5d4037; }
+.alert-danger { background:#fdecea; border-color:var(--red); color:#7b1a12; }
+.alert-info   { background:#e8f4fd; border-color:var(--blue); color:#0c5460; }
+
+.dep-section { margin-bottom:1.2rem; }
+.dep-label { font-size:.72rem; font-weight:700; color:var(--text-sub); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.5rem; }
+.dep-chain { display:flex; align-items:center; flex-wrap:wrap; gap:.25rem; margin-bottom:.4rem; }
+.dep-node {
+  padding:.35rem .8rem; border-radius:8px; font-size:.78rem; font-weight:600;
+  border:2px solid; line-height:1.3; text-align:center;
+}
+.dep-node.done   { background:#d4edda; border-color:var(--green);  color:#155724; }
+.dep-node.active { background:#cce5ff; border-color:var(--blue);   color:#004085; }
+.dep-node.next   { background:#fff3cd; border-color:var(--orange); color:#856404; }
+.dep-node.future { background:#f8f9fa; border-color:#ced4da;       color:#6c757d; }
+.dep-arrow { color:#adb5bd; font-size:1rem; }
+.dep-warning {
+  background:#fff8e1; border:1px solid #ffd54f; border-radius:8px;
+  padding:.6rem .9rem; font-size:.8rem; color:#5d4037; margin-top:.4rem;
+}
+.dep-warning strong { display:block; margin-bottom:.15rem; color:#bf360c; }
+
+.team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.7rem; }
+.team-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.9rem; box-shadow:var(--shadow); display:flex; gap:.7rem; align-items:flex-start; }
+.avatar { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:.82rem; color:#fff; flex-shrink:0; }
+.team-name { font-size:.85rem; font-weight:700; }
+.team-role { font-size:.73rem; color:var(--text-sub); line-height:1.4; }
+
+.contact-box { background:#f0f4ff; border:1px solid #c5d5ff; border-radius:10px; padding:1rem; font-size:.83rem; }
+.contact-box h4 { font-weight:700; color:var(--primary); margin-bottom:.3rem; }
+
+.kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; }
+.kpi-item { text-align:center; padding:.7rem; background:#f8f9fa; border-radius:8px; }
+.kpi-val  { font-size:1rem; font-weight:900; color:var(--primary); }
+.kpi-label{ font-size:.7rem; color:var(--text-sub); margin-top:.2rem; }
+
+.case-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.7rem; }
+.case-card { background:#f8f9fa; border:1px solid var(--border); border-radius:10px; padding:.85rem; }
+.case-title { font-size:.85rem; font-weight:700; color:var(--primary); margin-bottom:.2rem; }
+.case-meta { font-size:.7rem; color:var(--text-sub); margin-bottom:.4rem; }
+.case-desc { font-size:.78rem; line-height:1.6; }
+
+.plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:.7rem; }
+.plan-card {
+  border:2px solid; border-radius:10px; padding:.9rem;
+}
+.plan-card.recommend { border-color:var(--red); background:#fef2f2; }
+.plan-card.option { border-color:#c5d5ff; background:#f0f4ff; }
+.plan-card.future { border-color:var(--border); background:#f8f9fa; }
+.plan-name { font-size:.95rem; font-weight:900; color:var(--primary); margin-bottom:.2rem; }
+.plan-rate { font-size:.75rem; font-weight:700; color:var(--red); margin-bottom:.4rem; }
+.plan-desc { font-size:.78rem; line-height:1.6; }
+.plan-recommend-badge { display:inline-block; background:var(--red); color:#fff; padding:.1rem .5rem; border-radius:4px; font-size:.62rem; margin-left:.3rem; vertical-align:top; }
+
+.partner-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.6rem; }
+.partner-card {
+  background:linear-gradient(135deg,#fdf6f0 0%,#f9ebe2 100%);
+  border:1px solid #e6c8b0; border-radius:10px; padding:.85rem;
+}
+.partner-name { font-size:.88rem; font-weight:900; color:#5d2906; margin-bottom:.2rem; }
+.partner-tag { font-size:.65rem; color:#9d174d; font-weight:700; margin-bottom:.35rem; }
+.partner-desc { font-size:.74rem; color:#5d4037; line-height:1.5; }
+
+.ref-list { font-size:.78rem; line-height:1.7; }
+.ref-list li { margin-bottom:.3rem; list-style:disc; margin-left:1.2rem; }
+.ref-list a { color:var(--blue); word-break:break-all; }
+
+footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="project-label">プラットヨネザワ × 米沢繊維協議会 ｜ 補助金準備プロジェクト</div>
+  <div class="phase-badge">🟡 主体要件確認・米沢繊維協議会 打診フェーズ（R8前期）</div>
+  <h1>米沢織（置賜紬）伝統的工芸品産業支援補助金</h1>
+  <div class="subtitle">伝産法計画認定（R8.12）→ 補助金応募（R9.1）の2段ロケット構造／360°オープンファクトリーR9本番への成果反映を狙う</div>
+  <div class="meta">
+    <span>PM／井上 陽平（プラットヨネザワ）</span>
+    <span>申請主体／米沢繊維協議会（要・適格性確認）</span>
+    <span>応募目標／R9.1（2027.1）</span>
+    <span>更新日／2026-05-08</span>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab active" onclick="showTab('summary', this)">📊 進捗サマリー</button>
+  <button class="tab" onclick="showTab('milestones', this)">🎯 マイルストーン</button>
+  <button class="tab" onclick="showTab('tasks', this)">📋 タスク・担当</button>
+  <button class="tab" onclick="showTab('deps', this)">🔗 影響・依存関係</button>
+</div>
+
+<div class="container">
+
+<!-- ============ TAB 1: 進捗サマリー ============ -->
+<div id="tab-summary" class="tab-pane active">
+
+  <div class="alert alert-danger">
+    <strong>⚠️ 最大の論点：「米沢繊維協議会が伝産法上の主体要件を満たすか」</strong><br>
+    本補助金の申請主体は<strong>「品を製造する協同組合等」</strong>。米沢繊維協議会は平成25年改組で「協議会」名称＝中小企業等協同組合法上の「協同組合」と法人格が異なる可能性。
+    <strong>R8.5月中に東北経済産業局（仙台）への適格性照会が必須。</strong>
+    Noなら別途特定製造協同組合の組成・既存組合への参画 等が必要となり、半年〜1年遅延の可能性。
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box green">
+      <div class="stat-val">0</div>
+      <div class="stat-label">完了タスク</div>
+      <div class="stat-sub">準備フェーズ開始前</div>
+    </div>
+    <div class="stat-box blue">
+      <div class="stat-val">2</div>
+      <div class="stat-label">対応中タスク</div>
+      <div class="stat-sub">主体適格性確認・協議会打診</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-val">5/22</div>
+      <div class="stat-label">次のマイルストーン</div>
+      <div class="stat-sub">東北経産局への適格性照会</div>
+    </div>
+    <div class="stat-box navy">
+      <div class="stat-val">R9.1</div>
+      <div class="stat-label">補助金応募 目標</div>
+      <div class="stat-sub">2027年1月／R8.12認定取得前提</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">フェーズ別進捗</div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 1</strong>　主体適格性確認・米沢繊維協議会 打診（R8.5〜7）</span>
+        <span>5%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-blue" style="width:5%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 2</strong>　計画タイプ選定・事業内容設計（R8.7〜10）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 3</strong>　計画案策定・経産局事前相談（R8.10〜11）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 4</strong>　★伝産法計画認定取得（R8.12）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><strong>Phase 5</strong>　★補助金応募・採択・事業実施（R9.1〜R10）</span>
+        <span>0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">事業の概要と狙い</div>
+    <p style="font-size:.85rem; line-height:1.85;">
+      <strong>伝統的工芸品産業支援補助金</strong>＝経産省商務・サービスグループ所管。
+      米沢織の国指定伝産品名は「<strong>置賜紬（おいたまつむぎ）</strong>」（米沢市・南陽市・長井市・白鷹町・川西町など置賜地域全体の総称）。
+      補助率1/2 or 2/3、上限2,000万円、R8予算1,086百万円の内数。
+      公募は<strong>例年1月頃</strong>のため、R8公募は終了済 → 次回はR9（2027.1）。
+      <br><br>
+      ★最重要：補助金応募の<strong>1か月前までに伝産法に基づく事業計画認定が必要</strong>。
+      事前相談から認定取得まで通常2か月以上＝R8.12までに認定取得が必要なら、R8.10には経産局事前相談に入る逆算スケジュール。
+      <br><br>
+      米沢の応募テーマ（仮）：<strong>「米沢織（置賜紬）の高付加価値化と次世代産地形成」</strong>。
+      ①ショールーム改修＋多言語化（需要開拓事業）／②原方刺し子体験コンテンツ造成（人材育成・需要開拓）／③訪日富裕層向け新商品共同開発（共同振興計画）／④産地プロデューサー設置（支援計画）の組合せ。
+      360°オープンファクトリーR9本番（2027年9月想定）への成果反映を狙う。
+    </p>
+    <div class="kpi-row" style="margin-top:1rem;">
+      <div class="kpi-item">
+        <div class="kpi-val">2,000万円</div>
+        <div class="kpi-label">上限額<br>（1件あたり）</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">1/2 or 2/3</div>
+        <div class="kpi-label">補助率<br>（事業区分別）</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">56社</div>
+        <div class="kpi-label">米沢繊維協議会<br>会員企業数</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">伝産法上の事業計画タイプ（4種類）— どれを取るか</div>
+    <div class="plan-grid">
+
+      <div class="plan-card recommend">
+        <div class="plan-name">📘 振興計画 <span class="plan-recommend-badge">本命</span></div>
+        <div class="plan-rate">補助率 1/2（意匠開発・新商品開発は2/3）</div>
+        <div class="plan-desc">
+          ・後継者育成事業<br>
+          ・技術・技法の記録・収集・保存<br>
+          ・道具・原材料確保対策<br>
+          ・需要開拓事業（展示会・販路開発）<br>
+          ・意匠開発事業（新商品開発）<br>
+          → ショールーム改修・原方刺し子体験コンテンツ造成にハマる。
+        </div>
+      </div>
+
+      <div class="plan-card option">
+        <div class="plan-name">📗 共同振興計画</div>
+        <div class="plan-rate">補助率 2/3</div>
+        <div class="plan-desc">
+          ・需要開拓等共同展開事業<br>
+          ・新商品共同開発事業<br>
+          → 製造組合＋販売事業者がタッグ。米沢繊維協議会＋東京・京都の販売事業者で組む形。<br>
+          → 訪日富裕層向け新商品共同開発に最適。
+        </div>
+      </div>
+
+      <div class="plan-card option">
+        <div class="plan-name">📙 活性化計画 / 連携活性化計画</div>
+        <div class="plan-rate">補助率 2/3</div>
+        <div class="plan-desc">
+          ・産地全体の振興・活性化<br>
+          ・他産地・他産業との連携<br>
+          → 置賜地域の他市町（南陽・長井・白鷹・川西）と連携する場合。<br>
+          → オープンファクトリー全体運営費の補助対象化が見込める。
+        </div>
+      </div>
+
+      <div class="plan-card future">
+        <div class="plan-name">📕 支援計画</div>
+        <div class="plan-rate">補助率 1/2</div>
+        <div class="plan-desc">
+          ・人材育成・交流支援事業<br>
+          ・産地プロデューサー事業<br>
+          → 外部人材登用（プロデューサー・ディレクター）。<br>
+          → 事業構造によっては中期で活用。
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:.8rem; font-size:.78rem; color:var(--text-sub);">
+      ※ 複数計画を組み合わせて申請可能（例：振興計画＋共同振興計画）。米沢の最有力は<strong>「振興計画＋共同振興計画」の2本立て</strong>。
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">米沢織関連 既存接点（オープンファクトリー参加事業者中心）</div>
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="partner-name">🏛 米沢繊維協議会</div>
+        <div class="partner-tag">業界団体・★申請主体候補</div>
+        <div class="partner-desc">56社の組合員（明治25年設立／平成25年改組）。本町1-5-21・米織会館。<strong>協議会の法人格が伝産法上の「協同組合等」要件に該当するかが最大論点。</strong></div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🧵 新田 / 新田織物</div>
+        <div class="partner-tag">体験提供・OF参加</div>
+        <div class="partner-desc">2025年米沢訪問時の体験提供先。意匠開発・需要開拓事業の対象施設。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🧵 近賢織物</div>
+        <div class="partner-tag">OF実行委員（2024）</div>
+        <div class="partner-desc">市街地ルート停留所近接。ショールーム改修・後継者育成。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🧵 キハラ</div>
+        <div class="partner-tag">OF市街地ルート参加</div>
+        <div class="partner-desc">乗るパス対象事業者（市街地）。需要開拓・販路開発。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🧵 山口織物（鷹山堂）</div>
+        <div class="partner-tag">OF Cルート（赤芝町）</div>
+        <div class="partner-desc">産地プロデューサー事業対象候補。郊外型工房の代表。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🧵 東北整練</div>
+        <div class="partner-tag">OF北エリア（窪田）</div>
+        <div class="partner-desc">整理染色工程の共同振興計画。Bto B工程の見える化。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🏘 旧遠万織物（渡邉幹雄氏）</div>
+        <div class="partner-tag">レキマチハード対象</div>
+        <div class="partner-desc">米沢織展示＋原方刺し子体験工房。施設整備（レキマチハード）×ソフト（伝産品販路）の組合せ。</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">🏪 小嶋総本店（小嶋千夏氏）</div>
+        <div class="partner-tag">OFボードMTGメンバー</div>
+        <div class="partner-desc">200年企業（粡町）。OF実行委員ボード。米沢織との連携可能性あり。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">プロジェクト体制</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar" style="background:#1d4ed8;">井</div>
+        <div>
+          <div class="team-name">井上 陽平</div>
+          <div class="team-role">プラットヨネザワ／PM・米沢繊維協議会窓口</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#1d4ed8;">小田</div>
+        <div>
+          <div class="team-name">小田 COO</div>
+          <div class="team-role">プラットヨネザワ／補助金統括・経産局事前相談</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#9d174d;">織</div>
+        <div>
+          <div class="team-name">米沢繊維協議会 事務局</div>
+          <div class="team-role">★申請主体候補／会員企業の取りまとめ</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#9a3412;">経</div>
+        <div>
+          <div class="team-name">経産省 文化創造産業課 伝統的工芸品産業室</div>
+          <div class="team-role">本省／制度所管・最終認定</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#9a3412;">東</div>
+        <div>
+          <div class="team-name">東北経済産業局 産業部 製造産業課</div>
+          <div class="team-role">★地方窓口／事前相談・認定書類受付</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">市</div>
+        <div>
+          <div class="team-name">米沢市 商工観光課</div>
+          <div class="team-role">市の支援表明・連携協力</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#92400e;">県</div>
+        <div>
+          <div class="team-name">山形県 置賜総合支庁</div>
+          <div class="team-role">県の支援表明・置賜全域の連携窓口</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#6b21a8;">OF</div>
+        <div>
+          <div class="team-name">360°よねざわオープンファクトリー実行委員会</div>
+          <div class="team-role">事業内容の連動主体（米沢織体験・ショールーム）</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#166534;">山</div>
+        <div>
+          <div class="team-name">山形大学 工学部 機能高分子工学科</div>
+          <div class="team-role">繊維分野の有識者・後継者育成連携</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:#166534;">商</div>
+        <div>
+          <div class="team-name">米沢商工会議所</div>
+          <div class="team-role">中小企業支援・経営指導員の活用</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">参考事例（他産地の採択実績）</div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-title">🪡 西陣織（京都）</div>
+        <div class="case-meta">意匠開発事業・需要開拓事業</div>
+        <div class="case-desc">継続採択。新商品開発（インテリア・アパレル）で売上回復。意匠開発の代表事例。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🪡 博多織（福岡）</div>
+        <div class="case-meta">共同振興計画</div>
+        <div class="case-desc">販路開拓・海外展示会出展。製造＋販売事業者の連携モデル。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🪡 結城紬（茨城・栃木）</div>
+        <div class="case-meta">後継者育成・技術記録</div>
+        <div class="case-desc">継続採択。重要無形文化財でもある同織物の技術継承事業の代表事例。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🪡 小千谷縮・越後上布（新潟）</div>
+        <div class="case-meta">産地プロデューサー事業</div>
+        <div class="case-desc">外部人材登用。国指定伝統的工芸品＋ユネスコ無形文化遺産の高付加価値化。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🪡 久留米絣（福岡）</div>
+        <div class="case-meta">活性化計画</div>
+        <div class="case-desc">産地全体の振興。流通改革・ECモール開設。</div>
+      </div>
+      <div class="case-card">
+        <div class="case-title">🪡 加賀友禅（石川）</div>
+        <div class="case-meta">意匠開発・需要開拓</div>
+        <div class="case-desc">伝産品としての文化観光連携。金沢市の歴まち計画と連動した活用モデル。</div>
+      </div>
+    </div>
+    <p style="margin-top:.6rem; font-size:.75rem; color:var(--text-sub); font-style:italic;">
+      ※ 「置賜紬」産地での過去採択実績は要：米沢繊維協議会への聞き取り。事業者単位の経産省ものづくり補助金等とは別系統のため、伝産法ベースの採択実績は限定的の可能性。
+    </p>
+  </div>
+
+  <div class="contact-box">
+    <h4>📞 主要問合せ先</h4>
+    <ul style="font-size:.78rem; list-style:none; padding-left:0; line-height:1.85;">
+      <li>・経産省 商務・サービスグループ 文化創造産業課 伝統的工芸品産業室／TEL 03-3501-1750</li>
+      <li>・東北経済産業局 産業部 製造産業課（仙台市）／TEL 022-221-4905（製造産業課代表）</li>
+      <li>・米沢繊維協議会／本町1-5-21 米織会館／TEL 0238-23-3525（要：最新確認）</li>
+      <li>・米沢市 商工観光課／TEL 0238-22-5111（代表）</li>
+      <li>・山形県 置賜総合支庁 産業経済部 商工振興課（米沢市）</li>
+      <li>・（一財）伝統的工芸品産業振興協会／東京・赤坂</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============ TAB 2: マイルストーン ============ -->
+<div id="tab-milestones" class="tab-pane">
+
+  <div class="alert alert-info">
+    <strong>2段ロケット構造のため、逆算スケジュールが命：</strong>
+    R9.1 補助金応募 ← R8.12 伝産法計画認定（応募1か月前必須） ← R8.10-11 認定申請＋事前相談 ← R8.8-10 計画案策定 ← R8.5-7 主体合意・計画タイプ選定。
+    各フェーズで2-3か月のバッファが必要。
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="card">
+    <div class="section-title">🚀 Phase 1：主体適格性確認・米沢繊維協議会 打診（R8.5〜7）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月15日</div>
+        <div class="tl-title">🔵 ① 経産省 伝統的工芸品産業室 電話相談</div>
+        <div class="tl-desc">弊社（小田COO）から本省直電（03-3501-1750）。
+        「米沢織（置賜紬）について／米沢繊維協議会が伝産法上の主体要件を満たすか／満たさない場合の代替経路」を確認。30分。</div>
+        <div class="tl-who">担当：プラット → 経産省本省</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月22日</div>
+        <div class="tl-title">🔵 ② 東北経済産業局 製造産業課 訪問・適格性照会</div>
+        <div class="tl-desc">仙台訪問または電話で適格性の正式照会。「米沢繊維協議会が伝産法第7条等の特定製造協同組合等に該当するか／該当しない場合の組成オプション」を確認。
+        最重要マイルストーン。</div>
+        <div class="tl-who">担当：プラット → 東北経産局</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月29日</div>
+        <div class="tl-title">⏳ ③ 米沢繊維協議会への打診</div>
+        <div class="tl-desc">米沢繊維協議会 事務局（米織会館）に弊社から打診。
+        「伝産法計画策定への協議会としての関心」を測る。会員企業の事前同意取得の見通しを把握。</div>
+        <div class="tl-who">担当：プラット → 米沢繊維協議会</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月中旬</div>
+        <div class="tl-title">予定 ④ 米沢繊維協議会 役員会での議題化</div>
+        <div class="tl-desc">協議会の役員会で「伝産法計画策定の方向性」を議題化。プラットがプレゼン。</div>
+        <div class="tl-who">担当：協議会＋プラット</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月</div>
+        <div class="tl-title">予定 ⑤ 米沢市・山形県の支援表明取得</div>
+        <div class="tl-desc">商工観光課・置賜総合支庁から「協議会の伝産法計画策定を支援する」旨の文書を取得。
+        計画書の説得力強化。</div>
+        <div class="tl-who">担当：プラット＋協議会</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="card">
+    <div class="section-title">📐 Phase 2：計画タイプ選定・事業内容設計（R8.7〜10）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月下旬</div>
+        <div class="tl-title">予定 ⑥ 計画タイプの最終決定</div>
+        <div class="tl-desc">「振興計画」単独 or 「振興計画＋共同振興計画」の2本立て or 「活性化計画」（置賜広域） から決定。
+        オープンファクトリー連動の最大公約数として「振興計画＋共同振興計画」を本命に。</div>
+        <div class="tl-who">担当：協議会＋プラット</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年8月</div>
+        <div class="tl-title">予定 ⑦ 9月オープンファクトリー本番調査</div>
+        <div class="tl-desc">9/10-13本番に協議会・経産省関係者を招待し現地調査。
+        伝産法計画への組み込みデータ（来訪者・売上・体験参加者・SNSリーチ）を取得。</div>
+        <div class="tl-who">担当：OF実行委＋プラット＋協議会</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年9月10〜13日</div>
+        <div class="tl-title">予定 ⑧ ★360°オープンファクトリー本年度本番</div>
+        <div class="tl-desc">本年度本番を「伝産法計画立案のための実証フェーズ」として位置付け。
+        新田・近賢・キハラ・山口・東北整練・旧遠万 等の参加事業者の課題・需要・潜在能力を可視化。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年9月下旬</div>
+        <div class="tl-title">予定 ⑨ 事業計画の骨子化</div>
+        <div class="tl-desc">本番で集めたデータをもとに、5事業（後継者育成／技術記録／道具・原材料／需要開拓／意匠開発）の骨子化。
+        各事業の対象事業者・予算規模・KPIを設定。</div>
+        <div class="tl-who">担当：協議会＋プラット</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="card">
+    <div class="section-title">📝 Phase 3：計画案策定・経産局事前相談（R8.10〜11）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年10月上旬</div>
+        <div class="tl-title">予定 ⑩ 東北経産局 事前相談（第1回）</div>
+        <div class="tl-desc">骨子段階で経産局に持参し、計画書の構成・記載事項の指導を受ける。修正方針の握り。</div>
+        <div class="tl-who">担当：協議会＋プラット → 東北経産局</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年10月中旬〜11月</div>
+        <div class="tl-title">予定 ⑪ 計画案の文書化・会員企業の同意取得</div>
+        <div class="tl-desc">56社の組合員からの同意・参画意向書を取得。事業ごとに参画する企業を確定。</div>
+        <div class="tl-who">担当：協議会</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年11月下旬</div>
+        <div class="tl-title">予定 ⑫ 東北経産局 事前相談（第2回・最終確認）</div>
+        <div class="tl-desc">最終文書を持参し、認定見込みを確認。修正があれば反映。</div>
+        <div class="tl-who">担当：協議会＋プラット → 東北経産局</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年12月上旬</div>
+        <div class="tl-title">予定 ⑬ 計画認定申請（経産大臣宛）</div>
+        <div class="tl-desc">経産大臣宛に正式申請（東北経産局経由）。</div>
+        <div class="tl-who">担当：協議会</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="card">
+    <div class="section-title">✅ Phase 4：★伝産法計画認定取得（R8.12）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026年12月下旬</div>
+        <div class="tl-title">予定 ⑭ ★経産大臣による計画認定</div>
+        <div class="tl-desc">★これで補助金応募の前提条件クリア。R9.1月公募までの1か月間で補助金応募書類を作成。</div>
+        <div class="tl-who">担当：経産大臣</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="card">
+    <div class="section-title">💰 Phase 5：★補助金応募・採択・事業実施（R9.1〜R10）</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年1月（R9.1）</div>
+        <div class="tl-title">予定 ⑮ ★補助金応募（公募開始）</div>
+        <div class="tl-desc">経産局またはJグランツ経由で応募。事業計画書・経費明細・実施スケジュール・実施体制図を提出。
+        想定事業規模：1,500万〜2,000万円（上限）。</div>
+        <div class="tl-who">担当：協議会</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年2〜3月</div>
+        <div class="tl-title">予定 ⑯ 審査・採択（通常1〜2か月）</div>
+        <div class="tl-desc">審査結果通知。質問対応。</div>
+        <div class="tl-who">担当：経産省</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年4月（R9.4）</div>
+        <div class="tl-title">予定 ⑰ 交付決定 → 事業着手</div>
+        <div class="tl-desc">交付決定後、事業着手OK。事前着手禁止規定あり。</div>
+        <div class="tl-who">担当：協議会</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年4月〜2028年3月（R9.4〜R10.3）</div>
+        <div class="tl-title">予定 ⑱ 事業実施（単年度・延長条件付）</div>
+        <div class="tl-desc">①ショールーム改修（近賢・新田・キハラ等）／②原方刺し子体験造成（旧遠万）／③訪日富裕層向け新商品開発／④産地プロデューサー設置／⑤後継者育成プログラム。
+        各事業の進捗・経費を月次でモニタリング。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027年9月（想定）</div>
+        <div class="tl-title">予定 ⑲ ★360°オープンファクトリーR9本番への成果反映</div>
+        <div class="tl-desc">改修済ショールーム・原方刺し子体験コンテンツ・新商品をR9本番でお披露目。
+        来訪者・売上の前年比伸び率をKPI化。</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2028年3月</div>
+        <div class="tl-title">予定 ⑳ 完了報告書提出</div>
+        <div class="tl-desc">経産局へ事業実績・経費精算を報告。次年度継続の検討。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 3: タスク・担当 ============ -->
+<div id="tab-tasks" class="tab-pane">
+
+  <div class="alert alert-danger">
+    <strong>⚡ 最優先＝主体適格性の確認：</strong>
+    R8.5月中に東北経産局への適格性照会を完了させ、米沢繊維協議会が「品を製造する協同組合等」に該当するかを白黒つける。
+    <strong>Noならば代替経路（既存協同組合への参画／新規協同組合の組成 等）を即座に検討開始しないとR9.1応募には間に合わない。</strong>
+  </div>
+
+  <!-- プラットヨネザワ側タスク -->
+  <div class="card">
+    <div class="section-title">🟦 プラットヨネザワ側のタスク</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle active">▶</span></td>
+          <td><span class="task-name">経産省本省（伝産品室）電話相談</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">米沢繊維協議会の主体適格性についての一次情報取得</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/15</span></td>
+          <td><span class="badge badge-active">対応中</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle active">▶</span></td>
+          <td><span class="task-name">★東北経産局 製造産業課への適格性照会</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">仙台訪問または電話。最大論点の白黒判定。</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/22</span></td>
+          <td><span class="badge badge-active">対応中</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">→</span></td>
+          <td><span class="task-name">米沢繊維協議会 事務局訪問</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">米織会館訪問。事務局長と意見交換。打診の起点。</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline urgent">5/29</span></td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">他産地（西陣・博多・結城等）採択事例の調査</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">伝産協会・経産省HP・各組合HPから事例収集。米沢への適用可否分析</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">6/15</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">米沢市・山形県の支援表明文書ドラフト</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">商工観光課・置賜総合支庁から取得する支援文書の文案作成</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">6/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">計画タイプ選定の比較検討資料</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">振興計画／共同振興計画／活性化計画／支援計画の選択肢比較</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline soon">7/20</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事業計画書ドラフト作成支援</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">5事業（後継者育成・技術記録・道具原料・需要開拓・意匠開発）の骨格</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline ok">10/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">9月OF本番でのデータ取得協力</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">来訪者・売上・体験参加者・SNSリーチを伝産法計画用に整備</span>
+          </td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td><span class="deadline ok">9/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 米沢繊維協議会側タスク -->
+  <div class="card">
+    <div class="section-title">🟪 米沢繊維協議会 側のタスク（★申請主体）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">★主体適格性の自己確認</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">協議会の定款・法人格を再確認し、伝産法上の要件と比較</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline urgent">5/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事務局体制の整備（PJTマネージャー任命）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">伝産法計画策定のPJTマネージャーを協議会内で任命</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline soon">6/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">役員会での方針決定</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">役員会で「伝産法計画策定する／しない」の方針を決議</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline soon">6/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">会員企業向け説明会の開催</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">56社向けの説明会。事業参画希望企業を募集</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">7/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">参画企業の意向取りまとめ</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">事業ごとに参画する企業の確定（最低15社想定）</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">9/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事業計画書の最終化</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">プラットドラフトを協議会内で最終化・文書化</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">11/30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">★伝産法計画認定申請</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">東北経産局経由で経産大臣宛申請</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">12/15</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">★補助金応募書類の作成・提出</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">認定計画ベースの応募書類。Jグランツ経由</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">2027/01</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事業実施・進捗管理（採択後）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">5事業の月次進捗管理・経費精算</span>
+          </td>
+          <td><span class="tag tag-yoneori">協議会</span></td>
+          <td><span class="deadline ok">2028/03</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 経産省側 -->
+  <div class="card">
+    <div class="section-title">🟧 経産省側の動き</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">事前相談の受付・助言（東北経産局）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">適格性照会・計画案レビュー</span>
+          </td>
+          <td><span class="tag tag-meti">経産省</span></td>
+          <td><span class="deadline ok">通年</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">伝産法計画認定の審査・認定発出</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">経産大臣による正式認定</span>
+          </td>
+          <td><span class="tag tag-meti">経産省</span></td>
+          <td><span class="deadline ok">12月下旬</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">補助金審査・採択</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">2-3月の審査期間</span>
+          </td>
+          <td><span class="tag tag-meti">経産省</span></td>
+          <td><span class="deadline ok">2027/03</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OF実行委・連携 -->
+  <div class="card">
+    <div class="section-title">🟪 OF実行委・連携事業者の協力事項</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>タスク</th><th width="80">担当</th><th width="100">期限</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">OF実行委員会での議題化</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">伝産法計画と本年度本番の連動方針を実行委員会で承認</span>
+          </td>
+          <td><span class="tag tag-of">OF</span></td>
+          <td><span class="deadline soon">7/15</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">参加事業者の伝産法計画への参画意向確認</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">新田・近賢・キハラ・山口・東北整練・旧遠万・小嶋総本店等</span>
+          </td>
+          <td><span class="tag tag-of">OF</span></td>
+          <td><span class="deadline ok">8/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">OF本番でのデータ取得・経産省関係者招待</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">本番中に経産省・東北経産局・伝産協会の関係者を招待し現地視察</span>
+          </td>
+          <td><span class="tag tag-of">OF</span></td>
+          <td><span class="deadline ok">9/13</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">米沢市・山形県の支援表明取得</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">市・県の支援文書を協議会・プラット連名で要請</span>
+          </td>
+          <td><span class="tag tag-city">市・県</span></td>
+          <td><span class="deadline ok">10/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">山形大学 工学部 機能高分子工学科の連携</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">後継者育成・技術記録の有識者として参画</span>
+          </td>
+          <td><span class="tag tag-private">連携</span></td>
+          <td><span class="deadline ok">10/31</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 重要会議 -->
+  <div class="card">
+    <div class="section-title">🟨 重要な会議・WS</div>
+    <table class="task-table">
+      <thead>
+        <tr><th width="30"></th><th>会議名</th><th width="80">主催</th><th width="100">予定時期</th><th width="80">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle next">→</span></td>
+          <td><span class="task-name">プラット＋協議会 初回打合せ</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">事務局長・役員と方向性議論</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline urgent">6/3</span></td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">協議会役員会（議題化）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">プラットがプレゼン。方針議論</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline soon">6/15-30</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">会員企業向け説明会</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">56社向け／参画希望募集</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline ok">7月下旬</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">他産地視察（西陣・博多・結城のいずれか）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">採択事例の現地視察。事務局長＋若手3-5名</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline ok">8月</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none"></span></td>
+          <td><span class="task-name">経産局事前相談（第1・第2回）</span><br>
+            <span style="font-size:.72rem; color:var(--text-sub);">仙台で対面打合せ。最終認定見込みを確認</span>
+          </td>
+          <td><span class="tag tag-ws">WS</span></td>
+          <td><span class="deadline ok">10月・11月</span></td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============ TAB 4: 影響・依存関係 ============ -->
+<div id="tab-deps" class="tab-pane">
+
+  <div class="alert alert-info">
+    本制度は<strong>「2段ロケット」構造</strong>で、4つのクリティカルチェーンが連鎖する。
+    主体適格性 → 計画タイプ選定 → 計画認定 → 補助金応募。1か所でも詰まると全体が遅延・破綻する。
+  </div>
+
+  <!-- Critical Chain ① -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン①：主体適格性が最大の論点</div>
+    <div class="dep-section">
+      <div class="dep-label">分岐点：YES／NO で進路が大きく変わる</div>
+      <div class="dep-chain">
+        <div class="dep-node active">適格性照会<br>(5/22)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">YES：協議会主体<br>(計画策定OK)</div>
+        <span class="dep-arrow">／</span>
+        <div class="dep-node future">NO：代替経路要<br>(他組合参画 等)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ Noの場合の代替経路（順位順）：</strong>
+        ①<strong>米沢繊維協議会内に「製造組合部会」を新設し、組合部分のみ独立法人化</strong>（現実的・3〜6か月）／
+        ②<strong>既存の小規模協同組合（米沢織物工業協同組合 等が存在すれば）への参画</strong>（要確認・最速）／
+        ③<strong>新規協同組合の組成</strong>（中小企業等協同組合法に基づく・6〜12か月で時間切れリスク大）。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ② -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン②：計画認定 → 補助金応募 の連鎖（1か月ルール）</div>
+    <div class="dep-section">
+      <div class="dep-label">★伝産法計画認定が応募の前提条件</div>
+      <div class="dep-chain">
+        <div class="dep-node future">計画案策定<br>(R8.10-11)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">経産局事前相談<br>(R8.11)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">★認定取得<br>(R8.12)</div>
+        <span class="dep-arrow">≧1か月</span>
+        <div class="dep-node future">★補助金応募<br>(R9.1)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 1か月ルール違反のリスク：</strong>
+        補助金応募の1か月前までに伝産法計画認定が必要。
+        認定が12月下旬になると、応募開始（1月公募）からは1か月未満となり、応募資格を喪失する可能性がある。
+        <strong>認定取得は12月上旬を目標にし、年末を緊急予備とする2段構えのスケジュール管理が必須。</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ③ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン③：オープンファクトリーR9本番との同期</div>
+    <div class="dep-section">
+      <div class="dep-label">事業実施期間とOF本番の重なり</div>
+      <div class="dep-chain">
+        <div class="dep-node future">交付決定<br>(R9.4)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">事業着手<br>(R9.4-)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">改修・造成<br>(R9.5-8)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">★OF R9本番<br>(R9.9 想定)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">成果検証<br>(R9.10-)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 5か月勝負：</strong>
+        交付決定（R9.4）からOF本番（R9.9想定）まで実質5か月。
+        ショールーム改修・原方刺し子体験造成・新商品開発を並行で進める必要があり、コンサル・施工業者の早期選定が肝。
+        補助金応募時点で実施スケジュールを9月本番から逆算しておく。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ④ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン④：他補助金・他計画との並走整合</div>
+    <div class="dep-section">
+      <div class="dep-label">並走中の関連事業との重複確認</div>
+      <div class="dep-chain">
+        <div class="dep-node active">レキマチハード<br>(旧遠万改修)</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">本補助金<br>(R9事業実施)</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">歴まち計画<br>(R10認定)</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">官民連携調査<br>(R8調査)</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 経費の二重計上回避：</strong>
+        レキマチハード＝建造物の物理的改修（旧遠万織物）／本補助金＝ソフト＋一部機器整備（ショールーム什器・体験プログラム造成）／歴まち計画＝面的修景の交付率上乗せ／官民連携＝拠点整備の概略設計。
+        <strong>同一経費を複数補助金で計上することは禁止</strong>のため、申請段階で明確な経費区分を設計する必要がある。
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical Chain ⑤ -->
+  <div class="card">
+    <div class="section-title">クリティカルチェーン⑤：置賜地域他市町との連携可能性</div>
+    <div class="dep-section">
+      <div class="dep-label">「置賜紬」は置賜地域全体の総称</div>
+      <div class="dep-chain">
+        <div class="dep-node future">米沢市<br>(中心)</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">南陽市</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">長井市</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">白鷹町</div>
+        <span class="dep-arrow">＋</span>
+        <div class="dep-node future">川西町</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠️ 置賜全域での協議会・組合の有無：</strong>
+        「置賜紬」は米沢市単独ではなく置賜地域の総称。
+        他市町に既存の製造協同組合がある場合、それらと連携する「活性化計画」（補助率2/3）が選択肢になる。
+        <strong>R8.6月までに置賜地域内の伝産品関連組合・組織のマッピングを完了させる</strong>必要がある。
+      </div>
+    </div>
+  </div>
+
+  <!-- クリティカルパスまとめ -->
+  <div class="card" style="border-left:4px solid var(--orange);">
+    <div class="section-title">📌 R8.5月〜R10.3月 クリティカルパス（最短ルート）</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月15日</div>
+        <div class="tl-title">経産省本省 電話相談</div></div>
+      <div class="tl-item"><div class="tl-dot active"></div>
+        <div class="tl-date">2026年5月22日</div>
+        <div class="tl-title">★東北経産局 適格性照会（最大の山）</div></div>
+      <div class="tl-item"><div class="tl-dot next"></div>
+        <div class="tl-date">2026年5月29日</div>
+        <div class="tl-title">米沢繊維協議会 事務局訪問</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月3日</div>
+        <div class="tl-title">プラット＋協議会 初回打合せ</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年6月下旬</div>
+        <div class="tl-title">協議会 役員会で方針決定</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年7月下旬</div>
+        <div class="tl-title">会員企業向け説明会</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年9月10-13日</div>
+        <div class="tl-title">★OF本番でデータ取得</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年10月上旬</div>
+        <div class="tl-title">東北経産局 事前相談（第1回）</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年11月下旬</div>
+        <div class="tl-title">経産局 事前相談（第2回・最終）</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年12月上旬</div>
+        <div class="tl-title">伝産法計画認定申請</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2026年12月下旬</div>
+        <div class="tl-title">★伝産法計画認定取得</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年1月</div>
+        <div class="tl-title">★補助金応募</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年3月</div>
+        <div class="tl-title">採択発表</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年4月</div>
+        <div class="tl-title">交付決定 → 事業着手</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2027年9月</div>
+        <div class="tl-title">★OF R9本番で成果反映</div></div>
+      <div class="tl-item"><div class="tl-dot future"></div>
+        <div class="tl-date">2028年3月</div>
+        <div class="tl-title">完了報告書提出</div></div>
+    </div>
+  </div>
+
+  <!-- 出典 -->
+  <div class="card">
+    <div class="section-title">📎 出典・参考リンク</div>
+    <ul class="ref-list">
+      <li>経産省 伝産法に基づく計画認定／補助金：<a href="https://www.meti.go.jp/policy/mono_info_service/mono/nichiyo-densan/densan/plan.html" target="_blank">https://www.meti.go.jp/policy/mono_info_service/mono/nichiyo-densan/densan/plan.html</a></li>
+      <li>米沢繊維協議会：<a href="https://www.yoneori.com/" target="_blank">https://www.yoneori.com/</a></li>
+      <li>地域団体商標 米沢織（第5026436号）：<a href="https://www.jpo.go.jp/system/trademark/gaiyo/chidan/shoukai/ichiran/5026436.html" target="_blank">https://www.jpo.go.jp/system/trademark/gaiyo/chidan/shoukai/ichiran/5026436.html</a></li>
+      <li>（一財）伝統的工芸品産業振興協会：<a href="https://kyokai.kougeihin.jp/" target="_blank">https://kyokai.kougeihin.jp/</a></li>
+      <li>経産省 伝産品（指定品目一覧）：<a href="https://kyokai.kougeihin.jp/crafts/" target="_blank">https://kyokai.kougeihin.jp/crafts/</a></li>
+      <li>東北経産局 産業部 製造産業課：<a href="https://www.tohoku.meti.go.jp/" target="_blank">https://www.tohoku.meti.go.jp/</a></li>
+      <li>社内：観光庁R8支援メニュー フィルタリングレポート v2 ／ 候補3補助金 深掘り調査レポート v1</li>
+      <li>関連トラッカー：米沢市 歴まち計画＋街なみ環境整備事業 ／ 米沢市 官民連携基盤整備推進調査費 ／ 360°よねざわオープンファクトリー</li>
+    </ul>
+  </div>
+
+</div>
+
+</div><!-- /container -->
+
+<footer>© 2026 プラットヨネザワ株式会社（PM／井上 陽平）｜米沢織（置賜紬）伝産法計画＋補助金 専用進捗管理ページ ｜ 最終更新：2026-05-08</footer>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
