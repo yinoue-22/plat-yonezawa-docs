@@ -27,6 +27,11 @@
   --bunka-deep: #1f4068;
   --bunka-gold: #b58a2e;
   --bunka-vermilion: #8b1e1e;
+  /* 補助金候補（検討・準備中） */
+  --hojokin-amber: #c9a961;
+  --hojokin-green: #1b5e20;
+  --hojokin-navy: #0f3460;
+  --hojokin-crimson: #8b1a1a;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -58,6 +63,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-bottom-color: var(--bunka-gold);
   border-bottom-width: 3px;
 }
+.section-title.hojokin {
+  color: #5d4037;
+  border-bottom-color: var(--hojokin-amber);
+  border-bottom-width: 3px;
+}
 .section-title .icon { font-size: 1.3rem; }
 .section-lead {
   font-size: .85rem; color: var(--text-sub); margin: -.5rem 0 1rem; line-height: 1.7;
@@ -85,6 +95,21 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--bunka-gold);
 }
 .card.bunka-card:hover { border-top-color: var(--bunka-vermilion); }
+.card.rekimachi-keikaku-card {
+  background: linear-gradient(135deg, #f5faf6 0%, #fff 100%);
+  border-top: 3px solid var(--hojokin-green);
+}
+.card.rekimachi-keikaku-card:hover { border-top-color: #28a745; }
+.card.kanmin-renkei-card {
+  background: linear-gradient(135deg, #f5f8fc 0%, #fff 100%);
+  border-top: 3px solid var(--hojokin-navy);
+}
+.card.kanmin-renkei-card:hover { border-top-color: #1d4ed8; }
+.card.densan-card {
+  background: linear-gradient(135deg, #fcf5f5 0%, #fff 100%);
+  border-top: 3px solid var(--hojokin-crimson);
+}
+.card.densan-card:hover { border-top-color: #c0392b; }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -101,6 +126,10 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-review { background: #fdf6e3; color: #8b6914; border: 1px solid #e3d29a; }
 .badge-deadline { background: #fdecea; color: #c0392b; font-weight: 700; }
 .badge-archived { background: #ececec; color: #6c757d; border: 1px solid #c0c0c0; }
+.badge-rekimachi-keikaku { background: #e8f5ee; color: #1b5e20; }
+.badge-kanmin-renkei { background: #e8f0f9; color: #0f3460; }
+.badge-densan { background: #f9eaea; color: #8b1a1a; }
+.badge-hojokin { background: #fdf6e3; color: #b8860b; border: 1px solid #e8d49a; }
 /* アーカイブセクション */
 .archive-section { margin-top: 3rem; }
 .archive-toggle {
@@ -224,6 +253,47 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </a>
   </div>
+  <!-- 補助金候補事業（観光庁メニュー集 R8 から抽出） -->
+  <div class="section-title hojokin"><span class="icon">💰</span> 補助金候補事業（R8〜R10 調査・準備中）</div>
+  <p class="section-lead">
+    観光庁 R8 支援メニュー集 から抽出した <strong>「○候補」3 補助金</strong> のトラッカー。R8 中の事前相談・体制構築から R9〜R10 の認定・採択を目指す中期戦略。
+    <strong style="color:#c0392b">共通の第一手＝5/22 国の所管 3 機関への同日電話リレー</strong>（国交省都市局／国土政策局／東北経産局）。
+  </p>
+  <div class="card-grid">
+    <a href="projects/rekimachi-keikaku-tracker.html" class="card rekimachi-keikaku-card">
+      <span class="badge badge-rekimachi-keikaku">国交省+文化庁+農水省</span>
+      <span class="badge badge-hojokin">検討中・R8 打診</span>
+      <h3>歴史的風致維持向上計画＋<br>街なみ環境整備事業</h3>
+      <p>「上杉の城下町」を歴まち法に基づき面的整備。3 省同時認定 → 社総交（街なみ環境整備事業）の交付率上乗せ獲得を狙う中期戦略。粡町・東町・上杉神社周辺の面的整備にハマる。</p>
+      <div class="card-meta">
+        <span>🏛 3省共同認定</span>
+        <span>📅 R10 前半 認定目標</span>
+        <span>🔗 レキマチ連動</span>
+      </div>
+    </a>
+    <a href="projects/kanmin-renkei-tracker.html" class="card kanmin-renkei-card">
+      <span class="badge badge-kanmin-renkei">国交省</span>
+      <span class="badge badge-deadline">R8 第 3 回 6/15 想定〆</span>
+      <h3>官民連携基盤整備<br>推進調査費</h3>
+      <p>米沢駅前広場・道の駅米沢・上杉城史苑を結節点とした観光中核エリアの拠点整備フィジビリティ調査。山形市道の駅蔵王 H30 採択の隣接事例あり。R8 第 3 回（6 月中旬）応募が直近ターゲット。</p>
+      <div class="card-meta">
+        <span>🚉 拠点整備調査</span>
+        <span>💰 補助率 1/2</span>
+        <span>🚨 直近 5 週間勝負</span>
+      </div>
+    </a>
+    <a href="projects/densan-yonezawaori-tracker.html" class="card densan-card">
+      <span class="badge badge-densan">経産省</span>
+      <span class="badge badge-hojokin">主体適格性確認中</span>
+      <h3>伝統的工芸品産業支援補助金<br>（米沢織）</h3>
+      <p>米沢織（置賜紬）の高付加価値化。米沢繊維協議会＋360°オープンファクトリー連動。<strong>伝産法計画認定（R8.12）→ 補助金応募（R9.1）の 2 段ロケット構造</strong>。1 か月ルール厳守必須。</p>
+      <div class="card-meta">
+        <span>🧵 置賜紬</span>
+        <span>💰 上限 2,000 万円・1/2〜2/3</span>
+        <span>📅 R9.1 応募目標</span>
+      </div>
+    </a>
+  </div>
   <!-- 今後追加する事業はここに -->
   <!--
   <div class="section-title"><span class="icon">🍽</span> ガストロノミーツーリズム推進事業</div>
@@ -235,7 +305,6 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
     </a>
   </div>
   -->
-
   <!-- =================== アーカイブ =================== -->
   <details class="archive-section">
     <summary class="archive-toggle">
@@ -244,7 +313,6 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
     </summary>
     <div class="archive-body">
       <p class="archive-note">📌 過去または別ステータスに移行した事業のドキュメントです。引き続き各サブページから個別アクセス可能です。</p>
-
       <!-- よねざわ戦国花火大会 拡充提言事業 -->
       <div class="section-title sengoku"><span class="icon">🎆</span> よねざわ戦国花火大会 拡充提言事業 <span class="badge badge-archived" style="margin-left:.5rem">ARCHIVED</span></div>
       <div class="card-grid">
@@ -267,7 +335,6 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </div>
   </details>
-
 </div>
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
