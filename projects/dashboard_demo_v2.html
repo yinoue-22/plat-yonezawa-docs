@@ -7,26 +7,29 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
-  /* ========== シンプル化カラーパレット ==========
-     基本：ワインレッド × クリーム × グレー
-     対比は1色のみ（ティールブルー）に集約 */
-  --c-primary: #6b1f2e;        /* メイン：ワインレッド（米沢らしさ） */
-  --c-accent: #8c2a3d;         /* 強調：濃ワイン（アクセント1色のみ） */
-  --c-warm: #b08858;           /* 装飾：くすみゴールド */
-  --c-bg: #f7f2e8;             /* 背景：クリーム */
+  /* ========== PLAT YONEZAWA INC. ブランド準拠 ==========
+     基本：ブラック × ホワイト × セージグリーン × アンバー
+     アクセント2色：セージグリーン（active）＋アンバー（強調・ハイライト） */
+  --c-primary: #1a1a1a;        /* メイン：ピュアブラック */
+  --c-accent: #A3C4A8;         /* 強調1：セージグリーン（タブ・ボタン active） */
+  --c-accent-d: #5d8c66;       /* セージ濃いめ（コントラスト用） */
+  --c-amber: #d4a017;          /* 強調2：アンバー（ハイライト・PDF・最終更新） */
+  --c-amber-d: #a87f10;        /* アンバー濃いめ */
+  --c-warm: #A3C4A8;           /* 旧変数：セージに揃える */
+  --c-bg: #f7f2e8;             /* 背景：クリーム（維持） */
   --c-card: #ffffff;           /* カード：白 */
   --c-sub-bg: #faf5ea;         /* サブ背景：薄クリーム */
   --c-border: #e5dccb;         /* 罫線：クリーム系 */
-  --c-text: #2a2a2a;           /* 本文 */
-  --c-muted: #8b8378;          /* 補助テキスト：温かみのあるグレー */
-  /* 状態色は4色→2色に削減（プラス1色／マイナス1色のみ） */
-  --c-positive: #4a7c5e;       /* プラス系：くすみグリーン1色 */
-  --c-negative: #a04848;       /* マイナス系：くすみレッド1色 */
-  /* 旧変数のエイリアス（すべて新カラーに集約） */
+  --c-text: #1a1a1a;           /* 本文 */
+  --c-muted: #5a5a5a;          /* 補助テキスト（コントラスト向上） */
+  /* 状態色 */
+  --c-positive: #4a7c5e;       /* プラス系：濃いセージ */
+  --c-negative: #b03a3a;       /* マイナス系：くすみレッド */
+  /* 旧変数のエイリアス */
   --c-success: var(--c-positive);
   --c-danger: var(--c-negative);
-  --c-warning: var(--c-warm);       /* 警告→ゴールドに統合 */
-  --c-info: var(--c-primary);       /* 情報→ワインに統合 */
+  --c-warning: var(--c-amber);
+  --c-info: var(--c-accent-d);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -44,14 +47,159 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--c-bg);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  background: #f4ede0;
+  box-shadow: 0 1px 0 #e0d6c1, 0 4px 16px rgba(90, 60, 0, 0.06);
 }
+/* ヘッダー：ウォームクリーム基調（米沢らしい暖かみ） */
 .header {
-  background: linear-gradient(135deg, #6b1f2e, #8c2a3d);
-  color: white;
-  padding: 14px 20px;
+  background: #f4ede0;
+  color: #1a1a1a;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e0d6c1;
   animation: slideDown 0.6s ease-out;
+}
+/* 「最終更新」表示：ゴールド基調で明確に */
+.header .meta-info {
+  color: #3a3a3a;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-right: 4px;
+}
+.header .meta-info strong {
+  color: #1a1a1a;
+  font-weight: 800;
+  background: linear-gradient(180deg, #fdf6e3, #f8eac7);
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--c-amber);
+  box-shadow: 0 1px 2px rgba(212, 160, 23, 0.15);
+}
+.header .brand-text .t1 {
+  color: #1a1a1a;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.header .brand-text .t2 {
+  color: #6a6a6a;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+/* ===== 年度切替：個別ピル型（PDFボタンと同一形状） ===== */
+.year-toggle {
+  display: inline-flex;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+.year-btn {
+  background: linear-gradient(180deg, #fdf6e3, #f8eac7);
+  border: 1.5px solid var(--c-amber);
+  color: #5a3e00;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 22px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  min-width: 84px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(212, 160, 23, 0.12);
+}
+.year-btn.active {
+  background: var(--c-accent);
+  color: #1a1a1a;
+  font-weight: 800;
+  border-color: var(--c-accent-d);
+  box-shadow: 0 2px 6px rgba(93, 140, 102, 0.3);
+}
+.year-btn.active:hover {
+  background: var(--c-accent-d);
+  color: #ffffff;
+  border-color: var(--c-accent-d);
+}
+.year-btn:not(.active):hover {
+  background: var(--c-amber);
+  border-color: var(--c-amber-d);
+  color: #1a1a1a;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(212, 160, 23, 0.28);
+}
+
+/* ===== ツールボタン共通スタイル（会議モード / PDF出力） ===== */
+.tool-btn {
+  background: linear-gradient(180deg, #fdf6e3, #f8eac7);
+  border: 1.5px solid var(--c-amber);
+  color: #5a3e00;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(212, 160, 23, 0.12);
+  letter-spacing: 0.03em;
+}
+.tool-btn:hover {
+  background: var(--c-amber);
+  border-color: var(--c-amber-d);
+  color: #1a1a1a;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(212, 160, 23, 0.28);
+}
+/* 会議モードのみ：active時はセージグリーンへ */
+.tool-btn.active {
+  background: var(--c-accent);
+  color: #1a1a1a;
+  border-color: var(--c-accent-d);
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(93, 140, 102, 0.3);
+}
+.tool-btn.active:hover {
+  background: var(--c-accent-d);
+  color: #ffffff;
+  border-color: var(--c-accent-d);
+}
+/* utility（PDF）は基本同じ。残してOK */
+.tool-btn.utility { /* 共通スタイル継承 */ }
+
+/* ハンバーガー：ゴールド枠 */
+.hamburger {
+  background: #ffffff;
+  border: 1.5px solid var(--c-amber);
+  border-radius: 8px;
+}
+.hamburger:hover { background: #fdf6e3; border-color: var(--c-amber-d); }
+.hamburger span { background: #1a1a1a; }
+
+/* ロゴ：黒のまま */
+.brand-logo {
+  filter: none;
+  opacity: 1;
+}
+
+/* ヘッダー右側の余白とグルーピング */
+.h-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.h-right .meta-info {
+  padding-right: 12px;
+  border-right: 1px solid #e8e8e8;
+  margin-right: 4px;
 }
 @keyframes slideDown { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
 .h-inner { max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -76,12 +224,13 @@ body {
   .brand-logo { height: 32px; max-width: 50px; }
 }
 
-/* サイトフッター（実サイト構造に準拠：3カラム＋下段クレジット） */
+/* サイトフッター：ヘッダーと統一のウォームクリーム */
 .site-footer {
-  background: #1f3358;
-  color: rgba(255,255,255,0.85);
+  background: #f4ede0;
+  color: #1a1a1a;
   padding: 40px 24px 20px;
   margin-top: 32px;
+  border-top: 1px solid #e0d6c1;
 }
 .footer-inner {
   max-width: 1320px; margin: 0 auto;
@@ -91,36 +240,37 @@ body {
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
   padding-bottom: 28px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid #d8cdb6;
 }
 .footer-brand {
   display: flex; gap: 18px; align-items: flex-start;
 }
 .footer-logo {
   height: 64px; width: auto; max-width: 90px;
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
+  filter: none;
+  opacity: 1;
   flex-shrink: 0;
 }
 .footer-brand-text { font-size: 12px; line-height: 1.7; }
-.footer-brand-text .ft-org { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
-.footer-brand-text .ft-sub { color: rgba(255,255,255,0.7); font-size: 11px; }
+.footer-brand-text .ft-org { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+.footer-brand-text .ft-sub { color: #6b6b6b; font-size: 11px; }
 .footer-col h4 {
-  font-size: 11px; font-weight: 700; color: var(--c-warm);
+  font-size: 11px; font-weight: 700; color: var(--c-accent-d);
   letter-spacing: 0.2em; margin-bottom: 14px;
 }
 .footer-col ul { list-style: none; padding: 0; margin: 0; }
-.footer-col li { margin-bottom: 8px; font-size: 12px; color: rgba(255,255,255,0.8); }
-.footer-col li.active { color: #ffffff; font-weight: 600; }
-.footer-col li.muted { color: rgba(255,255,255,0.4); }
+.footer-col li { margin-bottom: 8px; font-size: 12px; color: #4a4a4a; }
+.footer-col li.active { color: #1a1a1a; font-weight: 700; }
+.footer-col li.active a { color: var(--c-accent-d); }
+.footer-col li.muted { color: #b0b0b0; }
 .footer-col a { color: inherit; text-decoration: none; }
-.footer-col a:hover { color: var(--c-warm); }
+.footer-col a:hover { color: var(--c-accent-d); }
 .footer-credit {
-  font-size: 11px; color: rgba(255,255,255,0.5);
+  font-size: 11px; color: #8a8a8a;
   padding-top: 18px;
   text-align: left;
 }
-.footer-credit a { color: var(--c-warm); text-decoration: none; }
+.footer-credit a { color: var(--c-accent-d); text-decoration: none; font-weight: 600; }
 .footer-credit a:hover { text-decoration: underline; }
 @media (max-width: 768px) {
   .site-footer { padding: 28px 18px 16px; }
@@ -181,9 +331,33 @@ body {
 
 /* デモ操作バー */
 .demo-bar {
-  background: #2a2a2a; color: #f7f2e8; padding: 7px 20px; font-size: 12px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-  border-bottom: 1px solid #1a1a1a;
+  background: #1a1a1a; color: #f5f5f5; padding: 8px 24px; font-size: 12px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.demo-step {
+  background: rgba(163,196,168,0.18);
+  color: var(--c-accent);
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 700;
+  border: 1px solid rgba(163,196,168,0.35);
+}
+.demo-btn {
+  background: var(--c-amber);
+  color: #1a1a1a;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.demo-btn:hover {
+  background: var(--c-amber-d);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 .demo-status { display: inline-flex; align-items: center; gap: 6px; }
 .demo-status::before {
@@ -215,14 +389,19 @@ body {
   white-space: nowrap; transition: all 0.2s; margin-top: 6px;
   display: flex; align-items: center; gap: 5px;
 }
-.tab-btn:hover { color: var(--c-primary); background: var(--c-sub-bg); }
-.tab-btn.active {
-  background: var(--c-primary);
-  color: white;
-  font-weight: 700;
-  border-color: var(--c-primary);
+.tab-btn:hover {
+  color: var(--c-primary);
+  background: #f0f5f1;
+  border-color: var(--c-accent);
 }
-.tab-btn.demo-hl { box-shadow: 0 0 0 3px rgba(212,175,55,0.5); }
+.tab-btn.active {
+  background: var(--c-accent);
+  color: var(--c-primary);
+  font-weight: 700;
+  border-color: var(--c-accent);
+  box-shadow: 0 -2px 0 var(--c-accent-d) inset;
+}
+.tab-btn.demo-hl { box-shadow: 0 0 0 3px rgba(163, 196, 168, 0.6); }
 
 .container { max-width: 1320px; margin: 0 auto; padding: 20px 14px; }
 .tab-content { display: none; animation: fadeIn 0.5s ease-out; }
@@ -803,8 +982,8 @@ body.drawer-open { overflow: hidden; }
         <button class="year-btn active" data-year="R7" onclick="setYear('R7')">R7 / 2025</button>
         <button class="year-btn" data-year="R8" onclick="setYear('R8')">R8 / 2026</button>
       </div>
-      <button class="tool-btn" id="meetingBtn" onclick="toggleMeeting()">🎯 会議モード</button>
-      <button class="tool-btn" onclick="window.print()">📄 PDF</button>
+      <button class="tool-btn" id="meetingBtn" onclick="toggleMeeting()"><span style="font-size:13px; font-weight:900;">◐</span> 会議モード</button>
+      <button class="tool-btn utility" onclick="window.print()"><span style="font-size:13px; font-weight:900;">↓</span> PDF出力</button>
     </div>
   </div>
 </header>
@@ -813,7 +992,7 @@ body.drawer-open { overflow: hidden; }
 <div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
 <aside class="drawer" id="drawer" role="navigation" aria-label="メインメニュー">
   <div class="drawer-header">
-    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/1YWjmN99am/s-271x265_a3812cc0-cc96-4e1e-a28d-77f50c949321.svg" alt="PLAT YONEZAWA INC." style="height:36px; width:auto; max-width:50px; filter:brightness(0) invert(1); opacity:0.95;">
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/1YWjmN99am/s-271x265_a3812cc0-cc96-4e1e-a28d-77f50c949321.svg" alt="PLAT YONEZAWA INC." style="height:36px; width:auto; max-width:50px; filter:brightness(0) invert(1); opacity:1;">
     <div>
       <div class="title">米沢観光ダッシュボード</div>
       <div class="sub">v2.0 戦略会議モード</div>
