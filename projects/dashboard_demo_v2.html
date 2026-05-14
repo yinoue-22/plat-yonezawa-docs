@@ -310,7 +310,12 @@ body {
     margin-bottom: 10px !important;
     page-break-inside: avoid;
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
+  /* アニメーション系すべての初期値をリセット */
+  .kpi-card, .hi-card, .pill, .bubble, .tab-content.active,
+  .section-card { opacity: 1 !important; transform: none !important; animation: none !important; }
 
   /* タイトル類 */
   .kicker { font-size: 8pt !important; }
