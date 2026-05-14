@@ -313,9 +313,19 @@ body {
     opacity: 1 !important;
     transform: none !important;
   }
-  /* アニメーション系すべての初期値をリセット */
-  .kpi-card, .hi-card, .pill, .bubble, .tab-content.active,
-  .section-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+  /* アニメーション系すべての初期値を強制リセット（高specificityで確実に勝つ） */
+  html body .kpi-card,
+  html body .hi-card,
+  html body .pill,
+  html body .bubble,
+  html body .tab-content.active,
+  html body .section-card,
+  html body .data-table tr,
+  html body .wordcloud span {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 
   /* タイトル類 */
   .kicker { font-size: 8pt !important; }
@@ -689,7 +699,11 @@ body {
 .section-card {
   background: white; border-radius: 10px; padding: 20px; margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(107,31,46,0.08);
-  opacity: 0; transform: translateY(15px); animation: secIn 0.6s ease-out forwards;
+}
+@media screen {
+  .section-card {
+    opacity: 0; transform: translateY(15px); animation: secIn 0.6s ease-out forwards;
+  }
 }
 @keyframes secIn { to { opacity: 1; transform: translateY(0); } }
 .section-card:nth-child(1) { animation-delay: 0.1s; }
@@ -884,23 +898,74 @@ body {
 @keyframes spotIn { to { opacity: 1; } }
 
 /* バブルチャート */
-.bubble-wrap { position: relative; height: 280px; background: #fafafa; border-radius: 6px; padding: 8px; border: 1px solid var(--c-border); }
+.bubble-wrap {
+  position: relative; height: 320px; background: #fafafa;
+  border-radius: 6px; padding: 8px; border: 1px solid var(--c-border);
+}
+/* グリッド線 */
+.bubble-wrap .grid-x,
+.bubble-wrap .grid-y {
+  position: absolute; background: #ebe4d4;
+  pointer-events: none; z-index: 0;
+}
+.bubble-wrap .grid-x { height: 1px; left: 50px; right: 14px; }
+.bubble-wrap .grid-y { width: 1px; top: 24px; bottom: 38px; }
+/* 目盛りラベル */
+.bubble-wrap .axis-tick {
+  position: absolute;
+  font-size: 9px;
+  color: #6b6b6b;
+  font-weight: 600;
+  user-select: none;
+  z-index: 1;
+}
+.bubble-wrap .axis-tick.x-tick { bottom: 22px; transform: translateX(-50%); }
+.bubble-wrap .axis-tick.y-tick { left: 4px; transform: translateY(50%); text-align: right; width: 36px; }
+.bubble-wrap .axis-unit {
+  position: absolute; font-size: 9px; color: var(--c-muted);
+  font-weight: 500;
+}
 .bubble {
   position: absolute; border-radius: 50%; opacity: 0;
   display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 9px; font-weight: 700;
+  color: #1a1a1a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  /* 白アウトラインで黒文字を強調（背景色問わず読める） */
+  text-shadow:
+    -1.5px -1.5px 0 #ffffff,
+     1.5px -1.5px 0 #ffffff,
+    -1.5px  1.5px 0 #ffffff,
+     1.5px  1.5px 0 #ffffff,
+     0 0 4px rgba(255,255,255,0.8);
   animation: bubbleIn 0.9s cubic-bezier(.34,1.56,.64,1) forwards;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25), inset 0 -3px 8px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,0.4);
+  border: 2px solid rgba(255,255,255,0.9);
+  text-align: center;
+  line-height: 1.15;
 }
 @keyframes bubbleIn { from{transform:scale(0);opacity:0;} to{transform:scale(1);opacity:0.85;} }
 .bubble:hover { opacity: 1; z-index: 10; transform: scale(1.05); }
-.axis-x, .axis-y { position: absolute; background: var(--c-border); }
-.axis-x { left: 38px; right: 8px; bottom: 26px; height: 1px; }
-.axis-y { left: 38px; top: 24px; bottom: 26px; width: 1px; }
+.axis-x, .axis-y { position: absolute; background: #5a5a5a; z-index: 2; }
+.axis-x { left: 50px; right: 14px; bottom: 38px; height: 1.5px; }
+.axis-y { left: 50px; top: 24px; bottom: 38px; width: 1.5px; }
 .axis-lbl { position: absolute; font-size: 9px; color: var(--c-muted); }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 6px; font-size: 10px; }
-.legend span { display: flex; align-items: center; gap: 4px; }
-.legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.legend {
+  display: flex; flex-wrap: wrap; gap: 6px 12px;
+  justify-content: center; margin-top: 10px;
+  font-size: 11px; font-weight: 600; color: #1a1a1a;
+}
+.legend span {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #ffffff; padding: 3px 9px; border-radius: 12px;
+  border: 1px solid #e0d6c1;
+  white-space: nowrap;
+}
+.legend i {
+  width: 11px; height: 11px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+}
 
 /* 経営判断サマリーボックス */
 .decision-box {
@@ -2338,13 +2403,17 @@ body.drawer-open { overflow: hidden; }
         <div class="bubble-wrap" id="bubbleWrap">
           <div class="axis-x"></div>
           <div class="axis-y"></div>
-          <div class="axis-lbl" style="left:38px; bottom:8px;">投資額 →</div>
-          <div class="axis-lbl" style="left:4px; top:24px;">↑ROI</div>
+          <div class="axis-lbl" style="left:50px; bottom:4px; font-weight:700; color:#3a3a3a;">投資額（百万円） →</div>
+          <div class="axis-lbl" style="left:4px; top:6px; font-weight:700; color:#3a3a3a;">↑ ROI（倍）</div>
+          <div class="axis-lbl" style="right:8px; top:6px; font-size:9px; color:var(--c-amber-d); font-weight:700;">◯サイズ = ROI</div>
         </div>
         <div class="legend">
-          <span><i style="background:#6b1f2e"></i>高ROI（雪灯篭・上杉）</span>
-          <span><i style="background:#8c2a3d"></i>中ROI（戦国・水上）</span>
-          <span><i style="background:#b08858"></i>低ROI（秋・360°OF）</span>
+          <span><i style="background:#7dd3fc; border:1.5px solid #0c4a6e;"></i>雪灯篭まつり（冬）</span>
+          <span><i style="background:#fca5a5; border:1.5px solid #7f1d1d;"></i>米沢上杉まつり（春）</span>
+          <span><i style="background:#c4b5fd; border:1.5px solid #4c1d95;"></i>戦国花火（秋）</span>
+          <span><i style="background:#5eead4; border:1.5px solid #134e4a;"></i>水上花火（夏）</span>
+          <span><i style="background:#fdba74; border:1.5px solid #7c2d12;"></i>なせばなる秋まつり</span>
+          <span><i style="background:#86efac; border:1.5px solid #14532d;"></i>360°OF</span>
         </div>
       </div>
     </div>
@@ -2520,28 +2589,72 @@ function initBubble() {
   const wrap = document.getElementById('bubbleWrap');
   if (!wrap) return;
   wrap.querySelectorAll('.bubble').forEach(b => b.remove());
-  /* バブルカラー：ワインレッドの濃淡＋ゴールドのみで統一（3トーン） */
+  /* イベント別の識別性高いパレット（季節・テーマに紐付け） */
   const events = [
-    { name:'雪灯篭', x:24, y:42, vis:168000, color:'#6b1f2e', delay:300 },  /* 濃ワイン（TOP） */
-    { name:'上杉',   x:35, y:38, vis:280000, color:'#6b1f2e', delay:450 },
-    { name:'戦国',   x:28, y:31, vis:142000, color:'#8c2a3d', delay:600 },  /* 中ワイン */
-    { name:'水上',   x:18, y:27, vis:95000,  color:'#8c2a3d', delay:750 },
-    { name:'秋',     x:12, y:19, vis:58000,  color:'#b08858', delay:900 },  /* ゴールド（低位） */
-    { name:'360°',   x:22, y:14, vis:22000,  color:'#b08858', delay:1050 }
+    { name:'雪灯篭', x:24, y:42, vis:168000, color:'#7dd3fc', delay:300 },   /* 冬：明るい水色 */
+    { name:'上杉',   x:35, y:38, vis:280000, color:'#fca5a5', delay:450 },   /* 春：桜ピンク */
+    { name:'戦国',   x:28, y:31, vis:142000, color:'#c4b5fd', delay:600 },   /* 花火：藤紫 */
+    { name:'水上',   x:18, y:27, vis:95000,  color:'#5eead4', delay:750 },   /* 夏：ミントブルー */
+    { name:'秋',     x:12, y:19, vis:58000,  color:'#fdba74', delay:900 },   /* 秋：オレンジ */
+    { name:'360°',   x:22, y:14, vis:22000,  color:'#86efac', delay:1050 }   /* OF：エメラルド */
   ];
   setTimeout(() => {
-    const W = wrap.clientWidth - 46;
-    const H = wrap.clientHeight - 50;
+    // プロットエリア計算（マージン考慮）
+    const padL = 50, padR = 14, padT = 24, padB = 38;
+    const W = wrap.clientWidth - padL - padR;
+    const H = wrap.clientHeight - padT - padB;
+
+    // 軸スケール：投資額 0-40百万円、ROI 0-50倍
+    const xMax = 40, yMax = 50;
+    const xTicks = [0, 10, 20, 30, 40];
+    const yTicks = [0, 10, 20, 30, 40, 50];
+
+    // 既存目盛り削除（再描画対応）
+    wrap.querySelectorAll('.axis-tick, .grid-x, .grid-y').forEach(el => el.remove());
+
+    // Y軸目盛り＋グリッド線
+    yTicks.forEach(v => {
+      const y = padT + H - (v / yMax) * H;
+      const tick = document.createElement('div');
+      tick.className = 'axis-tick y-tick';
+      tick.style.top = y + 'px';
+      tick.textContent = v + '倍';
+      wrap.appendChild(tick);
+      if (v > 0 && v < yMax) {
+        const line = document.createElement('div');
+        line.className = 'grid-x';
+        line.style.top = y + 'px';
+        wrap.appendChild(line);
+      }
+    });
+    // X軸目盛り＋グリッド線
+    xTicks.forEach(v => {
+      const x = padL + (v / xMax) * W;
+      const tick = document.createElement('div');
+      tick.className = 'axis-tick x-tick';
+      tick.style.left = x + 'px';
+      tick.textContent = v;
+      wrap.appendChild(tick);
+      if (v > 0 && v < xMax) {
+        const line = document.createElement('div');
+        line.className = 'grid-y';
+        line.style.left = x + 'px';
+        wrap.appendChild(line);
+      }
+    });
+
+    // バブル配置：サイズはROIに比例
     events.forEach(ev => {
       const b = document.createElement('div');
       b.className = 'bubble';
-      const r = Math.max(11, Math.sqrt(ev.vis)/28);
-      const cx = 38 + (ev.x/40) * W;
-      const cy = 24 + H - (ev.y/50) * H;
+      // ★ ROIに比例した半径（高ROIほど大きく）
+      const r = Math.max(16, ev.y * 0.65 + 10);  // ROI 14→19px / ROI 42→37px
+      const cx = padL + (ev.x / xMax) * W;
+      const cy = padT + H - (ev.y / yMax) * H;
       b.style.left = (cx - r) + 'px';
       b.style.top = (cy - r) + 'px';
-      b.style.width = (r*2) + 'px';
-      b.style.height = (r*2) + 'px';
+      b.style.width = (r * 2) + 'px';
+      b.style.height = (r * 2) + 'px';
       b.style.background = ev.color;
       b.style.animationDelay = ev.delay + 'ms';
       b.textContent = ev.name;
