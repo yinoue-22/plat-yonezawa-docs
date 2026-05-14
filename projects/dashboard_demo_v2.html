@@ -901,6 +901,15 @@ body {
 .bubble-wrap {
   position: relative; height: 320px; background: #fafafa;
   border-radius: 6px; padding: 8px; border: 1px solid var(--c-border);
+  overflow: hidden; /* バブルが容器外にあふれないよう */
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .bubble-wrap { height: 280px; }
+}
+@media (max-width: 480px) {
+  .bubble-wrap { height: 240px; }
 }
 /* グリッド線 */
 .bubble-wrap .grid-x,
@@ -910,6 +919,12 @@ body {
 }
 .bubble-wrap .grid-x { height: 1px; left: 50px; right: 14px; }
 .bubble-wrap .grid-y { width: 1px; top: 24px; bottom: 38px; }
+@media (max-width: 500px) {
+  .bubble-wrap .grid-x { left: 36px; right: 10px; }
+  .bubble-wrap .grid-y { top: 18px; bottom: 30px; }
+  .bubble-wrap .axis-tick { font-size: 8px !important; }
+  .bubble-wrap .axis-tick.y-tick { width: 30px !important; }
+}
 /* 目盛りラベル */
 .bubble-wrap .axis-tick {
   position: absolute;
@@ -950,6 +965,10 @@ body {
 .axis-x, .axis-y { position: absolute; background: #5a5a5a; z-index: 2; }
 .axis-x { left: 50px; right: 14px; bottom: 38px; height: 1.5px; }
 .axis-y { left: 50px; top: 24px; bottom: 38px; width: 1.5px; }
+@media (max-width: 500px) {
+  .axis-x { left: 36px; right: 10px; bottom: 30px; }
+  .axis-y { left: 36px; top: 18px; bottom: 30px; }
+}
 .axis-lbl { position: absolute; font-size: 9px; color: var(--c-muted); }
 .legend {
   display: flex; flex-wrap: wrap; gap: 6px 12px;
@@ -990,7 +1009,7 @@ body {
 
 /* 2カラム */
 .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 768px) { .col-2 { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .col-2 { grid-template-columns: 1fr; } }
 .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 @media (max-width: 768px) { .col-3 { grid-template-columns: 1fr; } }
 
@@ -2599,15 +2618,19 @@ function initBubble() {
     { name:'360°',   x:22, y:14, vis:22000,  color:'#86efac', delay:1050 }   /* OF：エメラルド */
   ];
   setTimeout(() => {
-    // プロットエリア計算（マージン考慮）
-    const padL = 50, padR = 14, padT = 24, padB = 38;
+    // プロットエリア計算（モバイルで余白を圧縮）
+    const wrapW = wrap.clientWidth;
+    const padL = wrapW < 500 ? 36 : 50;
+    const padR = wrapW < 500 ? 10 : 14;
+    const padT = wrapW < 500 ? 18 : 24;
+    const padB = wrapW < 500 ? 30 : 38;
     const W = wrap.clientWidth - padL - padR;
     const H = wrap.clientHeight - padT - padB;
 
     // 軸スケール：投資額 0-40百万円、ROI 0-50倍
     const xMax = 40, yMax = 50;
-    const xTicks = [0, 10, 20, 30, 40];
-    const yTicks = [0, 10, 20, 30, 40, 50];
+    const xTicks = wrapW < 500 ? [0, 20, 40] : [0, 10, 20, 30, 40];
+    const yTicks = wrapW < 500 ? [0, 25, 50] : [0, 10, 20, 30, 40, 50];
 
     // 既存目盛り削除（再描画対応）
     wrap.querySelectorAll('.axis-tick, .grid-x, .grid-y').forEach(el => el.remove());
@@ -2643,19 +2666,30 @@ function initBubble() {
       }
     });
 
-    // バブル配置：サイズはROIに比例
+    // モバイル判定でバブルサイズを最適化
+    const isMobile = wrap.clientWidth < 500;
+    const isSmall = wrap.clientWidth < 360;
+    const sizeFactor = isSmall ? 0.35 : (isMobile ? 0.50 : 0.65);
+    const minR = isSmall ? 10 : (isMobile ? 13 : 16);
+    const baseR = isSmall ? 4 : (isMobile ? 7 : 10);
+    const labelFont = isSmall ? '9px' : (isMobile ? '10px' : '11px');
+
+    // バブル配置：サイズはROIに比例（コンテナ幅に応じてスケール）
     events.forEach(ev => {
       const b = document.createElement('div');
       b.className = 'bubble';
-      // ★ ROIに比例した半径（高ROIほど大きく）
-      const r = Math.max(16, ev.y * 0.65 + 10);  // ROI 14→19px / ROI 42→37px
-      const cx = padL + (ev.x / xMax) * W;
-      const cy = padT + H - (ev.y / yMax) * H;
+      const r = Math.max(minR, ev.y * sizeFactor + baseR);
+      let cx = padL + (ev.x / xMax) * W;
+      let cy = padT + H - (ev.y / yMax) * H;
+      // 容器外にあふれないようクランプ
+      cx = Math.min(Math.max(cx, padL + r), padL + W - r);
+      cy = Math.min(Math.max(cy, padT + r), padT + H - r);
       b.style.left = (cx - r) + 'px';
       b.style.top = (cy - r) + 'px';
       b.style.width = (r * 2) + 'px';
       b.style.height = (r * 2) + 'px';
       b.style.background = ev.color;
+      b.style.fontSize = labelFont;
       b.style.animationDelay = ev.delay + 'ms';
       b.textContent = ev.name;
       b.title = ev.name + ' | 投資:' + ev.x + '百万円 | ROI:' + ev.y + '倍 | 動員:' + ev.vis.toLocaleString() + '人';
@@ -2829,6 +2863,18 @@ window.addEventListener('load', () => {
     runCountUps('strategic'); runBarFills('strategic'); initBubble();
   }, 700);
   setTimeout(runDemo, 1200);
+});
+
+// リサイズ時にバブルチャートを再描画（デバウンス付き）
+let _bubbleResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_bubbleResizeTimer);
+  _bubbleResizeTimer = setTimeout(() => {
+    const strategicTab = document.querySelector('.tab-content[data-tab="strategic"].active');
+    if (strategicTab && typeof initBubble === 'function') {
+      initBubble();
+    }
+  }, 200);
 });
 </script>
 
