@@ -39,12 +39,18 @@ body {
 }
 
 /* ===== ヘッダー（実サイトに寄せた色味） ===== */
+/* ヘッダー〜タブナビを一括スティッキー化 */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--c-bg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
 .header {
   background: linear-gradient(135deg, #6b1f2e, #8c2a3d);
   color: white;
   padding: 14px 20px;
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   animation: slideDown 0.6s ease-out;
 }
 @keyframes slideDown { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
@@ -55,6 +61,72 @@ body {
   background: var(--c-warm); color: var(--c-primary);
   display: flex; align-items: center; justify-content: center;
   font-weight: 800; font-size: 20px;
+}
+/* PLAT YONEZAWA INC. 正式ロゴ */
+.brand-logo {
+  height: 38px;
+  width: auto;
+  max-width: 60px;
+  display: block;
+  /* 黒のSVGを白に反転（ワイン背景上で視認可） */
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+@media (max-width: 768px) {
+  .brand-logo { height: 32px; max-width: 50px; }
+}
+
+/* サイトフッター（実サイト構造に準拠：3カラム＋下段クレジット） */
+.site-footer {
+  background: #1f3358;
+  color: rgba(255,255,255,0.85);
+  padding: 40px 24px 20px;
+  margin-top: 32px;
+}
+.footer-inner {
+  max-width: 1320px; margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-brand {
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.footer-logo {
+  height: 64px; width: auto; max-width: 90px;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+  flex-shrink: 0;
+}
+.footer-brand-text { font-size: 12px; line-height: 1.7; }
+.footer-brand-text .ft-org { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+.footer-brand-text .ft-sub { color: rgba(255,255,255,0.7); font-size: 11px; }
+.footer-col h4 {
+  font-size: 11px; font-weight: 700; color: var(--c-warm);
+  letter-spacing: 0.2em; margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col li { margin-bottom: 8px; font-size: 12px; color: rgba(255,255,255,0.8); }
+.footer-col li.active { color: #ffffff; font-weight: 600; }
+.footer-col li.muted { color: rgba(255,255,255,0.4); }
+.footer-col a { color: inherit; text-decoration: none; }
+.footer-col a:hover { color: var(--c-warm); }
+.footer-credit {
+  font-size: 11px; color: rgba(255,255,255,0.5);
+  padding-top: 18px;
+  text-align: left;
+}
+.footer-credit a { color: var(--c-warm); text-decoration: none; }
+.footer-credit a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .site-footer { padding: 28px 18px 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-logo { height: 50px; max-width: 72px; }
+  .footer-brand-text .ft-org { font-size: 13px; }
 }
 .brand-text { line-height: 1.2; }
 .brand-text .t1 { font-size: 17px; font-weight: 700; }
@@ -131,7 +203,6 @@ body {
   background: white;
   border-bottom: 1px solid var(--c-border);
   padding: 0 12px;
-  position: sticky; top: 70px; z-index: 90;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
 .tab-nav {
@@ -711,13 +782,16 @@ body.drawer-open { overflow: hidden; }
 </head>
 <body>
 
+<!-- ========== スティッキー固定領域（ヘッダー〜タブナビ） ========== -->
+<div class="sticky-top">
+
 <header class="header">
   <div class="h-inner">
     <div class="brand">
       <button class="hamburger" id="hamburgerBtn" onclick="toggleDrawer()" aria-label="メニュー">
         <span></span><span></span><span></span>
       </button>
-      <div class="brand-mark">米</div>
+      <img class="brand-logo" src="https://storage.googleapis.com/studio-design-asset-files/projects/1YWjmN99am/s-271x265_a3812cc0-cc96-4e1e-a28d-77f50c949321.svg" alt="PLAT YONEZAWA INC.">
       <div class="brand-text">
         <div class="t1">米沢観光データダッシュボード</div>
         <div class="t2">YONEZAWA TOURISM PROMOTION ORG. ／ v2.0 戦略会議モード</div>
@@ -739,7 +813,7 @@ body.drawer-open { overflow: hidden; }
 <div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
 <aside class="drawer" id="drawer" role="navigation" aria-label="メインメニュー">
   <div class="drawer-header">
-    <div class="mark">米</div>
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/1YWjmN99am/s-271x265_a3812cc0-cc96-4e1e-a28d-77f50c949321.svg" alt="PLAT YONEZAWA INC." style="height:36px; width:auto; max-width:50px; filter:brightness(0) invert(1); opacity:0.95;">
     <div>
       <div class="title">米沢観光ダッシュボード</div>
       <div class="sub">v2.0 戦略会議モード</div>
@@ -838,6 +912,8 @@ body.drawer-open { overflow: hidden; }
     <button class="tab-btn" data-tab="datasource" onclick="switchTab('datasource')">📋 データソース</button>
   </nav>
 </div>
+
+</div><!-- /.sticky-top -->
 
 <div class="container">
 
@@ -1906,6 +1982,55 @@ body.drawer-open { overflow: hidden; }
 </div>
 
 <div class="click-ind" id="clickInd"></div>
+
+<!-- ========== サイトフッター（実サイト準拠：3カラム） ========== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- 左：ロゴ＋ブランド情報 -->
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://storage.googleapis.com/studio-design-asset-files/projects/1YWjmN99am/s-271x265_a3812cc0-cc96-4e1e-a28d-77f50c949321.svg" alt="PLAT YONEZAWA INC.">
+        <div class="footer-brand-text">
+          <div class="ft-org">プラットヨネザワ／米沢観光推進機構</div>
+          <div class="ft-sub">米沢主要イベント データ分析ダッシュボード｜v2.0 戦略会議拡張プレビュー</div>
+          <div class="ft-sub" style="margin-top:6px;">出典：宿泊データ／人流データ位置情報／カメラ車両カウント（4拠点）</div>
+          <div class="ft-sub">最終更新：2026-05-14</div>
+        </div>
+      </div>
+
+      <!-- 中：ナビゲーション -->
+      <div class="footer-col">
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li class="active"><a href="#" onclick="switchTab('strategic'); return false;">⭐ 戦略会議</a></li>
+          <li><a href="#" onclick="switchTab('overview'); return false;">全体サマリー</a></li>
+          <li><a href="#" onclick="switchTab('gw'); return false;">置賜GW人流</a></li>
+          <li><a href="#" onclick="switchTab('shiki'); return false;">四季のまつり</a></li>
+          <li><a href="#" onclick="switchTab('sengoku'); return false;">戦国花火大会</a></li>
+          <li><a href="#" onclick="switchTab('of'); return false;">360°オープンファクトリー</a></li>
+          <li><a href="#" onclick="switchTab('datasource'); return false;">データソース</a></li>
+        </ul>
+      </div>
+
+      <!-- 右：YEARS -->
+      <div class="footer-col">
+        <h4>YEARS</h4>
+        <ul>
+          <li><a href="#" onclick="setYear('R6'); return false;">R6 / 2024年度（参照可）</a></li>
+          <li class="active"><a href="#" onclick="setYear('R7'); return false;">R7 / 2025年度（公開中）</a></li>
+          <li class="muted"><a href="#" onclick="setYear('R8'); return false;">R8 / 2026年度（実施中）</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 下段：クレジット -->
+    <div class="footer-credit">
+      © 2026 PLAT YONEZAWA INC. ／ DMO登録第30119号 ／ 観光ダッシュボード v2.0 改修提案 ／ <a href="https://yinoue-22.github.io/plat-yonezawa-docs/" target="_blank" rel="noopener">ドキュメントポータル</a>
+    </div>
+  </div>
+</footer>
 
 <script>
 // カウントアップ
