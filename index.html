@@ -32,6 +32,10 @@
   --hojokin-green: #1b5e20;
   --hojokin-navy: #0f3460;
   --hojokin-crimson: #8b1a1a;
+  /* 観光データダッシュボード事業 */
+  --dashboard-wine: #6b1f2e;
+  --dashboard-wine-dark: #4a1320;
+  --dashboard-warm: #b08858;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -66,6 +70,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .section-title.hojokin {
   color: #5d4037;
   border-bottom-color: var(--hojokin-amber);
+  border-bottom-width: 3px;
+}
+.section-title.dashboard {
+  color: var(--dashboard-wine);
+  border-bottom-color: var(--dashboard-wine);
   border-bottom-width: 3px;
 }
 .section-title .icon { font-size: 1.3rem; }
@@ -110,6 +119,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--hojokin-crimson);
 }
 .card.densan-card:hover { border-top-color: #c0392b; }
+.card.dashboard-card {
+  background: linear-gradient(135deg, #fdfbf6 0%, #fff 100%);
+  border-top: 3px solid var(--dashboard-wine);
+}
+.card.dashboard-card:hover { border-top-color: var(--dashboard-warm); }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -130,6 +144,9 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-kanmin-renkei { background: #e8f0f9; color: #0f3460; }
 .badge-densan { background: #f9eaea; color: #8b1a1a; }
 .badge-hojokin { background: #fdf6e3; color: #b8860b; border: 1px solid #e8d49a; }
+.badge-dashboard { background: #6b1f2e; color: #fff; }
+.badge-proposal { background: #f0e8f5; color: #6b1f2e; }
+.badge-live { background: #e0f2e0; color: #1b7a4a; border: 1px solid #b8dcc0; }
 /* アーカイブセクション */
 .archive-section { margin-top: 3rem; }
 .archive-toggle {
@@ -215,6 +232,43 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </a>
   </div>
+  <!-- 観光データダッシュボード事業（v2.0 改修提案） -->
+  <div class="section-title dashboard"><span class="icon">📊</span> 観光データダッシュボード事業（DMO戦略会議向けBI）</div>
+  <p class="section-lead">主要6イベントの人流・カメラ・宿泊データを横串で可視化するDMOのBI基盤。<strong>v2.0改修提案では「戦略会議メンバーが意思決定に使える」設計</strong>へ進化させ、KGI／6イベント横串ROI／経営判断サマリー3行／会議モードを追加。UNCOVER TRUTH「使われるBI」フレームワーク準拠。</p>
+  <div class="card-grid">
+    <a href="projects/dashboard-v2-demo.html" class="card dashboard-card">
+      <span class="badge badge-dashboard">v2.0 改修提案</span>
+      <span class="badge badge-new">NEW</span>
+      <h3>観光ダッシュボード v2.0<br>改修提案 ライブデモ</h3>
+      <p>戦略会議向け⭐タブ（KGI＋6イベント横串ROI＋経営判断サマリー3行）／🎯会議モード／📱ハンバーガーメニュー／📋データソース管理を実装した10タブ構成のフル機能デモ。R6/R7/R8年度切替対応、自動再生デモ付き。</p>
+      <div class="card-meta">
+        <span>📊 10タブ構成</span>
+        <span>🎯 会議モード対応</span>
+        <span>📱 モバイル最適化</span>
+      </div>
+    </a>
+    <a href="projects/dashboard-v2-proposal.html" class="card dashboard-card">
+      <span class="badge badge-proposal">提案資料ハブ</span>
+      <h3>改修提案 7枚パワポ＋要件定義書</h3>
+      <p>上司向け提案資料一式。「なぜこの仕様にしたのか／何をもって使いやすいとするか／必要な機能は何か」を整理。5W1H設計＋メタKPI（M1〜M5）＋ROI判定ロジック＋段階リリース計画（v1.0→v1.5→v2.0）。</p>
+      <div class="card-meta">
+        <span>📄 PPT 7枚</span>
+        <span>📋 要件定義書</span>
+        <span>💡 使い方ガイド</span>
+      </div>
+    </a>
+    <a href="https://koplat.github.io/yonezawa-dashboard/" class="card dashboard-card" target="_blank" rel="noopener">
+      <span class="badge badge-live">公開中</span>
+      <span class="badge badge-soft">v0.1 DRAFT</span>
+      <h3>米沢観光データダッシュボード<br>（現行公開版）</h3>
+      <p>主要6イベントの人流・カメラ車両カウント・宿泊（じゃらん）データを可視化。R7（2025年度）データを順次投入中。置賜GW人流レポート2026・360°OF（参加企業12エリア）は実データ反映済。本改修の比較対象。</p>
+      <div class="card-meta">
+        <span>🌐 GitHub Pages</span>
+        <span>📊 9タブ構成</span>
+        <span>🔗 外部リンク</span>
+      </div>
+    </a>
+  </div>
   <!-- 文化観光推進事業 -->
   <div class="section-title bunka"><span class="icon">📜</span> 文化観光推進事業</div>
   <p class="section-lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請プロジェクト（文化庁）。事業費の2/3補助・上限7,500万円／年（5年計画）。<strong>米沢市・赤湯&南陽市の地域計画 2件同時申請</strong>。各案件のダッシュボードと流用可能性分析を1ページにタブで集約。<strong style="color:#c0392b">申請前相談締切：5/12（火）17:00 ※必須</strong></p>
@@ -285,7 +339,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
     <a href="projects/densan-yonezawaori-tracker.html" class="card densan-card">
       <span class="badge badge-densan">経産省</span>
       <span class="badge badge-hojokin">主体適格性確認中</span>
-      <h3>伝統的工芸品産業支援補助金<br>（米沢織）</h3>
+      <h3>伝統的工芸品産業支援補助金<br>(米沢織）</h3>
       <p>米沢織（置賜紬）の高付加価値化。米沢繊維協議会＋360°オープンファクトリー連動。<strong>伝産法計画認定（R8.12）→ 補助金応募（R9.1）の 2 段ロケット構造</strong>。1 か月ルール厳守必須。</p>
       <div class="card-meta">
         <span>🧵 置賜紬</span>
