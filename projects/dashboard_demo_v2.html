@@ -224,6 +224,274 @@ body {
   .brand-logo { height: 32px; max-width: 50px; }
 }
 
+/* =================================================
+   PDF出力（@media print）：A4横向き × ブランドカラー保持
+   ================================================= */
+@page {
+  size: A4 landscape;
+  margin: 12mm 14mm 14mm 14mm;
+}
+@media print {
+  /* 背景色とシャドウを印刷に出す */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* 非表示要素 */
+  .demo-bar,
+  .tab-nav-wrap,
+  .draft-banner,
+  .hamburger,
+  .drawer,
+  .backdrop,
+  .click-ind,
+  .flag-btn,
+  .footer-col,
+  .footer-credit {
+    display: none !important;
+  }
+
+  /* スティッキー解除 */
+  .sticky-top,
+  .header,
+  body {
+    position: static !important;
+    box-shadow: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  /* ヘッダー：印刷向けのコンパクト版 */
+  .header {
+    background: #f4ede0 !important;
+    padding: 10px 16px !important;
+    border-bottom: 2px solid var(--c-amber) !important;
+    page-break-after: avoid;
+  }
+  .header .h-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-logo {
+    height: 30px !important;
+    max-width: 48px !important;
+    filter: none !important;
+  }
+  .brand-text .t1 { font-size: 14pt; color: #1a1a1a; }
+  .brand-text .t2 { font-size: 8pt; color: #5a5a5a; }
+  .h-right .year-toggle,
+  .h-right .tool-btn {
+    display: none !important;
+  }
+  .h-right .meta-info { display: inline-block; }
+
+  /* タブ：戦略会議のみを大きく表示。他タブは内容も含めて非表示 */
+  .tab-content { display: none !important; }
+  .tab-content[data-tab="strategic"] {
+    display: block !important;
+    animation: none !important;
+  }
+
+  /* コンテナ：余白タイト */
+  .container {
+    max-width: 100% !important;
+    padding: 8px 0 !important;
+  }
+  .section-card {
+    box-shadow: none !important;
+    border: 1px solid #e0d6c1 !important;
+    padding: 12px 14px !important;
+    margin-bottom: 10px !important;
+    page-break-inside: avoid;
+    animation: none !important;
+  }
+
+  /* タイトル類 */
+  .kicker { font-size: 8pt !important; }
+  .section-title { font-size: 14pt !important; margin: 4px 0 6px 0 !important; }
+  .section-sub { font-size: 9pt !important; }
+
+  /* KGIカード：4列固定で並べる */
+  .kpi-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 10px !important;
+  }
+  .kpi-card {
+    padding: 10px 12px !important;
+    border: 1.5px solid var(--c-amber) !important;
+    background: linear-gradient(180deg, #fdf6e3, #ffffff) !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .kpi-card.primary {
+    border: 2px solid var(--c-accent-d) !important;
+    background: linear-gradient(180deg, #f0f5f1, #ffffff) !important;
+  }
+  .kpi-label { font-size: 8pt !important; color: #5a3e00 !important; }
+  .kpi-value { font-size: 18pt !important; color: #1a1a1a !important; }
+  .kpi-unit { font-size: 9pt !important; }
+  .kpi-yoy { font-size: 8pt !important; }
+  .kpi-yoy.up { color: var(--c-positive) !important; }
+  .kpi-yoy.down { color: var(--c-negative) !important; }
+  .kpi-pbar { animation: none !important; width: var(--w) !important; background: var(--c-accent) !important; }
+  .kpi-progress { background: #e0d6c1 !important; }
+  .kpi-note { font-size: 7pt !important; color: #6a6a6a !important; }
+
+  /* ROI比較セクション：2カラム維持 */
+  h3 { font-size: 11pt !important; color: var(--c-accent-d) !important; }
+  .col-2 {
+    display: grid !important;
+    grid-template-columns: 1.3fr 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* テーブル：枠線とゼブラを印刷向けに */
+  .data-table {
+    font-size: 8.5pt !important;
+    border-collapse: collapse !important;
+  }
+  .data-table th {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    padding: 4px 6px !important;
+  }
+  .data-table td {
+    padding: 4px 6px !important;
+    border-bottom: 1px solid #e0d6c1 !important;
+  }
+  .data-table tr:nth-child(even) td { background: #faf5ea !important; }
+  .delta-pos { color: var(--c-positive) !important; font-weight: 700; }
+  .delta-neg { color: var(--c-negative) !important; font-weight: 700; }
+  .action-badge {
+    border: 1px solid currentColor !important;
+    padding: 1px 5px !important;
+    font-size: 7.5pt !important;
+  }
+
+  /* バブルチャートエリア */
+  .bubble-wrap {
+    border: 1px solid #e0d6c1 !important;
+    background: #ffffff !important;
+    height: 220px !important;
+  }
+  .bubble {
+    animation: none !important;
+    opacity: 0.9 !important;
+    transform: scale(1) !important;
+  }
+  .legend { font-size: 8pt !important; }
+
+  /* 決定事項ログ */
+  #section-decisions { page-break-before: auto; }
+
+  /* PDFフッター（簡略） */
+  .site-footer {
+    background: #ffffff !important;
+    border-top: 1px solid var(--c-amber) !important;
+    padding: 8px 0 !important;
+    margin-top: 12px !important;
+    page-break-inside: avoid;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    padding-bottom: 4px !important;
+    border-bottom: none !important;
+    gap: 4px !important;
+  }
+  .footer-brand { gap: 10px !important; }
+  .footer-logo {
+    height: 24px !important;
+    max-width: 36px !important;
+    filter: none !important;
+  }
+  .footer-brand-text .ft-org { font-size: 9pt !important; color: #1a1a1a !important; }
+  .footer-brand-text .ft-sub { font-size: 7pt !important; color: #6a6a6a !important; }
+
+  /* リンクの下線・色 */
+  a { color: #1a1a1a !important; text-decoration: none !important; }
+
+  /* ノート系 */
+  .note-box, .data-source-note {
+    background: #faf5ea !important;
+    border: 1px solid #e0d6c1 !important;
+    font-size: 7.5pt !important;
+    padding: 4px 8px !important;
+  }
+  .note-box.warn {
+    background: #fdf2e9 !important;
+    border-color: var(--c-amber) !important;
+  }
+
+  /* バッジ */
+  .badge {
+    border: 1px solid currentColor !important;
+    background: transparent !important;
+    font-size: 7pt !important;
+    padding: 1px 4px !important;
+  }
+  .badge.real { color: var(--c-positive) !important; }
+  .badge.partial { color: var(--c-amber-d) !important; }
+
+  /* 経営判断サマリーのboxも印刷映え */
+  .exec-summary, .decision-box {
+    background: linear-gradient(180deg, #fdf6e3, #ffffff) !important;
+    border-left: 3px solid var(--c-amber) !important;
+    padding: 8px 12px !important;
+    font-size: 9pt !important;
+    page-break-inside: avoid;
+  }
+  .exec-summary h3, .decision-box h3 { font-size: 10pt !important; margin-bottom: 4px !important; }
+  .lead { font-size: 10pt !important; }
+
+  /* ハイライト3点 */
+  .hi-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+  .hi-card {
+    padding: 6px 10px !important;
+    background: #faf5ea !important;
+    page-break-inside: avoid;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hi-icon { font-size: 12pt !important; }
+  .hi-title { font-size: 9pt !important; }
+  .hi-metric { font-size: 8.5pt !important; }
+  .hi-delta { font-size: 7.5pt !important; }
+  .hi-action { font-size: 7.5pt !important; }
+
+  /* YoYアラート（横ピル） */
+  .yoy-alerts {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    margin-bottom: 8px !important;
+  }
+  .pill {
+    border: 1px solid currentColor !important;
+    background: #ffffff !important;
+    font-size: 8pt !important;
+    padding: 2px 8px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .pill.pos { color: var(--c-positive) !important; }
+  .pill.warn { color: var(--c-amber-d) !important; }
+}
+
 /* サイトフッター：ヘッダーと統一のウォームクリーム */
 .site-footer {
   background: #f4ede0;
