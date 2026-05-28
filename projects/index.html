@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内閣府 地域産品 高付加価値化 個社PM | R8/2026公募 伴走</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a2744;
+  --green: #28a745;
+  --orange: #fd7e14;
+  --blue: #007bff;
+  --red: #dc3545;
+  --bg: #f5f5f0;
+  --card: #ffffff;
+  --text: #1d1d1d;
+  --text-sub: #6c757d;
+  --border: #e0e0e0;
+  --shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
+.hero {
+  background:linear-gradient(135deg, #1a2744 0%, #16213e 50%, #0f3460 100%);
+  color:#fff; padding:1.5rem 2rem 1.2rem; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; top:-40%; right:-10%; width:300px; height:300px;
+  background:radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius:50%;
+}
+.hero .breadcrumb { font-size:.7rem; opacity:.7; margin-bottom:.6rem; }
+.hero .project-label { font-size:.7rem; letter-spacing:.1em; opacity:.7; margin-bottom:.3rem; text-transform:uppercase; }
+.hero h1 { font-size:1.45rem; font-weight:900; margin-bottom:.2rem; }
+.hero .subtitle { font-size:.85rem; opacity:.78; margin-bottom:.6rem; }
+.hero .meta { display:flex; flex-wrap:wrap; gap:.6rem 1rem; font-size:.75rem; opacity:.75; }
+.phase-badge {
+  display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  border-radius:20px; padding:.25rem .9rem; font-size:.76rem; font-weight:700; margin-bottom:.6rem;
+}
+.tab-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  display:flex; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.tab {
+  flex:1; padding:.85rem .5rem; border:none; background:none; cursor:pointer;
+  font-family:'Noto Sans JP',sans-serif; font-size:.8rem; font-weight:500;
+  color:var(--text-sub); border-bottom:3px solid transparent; transition:all .15s;
+  display:flex; align-items:center; justify-content:center; gap:.3rem;
+}
+.tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:700; }
+.tab:hover:not(.active) { background:#f8f9fa; color:var(--text); }
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+.container { max-width:960px; margin:0 auto; padding:1.5rem 1.5rem 3rem; }
+.card { background:var(--card); border-radius:10px; padding:1.2rem; box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:.9rem; }
+.section-title { font-size:.95rem; font-weight:700; color:var(--primary); margin-bottom:1rem; padding-bottom:.4rem; border-bottom:2px solid var(--primary); }
+.subsection-title { font-size:.85rem; font-weight:700; color:var(--primary); margin: 1.2rem 0 .6rem; padding-left: .6rem; border-left: 3px solid var(--primary); }
+.subsection-title.rekimachi { border-left-color: var(--orange); }
+.subsection-title.subsidy { border-left-color: #6d9678; }
+.pjt-num { display:inline-block; background:var(--primary); color:#fff; width:1.5rem; height:1.5rem; border-radius:50%; text-align:center; line-height:1.5rem; font-weight:900; font-size:.78rem; margin-right:.4rem; }
+.pjt-num.rekimachi { background:var(--orange); }
+.pjt-num.subsidy { background:#6d9678; }
+
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-bottom:1rem; }
+@media(max-width:640px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+.stat-box { background:var(--card); border-radius:10px; padding:.9rem; box-shadow:var(--shadow); border:1px solid var(--border); text-align:center; border-top:4px solid var(--border); }
+.stat-box.green  { border-top-color:var(--green); }
+.stat-box.blue   { border-top-color:var(--blue); }
+.stat-box.orange { border-top-color:var(--orange); }
+.stat-box.navy   { border-top-color:var(--primary); }
+.stat-box.red    { border-top-color:var(--red); }
+.stat-val { font-size:1.5rem; font-weight:900; color:var(--primary); line-height:1.2; }
+.stat-label { font-size:.7rem; color:var(--text-sub); margin-top:.25rem; }
+.stat-sub { font-size:.65rem; color:var(--text-sub); }
+
+.progress-wrap { margin:.5rem 0; }
+.progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--text-sub); margin-bottom:.25rem; }
+.progress-bar { background:#e9ecef; border-radius:6px; height:9px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:6px; }
+.fill-green  { background:linear-gradient(90deg,#28a745,#34ce57); }
+.fill-blue   { background:linear-gradient(90deg,#007bff,#6610f2); }
+.fill-orange { background:linear-gradient(90deg,#fd7e14,#ffc107); }
+.fill-gray   { background:#ced4da; }
+
+.timeline { position:relative; padding-left:1.6rem; }
+.timeline::before { content:''; position:absolute; left:.5rem; top:0; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:.9rem; }
+.tl-dot { position:absolute; left:-1.25rem; top:.35rem; width:16px; height:16px; border-radius:50%; border:2.5px solid; }
+.tl-dot.done   { background:var(--green);  border-color:var(--green); }
+.tl-dot.active { background:#fff; border-color:var(--blue); }
+.tl-dot.next   { background:#fff; border-color:var(--orange); }
+.tl-dot.future { background:#fff; border-color:var(--border); }
+.tl-date  { font-size:.72rem; color:var(--text-sub); }
+.tl-title { font-size:.88rem; font-weight:700; }
+.tl-desc  { font-size:.78rem; color:var(--text-sub); }
+.tl-who   { font-size:.72rem; color:var(--blue); margin-top:.1rem; }
+
+.task-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+.task-table thead th { background:#f8f9fa; text-align:left; padding:.5rem .65rem; font-size:.73rem; font-weight:700; color:var(--text-sub); border-bottom:2px solid var(--border); }
+.task-table tbody tr { border-bottom:1px solid #f0f0f0; }
+.task-table tbody tr:hover { background:#fafafa; }
+.task-table td { padding:.5rem .65rem; vertical-align:middle; }
+.task-name { font-weight:600; }
+.task-done .task-name { color:var(--text-sub); text-decoration:line-through; }
+.check-circle { width:20px; height:20px; border-radius:50%; border:2px solid var(--border); display:inline-flex; align-items:center; justify-content:center; font-size:.63rem; font-weight:700; transition:transform .15s, box-shadow .15s; user-select:none; }
+.check-circle:hover { transform:scale(1.2); box-shadow:0 0 0 3px rgba(61,74,100,.15); }
+.check-circle.done   { background:var(--green); border-color:var(--green); color:#fff; }
+.check-circle.active { border-color:var(--blue); color:var(--blue); }
+.check-circle.next   { border-color:var(--orange); color:var(--orange); }
+.check-circle.none   { border-color:#ccc; }
+
+.tag { display:inline-block; padding:.12rem .55rem; border-radius:10px; font-size:.68rem; font-weight:700; white-space:nowrap; }
+.tag-plat   { background:#dbeafe; color:#1d4ed8; }
+.tag-naikaku { background:#fce7f3; color:#9d174d; }
+.tag-shinda  { background:#f3e8ff; color:#6b21a8; }
+.tag-both   { background:#fef3c7; color:#92400e; }
+.tag-ext    { background:#f0fdf4; color:#166534; }
+.tag-yomiuri { background:#fee2e2; color:#991b1b; }
+.tag-kankocho { background:#dceeff; color:#0d4a8e; }
+.tag-yamagata { background:#dcfce7; color:#166534; }
+.tag-yonezawa { background:#fff3cd; color:#856404; }
+
+.deadline { font-size:.76rem; }
+.deadline.urgent { color:var(--red); font-weight:700; }
+.deadline.soon   { color:var(--orange); font-weight:600; }
+.deadline.ok     { color:var(--text-sub); }
+
+.badge { display:inline-block; padding:.18rem .65rem; border-radius:20px; font-size:.71rem; font-weight:700; }
+.badge-done   { background:#d4edda; color:#155724; }
+.badge-active { background:#cce5ff; color:#004085; }
+.badge-next   { background:#fff3cd; color:#856404; }
+.badge-future { background:#f1f3f4; color:#5f6368; }
+
+.alert { padding:.65rem .9rem; border-radius:0 8px 8px 0; font-size:.81rem; margin-bottom:.8rem; border-left:4px solid; }
+.alert-ok     { background:#e8f5e9; border-color:var(--green); color:#1b5e20; }
+.alert-warn   { background:#fff8e1; border-color:var(--orange); color:#5d4037; }
+.alert-danger { background:#fdecea; border-color:var(--red); color:#7b1a12; }
+.alert-info   { background:#e8f4fd; border-color:var(--blue); color:#0c5460; }
+
+.dep-section { margin-bottom:1.2rem; }
+.dep-label { font-size:.72rem; font-weight:700; color:var(--text-sub); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.5rem; }
+.dep-chain { display:flex; align-items:center; flex-wrap:wrap; gap:.25rem; margin-bottom:.4rem; }
+.dep-node { padding:.35rem .8rem; border-radius:8px; font-size:.78rem; font-weight:600; border:2px solid; line-height:1.3; text-align:center; }
+.dep-node.done   { background:#d4edda; border-color:var(--green); color:#155724; }
+.dep-node.active { background:#cce5ff; border-color:var(--blue); color:#004085; }
+.dep-node.next   { background:#fff3cd; border-color:var(--orange); color:#856404; }
+.dep-node.future { background:#f8f9fa; border-color:#ced4da; color:#6c757d; }
+.dep-arrow { color:#adb5bd; font-size:1rem; }
+.dep-warning { background:#fff8e1; border:1px solid #ffd54f; border-radius:8px; padding:.6rem .9rem; font-size:.8rem; color:#5d4037; margin-top:.4rem; }
+.dep-warning strong { display:block; margin-bottom:.15rem; color:#bf360c; }
+
+/* ============ Integrated Gantt Timeline ============ */
+.gantt-now-banner { display:flex; align-items:center; gap:.8rem; background:linear-gradient(135deg,#3d4a64 0%,#4a5878 100%); color:#fff; padding:.7rem 1rem; border-radius:8px; margin-bottom:.8rem; box-shadow:0 1px 6px rgba(61,74,100,.2); }
+.gantt-now-banner .now-dot { width:14px; height:14px; border-radius:50%; background:#c4555c; box-shadow:0 0 0 5px rgba(196,85,92,.25); animation:pulse 1.6s ease-in-out infinite; flex-shrink:0; }
+@keyframes pulse { 0%,100% { box-shadow:0 0 0 4px rgba(196,85,92,.25); } 50% { box-shadow:0 0 0 10px rgba(196,85,92,.1); } }
+.gantt-now-banner .now-text { font-size:.78rem; opacity:.85; }
+.gantt-now-banner .now-date { font-size:1rem; font-weight:900; letter-spacing:.02em; }
+.gantt-now-banner .now-phase { font-size:.82rem; opacity:.95; margin-left:auto; text-align:right; }
+
+.gantt-wrap { overflow-x:auto; padding-bottom:.4rem; }
+.gantt { border:1px solid var(--border); border-radius:10px; background:#fff; min-width:1400px; box-shadow:0 1px 6px rgba(0,0,0,0.05); }
+.gantt-row { display:grid; grid-template-columns:170px 1fr; border-bottom:1px solid var(--border); min-height:56px; }
+.gantt-row:last-child { border-bottom:none; }
+.gantt-row.gantt-header { background:linear-gradient(180deg,#f0f2f5 0%,#e6e9ee 100%); font-weight:700; min-height:34px; border-bottom:2px solid var(--primary); }
+.gantt-label { padding:.5rem .7rem; background:#fafbfc; font-size:.78rem; font-weight:700; color:var(--primary); border-right:2px solid var(--border); display:flex; align-items:center; line-height:1.3; }
+.gantt-label small { display:block; font-size:.62rem; color:var(--text-sub); font-weight:500; margin-top:.1rem; }
+.gantt-cells { position:relative; background-image:linear-gradient(to right,#e8eaed 1px,transparent 1px); background-size:10% 100%; background-position:0 0; }
+.gantt-header .gantt-label { background:linear-gradient(180deg,#f0f2f5 0%,#e6e9ee 100%); }
+.gantt-header .gantt-cells { display:grid; grid-template-columns:repeat(10,1fr); align-items:center; background-image:none; }
+.gantt-header .gantt-month { padding:.4rem 0; text-align:center; border-right:1px solid #cdd2d8; font-size:.74rem; color:var(--text); }
+.gantt-header .gantt-month.peak    { background:#e8d4b8; color:#7a5530; font-weight:800; }
+.gantt-header .gantt-month.urgent  { background:#f0e0d0; color:#8a6543; font-weight:700; }
+.gantt-header .gantt-month.current { background:#f0dada; color:#8a4040; font-weight:800; }
+.gantt-header .gantt-month:last-child { border-right:none; }
+
+.gantt-bar { position:absolute; top:50%; transform:translateY(-50%); height:24px; border-radius:5px; font-size:.7rem; font-weight:700; color:#fff; display:flex; align-items:center; padding:0 .5rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; box-sizing:border-box; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,.08); text-shadow:0 1px 1.5px rgba(0,0,0,.25); }
+.gantt-bar.bar-mini { font-size:0; padding:0; }
+.gantt-bar.bar-mini::after { content:""; }
+.gantt-bar.b-blue   { background:linear-gradient(135deg,#7090b8 0%,#4e6f96 100%); }
+.gantt-bar.b-green  { background:linear-gradient(135deg,#85a991 0%,#6a8a76 100%); }
+.gantt-bar.b-orange { background:linear-gradient(135deg,#c89579 0%,#a8745a 100%); }
+.gantt-bar.b-navy   { background:linear-gradient(135deg,#4d5e7a 0%,#2c3a52 100%); }
+.gantt-bar.b-red    { background:linear-gradient(135deg,#b85565 0%,#94404e 100%); }
+.gantt-bar.b-gray   { background:repeating-linear-gradient(45deg,#c4c4c4 0,#c4c4c4 4px,#d8d8d8 4px,#d8d8d8 8px); color:#555; box-shadow:0 1px 2px rgba(0,0,0,.06); }
+.gantt-bar.b-light-blue { background:rgba(112,144,184,.16); color:#4e6f96; border:1.5px dashed #7090b8; box-shadow:none; }
+.gantt-bar.b-light-orange { background:rgba(200,149,121,.18); color:#8a5e44; border:1.5px dashed #c89579; box-shadow:none; }
+.gantt-bar.bar-thin { height:14px; font-size:.62rem; }
+
+.gantt-milestone {
+  position:absolute; top:50%; transform:translate(-50%,-50%);
+  font-size:1.25rem; z-index:5;
+  width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+  background:#fff; border-radius:50%;
+  box-shadow:0 0 0 2px rgba(255,255,255,.95), 0 2px 4px rgba(0,0,0,.18);
+  cursor:help; line-height:1;
+}
+.gantt-today-line { position:absolute; top:-1px; bottom:-1px; width:2px; background:#c4555c; z-index:6; pointer-events:none; box-shadow:0 0 6px rgba(196,85,92,.4); }
+.gantt-today-label { position:absolute; top:3px; transform:translateX(-50%); font-size:.66rem; color:#fff; font-weight:900; background:#c4555c; padding:2px 7px; border-radius:4px; z-index:7; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.15); }
+
+.gantt-legend { display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-top:.8rem; padding:.7rem .9rem; background:#fafbfc; border-radius:8px; border:1px solid var(--border); font-size:.72rem; color:var(--text-sub); }
+.gantt-legend-item { display:inline-flex; align-items:center; gap:.35rem; }
+.gantt-legend-swatch { display:inline-block; width:20px; height:13px; border-radius:3px; box-shadow:0 1px 2px rgba(0,0,0,.1); }
+
+.gantt-phase-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.6rem; margin-top:.9rem; }
+.gantt-phase-card { background:#fff; border:1px solid var(--border); border-radius:8px; padding:.6rem .8rem; position:relative; overflow:hidden; }
+.gantt-phase-card.active   { border-left:4px solid #7090b8; background:#f5f8fc; }
+.gantt-phase-card.urgent   { border-left:4px solid #b85565; background:#fbf6f6; }
+.gantt-phase-card.next     { border-left:4px solid #c89579; background:#faf6f3; }
+.gantt-phase-card .pc-name { font-size:.78rem; font-weight:700; color:var(--primary); }
+.gantt-phase-card .pc-phase { font-size:.7rem; color:var(--text-sub); margin-top:.15rem; }
+.gantt-phase-card .pc-next { font-size:.66rem; color:#c12; font-weight:700; margin-top:.25rem; }
+
+.gantt-row.gantt-section-header { min-height:30px; border-bottom:1px solid rgba(255,255,255,.2); }
+.gantt-section-header .gantt-section-label { padding:.4rem .8rem; font-size:.78rem; font-weight:900; letter-spacing:.04em; color:#fff; display:flex; align-items:center; gap:.4rem; border-right:2px solid rgba(255,255,255,.3); }
+.gantt-section-header .gantt-cells { background-image:none; border-left:none; }
+.gantt-section-header.application { background:linear-gradient(90deg,#3d4a64 0%,#4a5878 100%); }
+.gantt-section-header.application .gantt-section-label { background:transparent; }
+.gantt-section-header.evaluation  { background:linear-gradient(90deg,#6a6080 0%,#7c7396 100%); }
+.gantt-section-header.evaluation  .gantt-section-label { background:transparent; }
+.gantt-section-header.execution   { background:linear-gradient(90deg,#6d9678 0%,#7fac8a 100%); }
+.gantt-section-header.execution   .gantt-section-label { background:transparent; }
+.gantt-section-header.mtg         { background:linear-gradient(90deg,#a06e4f 0%,#b8856a 100%); }
+.gantt-section-header.mtg         .gantt-section-label { background:transparent; }
+
+.gantt-row.in-application { border-left:4px solid #3d4a64; }
+.gantt-row.in-evaluation  { border-left:4px solid #6a6080; }
+.gantt-row.in-execution   { border-left:4px solid #6d9678; }
+.gantt-row.in-mtg         { border-left:4px solid #a06e4f; background:#faf7f4; }
+
+.gantt-mtg-pill { position:absolute; top:50%; transform:translate(-50%,-50%); display:flex; align-items:center; gap:3px; padding:5px 10px 5px 8px; border-radius:18px; font-size:.72rem; font-weight:900; color:#fff; white-space:nowrap; box-shadow:0 3px 8px rgba(0,0,0,.25); z-index:4; }
+.gantt-mtg-pill .pill-icon { font-size:.95rem; line-height:1; }
+.gantt-mtg-pill .pill-date { letter-spacing:.02em; }
+.gantt-mtg-pill .pill-tag { font-size:.6rem; font-weight:700; opacity:.85; margin-left:2px; padding:1px 5px; background:rgba(255,255,255,.25); border-radius:6px; }
+.gantt-mtg-pill.crit { background:linear-gradient(135deg,#b85565 0%,#94404e 100%); }
+.gantt-mtg-pill.high { background:linear-gradient(135deg,#c89579 0%,#a8745a 100%); }
+.gantt-mtg-pill.mid  { background:linear-gradient(135deg,#8a8a92 0%,#6a6a72 100%); }
+.gantt-mtg-pill.done { background:linear-gradient(135deg,#85a991 0%,#6a8a76 100%); opacity:.85; }
+
+.gantt-weekly-marker { position:absolute; top:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; z-index:3; }
+.gantt-weekly-dot { width:11px; height:11px; border-radius:50%; background:#adb5bd; border:2px solid #fff; box-shadow:0 1px 2px rgba(0,0,0,.15); }
+.gantt-weekly-marker.done .gantt-weekly-dot    { background:#85a991; }
+.gantt-weekly-marker.current .gantt-weekly-dot { background:#c4555c; width:16px; height:16px; box-shadow:0 0 0 5px rgba(196,85,92,.2); animation:pulse 1.6s ease-in-out infinite; }
+.gantt-weekly-marker.next .gantt-weekly-dot { background:#7090b8; }
+.gantt-weekly-label { font-size:.58rem; color:var(--text-sub); font-weight:700; margin-top:2px; white-space:nowrap; background:#fff; padding:0 3px; border-radius:3px; }
+.gantt-weekly-marker.current .gantt-weekly-label { color:#c4555c; }
+.gantt-row.mtg-masuda { min-height:110px; }
+.gantt-row.mtg-weekly { min-height:46px; }
+.gantt-mtg-pill.stagger-top { top:22%; transform:translate(-50%,-50%); }
+.gantt-mtg-pill.stagger-middle { top:50%; transform:translate(-50%,-50%); }
+.gantt-mtg-pill.stagger-bottom { top:78%; transform:translate(-50%,-50%); }
+.gantt-mtg-pill.stagger-top::after,
+.gantt-mtg-pill.stagger-middle::after,
+.gantt-mtg-pill.stagger-bottom::after {
+  content:""; position:absolute; left:50%; top:100%; transform:translateX(-50%);
+  width:1.5px; height:6px; background:rgba(0,0,0,.2);
+}
+.gantt-mtg-pill.stagger-top::after { top:auto; bottom:100%; }
+
+.pjt-row { display:grid; grid-template-columns:repeat(2,1fr); gap:.8rem; margin-bottom:1rem; }
+@media(max-width:640px){ .pjt-row{ grid-template-columns:1fr; } }
+.pjt-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem; box-shadow:var(--shadow); }
+.pjt-card.primary { border-left:4px solid var(--primary); }
+.pjt-card.secondary { border-left:4px solid var(--orange); }
+.pjt-card.tertiary { border-left:4px solid #6d9678; }
+.pjt-card h4 { font-size:.95rem; font-weight:700; color:var(--primary); margin-bottom:.3rem; }
+.pjt-card .pjt-meta { font-size:.72rem; color:var(--text-sub); margin-bottom:.5rem; }
+.pjt-card .pjt-desc { font-size:.8rem; color:var(--text); line-height:1.55; }
+.pjt-card ul { margin:.4rem 0 0; padding-left:1.1rem; font-size:.78rem; color:var(--text); line-height:1.65; }
+.pjt-card.secondary h4 { color:var(--orange); }
+.pjt-card.tertiary h4 { color:#6d9678; }
+
+.concept-inline { margin-top:1rem; padding:.8rem; background:#f8f9fa; border-radius:8px; border-left:3px solid var(--primary); }
+.concept-inline .concept-title { font-size:.78rem; font-weight:700; color:var(--primary); margin-bottom:.5rem; }
+
+.recurring-mtg { margin-top:1rem; padding:.9rem 1rem; background:#fff8e1; border:1px solid #ffd54f; border-radius:8px; }
+.recurring-mtg .rec-title { font-size:.8rem; font-weight:700; color:#bf360c; margin-bottom:.3rem; }
+.recurring-mtg .rec-detail { font-size:.78rem; color:#5d4037; line-height:1.6; }
+
+footer { text-align:center; padding:1.5rem; font-size:.73rem; color:var(--text-sub); border-top:1px solid var(--border); margin-top:1rem; }
+
+/* MTG タブ */
+.mtg-toolbar { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; padding:.8rem 1rem; background:#f8f9fa; border:1px solid var(--border); border-radius:10px; margin-bottom:1rem; }
+.mtg-toolbar select { flex:1; min-width:240px; padding:.45rem .7rem; border:1px solid #d1d5db; border-radius:6px; font-family:'Noto Sans JP',sans-serif; font-size:.85rem; background:#fff; color:var(--text); cursor:pointer; }
+.mtg-toolbar button { padding:.45rem .9rem; border:1px solid var(--border); border-radius:6px; background:#fff; cursor:pointer; font-family:'Noto Sans JP',sans-serif; font-size:.8rem; font-weight:500; color:var(--primary); transition:all .15s; }
+.mtg-toolbar button:hover { background:var(--bg); }
+.mtg-toolbar button.danger { color:var(--red); }
+.mtg-toolbar button.danger:hover { background:#fdecea; }
+.mtg-toolbar button.primary { background:var(--primary); color:#fff; border-color:var(--primary); }
+.mtg-toolbar button.primary:hover { background:#0f1d33; }
+.mtg-status { font-size:.72rem; color:var(--green); white-space:nowrap; }
+.mtg-form { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.4rem; box-shadow:var(--shadow); }
+.mtg-field { margin-bottom:1.1rem; }
+.mtg-field label { display:block; font-size:.78rem; font-weight:700; color:var(--primary); margin-bottom:.35rem; }
+.mtg-field input, .mtg-field textarea { width:100%; padding:.55rem .8rem; border:1px solid var(--border); border-radius:6px; font-family:'Noto Sans JP',sans-serif; font-size:.85rem; line-height:1.7; background:#fafafa; color:var(--text); transition:border-color .15s, background .15s; }
+.mtg-field input:focus, .mtg-field textarea:focus { outline:none; border-color:var(--primary); background:#fff; }
+.mtg-field textarea { resize:vertical; min-height:70px; }
+.mtg-field textarea.notes-large { min-height:180px; }
+.mtg-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+@media(max-width:640px) { .mtg-row { grid-template-columns:1fr; } }
+.mtg-help { font-size:.7rem; color:var(--text-sub); margin-top:.3rem; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="breadcrumb">
+    <span>個社PMポータル</span> ＞ 内閣府 R8公募
+  </div>
+  <div class="project-label">プラットヨネザワ × 内閣府 ｜ R8/2026公募 伴走PJT</div>
+  <div class="phase-badge" data-phase-badge>📝 申請準備フェーズ｜公募締切まで残り <span data-days-left>30</span>日</div>
+  <h1>地域産品の高付加価値化・海外展開推進のための実証調査事業</h1>
+  <div class="subtitle">2026年5月25日 公募開始 → 6月26日(金)17:00 申請締切 → 8月下旬 採択 → 2027年1月31日 事業完了</div>
+  <div class="meta">
+    <span>📌 PM：プラットヨネザワ株式会社</span>
+    <span>📅 キックオフ：6/1(月) 15:00</span>
+    <span>💰 上限：区分①3,000万円 / 区分②5,000万円（税込）</span>
+    <span>🔄 更新：2026/5/27</span>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab active" onclick="showTab('summary', this)">📊 進捗サマリー</button>
+  <button class="tab" onclick="showTab('milestones', this)">🎯 マイルストーン</button>
+  <button class="tab" onclick="showTab('tasks', this)">📋 タスク・担当</button>
+  <button class="tab" onclick="showTab('deps', this)">🔗 影響・依存関係</button>
+  <button class="tab" onclick="showTab('mtg', this)">📝 MTG</button>
+</div>
+
+<!-- TAB 1: 進捗サマリー -->
+<div id="tab-summary" class="tab-pane active">
+<div class="container">
+
+  <div class="stats-row">
+    <div class="stat-box green">
+      <div class="stat-val" id="stat-done-count">3</div>
+      <div class="stat-label">完了タスク</div>
+      <div class="stat-sub">クリックで状態切替</div>
+    </div>
+    <div class="stat-box blue">
+      <div class="stat-val" id="stat-active-count">7</div>
+      <div class="stat-label">対応中タスク</div>
+      <div class="stat-sub">●印のタスク</div>
+    </div>
+    <div class="stat-box red">
+      <div class="stat-val" id="stat-next-mtg">6/1<small style="font-size:.7rem;">(月)</small></div>
+      <div class="stat-label">次のMTG</div>
+      <div class="stat-sub" id="stat-next-mtg-sub">キックオフMTG 15:00</div>
+    </div>
+    <div class="stat-box navy">
+      <div class="stat-val">6/26</div>
+      <div class="stat-label">申請締切（残り<span data-days-left>30</span>日）</div>
+      <div class="stat-sub">17:00必着</div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="border-color:#6a6080; background:#f4f1f8; color:#3d2740;">
+    <strong>💡 動的ダッシュボードの使い方：</strong>
+    📋 タスク・担当タブの ○ ● ✓ をクリックすると状態切替（次の予定 → 対応中 → 完了 → 将来）。
+    完了タスク・対応中タスクのカウントは自動再計算、変更内容はブラウザに自動保存されます。
+    今日の日付・残日数・ガント今日線・「次のMTG」表示は毎分自動更新されます。
+  </div>
+
+  <div class="alert alert-info" style="border-color:#6d9678; background:#e8f5e9; color:#1b5e20;">
+    <strong>🎯 今週の最新アップデート（2026/5/27）：</strong><br>
+    内閣府が2026年5月25日(月)に公募開始（公募要領1.0版発行）。事業名「<strong>地域産品の高付加価値化・海外展開推進のための実証調査事業</strong>」に改称。
+    申請区分①（3,000万円）と②（5,000万円・地方自治体等含むコンソーシアム）の2区分化。
+    プラットヨネザワは観光×物販導線型で区分②狙いを検討。
+  </div>
+
+  <div class="alert alert-info">
+    <strong>📌 公募の主要決定事項（公募要領1.0版）：</strong><br>
+    ① 対象分野は「美術工芸品（アート作家含む）／工芸品・雑貨／食全般」の3区分に再整理<br>
+    ② 1申請につき原則3〜4産品程度（柔軟・合理性があれば1〜2 or 4超も可）<br>
+    ③ 採択2026年8月下旬・事業開始8月下旬・事業完了2027年1月31日（実質活動期間 約5ヶ月）<br>
+    ④ 再委託・外注費比率 原則50%以内（超過は理由書）<br>
+    ⑤ 提出書類は7→9書類（財務諸表・会社概要 追加）
+  </div>
+
+  <div class="alert alert-danger">
+    <strong>🔥 緊急：6/26(金) 17:00必着 申請締切</strong>　残り <strong>30日</strong>。
+    キックオフ6/1 → 説明会6/3 → レ・クレドール定例会6/17-18 → 経営会議6/20（4条件採点）→ 申請書最終6/21-25 → 6/26提出 のクリティカルパス。
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>⚠ 次回最重要マイルストーン：2026/6/1(月) 15:00 キックオフMTG</strong><br>
+    アジェンダ：公募要領サマリー共有／申請区分①②の検討／産品4件の組合せ案／コンソーシアム協議方針／6月の週次定例ペース確認
+  </div>
+
+  <div class="alert alert-info" style="border-color:#a06e4f; background:#faf2ec; color:#5d4037;">
+    <strong>📋 クライアント（内閣府／事務局：読売新聞東京本社）への確認事項：</strong>
+    <table style="width:100%; margin-top:.5rem; font-size:.78rem;">
+      <tr><td style="padding:.2rem .4rem;">① 申請区分②におけるコンソーシアム協定書（案）の最低必要記載事項</td><td>6/3説明会で質問</td></tr>
+      <tr><td style="padding:.2rem .4rem;">② R7採択産品（山形牛・飛良泉等）と差別化された米沢牛申請の採択可否</td><td>事務局メール照会</td></tr>
+      <tr><td style="padding:.2rem .4rem;">③ メゾン・エ・オブジェ パリ2027年1月展（事業期間内）の出展申込みは契約締結前可か</td><td>説明会／FAQ確認</td></tr>
+      <tr><td style="padding:.2rem .4rem;">④ JAPAN SUI COLLECTIONブランドの利用範囲（独自パリポップアップ可否）</td><td>事務局メール照会</td></tr>
+    </table>
+  </div>
+
+  <!-- 関連PJT一覧 -->
+  <div class="card">
+    <div class="section-title">📁 関連プロジェクト</div>
+
+    <div class="pjt-row">
+      <div class="pjt-card primary">
+        <h4><span class="pjt-num">1</span>R8公募申請（メイン）</h4>
+        <div class="pjt-meta">フェーズ：申請準備中 ／ 進捗：30%</div>
+        <div class="pjt-desc">
+          内閣府「地域産品の高付加価値化・海外展開推進のための実証調査事業」への申請。
+          推奨パターン④「ガストロノミー × 粋（SUI）」：米沢織（新田）・東光（小嶋総本店）・米沢牛・かてもの料理＋伝統野菜の4軸。
+        </div>
+        <ul>
+          <li>主活動：メゾン・エ・オブジェ パリ2027年1月展独自出展</li>
+          <li>JAPAN SUI COLLECTION傘下のパリ・ポップアップ</li>
+          <li>レ・クレドール会員30名×2回招聘ファムツアー</li>
+          <li>多言語サイト「Yonezawa Sui Atlas」構築</li>
+        </ul>
+      </div>
+
+      <div class="pjt-card secondary">
+        <h4><span class="pjt-num rekimachi">2</span>採択後の実証事業（2026年8月下旬〜2027年1月31日）</h4>
+        <div class="pjt-meta">フェーズ：採択待ち ／ 進捗：0%</div>
+        <div class="pjt-desc">
+          採択（2026年8月下旬）後の実証事業実施フェーズ。
+          委託契約締結→事業開始時ヒアリング→活動実施→事業完了後ヒアリング→確定検査・精算払（2027年2月下旬）。
+        </div>
+        <ul>
+          <li>実質活動期間：約5ヶ月（R7から1.5ヶ月延長）</li>
+          <li>事業期間中の概算払い請求可</li>
+          <li>事業終了時に事業報告書を成果物として提出</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pjt-row">
+      <div class="pjt-card tertiary">
+        <h4><span class="pjt-num subsidy">3</span>観光庁ガストロノミー事業 連動</h4>
+        <div class="pjt-meta">フェーズ：並走中 ／ 進捗：30%</div>
+        <div class="pjt-desc">
+          観光庁「観光需要分散のための地域観光資源のコンテンツ化促進事業」（株式会社いきかえりの宿 瀧波 共同代表）と連動。
+          コンテンツA（2泊3日250,000円・令和8年12月販売開始）の海外送客検証として本事業のレ・クレドール経由送客を活用。
+        </div>
+      </div>
+
+      <div class="pjt-card tertiary">
+        <h4><span class="pjt-num subsidy">4</span>観光庁高付加価値インバウンド観光地づくり事業 連動</h4>
+        <div class="pjt-meta">フェーズ：マスタープラン期間 ／ 進捗：継続</div>
+        <div class="pjt-desc">
+          山形エリア2024年9月選定（テーマ「雄大な自然と山岳信仰に由来する固有の精神文化」）。
+          本事業の政策意図接続「観光×物販導線」の根拠として位置付け。
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-inline">
+      <div class="concept-title">🎯 申請戦略のキーメッセージ</div>
+      <div style="font-size:.8rem;">
+        R7採択6社（北前船・思文閣・仙台箪笥組合・TBS・中川政七・羽田未来総研）のいずれも、観光庁案件×レ・クレドール×Direction Japon誌×360°オープンファクトリーの4資産を保有していない。
+        プラットヨネザワは置賜エリアの地域商社として、「観光×物販導線型」を新規性軸として打ち出す。
+      </div>
+    </div>
+  </div>
+
+  <!-- フェーズ進捗バー -->
+  <div class="card">
+    <div class="section-title">📈 フェーズ進捗</div>
+
+    <div class="subsection-title">PJT1：R8公募申請</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 1：前準備（要件精読・社内ヒアリング）</span><span>80%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:80%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 2：意思決定（4条件採点・区分選択）</span><span>20%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-blue" style="width:20%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 3：申請書作成（事業計画・3者見積）</span><span>10%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-orange" style="width:10%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 4：申請提出（書類整備・受領確認）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+
+    <div class="subsection-title subsidy" style="border-left-color:#6d9678;">PJT2：採択後の実証事業</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 5：採択判定（8月下旬）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 6：契約締結・事業開始（8月下旬）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 7：実証事業実施（9月〜1月）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Phase 8：確定検査・精算（2月）</span><span>0%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- TAB 2: マイルストーン -->
+<div id="tab-milestones" class="tab-pane">
+<div class="container">
+  <div class="card">
+    <div class="section-title">🎯 マイルストーン一覧（時系列・最新→未来）</div>
+
+    <div class="subsection-title">📍 完了済み</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-date">2026/05/25</div>
+        <div class="tl-title">✅ R8/2026公募 開始</div>
+        <div class="tl-desc">内閣府が公募要領1.0版を発行。事業名「地域産品の高付加価値化・海外展開推進のための実証調査事業」。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-date">2026/05/27</div>
+        <div class="tl-title">✅ 公募要領精読・要件整理レポート作成</div>
+        <div class="tl-desc">公募要領1.0版・FAQ・パンフレットの一次情報精読。R7→R8の26項目差分を整理。</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">🔵 進行中・直近</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-date">2026/06/01(月) 15:00</div>
+        <div class="tl-title">🔵 キックオフMTG（次回最重要）</div>
+        <div class="tl-desc">公募要領サマリー共有・申請区分①②の検討・産品4件の組合せ案・コンソーシアム協議方針</div>
+        <div class="tl-who">参加：プラットヨネザワ全社／関係産品事業者（必要に応じて）</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/03(水) 14:00</div>
+        <div class="tl-title">📅 内閣府 公募説明会（オンライン）</div>
+        <div class="tl-desc">事業の概要・申請方法等の説明（申込期限6/2 23:59）。プラットヨネザワから1〜2名参加。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/08(月)</div>
+        <div class="tl-title">📅 W2 週次定例MTG</div>
+        <div class="tl-desc">6/3説明会の質疑共有／米沢牛事業者ヒアリング進捗／3者見積依頼の進捗</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/15(月)</div>
+        <div class="tl-title">📅 W3 週次定例MTG</div>
+        <div class="tl-desc">事業計画書ドラフト初稿レビュー／コンソ協定書（案）の進捗</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/17-18(水-木)</div>
+        <div class="tl-title">⭐ レ・クレドール定例会（欧州コンシェルジュ約30名）</div>
+        <div class="tl-desc">プラットヨネザワが誘致・主催。置賜ガストロノミー視察＋送客検討。本事業申請の論拠となる重要イベント。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/20(金)</div>
+        <div class="tl-title">🔴 経営会議：4条件採点（Go/No-Go判断）</div>
+        <div class="tl-desc">①レ・クレドール手応え／②米沢牛事業者協力意向／③R8事務局一次情報／④産品提供事業者の海外展開意向</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/21-25</div>
+        <div class="tl-title">📝 申請書最終仕上げ</div>
+        <div class="tl-desc">事業計画書最終版／必要書類9点整備／3者見積最終／関係者レビュー・修正</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot next"></div>
+        <div class="tl-date">2026/06/26(金) 17:00</div>
+        <div class="tl-title">🔥 申請締切（必着）</div>
+        <div class="tl-desc">t-chiikisanpin@yomiuri.com にメール提出＋電話到着確認03-3216-7133</div>
+      </div>
+    </div>
+
+    <div class="subsection-title subsidy" style="border-left-color:#6a6080;">⏳ 採択判定〜事業実施</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026/08下旬</div>
+        <div class="tl-title">⏳ 採択通知</div>
+        <div class="tl-desc">選定委員会（事務局・内閣府・有識者）による書面審査。採択にあたっては条件付き採択もあり得る。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026/08下旬</div>
+        <div class="tl-title">⏳ 委託契約締結・事業開始</div>
+        <div class="tl-desc">事業計画調整→契約締結→事業開始（契約締結日＝事業開始日）</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026/09中旬</div>
+        <div class="tl-title">⏳ 事業開始時ヒアリング</div>
+        <div class="tl-desc">事務局によるヒアリング。事業計画詳細の確認。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026/10〜11</div>
+        <div class="tl-title">⏳ メゾン・エ・オブジェ パリ2027年1月展 出展申込確定</div>
+        <div class="tl-desc">通常前年4〜5月開始の申込期間に対応。採択後即座にJETRO経由または独自ブースで申込。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2026/12月</div>
+        <div class="tl-title">⏳ レ・クレドール会員ファムツアー第2回</div>
+        <div class="tl-desc">6月の定例会フォロー。冬季コンテンツ（東光蔵元当主特別ペアリング・かてもの料理）を体験。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027/01月中旬</div>
+        <div class="tl-title">⭐ メゾン・エ・オブジェ パリ展 出展（最重要）</div>
+        <div class="tl-desc">パリ郊外ノールビルパント見本市会場。米沢織×現代デザイン展示＋日本酒テイスティングセミナー＋JAPAN SUI COLLECTION傘下ポップアップ。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027/01/31(日)</div>
+        <div class="tl-title">🔥 事業完了日（厳守）</div>
+        <div class="tl-desc">全活動・経費支払完了。事業報告書を成果物として事務局に提出。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot future"></div>
+        <div class="tl-date">2027/02月</div>
+        <div class="tl-title">⏳ 事業完了後ヒアリング・確定検査・精算払</div>
+        <div class="tl-desc">2月中ヒアリング→2月上〜下旬 確定検査・経費振込</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- TAB 3: タスク・担当 -->
+<div id="tab-tasks" class="tab-pane">
+<div class="container">
+
+  <div class="alert alert-info">
+    <strong>📌 今週（W1：5/25〜5/31）の進捗：</strong>
+    公募要領1.0版・FAQ・パンフレットの精読完了。R8要件整理レポート（19ページ・docx）を作成。
+    キックオフMTG（6/1 15:00）のアジェンダ準備完了。
+  </div>
+
+  <!-- W1キックオフ前のNext Step -->
+  <div class="card">
+    <div class="subsection-title">📌 W1（5/25-31）→ キックオフ（6/1）までのネクストステップ（最新）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th style="width:30px;"></th><th>タスク</th><th style="width:90px;">担当</th><th style="width:110px;">期限</th><th style="width:90px;">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle done">✓</span></td>
+          <td><span class="task-name">公募要領1.0版・FAQ・パンフレット精読</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">5/27 完了</td>
+          <td><span class="badge badge-done">完了</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle done">✓</span></td>
+          <td><span class="task-name">R8要件整理レポート（docx）作成</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">5/27 完了</td>
+          <td><span class="badge badge-done">完了</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle done">✓</span></td>
+          <td><span class="task-name">個社PMダッシュボード・Notion初期設計</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">5/27 完了</td>
+          <td><span class="badge badge-done">完了</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle active">●</span></td>
+          <td><span class="task-name"><strong>キックオフMTGアジェンダ・配布資料準備</strong>（公募要領サマリー／申請区分①②検討資料／産品4件案）</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">5/31</td>
+          <td><span class="badge badge-active">対応中</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">公募説明会（6/3 14:00）参加申込</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">6/2 23:59</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 申請フェーズタスク -->
+  <div class="card">
+    <div class="subsection-title">📋 PJT1：申請フェーズタスク（5/25〜6/26）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th style="width:30px;"></th><th>タスク</th><th style="width:90px;">担当</th><th style="width:110px;">期限</th><th style="width:90px;">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name"><strong>申請フォーム事前登録</strong>（指定様式DL用）</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">5/31</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">米沢牛主要事業者ヒアリング（黄木・登起波・改良組合）</span></td>
+          <td><span class="tag tag-plat">プラット営業</span></td>
+          <td class="deadline soon">6月末</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">小嶋総本店・高畠ワイナリー・新田の海外展開意向ヒアリング</span></td>
+          <td><span class="tag tag-plat">プラット営業</span></td>
+          <td class="deadline soon">6月末</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name"><strong>区分②狙いなら米沢市・山形県とのコンソ協議</strong>（地方自治体等が必要）</span></td>
+          <td><span class="tag tag-yamagata">山形県</span> <span class="tag tag-yonezawa">米沢市</span></td>
+          <td class="deadline urgent">6/15</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">EU向け牛肉・酒類輸出規制の事前確認（GFP・JETRO・農水省山形）</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6月末</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">3者見積取得：メゾン・エ・オブジェ出展ブース業者</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/20</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">3者見積取得：海外PR会社・コンテンツ制作・通訳派遣</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/20</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">事業計画書ドラフト初稿（中期目標＋当年度目標の二段構造）</span></td>
+          <td><span class="tag tag-plat">プラットPM</span></td>
+          <td class="deadline soon">6/15</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">産品PRシート（指定様式）作成：写真・キャッチコピー</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/18</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">体制図作成（プラット＋協力事業者＋自治体）</span></td>
+          <td><span class="tag tag-plat">プラットPM</span></td>
+          <td class="deadline soon">6/18</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">財務諸表（B/S・P/L・C/F・株主資本等変動）整備（直近2〜3期）</span></td>
+          <td><span class="tag tag-plat">プラット経理</span></td>
+          <td class="deadline soon">6/22</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">商業登記簿謄本取得（発行から6か月以内・コンソ全構成員分）</span></td>
+          <td><span class="tag tag-plat">プラット経理</span></td>
+          <td class="deadline soon">6/22</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">役員名簿・暴力団排除同意書（指定様式）作成</span></td>
+          <td><span class="tag tag-plat">プラット経理</span></td>
+          <td class="deadline soon">6/22</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name"><strong>申請書類最終レビュー＋PDF変換＋メール提出</strong></span></td>
+          <td><span class="tag tag-plat">プラット全員</span></td>
+          <td class="deadline urgent">6/26 17:00</td>
+          <td><span class="badge badge-next">次の予定</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 関係者ヒアリング -->
+  <div class="card">
+    <div class="subsection-title">🤝 関係者・パートナーヒアリング（同意取得）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th style="width:30px;"></th><th>関係者</th><th>確認事項</th><th style="width:90px;">担当</th><th style="width:110px;">期限</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">新田（米沢織・紅花染め）</span></td>
+          <td>海外展開意向確認／タリフ整備済10品目の活用許諾／申請時の同意書</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/15</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">株式会社小嶋総本店（東光）</span></td>
+          <td>EU向け酒類輸出意向／当主・女将による特別ペアリング協力／酒造資料館での海外バイヤー招聘可否</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/15</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">米沢牛事業者（黄木・登起波・改良組合）</span></td>
+          <td>EU向け輸出規制対応状況（HACCP・衛生証明書）／本事業協力意向／少なくとも1社の確約</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">6/20</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">株式会社高畠ワイナリー</span></td>
+          <td>欧州展開意向／プレミアム志向の海外展開戦略との整合性</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/15</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">株式会社いきかえりの宿 瀧波（南浩史）</span></td>
+          <td>観光庁ガストロノミー事業との連動承諾／レ・クレドール定例会の連動</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline soon">6/10</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">米沢市役所</span></td>
+          <td>区分②狙いのコンソーシアム参加可否／同意書取得</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">6/15</td>
+        </tr>
+        <tr>
+          <td><span class="check-circle next">○</span></td>
+          <td><span class="task-name">山形県観光・産業労働部</span></td>
+          <td>区分②狙いのコンソーシアム参加可否／観光庁案件連動の整合性</td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline urgent">6/15</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 採択後タスク -->
+  <div class="card">
+    <div class="subsection-title subsidy" style="border-left-color:#6d9678;">📋 PJT2：採択後タスク（8月下旬〜）</div>
+    <table class="task-table">
+      <thead>
+        <tr><th style="width:30px;"></th><th>タスク</th><th style="width:90px;">担当</th><th style="width:110px;">期限</th><th style="width:90px;">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">委託契約締結準備・事業開始時ヒアリング対応</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">8月下旬</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">メゾン・エ・オブジェ パリ2027年1月展 出展申込確定</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">10月</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">海外PR会社・コンテンツ制作会社との契約締結</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">9〜10月</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">「Yonezawa Sui Atlas」多言語サイト構築（仏・英・繁中）</span></td>
+          <td><span class="tag tag-ext">外注</span></td>
+          <td class="deadline ok">11〜12月</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">レ・クレドール会員ファムツアー第2回（12月・冬季コンテンツ）</span></td>
+          <td><span class="tag tag-plat">プラット</span></td>
+          <td class="deadline ok">12月</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+        <tr>
+          <td><span class="check-circle none">○</span></td>
+          <td><span class="task-name">事業報告書作成・成果物提出</span></td>
+          <td><span class="tag tag-plat">プラットPM</span></td>
+          <td class="deadline ok">2027/1/31</td>
+          <td><span class="badge badge-future">将来</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- TAB 4: 影響・依存関係 -->
+<div id="tab-deps" class="tab-pane">
+<div class="container">
+
+  <!-- ガントチャート -->
+  <div class="card">
+    <div class="section-title">📊 統合タイムライン（2026年5月〜2027年2月）</div>
+
+    <div class="gantt-now-banner">
+      <div class="now-dot"></div>
+      <div>
+        <div class="now-text">現在地</div>
+        <div class="now-date" data-now-date>2026/05/27（水）公募開始直後・キックオフ準備中</div>
+      </div>
+      <div class="now-phase">
+        🔴 直近 <strong data-next-event-date>6/1(月)15:00</strong> <span data-next-event-name>キックオフMTG</span><br>
+        🔴 残り <strong><span data-days-left>30</span>日</strong> → 6/26(金)17:00 申請締切
+      </div>
+    </div>
+
+    <div class="gantt-wrap">
+      <div class="gantt">
+
+        <!-- ヘッダー：2026年5月〜2027年2月 -->
+        <div class="gantt-row gantt-header">
+          <div class="gantt-label">案件 / 工程</div>
+          <div class="gantt-cells">
+            <div class="gantt-month current">2026/5</div>
+            <div class="gantt-month urgent">6</div>
+            <div class="gantt-month">7</div>
+            <div class="gantt-month urgent">8</div>
+            <div class="gantt-month">9</div>
+            <div class="gantt-month">10</div>
+            <div class="gantt-month">11</div>
+            <div class="gantt-month">12</div>
+            <div class="gantt-month peak">2027/1</div>
+            <div class="gantt-month">2</div>
+          </div>
+        </div>
+
+        <!-- セクション1：申請フェーズ -->
+        <div class="gantt-row gantt-section-header application">
+          <div class="gantt-section-label">📝 申請フェーズ</div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-today-label" style="left:8.5%;">▼今日 5/27</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-application">
+          <div class="gantt-label">📋 公募要領精読<small>FAQ・パンフレット含む</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-green bar-mini" style="left:7.0%; width:1%;" title="5/25-27 公募要領精読期間"></div>
+            <div class="gantt-milestone" style="left:8.5%;" title="5/27 公募要領・FAQ・パンフレット精読完了">✅</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-application">
+          <div class="gantt-label">🤝 関係者ヒアリング<small>新田・小嶋・米沢牛・自治体</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-blue" style="left:8.5%; width:8.8%;">関係者ヒアリング（5/27〜6/22）</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-application">
+          <div class="gantt-label">📐 3者見積取得<small>出展・PR・通訳・制作</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-blue" style="left:10.7%; width:6%;">3者見積取得（6/3〜6/20）</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-application">
+          <div class="gantt-label">📝 事業計画書作成<small>申請書類9点整備</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-orange" style="left:10.7%; width:7.3%;">事業計画書 起草→レビュー→最終（6/3〜6/25）</div>
+            <div class="gantt-milestone" style="left:19.0%;" title="6/26 17:00 申請締切">🔥</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-application">
+          <div class="gantt-label">📤 申請提出<small>メール＋電話到着確認</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-red bar-mini" style="left:18.0%; width:0.8%;" title="6/26 17:00 申請提出"></div>
+            <div class="gantt-milestone" style="left:19.0%;" title="6/26 17:00 申請締切">🔥</div>
+          </div>
+        </div>
+
+        <!-- セクション2：採択判定 -->
+        <div class="gantt-row gantt-section-header evaluation">
+          <div class="gantt-section-label">🟡 採択判定フェーズ</div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-evaluation">
+          <div class="gantt-label">⏳ 選定委員会審査<small>書面審査・必要時ヒアリング</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-gray" style="left:19.5%; width:18%;">書面審査（6月末〜8月下旬）</div>
+            <div class="gantt-milestone" style="left:38.5%;" title="8月下旬 採択通知">🟡</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-evaluation">
+          <div class="gantt-label">📞 採択結果通知<small>事務局→事業者</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-light-blue" style="left:36.5%; width:4%;">採択通知</div>
+          </div>
+        </div>
+
+        <!-- セクション3：実証事業 -->
+        <div class="gantt-row gantt-section-header execution">
+          <div class="gantt-section-label">🚀 実証事業フェーズ（採択後）</div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">📜 委託契約締結<small>事業開始日＝締結日</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-orange" style="left:39%; width:5%;">契約締結・事業開始</div>
+            <div class="gantt-milestone" style="left:38.5%;" title="8月下旬 委託契約締結＝事業開始">🚀</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">🎨 コンテンツ制作<small>動画・サイト・PR素材</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-orange" style="left:40.0%; width:40%;">「Yonezawa Sui Atlas」構築・動画・PR素材（9月〜12月）</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">⭐ メゾン・エ・オブジェ準備<small>ブース・輸送・PR</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-light-orange" style="left:50.0%; width:30%;">ブース設計・輸送・PR準備（10月〜12月末）</div>
+            <div class="gantt-bar b-red" style="left:82%; width:6%;">パリ展出展</div>
+            <div class="gantt-milestone" style="left:85%;" title="2027年1月中旬 メゾン・エ・オブジェ パリ展出展">⭐</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">🇫🇷 パリ・ポップアップ<small>JAPAN SUI COLLECTION傘下</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-light-orange" style="left:60.0%; width:21%;">企画・調整・素材制作（11月〜1月初）</div>
+            <div class="gantt-bar b-green" style="left:82.0%; width:7%;">ポップアップ実施</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">🛎 レ・クレドール ファムツアー<small>欧州コンシェルジュ招聘</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-green bar-mini" style="left:15.0%; width:1.2%;" title="6/17-18 第1回ファムツアー"></div>
+            <div class="gantt-milestone" style="left:15.5%;" title="6/17-18 レ・クレドール第1回">🛎</div>
+            <div class="gantt-bar b-green" style="left:73.0%; width:4%;">第2回（12月）</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">📋 事業報告書<small>成果物提出</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-orange" style="left:85.0%; width:4.5%;">事業報告書 作成・提出</div>
+            <div class="gantt-milestone" style="left:90.5%;" title="2027年1月31日 事業完了日">🏁</div>
+          </div>
+        </div>
+
+        <div class="gantt-row in-execution">
+          <div class="gantt-label">💰 確定検査・精算<small>事務局検査→経費振込</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-bar b-gray" style="left:91.0%; width:8.5%;">2月：ヒアリング→検査→精算</div>
+          </div>
+        </div>
+
+        <!-- セクション4：MTG -->
+        <div class="gantt-row gantt-section-header mtg">
+          <div class="gantt-section-label">📝 MTG</div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+          </div>
+        </div>
+
+        <!-- 来米・外部MTG -->
+        <div class="gantt-row in-mtg mtg-masuda">
+          <div class="gantt-label">⭐ 重要MTG・イベント<small>キックオフ・説明会・定例会</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-mtg-pill crit stagger-top" style="left:10.0%;" title="6/1(月) 15:00 キックオフMTG">
+              <span class="pill-icon">⭐</span>
+              <span class="pill-date">6/1</span>
+              <span class="pill-tag">KO</span>
+            </div>
+            <div class="gantt-mtg-pill high stagger-middle" style="left:10.7%;" title="6/3(水) 14:00 公募説明会オンライン">
+              <span class="pill-icon">📅</span>
+              <span class="pill-date">6/3</span>
+              <span class="pill-tag">説明会</span>
+            </div>
+            <div class="gantt-mtg-pill crit stagger-bottom" style="left:15.3%;" title="6/17-18 レ・クレドール定例会（欧州コンシェルジュ約30名）">
+              <span class="pill-icon">⭐</span>
+              <span class="pill-date">6/17</span>
+              <span class="pill-tag">レクレ</span>
+            </div>
+            <div class="gantt-mtg-pill crit stagger-top" style="left:18.3%;" title="6/26(金) 17:00 申請締切">
+              <span class="pill-icon">🔥</span>
+              <span class="pill-date">6/26</span>
+              <span class="pill-tag">締切</span>
+            </div>
+            <div class="gantt-mtg-pill high stagger-middle" style="left:38.5%;" title="8月下旬 採択通知">
+              <span class="pill-icon">🟡</span>
+              <span class="pill-date">8月末</span>
+              <span class="pill-tag">採択</span>
+            </div>
+            <div class="gantt-mtg-pill crit stagger-middle" style="left:85%;" title="2027年1月中旬 メゾン・エ・オブジェ パリ展">
+              <span class="pill-icon">⭐</span>
+              <span class="pill-date">1/中</span>
+              <span class="pill-tag">M&amp;O</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 週次定例MTG -->
+        <div class="gantt-row in-mtg mtg-weekly">
+          <div class="gantt-label">📍 週次定例MTG<small>毎週月曜</small></div>
+          <div class="gantt-cells">
+            <div class="gantt-today-line" style="left:8.5%;"></div>
+            <div class="gantt-weekly-marker current" style="left:10.0%;" title="W1 キックオフ 6/1">
+              <div class="gantt-weekly-dot"></div>
+              <div class="gantt-weekly-label">W1</div>
+            </div>
+            <div class="gantt-weekly-marker next" style="left:12.3%;" title="W2 6/8">
+              <div class="gantt-weekly-dot"></div>
+              <div class="gantt-weekly-label">W2</div>
+            </div>
+            <div class="gantt-weekly-marker next" style="left:14.7%;" title="W3 6/15">
+              <div class="gantt-weekly-dot"></div>
+              <div class="gantt-weekly-label">W3</div>
+            </div>
+            <div class="gantt-weekly-marker next" style="left:17.0%;" title="W4 6/22 経営会議（4条件採点）">
+              <div class="gantt-weekly-dot"></div>
+              <div class="gantt-weekly-label">W4</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 凡例 -->
+    <div class="gantt-legend">
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#3d4a64;"></span>申請</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#6a6080;"></span>採択判定</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#6d9678;"></span>実証事業</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#a06e4f;"></span>MTG</div>
+      <span style="color:var(--border);">|</span>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:linear-gradient(135deg,#7090b8,#4e6f96);"></span>計画・準備</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:linear-gradient(135deg,#c89579,#a8745a);"></span>実施・制作</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:linear-gradient(135deg,#85a991,#6a8a76);"></span>完了・運営</div>
+      <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:repeating-linear-gradient(45deg,#c4c4c4 0,#c4c4c4 3px,#d8d8d8 3px,#d8d8d8 6px);"></span>待ち・審査</div>
+    </div>
+
+    <!-- 現在フェーズカード -->
+    <div class="gantt-phase-grid">
+      <div class="gantt-phase-card urgent">
+        <div class="pc-name">📝 申請フェーズ</div>
+        <div class="pc-phase">📌 公募開始直後・キックオフ準備中</div>
+        <div class="pc-next">▸ 次：6/1(月)15:00 キックオフMTG</div>
+      </div>
+      <div class="gantt-phase-card active">
+        <div class="pc-name">🤝 関係者ヒアリング</div>
+        <div class="pc-phase">📌 産品事業者・自治体・観光庁案件連動先</div>
+        <div class="pc-next">▸ 次：6/15まで完了目標</div>
+      </div>
+      <div class="gantt-phase-card next">
+        <div class="pc-name">📐 3者見積取得</div>
+        <div class="pc-phase">📌 公募開始日以降の見積が有効</div>
+        <div class="pc-next">▸ 次：6/20までに4業種完了</div>
+      </div>
+      <div class="gantt-phase-card urgent">
+        <div class="pc-name">🔴 経営会議</div>
+        <div class="pc-phase">📌 6/20 4条件採点でGo/No-Go判断</div>
+        <div class="pc-next">▸ 次：6/20(金) Go判断後即6/21〜25仕上げ</div>
+      </div>
+      <div class="gantt-phase-card next">
+        <div class="pc-name">⭐ レ・クレドール</div>
+        <div class="pc-phase">📌 6/17-18 欧州コンシェルジュ約30名招致</div>
+        <div class="pc-next">▸ 次：送客検討数の記録方法を事前設計</div>
+      </div>
+      <div class="gantt-phase-card next">
+        <div class="pc-name">🔥 申請締切</div>
+        <div class="pc-phase">📌 6/26(金) 17:00必着</div>
+        <div class="pc-next">▸ 残り30日</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- クリティカルチェーン -->
+  <div class="card">
+    <div class="section-title">🔗 クリティカルチェーン（依存関係）</div>
+
+    <div class="dep-section">
+      <div class="dep-label">PJT1：申請までのクリティカルパス</div>
+      <div class="dep-chain">
+        <div class="dep-node done">公募要領精読（5/25-27）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node active">キックオフ（6/1）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">説明会（6/3）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">関係者ヒアリング（〜6/15）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">レ・クレドール（6/17-18）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">経営会議（6/20）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">最終仕上げ（6/21-25）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node next">提出（6/26）</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠ 遅延影響：</strong>
+        ・関係者ヒアリングが6/15を超えると、6/20経営会議の4条件採点ができず、6/21以降の最終仕上げに遅延が波及する。
+        特に米沢牛事業者の協力意向確認は最遅でも6/20までに完了させる必要あり。
+      </div>
+    </div>
+
+    <div class="dep-section">
+      <div class="dep-label">PJT2：採択後 実証事業のクリティカルパス（メゾン・エ・オブジェ起点）</div>
+      <div class="dep-chain">
+        <div class="dep-node future">採択（8月下旬）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">契約締結（8月下旬）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">M&amp;O出展申込（10月）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">ブース設計・輸送手配（11-12月）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">パリ出展（2027/1中旬）</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-node future">事業完了（2027/1/31）</div>
+      </div>
+      <div class="dep-warning">
+        <strong>⚠ 遅延影響：</strong>
+        メゾン・エ・オブジェ出展申込が10月を超えると2027年1月展への参加枠が取れない。
+        その場合、独自パリ・ポップアップ会場での代替案に切替（予算配分の再設計が必要）。
+      </div>
+    </div>
+
+    <div class="dep-section">
+      <div class="dep-label">関連PJTとの相互強化（観光庁案件・レキマチ）</div>
+      <div class="dep-chain">
+        <div class="dep-node active">観光庁ガストロノミー事業</div>
+        <span class="dep-arrow">↔</span>
+        <div class="dep-node active">本事業（内閣府）</div>
+        <span class="dep-arrow">↔</span>
+        <div class="dep-node done">観光庁モデル観光地（山形）</div>
+      </div>
+      <div class="dep-warning">
+        <strong>💡 シナジー設計：</strong>
+        観光庁ガストロノミー事業のコンテンツA（2泊3日250,000円・令和8年12月販売開始）の海外送客検証として本事業のレ・クレドール経由送客を活用。
+        山形エリアの高付加価値モデル観光地選定（2024年9月）は本事業申請の政策整合性根拠となる。
+      </div>
+    </div>
+  </div>
+
+  <!-- 全体スケジュール表 -->
+  <div class="card">
+    <div class="section-title">📅 全体スケジュール表</div>
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th style="width:120px;">期間</th>
+          <th>主要イベント・タスク</th>
+          <th style="width:120px;">フェーズ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>5/25〜5/31</strong></td><td>W1：公募要領精読／要件整理レポート作成／キックオフ準備</td><td><span class="badge badge-done">完了</span></td></tr>
+        <tr><td><strong>6/1〜6/7</strong></td><td>W2：キックオフ（6/1 15:00）／公募説明会参加（6/3 14:00）／関係者ヒアリング開始</td><td><span class="badge badge-active">対応中</span></td></tr>
+        <tr><td><strong>6/8〜6/14</strong></td><td>W3：3者見積取得開始／事業計画書ドラフト初稿／自治体コンソ協議</td><td><span class="badge badge-next">次の予定</span></td></tr>
+        <tr><td><strong>6/15〜6/21</strong></td><td>W4：レ・クレドール定例会（6/17-18）／経営会議（6/20・4条件採点）／事業計画書修正</td><td><span class="badge badge-next">次の予定</span></td></tr>
+        <tr><td><strong>6/22〜6/26</strong></td><td>W5：必要書類最終整備／PDF変換／<strong>申請提出（6/26 17:00）</strong></td><td><span class="badge badge-next">次の予定</span></td></tr>
+        <tr><td><strong>7月〜8月下旬</strong></td><td>選定委員会審査（書面）／採択通知（8月下旬）</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>8月下旬</strong></td><td>委託契約締結・事業開始日</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>9月中旬</strong></td><td>事業開始時ヒアリング</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>10〜12月</strong></td><td>M&amp;O出展申込確定／コンテンツ制作／「Yonezawa Sui Atlas」構築／レ・クレドールファムツアー第2回（12月）</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>2027/1中旬</strong></td><td>⭐ メゾン・エ・オブジェ パリ展出展／パリ・ポップアップ実施</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>2027/1/31</strong></td><td>🏁 事業完了日／事業報告書提出</td><td><span class="badge badge-future">将来</span></td></tr>
+        <tr><td><strong>2027/2月</strong></td><td>事業完了後ヒアリング／確定検査／精算払</td><td><span class="badge badge-future">将来</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- TAB 5: MTG -->
+<div id="tab-mtg" class="tab-pane">
+<div class="container">
+
+  <div class="alert alert-info">
+    <strong>📝 MTG運用ルール：</strong>
+    キックオフ（6/1 15:00）以降、毎週月曜に定例MTGを実施。MTG_DEFAULTSに次回MTGのアジェンダがテンプレートとして登録済み。
+    各MTGの議事録は自動でlocalStorageに保存される（ブラウザ単位）。チーム共有は📤Markdownコピーで実施。
+  </div>
+
+  <div class="mtg-toolbar">
+    <select id="mtg-select" aria-label="MTG履歴"></select>
+    <button id="mtg-new" class="primary">＋ 新規MTG</button>
+    <button id="mtg-export">📤 Markdownコピー</button>
+    <button id="mtg-delete" class="danger">🗑 削除</button>
+    <span class="mtg-status" id="mtg-status"></span>
+  </div>
+
+  <div class="mtg-form">
+    <div class="mtg-row">
+      <div class="mtg-field">
+        <label for="mtg-date">📅 日付</label>
+        <input type="date" id="mtg-date" />
+      </div>
+      <div class="mtg-field">
+        <label for="mtg-title">🏷 MTG名</label>
+        <input type="text" id="mtg-title" placeholder="W2 週次定例MTG" />
+      </div>
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-participants">👥 参加者</label>
+      <input type="text" id="mtg-participants" placeholder="プラットヨネザワ：井上・宮嶌・小田／関係事業者：..." />
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-lastweek">■ 先週の振り返り</label>
+      <textarea id="mtg-lastweek" rows="4"></textarea>
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-thisweek">■ 今週のタスク分担</label>
+      <textarea id="mtg-thisweek" rows="6"></textarea>
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-decisions">■ 決定事項</label>
+      <textarea id="mtg-decisions" rows="3"></textarea>
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-todos">■ ToDo（誰が・いつまでに）</label>
+      <textarea id="mtg-todos" rows="4"></textarea>
+    </div>
+
+    <div class="mtg-field">
+      <label for="mtg-notes">■ メモ（自由欄）</label>
+      <textarea id="mtg-notes" class="notes-large" rows="8"></textarea>
+    </div>
+
+    <div class="mtg-help">
+      ⚠ メモは <strong>自分のブラウザのlocalStorage</strong> に自動保存されます（チームには共有されません）。<br>
+      共有が必要な場合は「📤 Markdownコピー」でクリップボードに書き出して、Slack/Notionに貼り付けてください。
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  © 2026 プラットヨネザワ株式会社（PM）｜ 内閣府R8公募 個社PM管理ページ ｜ 最終更新：2026年5月27日<br>
+  関連リンク：
+  <a href="https://www.notion.so/36d9db545efa80aba73dd98dbdae9e81" target="_blank">📓 Notion PJTページ</a>
+  ｜
+  <a href="https://drive.google.com/drive/folders/1hOu0GmREHCQaQskw0FYTjuQiFmt25BrF" target="_blank">📁 Drive PJTフォルダ</a>
+  ｜
+  <a href="https://plat-yonezawa.slack.com/archives/C0B66T8920K" target="_blank">💬 Slackチャンネル</a>
+  ｜
+  <a href="https://www.chisou.go.jp/sousei/about/chiikisanpin/index.html" target="_blank">🏛 内閣府 公募ページ</a>
+  ｜
+  <a href="https://chiikisanpin2026-form.spiral-site.com/oubo" target="_blank">📝 申請フォーム</a>
+  ｜
+  <a href="https://chiikisanpin2026-form.spiral-site.com/setsumeikai" target="_blank">🎤 公募説明会申込</a>
+</footer>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ============== MTG メモ管理（localStorage） ==============
+const MTG_STORAGE_KEY = 'chiiki-sanpin-r8-mtg-notes-v1';
+
+const MTG_DEFAULTS = [
+  // ─── W1：キックオフMTG（6/1 当日記入用テンプレ） ───
+  {
+    id: 1748000000001,
+    date: '2026-06-01',
+    title: 'W1 キックオフMTG（当日記入）',
+    participants: 'プラットヨネザワ：井上・宮嶌・小田・他PMチーム ／ 必要に応じて関係事業者',
+    lastWeekReview: '・5/25 内閣府が公募要領1.0版を発行\n・5/25-27 プラット社内で公募要領・FAQ・パンフレット精読\n・5/27 R8要件整理レポート（19ページ・docx）作成\n・5/27 個社PMダッシュボード（HTML）・Notion PJTページ初期設計',
+    thisWeekTasks: '【⏱ タイムテーブル（90分）】\n0) 開始挨拶・本日のゴール共有 — 5分\n1) R8/2026公募 サマリー共有（要件整理レポート） — 15分\n2) 申請区分①（3,000万円）と②（5,000万円・コンソ）の検討 — 20分\n3) 産品4件の組合せ案（パターン①〜④）の議論 — 20分\n4) コンソーシアム協議方針（米沢市・山形県との接触） — 10分\n5) 6月の週次定例ペースと役割分担 — 10分\n6) ToDo整理・次回（W2 6/8）アジェンダ — 10分',
+    decisions: '【✅ 6/1 キックオフで決定したこと】（当日記入）\n①\n②\n③',
+    todos: '【📌 6/1発のネクストステップ】（当日記入）\n①\n②\n③',
+    notes: '【📋 当日記入欄】議論結果・気づき・関連リンク\n\n📎 関連資料：\n・公募要領 1.0版：https://www.chisou.go.jp/sousei/about/chiikisanpin/document/kouboyoryo.pdf\n・R8要件整理レポート（社内Drive）\n・申請フォーム：https://chiikisanpin2026-form.spiral-site.com/oubo\n・公募説明会 申込：https://chiikisanpin2026-form.spiral-site.com/setsumeikai'
+  },
+  // ─── W2：6/8 週次定例 ───
+  {
+    id: 1748000000002,
+    date: '2026-06-08',
+    title: 'W2 週次定例MTG（次回・当日記入）',
+    participants: 'プラットヨネザワ：井上・宮嶌・小田・PMチーム',
+    lastWeekReview: '・6/1 キックオフMTG実施（決定事項共有）\n・6/3 内閣府公募説明会オンライン参加\n・関係者ヒアリング開始（新田・小嶋・瀧波）',
+    thisWeekTasks: '【⏱ タイムテーブル（60分）】\n0) 先週の振り返り — 5分\n1) 公募説明会の質疑共有・新規論点 — 15分\n2) 関係者ヒアリング進捗（新田・小嶋・米沢牛・自治体） — 20分\n3) 3者見積依頼の進捗 — 10分\n4) 次週のToDo整理 — 10分',
+    decisions: '',
+    todos: '',
+    notes: '【📋 当日記入欄】'
+  },
+  // ─── W3：6/15 週次定例 ───
+  {
+    id: 1748000000003,
+    date: '2026-06-15',
+    title: 'W3 週次定例MTG（事業計画書初稿レビュー）',
+    participants: 'プラットヨネザワ：井上・宮嶌・小田',
+    lastWeekReview: '・6/8 W2 MTG実施\n・関係者ヒアリング完了予定（〜6/15）',
+    thisWeekTasks: '【⏱ タイムテーブル（90分）】\n0) 先週の振り返り — 5分\n1) 事業計画書ドラフト初稿レビュー — 40分\n2) コンソーシアム協議の進捗（米沢市・山形県） — 15分\n3) 3者見積取得進捗 — 10分\n4) 6/17-18 レ・クレドール定例会の最終準備 — 15分\n5) 次週ToDo — 5分',
+    decisions: '',
+    todos: '',
+    notes: ''
+  },
+  // ─── レ・クレドール定例会 ───
+  {
+    id: 1748000000004,
+    date: '2026-06-17',
+    title: '⭐ レ・クレドール定例会（6/17-18・特別MTG）',
+    participants: '欧州コンシェルジュ約30名 ／ プラットヨネザワ全員 ／ 瀧波・OSTERIA SINCERITÀ ／ 小嶋総本店 ／ 新田 等',
+    lastWeekReview: '',
+    thisWeekTasks: '【プログラム概要】\n6/17(水)：到着・歓迎レセプション・置賜ガストロノミー紹介\n6/18(木)：体験プログラム（瀧波・東光蔵元・新田機屋・米沢牛）\n\n【記録すべきデータ】\n・参加コンシェルジュ数（実数）\n・送客検討意向を表明した人数\n・関心領域別の分布（食・酒・工芸・観光）\n・フォローアップ希望者リスト',
+    decisions: '',
+    todos: '',
+    notes: '【📋 後日記入：定例会の手応え評価】\nこの結果を6/20経営会議の4条件採点に反映する。'
+  },
+  // ─── W4：6/20 経営会議（4条件採点） ───
+  {
+    id: 1748000000005,
+    date: '2026-06-20',
+    title: '🔴 W4 経営会議：4条件採点（Go/No-Go判断）',
+    participants: 'プラットヨネザワ経営層 ／ PMチーム',
+    lastWeekReview: '・6/17-18 レ・クレドール定例会実施結果\n・関係者ヒアリング結果（産品事業者・自治体）\n・R8事務局からの一次情報取得状況',
+    thisWeekTasks: '【⏱ タイムテーブル（90分）】\n0) 4条件採点シートの説明 — 5分\n1) 条件①：レ・クレドール定例会で5名以上のコンシェルジュが送客検討表明したか — 15分\n2) 条件②：米沢牛事業者から少なくとも1社が協力確約したか — 15分\n3) 条件③：R8事務局から事業名変更・公募スケジュール一次情報を取得したか — 10分\n4) 条件④：高畠ワイナリー・小嶋総本店・新田から海外展開意向の前向き回答を得たか — 15分\n5) 申請区分①／②の最終決定 — 15分\n6) Go/No-Go判断＋6/21-25 最終仕上げ計画 — 15分',
+    decisions: '【Go判断時】\n・申請区分：①or②\n・採択された4産品の組合せ\n・6/21-25の役割分担\n\n【No-Go判断時】\n・代替戦略（TAKUMI NEXT・GFP認定・観光庁案件延長・R9次年度応募）の優先順位',
+    todos: '',
+    notes: ''
+  },
+  // ─── 6/26 申請提出 ───
+  {
+    id: 1748000000006,
+    date: '2026-06-26',
+    title: '🔥 申請提出日（6/26 17:00必着）',
+    participants: 'プラットヨネザワ PMチーム',
+    lastWeekReview: '・6/20 経営会議でGo判断\n・6/21-25 申請書最終仕上げ（事業計画書・必要書類9点）',
+    thisWeekTasks: '【⏱ 提出当日タイムライン】\n午前：書類最終チェック・PDF変換・ファイル名統一\n13:00 メール件名・添付ファイル名 最終確認\n15:00 メール提出（t-chiikisanpin@yomiuri.com）＋ Excelファイル併送\n15:30 電話到着確認（03-3216-7133）\n17:00 必着確認',
+    decisions: '',
+    todos: '',
+    notes: '【メール件名規約】\n「プラットヨネザワ株式会社_地域産品の高付加価値化・海外展開推進のための実証調査事業_提出申請書類」\n\n【ファイル名規約】\n「プラットヨネザワ株式会社_申請様式」「..._体制図」など\n\n【提出書類9点】\n1. 申請様式（指定／PDF＋Excel）\n2. 体制図（指定）\n3. 役員名簿（指定）\n4. 暴力団排除同意書（指定）\n5. 商業登記簿謄本（定型）\n6. 支出計画の根拠資料（自由）\n7. 地域産品の説明資料（指定PRシート＋自由カタログ）\n8. 財務諸表（自由）\n9. 会社概要（自由）'
+  }
+];
+
+let mtgNotes = [];
+let currentMtgId = null;
+let mtgSaveTimeout = null;
+
+function loadMtgNotes() {
+  try {
+    const stored = localStorage.getItem(MTG_STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch (e) {}
+  return MTG_DEFAULTS.map(d => Object.assign({}, d));
+}
+
+function saveMtgNotes() {
+  try { localStorage.setItem(MTG_STORAGE_KEY, JSON.stringify(mtgNotes)); } catch (e) {}
+}
+
+function getCurrentNote() { return mtgNotes.find(n => n.id === currentMtgId); }
+
+function renderMtgDropdown() {
+  const select = document.getElementById('mtg-select');
+  if (!select) return;
+  select.innerHTML = '';
+  const sorted = mtgNotes.slice().sort((a,b) => (b.date || '').localeCompare(a.date || ''));
+  sorted.forEach(n => {
+    const opt = document.createElement('option');
+    opt.value = n.id;
+    opt.textContent = `${n.date || '(日付未設定)'} ${n.title || ''}`.trim();
+    if (n.id === currentMtgId) opt.selected = true;
+    select.appendChild(opt);
+  });
+}
+
+function renderMtgForm() {
+  const note = getCurrentNote();
+  if (!note) return;
+  document.getElementById('mtg-date').value = note.date || '';
+  document.getElementById('mtg-title').value = note.title || '';
+  document.getElementById('mtg-participants').value = note.participants || '';
+  document.getElementById('mtg-lastweek').value = note.lastWeekReview || '';
+  document.getElementById('mtg-thisweek').value = note.thisWeekTasks || '';
+  document.getElementById('mtg-decisions').value = note.decisions || '';
+  document.getElementById('mtg-todos').value = note.todos || '';
+  document.getElementById('mtg-notes').value = note.notes || '';
+}
+
+function autoSaveMtg() {
+  const note = getCurrentNote();
+  if (!note) return;
+  note.date = document.getElementById('mtg-date').value;
+  note.title = document.getElementById('mtg-title').value;
+  note.participants = document.getElementById('mtg-participants').value;
+  note.lastWeekReview = document.getElementById('mtg-lastweek').value;
+  note.thisWeekTasks = document.getElementById('mtg-thisweek').value;
+  note.decisions = document.getElementById('mtg-decisions').value;
+  note.todos = document.getElementById('mtg-todos').value;
+  note.notes = document.getElementById('mtg-notes').value;
+  saveMtgNotes();
+  const t = new Date();
+  const time = String(t.getHours()).padStart(2,'0') + ':' + String(t.getMinutes()).padStart(2,'0');
+  document.getElementById('mtg-status').textContent = '✓ 自動保存 ' + time;
+  renderMtgDropdown();
+}
+
+function debouncedMtgSave() {
+  if (mtgSaveTimeout) clearTimeout(mtgSaveTimeout);
+  mtgSaveTimeout = setTimeout(autoSaveMtg, 400);
+}
+
+function newMtg() {
+  const today = new Date().toISOString().slice(0,10);
+  const last = mtgNotes[mtgNotes.length - 1];
+  const newNote = {
+    id: Date.now(),
+    date: today,
+    title: '週次定例MTG',
+    participants: last ? last.participants : '',
+    lastWeekReview: '',
+    thisWeekTasks: '',
+    decisions: '',
+    todos: '',
+    notes: ''
+  };
+  mtgNotes.push(newNote);
+  currentMtgId = newNote.id;
+  saveMtgNotes();
+  renderMtgDropdown();
+  renderMtgForm();
+  document.getElementById('mtg-title').focus();
+}
+
+function deleteMtg() {
+  const note = getCurrentNote();
+  if (!note) return;
+  if (!confirm('「' + note.date + ' ' + note.title + '」を削除しますか？')) return;
+  mtgNotes = mtgNotes.filter(n => n.id !== currentMtgId);
+  if (mtgNotes.length === 0) { newMtg(); return; }
+  currentMtgId = mtgNotes[mtgNotes.length - 1].id;
+  saveMtgNotes();
+  renderMtgDropdown();
+  renderMtgForm();
+}
+
+function exportMtg() {
+  const note = getCurrentNote();
+  if (!note) return;
+  const md = '# ' + (note.date || '') + ' ' + (note.title || '') + '\n\n'
+    + '📅 日付: ' + (note.date || '') + '\n'
+    + '👥 参加者: ' + (note.participants || '') + '\n\n'
+    + '## ■ 先週の振り返り\n' + (note.lastWeekReview || '') + '\n\n'
+    + '## ■ 今週のタスク分担\n' + (note.thisWeekTasks || '') + '\n\n'
+    + '## ■ 決定事項\n' + (note.decisions || '') + '\n\n'
+    + '## ■ ToDo\n' + (note.todos || '') + '\n\n'
+    + '## ■ メモ\n' + (note.notes || '') + '\n';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(md).then(() => {
+      document.getElementById('mtg-status').textContent = '✓ クリップボードにコピー済';
+    });
+  } else {
+    const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mtg-' + (note.date || 'note') + '.md';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+}
+
+function initMtg() {
+  mtgNotes = loadMtgNotes();
+  if (mtgNotes.length === 0) {
+    mtgNotes = MTG_DEFAULTS.map(d => Object.assign({}, d));
+  }
+  currentMtgId = mtgNotes[0].id;
+  renderMtgDropdown();
+  renderMtgForm();
+  document.getElementById('mtg-select').addEventListener('change', (e) => {
+    currentMtgId = Number(e.target.value);
+    renderMtgForm();
+  });
+  ['mtg-date','mtg-title','mtg-participants','mtg-lastweek','mtg-thisweek','mtg-decisions','mtg-todos','mtg-notes'].forEach(id => {
+    document.getElementById(id).addEventListener('input', debouncedMtgSave);
+  });
+  document.getElementById('mtg-new').addEventListener('click', newMtg);
+  document.getElementById('mtg-delete').addEventListener('click', deleteMtg);
+  document.getElementById('mtg-export').addEventListener('click', exportMtg);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMtg);
+} else {
+  initMtg();
+}
+
+// =============================================================
+// インタラクティブ動的ダッシュボード
+// =============================================================
+const DASH_STORAGE_KEY = 'chiiki-sanpin-r8-dashboard-state-v1';
+
+// 主要日付定数
+const PJT_DEADLINE = new Date(2026, 5, 26, 17, 0); // 6/26 17:00 申請締切
+const CHART_START = new Date(2026, 4, 1, 0, 0);    // 2026/5/1
+const CHART_END   = new Date(2027, 1, 28, 23, 59); // 2027/2/28
+
+// 主要イベント（直近順）
+const KEY_EVENTS = [
+  { date: new Date(2026, 5, 1, 15, 0), name: 'キックオフMTG', label: '6/1(月)15:00' },
+  { date: new Date(2026, 5, 2, 23, 59), name: '公募説明会 申込期限', label: '6/2(火)23:59' },
+  { date: new Date(2026, 5, 3, 14, 0), name: '公募説明会', label: '6/3(水)14:00' },
+  { date: new Date(2026, 5, 8, 0, 0), name: 'W2 週次定例', label: '6/8(月)' },
+  { date: new Date(2026, 5, 15, 0, 0), name: 'W3 週次定例', label: '6/15(月)' },
+  { date: new Date(2026, 5, 17, 0, 0), name: 'レ・クレドール定例会', label: '6/17(水)' },
+  { date: new Date(2026, 5, 20, 0, 0), name: '経営会議：4条件採点', label: '6/20(金)' },
+  { date: PJT_DEADLINE, name: '申請締切', label: '6/26(金)17:00' },
+  { date: new Date(2026, 7, 25, 0, 0), name: '採択通知', label: '8月下旬' },
+  { date: new Date(2027, 0, 15, 0, 0), name: 'メゾン・エ・オブジェ パリ展', label: '2027/1中旬' },
+  { date: new Date(2027, 0, 31, 23, 59), name: '事業完了日', label: '2027/1/31' },
+];
+
+let dashState = (function() {
+  try {
+    const stored = localStorage.getItem(DASH_STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch (e) {}
+  return { tasks: {}, milestones: {} };
+})();
+
+function saveDashState() {
+  try { localStorage.setItem(DASH_STORAGE_KEY, JSON.stringify(dashState)); } catch (e) {}
+}
+
+function hashStr(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  return Math.abs(h).toString(36);
+}
+
+function taskIdFor(row) {
+  const name = (row.querySelector('.task-name') || row).textContent.trim().slice(0, 200);
+  return 'task-' + hashStr(name);
+}
+
+// 状態順序：next → active → done → future → next
+const TASK_CYCLE = { future: 'next', next: 'active', active: 'done', done: 'future' };
+const STATUS_LABEL = { done: '完了', active: '対応中', next: '次の予定', future: '将来' };
+const CIRCLE_ICON = { done: '✓', active: '●', next: '○', future: '○' };
+const BADGE_CLASS = { done: 'badge-done', active: 'badge-active', next: 'badge-next', future: 'badge-future' };
+const CIRCLE_CLASS = { done: 'done', active: 'active', next: 'next', future: 'none' };
+
+function readDomStatus(row) {
+  const circle = row.querySelector('.check-circle');
+  if (!circle) return 'future';
+  if (circle.classList.contains('done')) return 'done';
+  if (circle.classList.contains('active')) return 'active';
+  if (circle.classList.contains('next')) return 'next';
+  return 'future';
+}
+
+function applyTaskRow(row, status) {
+  // チェック○●✓
+  const circle = row.querySelector('.check-circle');
+  if (circle) {
+    ['done','active','next','none'].forEach(c => circle.classList.remove(c));
+    circle.classList.add(CIRCLE_CLASS[status]);
+    circle.textContent = CIRCLE_ICON[status];
+  }
+  // バッジ
+  const badge = row.querySelector('.badge');
+  if (badge) {
+    ['badge-done','badge-active','badge-next','badge-future'].forEach(c => badge.classList.remove(c));
+    badge.classList.add(BADGE_CLASS[status]);
+    badge.textContent = STATUS_LABEL[status];
+  }
+  // 完了タスクの打消し線
+  const taskName = row.querySelector('.task-name');
+  if (taskName) {
+    taskName.style.textDecoration = status === 'done' ? 'line-through' : '';
+    taskName.style.opacity = status === 'done' ? '0.55' : '';
+  }
+}
+
+function cycleTaskStatus(row) {
+  const current = readDomStatus(row);
+  const next = TASK_CYCLE[current];
+  applyTaskRow(row, next);
+  dashState.tasks[taskIdFor(row)] = { status: next };
+  saveDashState();
+  updateStats();
+}
+
+function applyStoredStateToTasks() {
+  document.querySelectorAll('.task-table tbody tr').forEach(row => {
+    const id = taskIdFor(row);
+    const stored = dashState.tasks[id];
+    if (stored && stored.status) {
+      applyTaskRow(row, stored.status);
+    }
+  });
+}
+
+function updateStats() {
+  let doneCount = 0, activeCount = 0;
+  document.querySelectorAll('.task-table tbody tr .check-circle').forEach(c => {
+    if (c.classList.contains('done')) doneCount++;
+    else if (c.classList.contains('active')) activeCount++;
+  });
+  const doneEl = document.getElementById('stat-done-count');
+  const activeEl = document.getElementById('stat-active-count');
+  if (doneEl) doneEl.textContent = doneCount;
+  if (activeEl) activeEl.textContent = activeCount;
+}
+
+function setupTaskClicks() {
+  document.querySelectorAll('.task-table tbody tr').forEach(row => {
+    const circle = row.querySelector('.check-circle');
+    if (!circle) return;
+    circle.style.cursor = 'pointer';
+    circle.title = 'クリックで状態切替（' + STATUS_LABEL.next + '→' + STATUS_LABEL.active + '→' + STATUS_LABEL.done + '→' + STATUS_LABEL.future + '）';
+    circle.addEventListener('click', () => cycleTaskStatus(row));
+  });
+}
+
+// 今日マーカー位置・残日数の自動更新
+function updateTodayAndDeadline() {
+  const now = new Date();
+  const totalMs = CHART_END - CHART_START;
+  const elapsedMs = now - CHART_START;
+  const pct = Math.max(0, Math.min(100, (elapsedMs / totalMs) * 100));
+
+  document.querySelectorAll('.gantt-today-line').forEach(el => { el.style.left = pct.toFixed(2) + '%'; });
+  document.querySelectorAll('.gantt-today-label').forEach(el => {
+    el.style.left = pct.toFixed(2) + '%';
+    el.textContent = '▼今日 ' + (now.getMonth()+1) + '/' + now.getDate();
+  });
+
+  // バナー
+  const dows = ['日','月','火','水','木','金','土'];
+  const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0') + '（' + dows[now.getDay()] + '）';
+  const nowDateEl = document.querySelector('[data-now-date]');
+  if (nowDateEl) {
+    // 元の「公募開始直後・キックオフ準備中」を残すか、フェーズコンテキストを動的にするか
+    nowDateEl.textContent = dateStr + ' ' + currentPhaseContext(now);
+  }
+
+  // 残日数
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const daysLeft = Math.max(0, Math.ceil((PJT_DEADLINE - now) / msPerDay));
+  document.querySelectorAll('[data-days-left]').forEach(el => { el.textContent = daysLeft; });
+
+  // 直近イベント
+  const upcoming = KEY_EVENTS.find(ev => ev.date >= now);
+  if (upcoming) {
+    document.querySelectorAll('[data-next-event-date]').forEach(el => { el.textContent = upcoming.label; });
+    document.querySelectorAll('[data-next-event-name]').forEach(el => { el.textContent = upcoming.name; });
+
+    // 「次のMTG」スタットボックスも更新
+    const mtgEvents = KEY_EVENTS.filter(ev => ev.date >= now && (ev.name.includes('MTG') || ev.name.includes('週次') || ev.name.includes('会議') || ev.name.includes('説明会')));
+    const nextMtg = mtgEvents[0];
+    if (nextMtg) {
+      const mtgVal = document.getElementById('stat-next-mtg');
+      const mtgSub = document.getElementById('stat-next-mtg-sub');
+      if (mtgVal) {
+        const m = nextMtg.date.getMonth()+1, d = nextMtg.date.getDate();
+        const dow = dows[nextMtg.date.getDay()];
+        mtgVal.innerHTML = m + '/' + d + '<small style="font-size:.7rem;">(' + dow + ')</small>';
+      }
+      if (mtgSub) {
+        const hh = nextMtg.date.getHours();
+        const mm = String(nextMtg.date.getMinutes()).padStart(2,'0');
+        const timeStr = (hh > 0 || mm !== '00') ? hh + ':' + mm : '';
+        mtgSub.textContent = nextMtg.name + (timeStr ? ' ' + timeStr : '');
+      }
+    }
+  }
+}
+
+function currentPhaseContext(now) {
+  if (now < new Date(2026, 5, 1)) return '公募開始直後・キックオフ準備中';
+  if (now < PJT_DEADLINE) return '申請書作成中・締切に向け加速';
+  if (now < new Date(2026, 7, 20)) return '審査結果待ち';
+  if (now < new Date(2026, 8, 30)) return '採択判定・契約締結フェーズ';
+  if (now < new Date(2026, 11, 1)) return 'コンテンツ制作・準備フェーズ';
+  if (now < new Date(2027, 0, 31)) return 'メゾン・エ・オブジェ実施フェーズ';
+  return '確定検査・精算フェーズ';
+}
+
+function initDashboard() {
+  applyStoredStateToTasks();
+  setupTaskClicks();
+  updateStats();
+  updateTodayAndDeadline();
+
+  // 60秒ごとに今日マーカー・残日数を再計算
+  setInterval(updateTodayAndDeadline, 60000);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDashboard);
+} else {
+  initDashboard();
+}
+
+// =============================================================
+// リセット機能（コンソール用）
+// =============================================================
+window.resetDashboardState = function() {
+  if (!confirm('ダッシュボードの全タスク状態をリセットしますか？（MTG議事録は残ります）')) return;
+  localStorage.removeItem(DASH_STORAGE_KEY);
+  location.reload();
+};
+console.info('💡 ダッシュボード状態をリセットするには、コンソールで resetDashboardState() を実行してください');
+</script>
+
+</body>
+</html>
