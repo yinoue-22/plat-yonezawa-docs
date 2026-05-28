@@ -48,6 +48,11 @@
   --touca-deep: #3a2a1a;
   --touca-earth: #a06e4f;
   --touca-sage: #6d9678;
+  /* ローカルガストロノミー事業 */
+  --gastro-deep: #2c4540;
+  --gastro-mid: #3d5a4d;
+  --gastro-light: #496b5a;
+  --gastro-terracotta: #a06e4f;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -102,6 +107,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .section-title.touca {
   color: var(--touca-deep);
   border-bottom-color: var(--touca-earth);
+  border-bottom-width: 3px;
+}
+.section-title.gastro {
+  color: var(--gastro-deep);
+  border-bottom-color: var(--gastro-light);
   border-bottom-width: 3px;
 }
 .section-title .icon { font-size: 1.3rem; }
@@ -166,6 +176,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--touca-earth);
 }
 .card.touca-card:hover { border-top-color: var(--touca-sage); }
+.card.gastro-card {
+  background: linear-gradient(135deg, #f5f8f5 0%, #fff 100%);
+  border-top: 3px solid var(--gastro-light);
+}
+.card.gastro-card:hover { border-top-color: var(--gastro-deep); }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -193,6 +208,7 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-naikakufu { background: #e8ecf5; color: #1a2a5e; }
 .badge-wip { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
 .badge-touca { background: #f5ede6; color: #7a4a2e; }
+.badge-gastro { background: #e6ede5; color: #2c4540; }
 /* アーカイブセクション */
 .archive-section { margin-top: 3rem; }
 .archive-toggle {
@@ -325,7 +341,33 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
         <span>🍽 ローカルガストロノミー</span>
       </div>
     </a>
+    <a href="https://prtimes.jp/main/html/rd/p/000000114.000000000.html" class="card touca-card" target="_blank" rel="noopener">
+      <span class="badge badge-touca">PR TIMES</span>
+      <span class="badge badge-new">NEW</span>
+      <h3>プレスリリース<br>TOUCAゼミ合宿 in 米沢</h3>
+      <p>合宿の全プログラム・登壇者・開催成果をまとめた公式プレスリリース。遊学者・酒中有道・ローカルガストロノミーなどTOUCA公式表現で発信。</p>
+      <div class="card-meta">
+        <span>📰 PR TIMES</span>
+        <span>🔗 外部リンク</span>
+      </div>
+    </a>
+  </div>
 
+  <!-- ローカルガストロノミー事業 -->
+  <div class="section-title gastro"><span class="icon">🍽</span> ローカルガストロノミー事業（観光庁 ガストロノミー型・区分3）</div>
+  <p class="section-lead">観光庁「観光需要分散のための地域観光資源のコンテンツ化促進事業」<strong>令和8年度採択</strong>事業（区分3・継続）。「奇跡の盆地 置賜盆地」をテーマに、<strong>シェフズクラブ設立・多言語ガイド育成・国際販売基盤確立</strong>を3本柱で推進。総事業費 24,950,000円／補助額 14,475,000円。申請団体：山形座 瀧波／事務局：プラットヨネザワ。</p>
+  <div class="card-grid">
+    <a href="projects/local-gastronomy-pm.html" class="card gastro-card">
+      <span class="badge badge-gastro">個社PMダッシュボード</span>
+      <span class="badge badge-new">NEW</span>
+      <h3>ローカルガストロノミー R8<br>個社PMダッシュボード</h3>
+      <p>レ・クレドール定例会（6/17〜18・東北初）、シェフズクラブ設立、置賜デイズ多言語直販サイト、VJTM出展、台中B2Bフェアまでを6タブ構成で集約。進捗サマリー／マイルストーン／タスク・担当／ガントチャート／MTG／R7実績の6面ダッシュボード。</p>
+      <div class="card-meta">
+        <span>🎉 採択確定（R8）</span>
+        <span>💰 補助 14,475,000円</span>
+        <span>📅 2027/2/13 完了</span>
+      </div>
+    </a>
   </div>
 
   <!-- 観光データダッシュボード事業（v2.0 改修提案） -->
