@@ -36,6 +36,14 @@
   --dashboard-wine: #6b1f2e;
   --dashboard-wine-dark: #4a1320;
   --dashboard-warm: #b08858;
+  /* ランオペ事業 */
+  --ranop-deep: #1b4a3c;
+  --ranop-gold: #9b7a2e;
+  --ranop-green: #2e7d5a;
+  /* 内閣府事業 */
+  --naikakufu-deep: #1a2a5e;
+  --naikakufu-blue: #3a5aa8;
+  --naikakufu-silver: #8899bb;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -75,6 +83,16 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .section-title.dashboard {
   color: var(--dashboard-wine);
   border-bottom-color: var(--dashboard-wine);
+  border-bottom-width: 3px;
+}
+.section-title.ranop {
+  color: var(--ranop-deep);
+  border-bottom-color: var(--ranop-gold);
+  border-bottom-width: 3px;
+}
+.section-title.naikakufu {
+  color: var(--naikakufu-deep);
+  border-bottom-color: var(--naikakufu-blue);
   border-bottom-width: 3px;
 }
 .section-title .icon { font-size: 1.3rem; }
@@ -124,6 +142,16 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--dashboard-wine);
 }
 .card.dashboard-card:hover { border-top-color: var(--dashboard-warm); }
+.card.ranop-card {
+  background: linear-gradient(135deg, #f5faf8 0%, #fff 100%);
+  border-top: 3px solid var(--ranop-gold);
+}
+.card.ranop-card:hover { border-top-color: var(--ranop-green); }
+.card.naikakufu-card {
+  background: linear-gradient(135deg, #f5f7fc 0%, #fff 100%);
+  border-top: 3px solid var(--naikakufu-blue);
+}
+.card.naikakufu-card:hover { border-top-color: var(--naikakufu-deep); }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -147,6 +175,9 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-dashboard { background: #6b1f2e; color: #fff; }
 .badge-proposal { background: #f0e8f5; color: #6b1f2e; }
 .badge-live { background: #e0f2e0; color: #1b7a4a; border: 1px solid #b8dcc0; }
+.badge-ranop { background: #e8f4ef; color: #1b4a3c; }
+.badge-naikakufu { background: #e8ecf5; color: #1a2a5e; }
+.badge-wip { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
 /* アーカイブセクション */
 .archive-section { margin-top: 3rem; }
 .archive-toggle {
@@ -191,6 +222,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
   <p>事業ごとのドキュメント・レポート・進捗を集約したポータルサイト</p>
 </div>
 <div class="container">
+
   <!-- レキマチ事業 -->
   <div class="section-title"><span class="icon">🏯</span> レキマチ事業（歴史的資源を活用した観光まちづくり）</div>
   <div class="card-grid">
@@ -217,21 +249,50 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       <p>上杉神社・稽照殿エリアの施設整備・周辺環境整備。11事業者参画、補助上限2億円。申請〆切 4/22。</p>
     </a>
   </div>
-  <!-- 米沢上杉まつり 多言語ガイド事業 -->
-  <div class="section-title uesugi"><span class="icon">⚔️</span> 米沢上杉まつり 多言語ガイド事業</div>
+
+  <!-- ランオペ事業 -->
+  <div class="section-title ranop"><span class="icon">🗺</span> ランオペ事業（米沢・置賜 着地型観光ランオペレーション）</div>
+  <p class="section-lead">米沢・置賜の地域資源を活かした<strong>着地型観光コンテンツのB2B販売・ランオペ（着地手配）</strong>事業。7商品のタリフPDF（C-NTA-01/02・S-TKO-01/02・O-STY-01/02/03）を軸に、旅行会社・MICE向けの仕入れ窓口を整備。</p>
   <div class="card-grid">
-    <a href="projects/uesugi-matsuri-guide.html" class="card uesugi-card">
-      <span class="badge badge-uesugi">多言語ガイド</span>
+    <a href="projects/ranop-tariff.html" class="card ranop-card">
+      <span class="badge badge-ranop">B2Bタリフ</span>
       <span class="badge badge-new">NEW</span>
-      <h3>米沢上杉まつり 多言語ガイド<br>（通訳者・観光客向け）</h3>
-      <p>2026年4/29〜5/3開催の上杉まつり向け、日本語・英語・繁體中文 × 通訳者／観光客の3言語×2モード対応シングルHTML。川中島合戦解説、武将・武具・戦術の用語集78語、想定Q&A 10問、IPA発音記号付き。</p>
+      <h3>米沢タリフ 全7商品<br>（C-NTA / S-TKO / O-STY）</h3>
+      <p>城・温泉・ファクトリーの3カテゴリ×7プランのB2Bタリフ資料。旅行会社・MICE向け着地手配の仕入れシートとして機能。写真選定・PDF仕上げを並走中。</p>
       <div class="card-meta">
-        <span>🌐 3言語対応</span>
-        <span>📚 通訳実務向け</span>
-        <span>📅 2026.4.29-5.3</span>
+        <span>🏯 C-NTA-01/02</span>
+        <span>♨ S-TKO-01/02</span>
+        <span>🏭 O-STY-01/02/03</span>
+      </div>
+    </a>
+    <a href="projects/ranop-ops.html" class="card ranop-card">
+      <span class="badge badge-ranop">ランオペ管理</span>
+      <span class="badge badge-wip">整備中</span>
+      <h3>ランオペ 受発注・手配管理</h3>
+      <p>手配フロー・仕入れ先管理・ガイド手配・バス・宿泊・食事手配の業務フローと管理シート。旅行業登録対応含む。</p>
+      <div class="card-meta">
+        <span>📋 手配フロー</span>
+        <span>🤝 仕入れ先DB</span>
+        <span>📅 R8〜本格稼働</span>
       </div>
     </a>
   </div>
+
+  <!-- 内閣府事業 -->
+  <div class="section-title naikakufu"><span class="icon">🏛</span> 内閣府事業</div>
+  <p class="section-lead">内閣府所管の地方創生・デジタル田園都市国家構想等に関連する事業。詳細・事業名を追記予定。</p>
+  <div class="card-grid">
+    <a href="projects/naikakufu-01.html" class="card naikakufu-card">
+      <span class="badge badge-naikakufu">内閣府</span>
+      <span class="badge badge-wip">追記予定</span>
+      <h3>内閣府事業①</h3>
+      <p>事業名・概要・スケジュール・担当者を追記予定。</p>
+      <div class="card-meta">
+        <span>🏛 内閣府</span>
+      </div>
+    </a>
+  </div>
+
   <!-- 観光データダッシュボード事業（v2.0 改修提案） -->
   <div class="section-title dashboard"><span class="icon">📊</span> 観光データダッシュボード事業（DMO戦略会議向けBI）</div>
   <p class="section-lead">主要6イベントの人流・カメラ・宿泊データを横串で可視化するDMOのBI基盤。<strong>v2.0改修提案では「戦略会議メンバーが意思決定に使える」設計</strong>へ進化させ、KGI／6イベント横串ROI／経営判断サマリー3行／会議モードを追加。UNCOVER TRUTH「使われるBI」フレームワーク準拠。</p>
@@ -259,6 +320,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </a>
   </div>
+
   <!-- 文化観光推進事業 -->
   <div class="section-title bunka"><span class="icon">📜</span> 文化観光推進事業</div>
   <p class="section-lead">文化観光推進法に基づく令和8年度 <strong>地域計画</strong> 認定申請プロジェクト（文化庁）。事業費の2/3補助・上限7,500万円／年（5年計画）。<strong>米沢市・赤湯&南陽市の地域計画 2件同時申請</strong>。各案件のダッシュボードと流用可能性分析を1ページにタブで集約。<strong style="color:#c0392b">申請前相談締切：5/12（火）17:00 ※必須</strong></p>
@@ -297,6 +359,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </a>
   </div>
+
   <!-- 補助金候補事業（観光庁メニュー集 R8 から抽出） -->
   <div class="section-title hojokin"><span class="icon">💰</span> 補助金候補事業（R8〜R10 調査・準備中）</div>
   <p class="section-lead">
@@ -338,6 +401,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </a>
   </div>
+
   <!-- 今後追加する事業はここに -->
   <!--
   <div class="section-title"><span class="icon">🍽</span> ガストロノミーツーリズム推進事業</div>
@@ -349,6 +413,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
     </a>
   </div>
   -->
+
   <!-- =================== アーカイブ =================== -->
   <details class="archive-section">
     <summary class="archive-toggle">
@@ -357,6 +422,23 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
     </summary>
     <div class="archive-body">
       <p class="archive-note">📌 過去または別ステータスに移行した事業のドキュメントです。引き続き各サブページから個別アクセス可能です。</p>
+
+      <!-- 米沢上杉まつり 多言語ガイド事業（アーカイブ） -->
+      <div class="section-title uesugi"><span class="icon">⚔️</span> 米沢上杉まつり 多言語ガイド事業 <span class="badge badge-archived" style="margin-left:.5rem">ARCHIVED</span></div>
+      <div class="card-grid">
+        <a href="projects/uesugi-matsuri-guide.html" class="card uesugi-card">
+          <span class="badge badge-uesugi">多言語ガイド</span>
+          <span class="badge badge-archived">アーカイブ</span>
+          <h3>米沢上杉まつり 多言語ガイド<br>（通訳者・観光客向け）</h3>
+          <p>2026年4/29〜5/3開催の上杉まつり向け、日本語・英語・繁體中文 × 通訳者／観光客の3言語×2モード対応シングルHTML。川中島合戦解説、武将・武具・戦術の用語集78語、想定Q&A 10問、IPA発音記号付き。</p>
+          <div class="card-meta">
+            <span>🌐 3言語対応</span>
+            <span>📚 通訳実務向け</span>
+            <span>📅 2026.4.29-5.3</span>
+          </div>
+        </a>
+      </div>
+
       <!-- よねざわ戦国花火大会 拡充提言事業 -->
       <div class="section-title sengoku"><span class="icon">🎆</span> よねざわ戦国花火大会 拡充提言事業 <span class="badge badge-archived" style="margin-left:.5rem">ARCHIVED</span></div>
       <div class="card-grid">
@@ -379,6 +461,7 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
       </div>
     </div>
   </details>
+
 </div>
 <div class="footer">
   &copy; 2026 プラットヨネザワ株式会社 — GitHub Pages でホスティング
