@@ -44,6 +44,10 @@
   --naikakufu-deep: #1a2a5e;
   --naikakufu-blue: #3a5aa8;
   --naikakufu-silver: #8899bb;
+  /* TOUCA合宿 */
+  --touca-deep: #3a2a1a;
+  --touca-earth: #a06e4f;
+  --touca-sage: #6d9678;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
@@ -93,6 +97,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .section-title.naikakufu {
   color: var(--naikakufu-deep);
   border-bottom-color: var(--naikakufu-blue);
+  border-bottom-width: 3px;
+}
+.section-title.touca {
+  color: var(--touca-deep);
+  border-bottom-color: var(--touca-earth);
   border-bottom-width: 3px;
 }
 .section-title .icon { font-size: 1.3rem; }
@@ -152,6 +161,11 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
   border-top: 3px solid var(--naikakufu-blue);
 }
 .card.naikakufu-card:hover { border-top-color: var(--naikakufu-deep); }
+.card.touca-card {
+  background: linear-gradient(135deg, #faf8f5 0%, #fff 100%);
+  border-top: 3px solid var(--touca-earth);
+}
+.card.touca-card:hover { border-top-color: var(--touca-sage); }
 .card .badge {
   display: inline-block; font-size: .65rem; font-weight: 700;
   padding: .15rem .5rem; border-radius: 3px; margin-bottom: .6rem; letter-spacing: .05em;
@@ -178,6 +192,7 @@ body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--
 .badge-ranop { background: #e8f4ef; color: #1b4a3c; }
 .badge-naikakufu { background: #e8ecf5; color: #1a2a5e; }
 .badge-wip { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+.badge-touca { background: #f5ede6; color: #7a4a2e; }
 /* アーカイブセクション */
 .archive-section { margin-top: 3rem; }
 .archive-toggle {
@@ -293,6 +308,24 @@ details[open] .archive-toggle { background: #ececec; color: var(--text); border-
         <span>🧵 置賜産品連動</span>
       </div>
     </a>
+  </div>
+
+  <!-- TOUCA合宿 in 米沢・南陽 -->
+  <div class="section-title touca"><span class="icon">🏕</span> TOUCA合宿 in 米沢・南陽（地域経営者プログラム）</div>
+  <p class="section-lead">全国の地域経営者20名が置賜盆地に集結。<strong>歴史×ローカルガストロノミーから地域経済循環までを3日間で議論</strong>し、パターンランゲージ手法で学びを共通言語化。米沢・南陽の地域資源を活かした体験型プログラムの実績・記録を集約。</p>
+  <div class="card-grid">
+    <a href="projects/touca-gasshuku-2026.html" class="card touca-card">
+      <span class="badge badge-touca">2026年5月</span>
+      <span class="badge badge-done">開催済</span>
+      <h3>TOUCAゼミ合宿 in 米沢<br>（2026年5月19〜21日）</h3>
+      <p>上杉鷹山公の「なせば成る」DNAが息づく置賜盆地で開催。かてもの料理×ワイン／十割蕎麦打ち体験／米沢織見学／小野川温泉夜の食卓など多彩なプログラム。最終日にパターンランゲージで合宿の学びを共通言語化。</p>
+      <div class="card-meta">
+        <span>👥 地域経営者20名</span>
+        <span>📍 米沢・置賜・南陽</span>
+        <span>🍽 ローカルガストロノミー</span>
+      </div>
+    </a>
+
   </div>
 
   <!-- 観光データダッシュボード事業（v2.0 改修提案） -->
