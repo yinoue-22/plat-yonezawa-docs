@@ -565,7 +565,18 @@ footer a { color:var(--text-sub); }
 .bv-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.4rem; gap:.5rem; }
 .bv-name { font-size:.85rem; font-weight:700; color:var(--primary); line-height:1.3; }
 .bv-amount { font-size:.95rem; font-weight:900; color:var(--primary); white-space:nowrap; }
-.bv-share { font-size:.68rem; color:var(--text-sub); margin-bottom:.5rem; }
+.bv-share { font-size:.68rem; color:var(--text-sub); margin-bottom:.4rem; }
+.bv-spec { font-size:.66rem; color:var(--primary); font-weight:700; background:#f8f9fa; padding:.2rem .5rem; border-radius:4px; display:inline-block; margin-bottom:.5rem; border:1px solid var(--border); }
+.bv-spec span.x { color:var(--text-sub); margin:0 .25rem; font-weight:500; }
+.bv-total-banner {
+  margin-top:1rem; padding:.8rem 1rem;
+  background:linear-gradient(135deg, rgba(109,150,120,0.1) 0%, rgba(160,110,79,0.08) 100%);
+  border:1px solid var(--border); border-radius:8px;
+  display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem;
+}
+.bv-total-label { font-size:.78rem; font-weight:700; color:var(--primary); }
+.bv-total-amount { font-size:1.05rem; font-weight:900; color:var(--primary); }
+.bv-total-detail { font-size:.7rem; color:var(--text-sub); width:100%; }
 .bv-tasks { list-style:none; padding:0; margin:0; }
 .bv-tasks li { font-size:.7rem; color:var(--text); padding:.2rem 0; padding-left:.9rem; position:relative; line-height:1.55; }
 .bv-tasks li:before { content:'▸'; position:absolute; left:0; color:var(--text-sub); }
@@ -1545,181 +1556,26 @@ footer a { color:var(--text-sub); }
     </div>
   </div>
 
-  <!-- ④ 委託業務 詳細16件テーブル -->
+  <!-- ④ 委託業務 詳細解説カード（全16件） -->
   <div class="card">
-    <div class="section-title">📋 委託業務 詳細一覧（全16件）</div>
+    <div class="section-title">🎯 委託業務の詳細解説（全16件・金額順）</div>
+    <p style="font-size:.74rem; color:var(--text-sub); margin-bottom:.6rem;">
+      ※ 各委託業務の業務内容・背景・連動するPJTを箇条書きで詳細解説。委託先・金額・経費区分・業務スコープを一覧。
+    </p>
     <div class="budget-filter">
-      <button class="active" onclick="filterBudget('all', this)">すべて（16件）</button>
-      <button onclick="filterBudget('cat1', this)">① 造成（10件）</button>
-      <button onclick="filterBudget('cat2', this)">② 販路・情報発信（6件）</button>
+      <button class="active" onclick="filterBvCards('all', this)">すべて（16件）</button>
+      <button onclick="filterBvCards('cat1', this)">① 造成（10件）</button>
+      <button onclick="filterBvCards('cat2', this)">② 販路・情報発信（6件）</button>
     </div>
-    <div style="overflow-x:auto;">
-      <table class="budget-table">
-        <thead>
-          <tr>
-            <th style="width:24px;">#</th>
-            <th style="width:180px;">委託先</th>
-            <th>業務内容</th>
-            <th style="width:90px;">単価×数量</th>
-            <th class="num" style="width:110px;">金額（税抜）</th>
-            <th style="width:70px;">区分</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- ① 観光資源を活用した観光コンテンツの造成に係る経費 -->
-          <tr class="budget-item-row cat1">
-            <td class="row-num">1</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">事業運営全般・コーディネート全般・事務局業務委託</div></td>
-            <td>10万 × 12月</td>
-            <td class="num">1,200,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">2</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">アカデミア シェフ・生産者・専門家への謝金</div></td>
-            <td>10万 × 8名</td>
-            <td class="num">800,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">3</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">アカデミア企画ディレクション・コンテンツ監修委託</div></td>
-            <td>100万 × 1回</td>
-            <td class="num">1,000,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">4</td>
-            <td>YAMAGATA EXPERIENCE</td>
-            <td><div class="biz-desc">早朝気球体験（3組）実施費用</div></td>
-            <td>15万 × 3組</td>
-            <td class="num">450,000</td>
-            <td><span class="tag tag-yexp">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">5</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">かてもの料理プログラム設計・体験指導謝金（年2回）・紅花染め指導謝金・材料費（30名分）</div></td>
-            <td>20万 × 3回</td>
-            <td class="num">600,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">6</td>
-            <td>アルカディア観光局</td>
-            <td><div class="biz-desc">ガイド育成セミナー講師謝金（年2回）・ガイドコミュニティ組織化支援・会場借料、30名分</div></td>
-            <td>150万 × 1式</td>
-            <td class="num">1,500,000</td>
-            <td><span class="tag tag-arc">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">7</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">置賜ネイチャーシェフズクラブ設立委託（ロゴ・ユニフォーム・LP・ブランド動画制作）</div></td>
-            <td>200万 × 1式</td>
-            <td class="num">2,000,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">8</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">すき焼き選手権 申請代行・公認審査員招致・運営委託</div></td>
-            <td>200万 × 1式</td>
-            <td class="num">2,000,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">9</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">春夏コンテンツ造成・備品購入（ワイヤレスガイディングシステム等）・春夏プログラム運営委託</div></td>
-            <td>50万 × 1式</td>
-            <td class="num">500,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-          <tr class="budget-item-row cat1">
-            <td class="row-num">10</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">「置賜デイズ」予約・販売サイト構築委託（天童デイズフォーマット流用）</div></td>
-            <td>200万 × 1式</td>
-            <td class="num">2,000,000</td>
-            <td><span class="tag tag-plat">①造成</span></td>
-          </tr>
-
-          <!-- ② 販路基盤整備・情報発信に係る経費 -->
-          <tr class="budget-item-row cat2">
-            <td class="row-num">11</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">多言語（英・仏・中）ウェブコンテンツ・写真素材制作・置賜ガストロノミー特化動画（英仏中版）・シェフ個人フォーカス動画（3名分）制作</div></td>
-            <td>150万 × 1式</td>
-            <td class="num">1,500,000</td>
-            <td><span class="tag tag-plat">②販路</span></td>
-          </tr>
-          <tr class="budget-item-row cat2">
-            <td class="row-num">12</td>
-            <td>世界の窓口株式会社</td>
-            <td><div class="biz-desc">LLMO（AI検索対応）・SEO最適化・自社サイト改修委託<small class="biz-meta">（馬場氏活用）</small></div></td>
-            <td>10万 × 12月</td>
-            <td class="num">1,200,000</td>
-            <td><span class="tag tag-yexp">②販路</span></td>
-          </tr>
-          <tr class="budget-item-row cat2">
-            <td class="row-num">13</td>
-            <td>米沢みさわ小学校｜とここと</td>
-            <td><div class="biz-desc">海外SNS（Instagram・YouTube）運用・広告費（7月〜2月）・シェフズクラブSNS運用委託（英仏中日・6ヶ月）・レ・クレドール定例会後情報発信委託</div></td>
-            <td>10万 × 12月</td>
-            <td class="num">1,200,000</td>
-            <td><span class="tag tag-ext">②販路</span></td>
-          </tr>
-          <tr class="budget-item-row cat2">
-            <td class="row-num">14</td>
-            <td>プラットヨネザワ</td>
-            <td><div class="biz-desc">VJTM出展旅費（2名往復・宿泊）・VJTM出展ブース借料・出展費・台中B2Bフェア出展旅費（2名往復・宿泊）・出展費</div></td>
-            <td>100万 × 1式</td>
-            <td class="num">1,000,000</td>
-            <td><span class="tag tag-plat">②販路</span></td>
-          </tr>
-          <tr class="budget-item-row cat2">
-            <td class="row-num">15</td>
-            <td>米沢観光コンベンション協会</td>
-            <td><div class="biz-desc">FAMツアー実施（20人 × 3回）<small class="biz-meta">1回あたり200万円</small></div></td>
-            <td>600万 × 1式</td>
-            <td class="num">6,000,000</td>
-            <td><span class="tag tag-takigami">②販路</span></td>
-          </tr>
-          <tr class="budget-item-row cat2">
-            <td class="row-num">16</td>
-            <td>米沢観光コンベンション協会</td>
-            <td><div class="biz-desc">7月「俺たちの挑戦」前後・秋アカデミア開催時のツアー造成・催行</div></td>
-            <td>200万 × 1式</td>
-            <td class="num">2,000,000</td>
-            <td><span class="tag tag-takigami">②販路</span></td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="4" style="text-align:right;">合計（税抜）</td>
-            <td class="num">24,950,000</td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </div>
-
-  <!-- ⑤ 主要委託業務 解説カード -->
-  <div class="card">
-    <div class="section-title">🎯 主要委託業務の解説（500万円以上 ＋ 戦略重要項目）</div>
     <div class="budget-vendor-cards">
 
-      <div class="bv-card v-conv">
+      <div class="bv-card v-conv bv-item cat2">
         <div class="bv-head">
           <div class="bv-name">米沢観光コンベンション協会<br>FAMツアー実施</div>
           <div class="bv-amount">6,000,000円</div>
         </div>
-        <div class="bv-share">最大委託・全体の24.0%</div>
+        <div class="bv-share">全体シェア 24.0% ／ ②販路 ／ 最大委託</div>
+        <div class="bv-spec">単価 600万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>20人×3回（1回200万円）の海外エージェント招聘FAMツアー造成・催行</li>
           <li>第1回：7月（春夏／里山ディスカバリー）</li>
@@ -1728,12 +1584,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-plat">
+      <div class="bv-card v-plat bv-item cat1">
         <div class="bv-head">
           <div class="bv-name">プラットヨネザワ<br>シェフズクラブ設立</div>
           <div class="bv-amount">2,000,000円</div>
         </div>
-        <div class="bv-share">PJT-02 メイン業務</div>
+        <div class="bv-share">全体シェア 8.0% ／ ①造成 ／ PJT-02</div>
+        <div class="bv-spec">単価 200万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>「置賜ネイチャーシェフズクラブ」ロゴ・ユニフォーム制作</li>
           <li>LP（ランディングページ）構築</li>
@@ -1742,12 +1599,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-plat">
+      <div class="bv-card v-plat bv-item cat1">
         <div class="bv-head">
           <div class="bv-name">プラットヨネザワ<br>「置賜デイズ」構築</div>
           <div class="bv-amount">2,000,000円</div>
         </div>
-        <div class="bv-share">PJT-03 メイン業務</div>
+        <div class="bv-share">全体シェア 8.0% ／ ①造成 ／ PJT-03</div>
+        <div class="bv-spec">単価 200万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>多言語（英・仏・中）直販サイト構築</li>
           <li>予約・決済・在庫管理の自動化</li>
@@ -1756,12 +1614,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-plat">
+      <div class="bv-card v-plat bv-item cat1">
         <div class="bv-head">
           <div class="bv-name">プラットヨネザワ<br>すき焼き選手権運営</div>
           <div class="bv-amount">2,000,000円</div>
         </div>
-        <div class="bv-share">年次イベント基盤化</div>
+        <div class="bv-share">全体シェア 8.0% ／ ①造成 ／ 年次イベント基盤化</div>
+        <div class="bv-spec">単価 200万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>申請代行・公認審査員招致</li>
           <li>2層構造（招待制審査＋一般枠）</li>
@@ -1770,12 +1629,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-conv">
+      <div class="bv-card v-conv bv-item cat2">
         <div class="bv-head">
           <div class="bv-name">米沢観光コンベンション協会<br>アカデミア催行</div>
           <div class="bv-amount">2,000,000円</div>
         </div>
-        <div class="bv-share">アカデミア運営支援</div>
+        <div class="bv-share">全体シェア 8.0% ／ ②販路 ／ アカデミア運営支援</div>
+        <div class="bv-spec">単価 200万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>7月「俺たちの挑戦」前後のツアー造成</li>
           <li>秋アカデミア開催時の催行支援</li>
@@ -1783,12 +1643,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-plat">
+      <div class="bv-card v-plat bv-item cat2">
         <div class="bv-head">
           <div class="bv-name">プラットヨネザワ<br>多言語素材・動画制作</div>
           <div class="bv-amount">1,500,000円</div>
         </div>
-        <div class="bv-share">PR発信基盤</div>
+        <div class="bv-share">全体シェア 6.0% ／ ②販路 ／ PR発信基盤</div>
+        <div class="bv-spec">単価 150万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>多言語（英・仏・中）ウェブコンテンツ・写真</li>
           <li>置賜ガストロノミー特化動画（英仏中版）</li>
@@ -1796,12 +1657,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-arc">
+      <div class="bv-card v-arc bv-item cat1">
         <div class="bv-head">
           <div class="bv-name">アルカディア観光局<br>ガイド育成</div>
           <div class="bv-amount">1,500,000円</div>
         </div>
-        <div class="bv-share">KPI 10名認定</div>
+        <div class="bv-share">全体シェア 6.0% ／ ①造成 ／ KPI 10名認定</div>
+        <div class="bv-spec">単価 150万<span class="x">×</span>1式</div>
         <ul class="bv-tasks">
           <li>観光庁プログラム準拠の育成セミナー（年2回）</li>
           <li>ガイドコミュニティ組織化支援</li>
@@ -1810,12 +1672,13 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
-      <div class="bv-card v-plat">
+      <div class="bv-card v-plat bv-item cat1">
         <div class="bv-head">
           <div class="bv-name">プラットヨネザワ<br>事業運営・事務局</div>
           <div class="bv-amount">1,200,000円</div>
         </div>
-        <div class="bv-share">PM事務局運営</div>
+        <div class="bv-share">全体シェア 4.8% ／ ①造成 ／ PM事務局運営</div>
+        <div class="bv-spec">単価 10万<span class="x">×</span>12月</div>
         <ul class="bv-tasks">
           <li>事業運営全般・コーディネート</li>
           <li>事務局業務（月額10万円×12ヶ月）</li>
@@ -1823,10 +1686,140 @@ footer a { color:var(--text-sub); }
         </ul>
       </div>
 
+      <!-- 9 -->
+      <div class="bv-card v-sekai bv-item cat2">
+        <div class="bv-head">
+          <div class="bv-name">世界の窓口株式会社<br>LLMO/SEO・サイト改修</div>
+          <div class="bv-amount">1,200,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 4.8% ／ ②販路</div>
+        <div class="bv-spec">単価 10万<span class="x">×</span>12月</div>
+        <ul class="bv-tasks">
+          <li>LLMO（AI検索エンジン）対応コンテンツ設計</li>
+          <li>SEO最適化</li>
+          <li>自社サイト改修（馬場氏活用）</li>
+          <li>月額10万円×12ヶ月</li>
+        </ul>
+      </div>
+
+      <!-- 10 -->
+      <div class="bv-card v-toko bv-item cat2">
+        <div class="bv-head">
+          <div class="bv-name">米沢みさわ小学校｜とここと<br>海外SNS運用・広告</div>
+          <div class="bv-amount">1,200,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 4.8% ／ ②販路</div>
+        <div class="bv-spec">単価 10万<span class="x">×</span>12月</div>
+        <ul class="bv-tasks">
+          <li>海外SNS（Instagram・YouTube）運用・広告</li>
+          <li>シェフズクラブSNS運用（英仏中日・6ヶ月）</li>
+          <li>レ・クレドール定例会後の情報発信</li>
+          <li>2026年7月〜2027年2月</li>
+        </ul>
+      </div>
+
+      <!-- 11 -->
+      <div class="bv-card v-plat bv-item cat1">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>アカデミア企画ディレクション</div>
+          <div class="bv-amount">1,000,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 4.0% ／ ①造成</div>
+        <div class="bv-spec">単価 100万<span class="x">×</span>1回</div>
+        <ul class="bv-tasks">
+          <li>アカデミア企画ディレクション</li>
+          <li>コンテンツ監修委託</li>
+          <li>「俺たちの挑戦」シグネチャーコース監修</li>
+        </ul>
+      </div>
+
+      <!-- 12 -->
+      <div class="bv-card v-plat bv-item cat2">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>VJTM・台中B2B出展</div>
+          <div class="bv-amount">1,000,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 4.0% ／ ②販路</div>
+        <div class="bv-spec">単価 100万<span class="x">×</span>1式</div>
+        <ul class="bv-tasks">
+          <li>VJTM出展旅費（2名往復・宿泊）</li>
+          <li>VJTMブース借料・出展費</li>
+          <li>台中B2Bフェア出展旅費・出展費（10/30〜11/2）</li>
+          <li>個別商談会（11/3）</li>
+        </ul>
+      </div>
+
+      <!-- 13 -->
+      <div class="bv-card v-plat bv-item cat1">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>アカデミア謝金</div>
+          <div class="bv-amount">800,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 3.2% ／ ①造成</div>
+        <div class="bv-spec">単価 10万<span class="x">×</span>8名</div>
+        <ul class="bv-tasks">
+          <li>アカデミア参加 シェフ・生産者・専門家への謝金</li>
+          <li>10万円×8名</li>
+          <li>アカデミア第1回・第2回の登壇者</li>
+        </ul>
+      </div>
+
+      <!-- 14 -->
+      <div class="bv-card v-plat bv-item cat1">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>かてもの料理・紅花染め指導</div>
+          <div class="bv-amount">600,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 2.4% ／ ①造成</div>
+        <div class="bv-spec">単価 20万<span class="x">×</span>3回</div>
+        <ul class="bv-tasks">
+          <li>かてもの料理プログラム設計</li>
+          <li>体験指導謝金（年2回）</li>
+          <li>紅花染め指導謝金</li>
+          <li>材料費（30名分）</li>
+        </ul>
+      </div>
+
+      <!-- 15 -->
+      <div class="bv-card v-plat bv-item cat1">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>春夏コンテンツ造成</div>
+          <div class="bv-amount">500,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 2.0% ／ ①造成</div>
+        <div class="bv-spec">単価 50万<span class="x">×</span>1式</div>
+        <ul class="bv-tasks">
+          <li>春夏コンテンツ造成</li>
+          <li>備品購入（ワイヤレスガイディングシステム等）</li>
+          <li>春夏プログラム運営</li>
+        </ul>
+      </div>
+
+      <!-- 16 -->
+      <div class="bv-card v-yexp bv-item cat1">
+        <div class="bv-head">
+          <div class="bv-name">YAMAGATA EXPERIENCE<br>早朝気球体験</div>
+          <div class="bv-amount">450,000円</div>
+        </div>
+        <div class="bv-share">全体シェア 1.8% ／ ①造成</div>
+        <div class="bv-spec">単価 15万<span class="x">×</span>3組</div>
+        <ul class="bv-tasks">
+          <li>早朝気球体験 実施費用</li>
+          <li>3組 × 15万円</li>
+          <li>富裕層向け体験オプション</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bv-total-banner">
+      <span class="bv-total-label">全16件 合計（税抜）</span>
+      <span class="bv-total-amount">24,950,000 円</span>
+      <span class="bv-total-detail">内訳：① 観光コンテンツ造成 12,050,000円（10件・48%）＋ ② 販路基盤整備・情報発信 12,900,000円（6件・52%）</span>
     </div>
   </div>
 
-  <!-- ⑥ 採択後 手続きステータス -->
+  <!-- ⑤ 採択後 手続きステータス -->
   <div class="card">
     <div class="section-title">📝 採択後 手続きステータス</div>
     <p style="font-size:.74rem; color:var(--text-sub); margin-bottom:.5rem;">
@@ -2090,15 +2083,16 @@ function showTab(name, btn) {
   btn.classList.add('active');
 }
 
-// ============== 予算タブ フィルター ==============
-function filterBudget(cat, btn) {
-  document.querySelectorAll('.budget-filter button').forEach(b => b.classList.remove('active'));
+// ============== 予算タブ フィルター（解説カード） ==============
+function filterBvCards(cat, btn) {
+  const parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.budget-item-row').forEach(row => {
+  document.querySelectorAll('.bv-item').forEach(card => {
     if (cat === 'all') {
-      row.style.display = '';
+      card.style.display = '';
     } else {
-      row.style.display = row.classList.contains(cat) ? '' : 'none';
+      card.style.display = card.classList.contains(cat) ? '' : 'none';
     }
   });
 }
