@@ -495,6 +495,90 @@ footer a { color:var(--text-sub); }
 @media(max-width:640px) { .mtg-row { grid-template-columns:1fr; } }
 .mtg-help { font-size:.7rem; color:var(--text-sub); margin-top:.3rem; line-height:1.5; }
 
+/* Budget tab */
+.budget-cat-row { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:.8rem 0 1rem; }
+@media(max-width:640px){ .budget-cat-row{ grid-template-columns:1fr; } }
+.budget-cat-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:.9rem 1rem; box-shadow:var(--shadow); }
+.budget-cat-card.cat1 { border-left:4px solid var(--green); }
+.budget-cat-card.cat2 { border-left:4px solid var(--purple); }
+.budget-cat-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.4rem; }
+.budget-cat-title { font-size:.82rem; font-weight:700; color:var(--primary); }
+.budget-cat-amount { font-size:1rem; font-weight:900; color:var(--primary); }
+.budget-cat-sub { font-size:.7rem; color:var(--text-sub); margin-bottom:.5rem; }
+.budget-cat-bar { background:#e9ecef; border-radius:5px; height:8px; overflow:hidden; }
+.budget-cat-fill { height:100%; border-radius:5px; }
+.budget-cat-fill.cat1 { background:linear-gradient(90deg,#6D9678,#85a991); }
+.budget-cat-fill.cat2 { background:linear-gradient(90deg,#8a7fa8,#6A6080); }
+
+.vendor-list { display:flex; flex-direction:column; gap:.65rem; margin-top:.5rem; }
+.vendor-row { display:grid; grid-template-columns:200px 1fr 110px; gap:.8rem; align-items:center; font-size:.78rem; }
+@media(max-width:640px){ .vendor-row{ grid-template-columns:1fr; gap:.2rem; } }
+.vendor-name { font-weight:700; color:var(--primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.vendor-name small { display:block; font-size:.62rem; color:var(--text-sub); font-weight:500; }
+.vendor-bar-wrap { background:#f0f2f5; border-radius:6px; height:18px; position:relative; overflow:hidden; }
+.vendor-bar { height:100%; border-radius:6px; padding:0 .5rem; display:flex; align-items:center; color:#fff; font-size:.65rem; font-weight:700; white-space:nowrap; }
+.vendor-bar.v-plat   { background:linear-gradient(90deg,#3D4A64,#4d5e7a); }
+.vendor-bar.v-conv   { background:linear-gradient(90deg,#A06E4F,#c89579); }
+.vendor-bar.v-arc    { background:linear-gradient(90deg,#6D9678,#85a991); }
+.vendor-bar.v-sekai  { background:linear-gradient(90deg,#6A6080,#8a7fa8); }
+.vendor-bar.v-toko   { background:linear-gradient(90deg,#B85565,#c87085); }
+.vendor-bar.v-yexp   { background:linear-gradient(90deg,#7090B8,#8aa6cc); }
+.vendor-amount { text-align:right; font-weight:700; color:var(--primary); white-space:nowrap; }
+.vendor-amount small { display:block; font-size:.62rem; color:var(--text-sub); font-weight:500; }
+
+.budget-filter { display:flex; gap:.4rem; margin-bottom:.7rem; flex-wrap:wrap; }
+.budget-filter button {
+  padding:.35rem .8rem; border:1px solid var(--border); border-radius:20px;
+  background:#fff; cursor:pointer; font-family:'Noto Sans JP',sans-serif;
+  font-size:.72rem; font-weight:700; color:var(--text-sub); transition:all .15s;
+}
+.budget-filter button.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+.budget-filter button:hover:not(.active) { background:#f0f0f0; color:var(--text); }
+
+.budget-table { width:100%; border-collapse:collapse; font-size:.78rem; }
+.budget-table thead th {
+  background:#f8f9fa; text-align:left; padding:.5rem .55rem;
+  font-size:.7rem; font-weight:700; color:var(--text-sub);
+  border-bottom:2px solid var(--border); white-space:nowrap;
+}
+.budget-table thead th.num { text-align:right; }
+.budget-table tbody tr { border-bottom:1px solid #f0f0f0; }
+.budget-table tbody tr:hover { background:#fafafa; }
+.budget-table tbody tr.cat1 { border-left:3px solid var(--green); }
+.budget-table tbody tr.cat2 { border-left:3px solid var(--purple); }
+.budget-table td { padding:.5rem .55rem; vertical-align:top; }
+.budget-table td.num { text-align:right; white-space:nowrap; font-weight:700; color:var(--primary); }
+.budget-table td.row-num { color:var(--text-sub); font-size:.7rem; }
+.budget-table td .biz-desc { font-size:.74rem; line-height:1.55; }
+.budget-table td .biz-meta { font-size:.66rem; color:var(--text-sub); margin-top:.15rem; }
+.budget-table tfoot td { background:#f8f9fa; font-weight:900; padding:.7rem .55rem; border-top:2px solid var(--primary); }
+.budget-table tfoot td.num { color:var(--primary); font-size:.9rem; }
+
+.budget-vendor-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:.7rem; margin-top:.5rem; }
+.bv-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:.8rem .9rem; box-shadow:var(--shadow); }
+.bv-card.v-plat   { border-top:3px solid #3D4A64; }
+.bv-card.v-conv   { border-top:3px solid #A06E4F; }
+.bv-card.v-arc    { border-top:3px solid #6D9678; }
+.bv-card.v-sekai  { border-top:3px solid #6A6080; }
+.bv-card.v-toko   { border-top:3px solid #B85565; }
+.bv-card.v-yexp   { border-top:3px solid #7090B8; }
+.bv-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.4rem; gap:.5rem; }
+.bv-name { font-size:.85rem; font-weight:700; color:var(--primary); line-height:1.3; }
+.bv-amount { font-size:.95rem; font-weight:900; color:var(--primary); white-space:nowrap; }
+.bv-share { font-size:.68rem; color:var(--text-sub); margin-bottom:.5rem; }
+.bv-tasks { list-style:none; padding:0; margin:0; }
+.bv-tasks li { font-size:.7rem; color:var(--text); padding:.2rem 0; padding-left:.9rem; position:relative; line-height:1.55; }
+.bv-tasks li:before { content:'▸'; position:absolute; left:0; color:var(--text-sub); }
+
+.budget-status-table { width:100%; border-collapse:collapse; font-size:.78rem; }
+.budget-status-table th { background:#f8f9fa; text-align:left; padding:.5rem .6rem; font-size:.7rem; font-weight:700; color:var(--text-sub); border-bottom:2px solid var(--border); }
+.budget-status-table td { padding:.5rem .6rem; border-bottom:1px solid #f0f0f0; }
+.budget-status-table td.status-cell { white-space:nowrap; }
+.s-pill { display:inline-block; padding:.15rem .55rem; border-radius:10px; font-size:.66rem; font-weight:700; }
+.s-pill.todo { background:#f1f3f4; color:#5f6368; }
+.s-pill.ongoing { background:#dde6f0; color:#2c3a52; }
+.s-pill.done { background:#dde9e2; color:#2c4540; }
+
 /* R7 tab */
 .r7-info-table { width:100%; border-collapse:collapse; font-size:.82rem; margin-bottom:.5rem; }
 .r7-info-table th { background:#f8f9fa; text-align:left; padding:.5rem .7rem; width:160px; font-weight:700; color:var(--primary); border-bottom:1px solid var(--border); font-size:.76rem; }
@@ -530,6 +614,7 @@ footer a { color:var(--text-sub); }
   <button class="tab" onclick="showTab('milestones', this)">🎯 マイルストーン</button>
   <button class="tab" onclick="showTab('tasks', this)">📋 タスク・担当</button>
   <button class="tab" onclick="showTab('deps', this)">🔗 影響・依存関係</button>
+  <button class="tab" onclick="showTab('budget', this)">💰 予算一覧</button>
   <button class="tab" onclick="showTab('mtg', this)">📝 MTG</button>
   <button class="tab" onclick="showTab('r7', this)">📚 昨年実績（R7）</button>
 </div>
@@ -1357,7 +1442,459 @@ footer a { color:var(--text-sub); }
 
 </div>
 
-<!-- ============ TAB 5: 📝 MTG ============ -->
+<!-- ============ TAB 5: 💰 予算一覧 ============ -->
+<div id="tab-budget" class="tab-pane">
+
+  <div class="alert alert-info">
+    <strong>📌 採択確定後の留意事項：</strong>各経費は採択後に <strong>2社以上の相見積もり</strong> を取得した上で支払先を最終決定します。本ページは申請書類（様式2 費用積算書）に基づく <strong>申請時点の予算一覧</strong> です。
+  </div>
+
+  <!-- ① 予算サマリー -->
+  <div class="card">
+    <div class="section-title">💰 予算サマリー</div>
+    <div class="budget-box">
+      <div class="budget-item">
+        <div class="budget-label">総事業費</div>
+        <div class="budget-val">24,950,000 円</div>
+      </div>
+      <div class="budget-item highlight">
+        <div class="budget-label">補助額（観光庁）</div>
+        <div class="budget-val">14,475,000 円</div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">自己負担金</div>
+        <div class="budget-val">10,475,000 円</div>
+      </div>
+    </div>
+    <p style="font-size:.72rem; color:var(--text-sub); margin-top:.5rem; line-height:1.5;">
+      補助対象経費（事業費）の合計は6,000,000円〜25,000,000円の範囲。<strong>区分3（ガストロノミー型）</strong>として申請。<br>
+      事業者区分：課税事業者／経費は税抜金額。
+    </p>
+  </div>
+
+  <!-- ② 経費区分別 内訳 -->
+  <div class="card">
+    <div class="section-title">📊 経費区分別 内訳</div>
+    <div class="budget-cat-row">
+      <div class="budget-cat-card cat1">
+        <div class="budget-cat-head">
+          <div class="budget-cat-title">① 観光資源を活用した観光コンテンツの造成に係る経費</div>
+          <div class="budget-cat-amount">12,050,000 円</div>
+        </div>
+        <div class="budget-cat-sub">構成比 48%（10件）／シェフズクラブ・アカデミア・置賜デイズ等の造成業務</div>
+        <div class="budget-cat-bar"><div class="budget-cat-fill cat1" style="width:48%;"></div></div>
+      </div>
+      <div class="budget-cat-card cat2">
+        <div class="budget-cat-head">
+          <div class="budget-cat-title">② 販路基盤整備・情報発信に係る経費</div>
+          <div class="budget-cat-amount">12,900,000 円</div>
+        </div>
+        <div class="budget-cat-sub">構成比 52%（6件）／多言語素材・LLMO・SNS・国際商談・FAMツアー等</div>
+        <div class="budget-cat-bar"><div class="budget-cat-fill cat2" style="width:52%;"></div></div>
+      </div>
+    </div>
+    <p style="font-size:.7rem; color:var(--text-sub); margin-top:.3rem;">
+      ※ 区分3として申請のため、①の50%以上必須要件は適用外。
+    </p>
+  </div>
+
+  <!-- ③ 委託先別 集計 -->
+  <div class="card">
+    <div class="section-title">🏢 委託先別 集計（6社・全16件）</div>
+    <p style="font-size:.74rem; color:var(--text-sub); margin-bottom:.5rem;">
+      ※ バーの幅は委託先別の金額シェアを表示。
+    </p>
+    <div class="vendor-list">
+
+      <div class="vendor-row">
+        <div class="vendor-name">プラットヨネザワ株式会社<small>10件・PM／事業運営／設立／構築</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-plat" style="width:50.5%;">50.5%</div></div>
+        <div class="vendor-amount">12,600,000円<small>10件</small></div>
+      </div>
+
+      <div class="vendor-row">
+        <div class="vendor-name">一般社団法人 米沢観光コンベンション協会<small>2件・FAMツアー造成・催行</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-conv" style="width:32.1%;">32.1%</div></div>
+        <div class="vendor-amount">8,000,000円<small>2件</small></div>
+      </div>
+
+      <div class="vendor-row">
+        <div class="vendor-name">一般社団法人 アルカディア観光局<small>1件・ガイド育成講座</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-arc" style="width:6.0%;">6.0%</div></div>
+        <div class="vendor-amount">1,500,000円<small>1件</small></div>
+      </div>
+
+      <div class="vendor-row">
+        <div class="vendor-name">世界の窓口株式会社<small>1件・LLMO/SEO・サイト改修</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-sekai" style="width:4.8%;">4.8%</div></div>
+        <div class="vendor-amount">1,200,000円<small>1件</small></div>
+      </div>
+
+      <div class="vendor-row">
+        <div class="vendor-name">米沢みさわ小学校｜とここと<small>1件・海外SNS運用・広告</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-toko" style="width:4.8%;">4.8%</div></div>
+        <div class="vendor-amount">1,200,000円<small>1件</small></div>
+      </div>
+
+      <div class="vendor-row">
+        <div class="vendor-name">YAMAGATA EXPERIENCE<small>1件・早朝気球体験</small></div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar v-yexp" style="width:1.8%;">1.8%</div></div>
+        <div class="vendor-amount">450,000円<small>1件</small></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ④ 委託業務 詳細16件テーブル -->
+  <div class="card">
+    <div class="section-title">📋 委託業務 詳細一覧（全16件）</div>
+    <div class="budget-filter">
+      <button class="active" onclick="filterBudget('all', this)">すべて（16件）</button>
+      <button onclick="filterBudget('cat1', this)">① 造成（10件）</button>
+      <button onclick="filterBudget('cat2', this)">② 販路・情報発信（6件）</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th style="width:24px;">#</th>
+            <th style="width:180px;">委託先</th>
+            <th>業務内容</th>
+            <th style="width:90px;">単価×数量</th>
+            <th class="num" style="width:110px;">金額（税抜）</th>
+            <th style="width:70px;">区分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ① 観光資源を活用した観光コンテンツの造成に係る経費 -->
+          <tr class="budget-item-row cat1">
+            <td class="row-num">1</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">事業運営全般・コーディネート全般・事務局業務委託</div></td>
+            <td>10万 × 12月</td>
+            <td class="num">1,200,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">2</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">アカデミア シェフ・生産者・専門家への謝金</div></td>
+            <td>10万 × 8名</td>
+            <td class="num">800,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">3</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">アカデミア企画ディレクション・コンテンツ監修委託</div></td>
+            <td>100万 × 1回</td>
+            <td class="num">1,000,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">4</td>
+            <td>YAMAGATA EXPERIENCE</td>
+            <td><div class="biz-desc">早朝気球体験（3組）実施費用</div></td>
+            <td>15万 × 3組</td>
+            <td class="num">450,000</td>
+            <td><span class="tag tag-yexp">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">5</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">かてもの料理プログラム設計・体験指導謝金（年2回）・紅花染め指導謝金・材料費（30名分）</div></td>
+            <td>20万 × 3回</td>
+            <td class="num">600,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">6</td>
+            <td>アルカディア観光局</td>
+            <td><div class="biz-desc">ガイド育成セミナー講師謝金（年2回）・ガイドコミュニティ組織化支援・会場借料、30名分</div></td>
+            <td>150万 × 1式</td>
+            <td class="num">1,500,000</td>
+            <td><span class="tag tag-arc">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">7</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">置賜ネイチャーシェフズクラブ設立委託（ロゴ・ユニフォーム・LP・ブランド動画制作）</div></td>
+            <td>200万 × 1式</td>
+            <td class="num">2,000,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">8</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">すき焼き選手権 申請代行・公認審査員招致・運営委託</div></td>
+            <td>200万 × 1式</td>
+            <td class="num">2,000,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">9</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">春夏コンテンツ造成・備品購入（ワイヤレスガイディングシステム等）・春夏プログラム運営委託</div></td>
+            <td>50万 × 1式</td>
+            <td class="num">500,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+          <tr class="budget-item-row cat1">
+            <td class="row-num">10</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">「置賜デイズ」予約・販売サイト構築委託（天童デイズフォーマット流用）</div></td>
+            <td>200万 × 1式</td>
+            <td class="num">2,000,000</td>
+            <td><span class="tag tag-plat">①造成</span></td>
+          </tr>
+
+          <!-- ② 販路基盤整備・情報発信に係る経費 -->
+          <tr class="budget-item-row cat2">
+            <td class="row-num">11</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">多言語（英・仏・中）ウェブコンテンツ・写真素材制作・置賜ガストロノミー特化動画（英仏中版）・シェフ個人フォーカス動画（3名分）制作</div></td>
+            <td>150万 × 1式</td>
+            <td class="num">1,500,000</td>
+            <td><span class="tag tag-plat">②販路</span></td>
+          </tr>
+          <tr class="budget-item-row cat2">
+            <td class="row-num">12</td>
+            <td>世界の窓口株式会社</td>
+            <td><div class="biz-desc">LLMO（AI検索対応）・SEO最適化・自社サイト改修委託<small class="biz-meta">（馬場氏活用）</small></div></td>
+            <td>10万 × 12月</td>
+            <td class="num">1,200,000</td>
+            <td><span class="tag tag-yexp">②販路</span></td>
+          </tr>
+          <tr class="budget-item-row cat2">
+            <td class="row-num">13</td>
+            <td>米沢みさわ小学校｜とここと</td>
+            <td><div class="biz-desc">海外SNS（Instagram・YouTube）運用・広告費（7月〜2月）・シェフズクラブSNS運用委託（英仏中日・6ヶ月）・レ・クレドール定例会後情報発信委託</div></td>
+            <td>10万 × 12月</td>
+            <td class="num">1,200,000</td>
+            <td><span class="tag tag-ext">②販路</span></td>
+          </tr>
+          <tr class="budget-item-row cat2">
+            <td class="row-num">14</td>
+            <td>プラットヨネザワ</td>
+            <td><div class="biz-desc">VJTM出展旅費（2名往復・宿泊）・VJTM出展ブース借料・出展費・台中B2Bフェア出展旅費（2名往復・宿泊）・出展費</div></td>
+            <td>100万 × 1式</td>
+            <td class="num">1,000,000</td>
+            <td><span class="tag tag-plat">②販路</span></td>
+          </tr>
+          <tr class="budget-item-row cat2">
+            <td class="row-num">15</td>
+            <td>米沢観光コンベンション協会</td>
+            <td><div class="biz-desc">FAMツアー実施（20人 × 3回）<small class="biz-meta">1回あたり200万円</small></div></td>
+            <td>600万 × 1式</td>
+            <td class="num">6,000,000</td>
+            <td><span class="tag tag-takigami">②販路</span></td>
+          </tr>
+          <tr class="budget-item-row cat2">
+            <td class="row-num">16</td>
+            <td>米沢観光コンベンション協会</td>
+            <td><div class="biz-desc">7月「俺たちの挑戦」前後・秋アカデミア開催時のツアー造成・催行</div></td>
+            <td>200万 × 1式</td>
+            <td class="num">2,000,000</td>
+            <td><span class="tag tag-takigami">②販路</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" style="text-align:right;">合計（税抜）</td>
+            <td class="num">24,950,000</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ⑤ 主要委託業務 解説カード -->
+  <div class="card">
+    <div class="section-title">🎯 主要委託業務の解説（500万円以上 ＋ 戦略重要項目）</div>
+    <div class="budget-vendor-cards">
+
+      <div class="bv-card v-conv">
+        <div class="bv-head">
+          <div class="bv-name">米沢観光コンベンション協会<br>FAMツアー実施</div>
+          <div class="bv-amount">6,000,000円</div>
+        </div>
+        <div class="bv-share">最大委託・全体の24.0%</div>
+        <ul class="bv-tasks">
+          <li>20人×3回（1回200万円）の海外エージェント招聘FAMツアー造成・催行</li>
+          <li>第1回：7月（春夏／里山ディスカバリー）</li>
+          <li>第2回：9〜10月（秋／VJTM前後・アカデミア参加）</li>
+          <li>第3回：11〜12月（冬／酒蔵発酵体験・アカデミア第2回連動）</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-plat">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>シェフズクラブ設立</div>
+          <div class="bv-amount">2,000,000円</div>
+        </div>
+        <div class="bv-share">PJT-02 メイン業務</div>
+        <ul class="bv-tasks">
+          <li>「置賜ネイチャーシェフズクラブ」ロゴ・ユニフォーム制作</li>
+          <li>LP（ランディングページ）構築</li>
+          <li>ブランド動画制作（外部委託）</li>
+          <li>知床ネイチャーシェフズクラブをモデルに設計</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-plat">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>「置賜デイズ」構築</div>
+          <div class="bv-amount">2,000,000円</div>
+        </div>
+        <div class="bv-share">PJT-03 メイン業務</div>
+        <ul class="bv-tasks">
+          <li>多言語（英・仏・中）直販サイト構築</li>
+          <li>予約・決済・在庫管理の自動化</li>
+          <li>天童デイズフォーマットを流用</li>
+          <li>2026年12月公開目標</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-plat">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>すき焼き選手権運営</div>
+          <div class="bv-amount">2,000,000円</div>
+        </div>
+        <div class="bv-share">年次イベント基盤化</div>
+        <ul class="bv-tasks">
+          <li>申請代行・公認審査員招致</li>
+          <li>2層構造（招待制審査＋一般枠）</li>
+          <li>アカデミア第2回・インフルエンサー招聘と連動</li>
+          <li>2026年11〜12月開催</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-conv">
+        <div class="bv-head">
+          <div class="bv-name">米沢観光コンベンション協会<br>アカデミア催行</div>
+          <div class="bv-amount">2,000,000円</div>
+        </div>
+        <div class="bv-share">アカデミア運営支援</div>
+        <ul class="bv-tasks">
+          <li>7月「俺たちの挑戦」前後のツアー造成</li>
+          <li>秋アカデミア開催時の催行支援</li>
+          <li>地域内コンテンツ事業者との調整</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-plat">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>多言語素材・動画制作</div>
+          <div class="bv-amount">1,500,000円</div>
+        </div>
+        <div class="bv-share">PR発信基盤</div>
+        <ul class="bv-tasks">
+          <li>多言語（英・仏・中）ウェブコンテンツ・写真</li>
+          <li>置賜ガストロノミー特化動画（英仏中版）</li>
+          <li>シェフ個人フォーカス動画（3名分）</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-arc">
+        <div class="bv-head">
+          <div class="bv-name">アルカディア観光局<br>ガイド育成</div>
+          <div class="bv-amount">1,500,000円</div>
+        </div>
+        <div class="bv-share">KPI 10名認定</div>
+        <ul class="bv-tasks">
+          <li>観光庁プログラム準拠の育成セミナー（年2回）</li>
+          <li>ガイドコミュニティ組織化支援</li>
+          <li>会場借料・30名分</li>
+          <li>10〜11月認定 → 目標10名</li>
+        </ul>
+      </div>
+
+      <div class="bv-card v-plat">
+        <div class="bv-head">
+          <div class="bv-name">プラットヨネザワ<br>事業運営・事務局</div>
+          <div class="bv-amount">1,200,000円</div>
+        </div>
+        <div class="bv-share">PM事務局運営</div>
+        <ul class="bv-tasks">
+          <li>事業運営全般・コーディネート</li>
+          <li>事務局業務（月額10万円×12ヶ月）</li>
+          <li>連携先間の調整・進行管理</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑥ 採択後 手続きステータス -->
+  <div class="card">
+    <div class="section-title">📝 採択後 手続きステータス</div>
+    <p style="font-size:.74rem; color:var(--text-sub); margin-bottom:.5rem;">
+      ※ 採択確定後の各種手続きステータス。Drive <a href="https://drive.google.com/drive/folders/1hqjji_x-5UzZJU1ZPIsljMwqm277gyEG" target="_blank" style="color:var(--blue);">10_契約書関連</a> と <a href="https://drive.google.com/drive/folders/1MUjD5xlC6rBm-vRs7Vbt1tkOh75C6TYk" target="_blank" style="color:var(--blue);">70_精算</a> フォルダで管理。
+    </p>
+    <table class="budget-status-table">
+      <thead>
+        <tr>
+          <th>委託先</th>
+          <th style="width:140px;">相見積もり</th>
+          <th style="width:140px;">委託契約締結</th>
+          <th style="width:120px;">業務開始</th>
+          <th style="width:120px;">支払い</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>プラットヨネザワ株式会社</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+        <tr>
+          <td>米沢観光コンベンション協会</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+        <tr>
+          <td>アルカディア観光局</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+        <tr>
+          <td>世界の窓口株式会社</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+        <tr>
+          <td>米沢みさわ小学校｜とここと</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+        <tr>
+          <td>YAMAGATA EXPERIENCE</td>
+          <td class="status-cell"><span class="s-pill todo">未取得</span></td>
+          <td class="status-cell"><span class="s-pill todo">未締結</span></td>
+          <td class="status-cell"><span class="s-pill todo">未着手</span></td>
+          <td class="status-cell"><span class="s-pill todo">未払</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-warn" style="margin-top:.8rem;">
+      <strong>⚠️ 重要：</strong>支払予定先は採択後に <strong>2社以上からの相見積もり</strong> により最終決定。各積算項目ごとに見積書取得が必要（実施計画提出期限：2026年7月末）。
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ TAB 6: 📝 MTG ============ -->
 <div id="tab-mtg" class="tab-pane">
 
   <div class="mtg-toolbar">
@@ -1418,7 +1955,7 @@ footer a { color:var(--text-sub); }
 
 </div>
 
-<!-- ============ TAB 6: 📚 昨年実績（R7） ============ -->
+<!-- ============ TAB 7: 📚 昨年実績（R7） ============ -->
 <div id="tab-r7" class="tab-pane">
 
   <div class="alert alert-ok">
@@ -1551,6 +2088,19 @@ function showTab(name, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
+}
+
+// ============== 予算タブ フィルター ==============
+function filterBudget(cat, btn) {
+  document.querySelectorAll('.budget-filter button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.budget-item-row').forEach(row => {
+    if (cat === 'all') {
+      row.style.display = '';
+    } else {
+      row.style.display = row.classList.contains(cat) ? '' : 'none';
+    }
+  });
 }
 
 // ============== MTG メモ管理（localStorage） ==============
